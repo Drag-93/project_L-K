@@ -1,12 +1,10 @@
-import React from "react";
-import AuthLogin from "../../components/auth/AuthLogin";
+import React from 'react'
+import AuthLogin from '../../components/Auth/AuthLogin'
 
 const AuthLoginPage = () => {
   return (
-    <>
-      <AuthLogin />
-    </>
-  );
-};
+    <AuthLogin/>
+  )
+}
 
-export default AuthLoginPage;
+export default AuthLoginPage
