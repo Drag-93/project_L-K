@@ -13,7 +13,7 @@ const joinData={
   address:"",
   gender:"genderM",
   ROLE_MEMBER:"일반회원",
-  note:""
+  remark:""
 }
 
 

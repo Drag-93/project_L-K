@@ -1,0 +1,46 @@
+{
+  "notice": [
+    {
+      "id": "1",
+      "no": 1,
+      "title": "첫번째 공지입니다",
+      "date": "2024-12-25",
+      "viewrate": 23
+    },
+    {
+      "id": "2",
+      "no": 2,
+      "title": "두번째 공지입니다",
+      "date": "2024-12-27",
+      "viewrate": 23
+    }
+  ],
+  "Members": [
+    {
+      "id": "8823",
+      "userId": "",
+      "userName": "lhs",
+      "userEmail": "lhs",
+      "userPw": "lhs",
+      "phonenum": "lhs",
+      "age": "lhs",
+      "address": "lhs",
+      "gender": "genderM",
+      "ROLE_MEMBER": "일반회원",
+      "remark":""
+    },
+    {
+      "id": "77eb",
+      "userId": "",
+      "userName": "lsy",
+      "userEmail": "lsy",
+      "userPw": "lsy",
+      "phonenum": "lsy",
+      "age": "lsy",
+      "address": "lsy",
+      "gender": "genderW",
+      "ROLE_MEMBER": "일반회원",
+      "remark":""
+    }
+  ]
+}
