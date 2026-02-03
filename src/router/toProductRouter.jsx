@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom";
 const Loading = <div className="loading">...Loading</div>;
 
 const ProdHydroPage = lazy(() => import("../page/product/ProdHydroPage"));
+const ProdHydroDetailPage = lazy(() => import("../page/product/ProdHydroDetailPage"));
 const ProdTroublePage = lazy(() => import("../page/product/ProdTroublePage"));
 const ProdWhitePage = lazy(() => import("../page/product/ProdWhitePage"));
 const ProdAntiagePage = lazy(() => import("../page/product/ProdAntiagePage"));
@@ -20,6 +21,12 @@ const toProductRouter = () => {
       path: "hydro",
       element: (
         <Suspense fallback={Loading}><ProdHydroPage /></Suspense>
+      ),
+    },
+    {
+      path: "hydro/detail/:id",
+      element: (
+        <Suspense fallback={Loading}><ProdHydroDetailPage /></Suspense>
       ),
     },
     {
