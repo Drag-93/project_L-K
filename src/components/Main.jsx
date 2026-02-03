@@ -2,10 +2,20 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Main = () => {
+
+  
+
   return (
     <>
-    <div>Main</div>
-    <Link to={'product/hydro'}>to 상품판매</Link>
+    <section className='section sec1'>
+      1
+    </section>
+    <section className='section sec2'>
+      2
+    </section>
+    <section className='section sec3'>
+      3
+    </section>
     </>
   )
 }

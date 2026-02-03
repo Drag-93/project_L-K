@@ -5,6 +5,8 @@ import Footer from "../components/common/Footer";
 import Main from "../components/Main";
 
 const MainPage = () => {
+  
+
   return (
     <>
       <Header />
