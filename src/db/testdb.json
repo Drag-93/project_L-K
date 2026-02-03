@@ -1,0 +1,15 @@
+{
+
+  "product": [
+    {"id":1, "category":"hydro", "name":"수딩 토너1", "price":20000, "img":"hydro1.jpg", "description":"보습라인 1번 상품입니다"},
+    {"id":2, "category":"hydro", "name":"수딩 토너2", "price":20000, "img":"hydro2.jpg", "description":"보습라인 2번 상품입니다"},
+    {"id":3, "category":"hydro", "name":"모이스처 세럼1", "price":20000, "img":"hydro3.jpg", "description":"보습라인 3번 상품입니다"},
+    {"id":4, "category":"hydro", "name":"모이스처 세럼2", "price":20000, "img":"hydro4.jpg", "description":"보습라인 4번 상품입니다"},
+    {"id":6, "category":"hydro", "name":"모이스처라이저2", "price":20000, "img":"hydro6.jpg", "description":"보습라인 6번 상품입니다"},
+    {"id":7, "category":"hydro", "name":"수딩 크림1", "price":20000, "img":"hydro7.jpg", "description":"보습라인 7번 상품입니다"},
+    {"id":8, "category":"hydro", "name":"수딩 크림2", "price":20000, "img":"hydro8.jpg", "description":"보습라인 8번 상품입니다"},
+    {"id":9, "category":"hydro", "name":"모이스처 마스크1", "price":20000, "img":"hydro9.jpg", "description":"보습라인 9번 상품입니다"},
+    {"id":10, "category":"hydro", "name":"모이스처 마스크2", "price":20000, "img":"hydro10.jpg", "description":"보습라인 10번 상품입니다"}
+  ]
+  
+}

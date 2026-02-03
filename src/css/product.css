@@ -1,0 +1,158 @@
+/* ProdHydro.css */
+
+.prodHydro {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 60px 20px;
+}
+
+.prodHydro-con {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border-radius: 2px;
+}
+
+.hydroList-con ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hydroList-con li {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.hydroList-con li:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.top {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  background: #f8f9fa;
+  position: relative;
+}
+
+.top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.05) 100%);
+  z-index: 1;
+}
+
+.top img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.hydroList-con li:hover .top img {
+  transform: scale(1.1);
+}
+
+.bottom {
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bottom span:first-child {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  line-height: 1.4;
+}
+
+.bottom span:last-child {
+  font-size: 22px;
+  font-weight: 700;
+  color: #667eea;
+  margin-top: 5px;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .prodHydro {
+    padding: 40px 15px;
+  }
+
+  .title {
+    font-size: 36px;
+    margin-bottom: 30px;
+  }
+
+  .hydroList-con ul {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+  }
+
+  .top {
+    height: 200px;
+  }
+
+  .bottom {
+    padding: 15px;
+  }
+
+  .bottom span:first-child {
+    font-size: 15px;
+  }
+
+  .bottom span:last-child {
+    font-size: 18px;
+  }
+}
+
+/* 로딩 애니메이션 (선택사항) */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
