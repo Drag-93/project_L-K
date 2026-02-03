@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import { API_JSON_SERVER_URL } from "../../api/commonApi";
-import axios from "axios";
+import React, { useState } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
+import { API_JSON_SERVER_URL } from '../../api/commonApi'
+import axios from 'axios'
 
-const joinData = {
-  userId: "",
-  userName: "",
-  userEmail: "",
-  userPw: "",
-  phonenum: "",
-  age: "",
-  address: "",
-  gender: "genderM",
-  ROLE_MEMBER: "일반회원",
-  remark: "",
+const joinData={
+  userId:"",
+  userName:"",
+  userEmail:"",
+  userPw:"",
+  phonenum:"",
+  age:"",
+  address:"",
+  gender:"genderM",
+  role:"ROLE_MEMBER",
+  remark:""
 };
 
 const AuthJoin = () => {
@@ -33,17 +33,15 @@ const AuthJoin = () => {
         alert("이메일, 이름, 비밀번호는 필수입니다!");
         return;
       }
-      const res = await axios.get(`${URL}/Members`);
-      const existingUser = res.data.find(
-        (el) => el.userEmail === join.userEmail,
-      );
+      const res = await axios.get(`${URL}/members`)
+      const existingUser = res.data.find(el => el.userEmail === join.userEmail)
       if (existingUser) {
         alert("중복된 이메일이 있습니다.");
         return;
       }
-      const joinOk = await axios.post(`${URL}/Members`, join);
-      alert("회원가입 성공! 로그인 페이지로 이동합니다.");
-      navigate("/auth/login");
+      const joinOk = await axios.post(`${URL}/members`, join)
+      alert("회원가입 성공! 로그인 페이지로 이동합니다.")
+      navigate("/auth/login")
     } catch (err) {
       console.error(err);
       alert("회원가입 실패! " + err);
