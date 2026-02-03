@@ -1,11 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import React from "react";
+import inputSlice from "./slice/inputSlice";
+import countSlice from "./slice/countSlice";
 
-const dummyReducer = (state = {}, action) => state;
 
 const store = configureStore({
   reducer: {
-    dummy: dummyReducer,  // 최소 하나의 reducer 필요
+    counter: countSlice.reducer,  
+    input : inputSlice.reducer
+    
+    // 최소 하나의 reducer 필요
   },
 });
 

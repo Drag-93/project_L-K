@@ -24,7 +24,7 @@ const AuthLogin = () => {
         alert("이메일, 비밀번호는 필수입니다!")
         return;
       }
-      const res = await axios.get(`${URL}/Members`);
+      const res = await axios.get(`${URL}/members`);
       const loginUser = res.data.find(el => 
         el.userEmail === login.userEmail && el.userPw === login.userPw)
       if (!loginUser) {

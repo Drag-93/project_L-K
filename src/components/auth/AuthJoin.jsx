@@ -12,7 +12,7 @@ const joinData={
   age:"",
   address:"",
   gender:"genderM",
-  ROLE_MEMBER:"일반회원",
+  role:"ROLE_MEMBER",
   remark:""
 }
 
@@ -34,13 +34,13 @@ const navigate=useNavigate()
         alert("이메일, 이름, 비밀번호는 필수입니다!")
         return
       }
-      const res = await axios.get(`${URL}/Members`)
+      const res = await axios.get(`${URL}/members`)
       const existingUser = res.data.find(el => el.userEmail === join.userEmail)
       if (existingUser) {
         alert("중복된 이메일이 있습니다.")
         return
       }
-      const joinOk = await axios.post(`${URL}/Members`, join)
+      const joinOk = await axios.post(`${URL}/members`, join)
       alert("회원가입 성공! 로그인 페이지로 이동합니다.")
       navigate("/auth/login")
     } catch (err) {

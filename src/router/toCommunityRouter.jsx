@@ -2,10 +2,9 @@ import React, { lazy, Suspense } from "react";
 import { Navigate } from "react-router-dom";
 
 const Loading = <div className="loading">...Loading</div>;
-
-const CommunityNoticePage = lazy(
-  () => import("../page/community/CommunityNoticePage"),
-);
+const CommunityNoticePage = lazy(() => import("../page/Community/CommunityNoticePage"));
+const CommunityNoticeWritePage = lazy(() => import("../page/Community/CommunityNoticeWritePage"));
+const CommunityNoticeDetailPage = lazy(() => import("../page/Community/CommunityNoticeDetailPage"));
 
 const toCommunityRouter = () => {
   return [
@@ -21,6 +20,18 @@ const toCommunityRouter = () => {
         </Suspense>
       ),
     },
+    {
+      path: "write",
+      element: (
+        <Suspense fallback={Loading}>
+          <CommunityNoticeWritePage/>
+        </Suspense>
+      ),
+    },
+  {
+  path: "notice/:id",
+  element: <Suspense fallback={Loading}><CommunityNoticeDetailPage /></Suspense>,
+  },
   ];
 };
 
