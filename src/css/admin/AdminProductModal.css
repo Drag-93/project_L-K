@@ -1,9 +1,8 @@
 /* ===============================
-   AdminMembersModal
+   AdminProductModal
    =============================== */
 
-/* overlay */
-.adminMembersModal {
+.adminProductModal {
   position: fixed;
   inset: 0;
   z-index: 2000;
@@ -16,8 +15,7 @@
   padding: 18px;
 }
 
-/* panel */
-.adminMembersModal-con {
+.adminProductModal-con {
   width: min(720px, 96vw);
   max-height: 88vh;
   overflow: auto;
@@ -31,8 +29,7 @@
   position: relative;
 }
 
-/* close */
-.adminMembersModal .close {
+.adminProductModal .close {
   position: absolute;
   top: 12px;
   right: 12px;
@@ -52,27 +49,19 @@
   font-weight: 900;
 }
 
-.adminMembersModal .close:hover {
+.adminProductModal .close:hover {
   background: #e9eeff;
 }
 
-/* title */
-.adminMembersModal .title {
+.adminProductModal .title {
   font-size: 18px;
   font-weight: 900;
   color: #1f2a44;
   margin: 6px 0 14px;
-  padding-right: 44px; /* close 버튼 겹침 방지 */
+  padding-right: 44px;
 }
 
-/* loading */
-.adminMembersModal .loading {
-  padding: 28px 0;
-  text-align: center;
-}
-
-/* form list */
-.adminMembersModal ul {
+.adminProductModal ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -82,22 +71,22 @@
   gap: 12px;
 }
 
-.adminMembersModal li {
+.adminProductModal li {
   display: grid;
   grid-template-columns: 120px 1fr;
   gap: 12px;
   align-items: center;
 }
 
-.adminMembersModal label {
+.adminProductModal label {
   font-size: 13px;
   font-weight: 800;
   color: #25304a;
 }
 
-.adminMembersModal input,
-.adminMembersModal select,
-.adminMembersModal textarea {
+.adminProductModal input,
+.adminProductModal select,
+.adminProductModal textarea {
   width: 100%;
   border: 1px solid #d9deea;
   border-radius: 12px;
@@ -107,30 +96,34 @@
   background: #ffffff;
 }
 
-.adminMembersModal input:focus,
-.adminMembersModal select:focus,
-.adminMembersModal textarea:focus {
+.adminProductModal input:focus,
+.adminProductModal select:focus,
+.adminProductModal textarea:focus {
   border-color: #8aa4ff;
   box-shadow: 0 0 0 4px rgba(138, 164, 255, 0.18);
 }
 
-.adminMembersModal input[readOnly] {
-  background: #f6f7fb;
-  color: #56607a;
+.adminProductModal img {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid #e6eaf2;
+  background: #ffffff;
 }
 
-/* remark row */
-.adminMembersModal .remark-row {
+/* description row */
+.adminProductModal .description-row {
   align-items: start;
 }
 
-.adminMembersModal .remark-textarea {
-  min-height: 110px;
+.adminProductModal .description-textarea {
+  min-height: 140px;
   resize: vertical;
 }
 
-/* buttons row (마지막 li) */
-.adminMembersModal li:last-child {
+/* buttons row */
+.adminProductModal li:last-child {
   grid-template-columns: 1fr;
   display: flex;
   justify-content: flex-end;
@@ -138,7 +131,7 @@
   padding-top: 6px;
 }
 
-.adminMembersModal button {
+.adminProductModal button {
   height: 40px;
   padding: 0 14px;
   border-radius: 12px;
@@ -149,23 +142,23 @@
   cursor: pointer;
 }
 
-.adminMembersModal button:hover {
+.adminProductModal button:hover {
   background: #f3f6ff;
 }
 
-.adminMembersModal button:nth-child(1) {
+.adminProductModal button:nth-child(1) {
   border-color: #8aa4ff;
   color: #2b4bff;
 }
 
-.adminMembersModal button:nth-child(2) {
+.adminProductModal button:nth-child(2) {
   border-color: #ffd0d0;
   color: #d11b1b;
 }
 
 /* responsive */
 @media (max-width: 520px) {
-  .adminMembersModal li {
+  .adminProductModal li {
     grid-template-columns: 1fr;
   }
 }

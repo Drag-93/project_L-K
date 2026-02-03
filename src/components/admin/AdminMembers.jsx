@@ -19,8 +19,8 @@ const AdminMembers = () => {
 
     const searchTarget = [
       m.id,
-      m.name,
-      m.email,
+      m.userName,
+      m.userEmail,
       m.phonenum,
       m.address,
       m.remark,
@@ -60,11 +60,8 @@ const AdminMembers = () => {
       )}
       <div className="adminMembers">
         <div className="adminMembers-con">
-          <div className="header">
+          <div className="title">
             <ul>
-              <li>
-                <div className="title">AdmimMember</div>
-              </li>
               <li>
                 <div className="toolbar">
                   <input
@@ -73,6 +70,8 @@ const AdminMembers = () => {
                     placeholder="검색어 입력"
                   />
                 </div>
+              </li>
+              <li>
                 <div className="roleSelector">
                   <select
                     value={roleFilter}
@@ -105,8 +104,8 @@ const AdminMembers = () => {
                 filtered.map((el) => {
                   return (
                     <tr key={el.id}>
-                      <td>{el.name}</td>
-                      <td>{el.email}</td>
+                      <td>{el.userName}</td>
+                      <td>{el.userEmail}</td>
                       <td>{el.phonenum}</td>
                       <td>{el.age}</td>
                       <td>{el.gender}</td>

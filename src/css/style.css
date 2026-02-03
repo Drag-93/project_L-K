@@ -2,3 +2,6 @@
 @import url(main.css);
 @import url(common.css);
 @import url(product.css);
+
+/* admin */
+@import url(admin/AdminTest.css);

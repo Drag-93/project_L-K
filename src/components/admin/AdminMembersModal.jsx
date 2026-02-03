@@ -72,7 +72,7 @@ const AdminMembersModal = ({ setAdminAddModal, memberId }) => {
         <span className="close" onClick={closeFn}>
           X
         </span>
-        <div className="title">{detail.name}님</div>
+        <div className="title">{detail.userName}님</div>
 
         <ul>
           <li>

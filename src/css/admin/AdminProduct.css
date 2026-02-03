@@ -1,11 +1,11 @@
 /* ===============================
-   AdminMembers Page
+   AdminProduct Page
    =============================== */
-.adminMembers {
+.adminProduct {
   width: 100%;
 }
 
-.adminMembers-con {
+.adminProduct-con {
   width: 100%;
   max-width: 1280px;
   background: #ffffff;
@@ -16,11 +16,11 @@
 }
 
 /* toolbar */
-.adminMembers .title {
+.adminProduct .title {
   margin-bottom: 14px;
 }
 
-.adminMembers .title ul {
+.adminProduct .title ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -31,7 +31,7 @@
   align-items: center;
 }
 
-.adminMembers .toolbar input {
+.adminProduct .toolbar input {
   width: min(520px, 60vw);
   height: 44px;
   padding: 0 14px;
@@ -43,13 +43,13 @@
   font-size: 15px;
 }
 
-.adminMembers .toolbar input:focus {
+.adminProduct .toolbar input:focus {
   border-color: #8aa4ff;
   box-shadow: 0 0 0 4px rgba(138, 164, 255, 0.18);
   background: #ffffff;
 }
 
-.adminMembers .roleSelector select {
+.adminProduct .categorySelector select {
   height: 44px;
   padding: 0 12px;
 
@@ -61,7 +61,7 @@
 }
 
 /* table */
-.adminMembers table {
+.adminProduct table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
@@ -71,7 +71,7 @@
   border-radius: 12px;
 }
 
-.adminMembers thead th {
+.adminProduct thead th {
   background: #f3f6ff;
   border-bottom: 1px solid #e6eaf2;
 
@@ -84,7 +84,7 @@
   color: #1f2a44;
 }
 
-.adminMembers tbody td {
+.adminProduct tbody td {
   padding: 14px 12px;
   text-align: center;
   border-bottom: 1px solid #eef1f7;
@@ -94,12 +94,12 @@
   vertical-align: middle;
 }
 
-.adminMembers tbody tr:hover td {
+.adminProduct tbody tr:hover td {
   background: #fafbff;
 }
 
-/* remark(7th col) ellipsis */
-.adminMembers tbody td:nth-child(7) {
+/* img link column ellipsis (3rd) */
+.adminProduct tbody td:nth-child(3) {
   text-align: left;
   max-width: 260px;
   white-space: nowrap;
@@ -107,35 +107,58 @@
   text-overflow: ellipsis;
 }
 
-/* detail cell */
-.adminMembers tbody td:last-child {
+/* thumb column */
+.adminProduct tbody td:nth-child(4) {
+  width: 110px;
+}
+
+.adminProduct tbody td:nth-child(4) img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid #e6eaf2;
+  background: #ffffff;
+}
+
+/* description column ellipsis (5th) */
+.adminProduct tbody td:nth-child(5) {
+  text-align: left;
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* detail */
+.adminProduct tbody td:last-child {
   cursor: pointer;
   font-weight: 800;
   color: #3f63ff;
   user-select: none;
 }
 
-.adminMembers tbody td:last-child:hover {
+.adminProduct tbody td:last-child:hover {
   text-decoration: underline;
 }
 
 /* responsive */
 @media (max-width: 900px) {
-  .adminMembers-con {
+  .adminProduct-con {
     padding: 16px;
   }
 
-  .adminMembers .title ul {
+  .adminProduct .title ul {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .adminMembers .toolbar input {
+  .adminProduct .toolbar input {
     width: 100%;
   }
 
-  .adminMembers thead th,
-  .adminMembers tbody td {
+  .adminProduct thead th,
+  .adminProduct tbody td {
     padding: 12px 8px;
     font-size: 13px;
   }
