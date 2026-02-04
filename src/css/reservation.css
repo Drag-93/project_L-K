@@ -1,13 +1,13 @@
 /* RevervLifting.css */
 
-.reservlifting {
+.reservLifting {
   width: 100%;
   min-height: 100vh;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   padding: 60px 20px;
 }
 
-.reservlifting-con {
+.reservLifting-con {
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -161,10 +161,12 @@
 /* RevervLiftingDetail.css - K-Beauty Minimal */
 
 .reservlifting-detail {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 60px 20px;
-  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* 항목이 많으므로 여유 있게 설정 */
+  padding: 40px 20px;
+  background-color: #f9f9f9;
 }
 
 .reservlifting-detail-con h1 {

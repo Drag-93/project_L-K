@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const initHydroDetail={
   id:'',
@@ -70,10 +70,10 @@ const ProdHydroDetail = () => {
           <div className="right">
             <div className="right-top">
             <ul>
-              <li>상품명: {hydroDetail.name}</li>
-              <li>상품가격: {hydroDetail.price.toLocaleString()}원</li>
-              <li>상품정보: {hydroDetail.description}</li>
-              <li>배송비: 3,000원(50,000원 이상 구매 시 무료)</li>
+              <li><span>상품명:</span><span>{hydroDetail.name}</span></li>
+              <li><span>상품가격:</span><span>{hydroDetail.price.toLocaleString()}원</span></li>
+              <li><span>상품정보:</span><span>{hydroDetail.description}</span></li>
+              <li className="deliveryfee">배송비: 3,000원(50,000원 이상 구매 시 무료)</li>
             </ul>
             </div>
             <div className="right-bottom">
@@ -83,17 +83,17 @@ const ProdHydroDetail = () => {
                   <span>{hydroDetail.name}</span>
                   <div className="counter-wrapper">
                     <span className="counter-display">{count}</span>
-                    <div className="counter-btn">
-                    <button onClick={minusFn}>▼</button>
-                    <button onClick={plusFn}>▲</button>
+                    <div className="counter-buttons">
+                    <button onClick={plusFn} className="counter-btn">▲</button>
+                    <button onClick={minusFn} className="counter-btn">▼</button>
                     </div>
                   </div>
-                  <span>{hydroDetail.price*count.toLocaleString()}원</span>
+                  <span>{(hydroDetail.price*count).toLocaleString()}원</span>
                   </div>
                 </li>
                 <li>
                   <span>총 상품금액(수량):</span>
-                  <span>{hydroDetail.price*count.toLocaleString()}원({count}개)</span>
+                  <span>{(hydroDetail.price*count).toLocaleString()}원({count}개)</span>
                   </li>
                 <li>
                   <button onClick={onCartFn}>장바구니에 담기</button>
@@ -104,8 +104,12 @@ const ProdHydroDetail = () => {
         </div>
         <div className="detail-bottom">
           <ul>
-            <li>상세정보</li>
-            <li>후기</li>
+            <li>
+              <Link to={`#`}>상세정보</Link>            {/* 상세정보 페이지 만들어서 연결 */}
+            </li>
+            <li>
+              <Link to={`#`}>후기</Link>               {/* 후기 페이지 만들어서 연결 */}
+            </li>
           </ul>
         </div>
       </div>
