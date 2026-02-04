@@ -8,6 +8,7 @@ const AdminReservationPage = lazy(
   () => import("../page/admin/AdminReservationPage"),
 );
 const AdminShopPage = lazy(() => import("../page/admin/AdminShopPage"));
+const AdminNoticePage = lazy(() => import("../page/admin/AdminNoticePage"));
 const Loading = (
   <div className="loading">
     <h1>...Loading</h1>
@@ -56,6 +57,14 @@ const toAdminRouter = () => {
       element: (
         <Suspense fallback={Loading}>
           <AdminShopPage />
+        </Suspense>
+      ),
+    },
+    {
+      path: "notice",
+      element: (
+        <Suspense fallback={Loading}>
+          <AdminNoticePage />
         </Suspense>
       ),
     },
