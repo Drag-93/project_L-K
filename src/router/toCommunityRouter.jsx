@@ -5,6 +5,7 @@ const Loading = <div className="loading">...Loading</div>;
 const CommunityNoticePage = lazy(() => import("../page/Community/CommunityNoticePage"));
 const CommunityNoticeWritePage = lazy(() => import("../page/Community/CommunityNoticeWritePage"));
 const CommunityNoticeDetailPage = lazy(() => import("../page/Community/CommunityNoticeDetailPage"));
+const CommunityMapsPage = lazy(() => import("../page/Community/CommunityMapsPage"));
 
 const toCommunityRouter = () => {
   return [
@@ -30,7 +31,19 @@ const toCommunityRouter = () => {
     },
   {
   path: "notice/:id",
-  element: <Suspense fallback={Loading}><CommunityNoticeDetailPage /></Suspense>,
+  element: (
+  <Suspense fallback={Loading}>
+    <CommunityNoticeDetailPage />
+    </Suspense>
+    ),
+  },
+    {
+  path: "maps",
+  element: (
+  <Suspense fallback={Loading}>
+    <CommunityMapsPage />
+    </Suspense>
+  ),
   },
   ];
 };

@@ -4,14 +4,13 @@ import { API_JSON_SERVER_URL } from '../../api/commonApi'
 import axios from 'axios'
 
 const joinData={
-  userId:"",
   userName:"",
   userEmail:"",
   userPw:"",
   phonenum:"",
   age:"",
   address:"",
-  gender:"genderM",
+  gender:"남",
   role:"ROLE_MEMBER",
   remark:""
 };
