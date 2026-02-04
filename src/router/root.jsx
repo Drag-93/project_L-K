@@ -21,6 +21,7 @@ const ReservationLayout = lazy(() => import("../layout/ReservationLayout"));
 const ProductLayout = lazy(() => import("../layout/ProductLayout"));
 const AuthLayout = lazy(() => import("../layout/AuthLayout"));
 const AdminLayout = lazy(() => import("../layout/AdminLayout"));
+const ShopLayout = lazy(() => import("../layout/ShopLayout"));
 
 const root = createBrowserRouter([
   {
@@ -70,7 +71,7 @@ const root = createBrowserRouter([
     path: "shop",
     element: (
       <Suspense fallback={Loading}>
-        <CommunityLayout />
+        <ShopLayout />
       </Suspense>
     ),
     children: toShopRouter(),

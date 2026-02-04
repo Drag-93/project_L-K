@@ -1,10 +1,10 @@
 import React from "react";
-import ShopNowon from "../../components/shop/ShopNowon";
+import CommunityMaps from "../../components/community/CommunityMaps";
 
 const ShopNowonPage = () => {
   return (
     <>
-      <ShopNowon />
+      <CommunityMaps />
     </>
   );
 };
