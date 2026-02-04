@@ -55,3 +55,4 @@ reset.css -> css 전체초기화
 common.css -> 프로젝트 전체 적용 CSS (header,footer,button 등)
 
 style.css -> 모든 css파일을 inport 후 main.jsx에 링크# 1st_project_mine
+# 1st_project_mine
