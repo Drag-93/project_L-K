@@ -158,5 +158,43 @@
       "img": "hydro10.jpg",
       "description": "미백라인 1번 상품입니다"
     }
+  ],
+  "reservation": [
+    {
+      "id": "1",
+      "category": "lifting",
+      "name": "울쎄라",
+      "timespan": 2,
+      "price": 200000,
+      "img": "lifting1.jpg",
+      "description": "리프팅라인 울쎄라 진료입니다"
+    },
+    {
+      "id": "2",
+      "category": "lifting",
+      "name": "써마지 FLX",
+      "timespan": 2,
+      "price": 200000,
+      "img": "lifting2.jpg",
+      "description": "리프팅라인 써마지 FLX 진료입니다"
+    },
+    {
+      "id": "3",
+      "category": "lifting",
+      "name": "티타늄 리프팅",
+      "timespan": 2,
+      "price": 200000,
+      "img": "lifting3.jpg",
+      "description": "리프팅라인 티타늄 리프팅 진료입니다"
+    },
+    {
+      "id": "4",
+      "category": "lifting",
+      "name": "엠페이스",
+      "timespan": 2,
+      "price": 200000,
+      "img": "lifting4.jpg",
+      "description": "리프팅라인 엠페이스 진료입니다"
+    }
   ]
 }

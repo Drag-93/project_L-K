@@ -1,7 +1,10 @@
 @import url(reset.css);
 @import url(main.css);
 @import url(common.css);
+
+/* product & reservation */
 @import url(product.css);
+@import url(reservation.css);
 
 /* admin */
 @import url(admin/AdminTest.css);
