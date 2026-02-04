@@ -1,0 +1,200 @@
+{
+  "notice": [
+    {
+      "id": "1",
+      "no": 1,
+      "title": "첫번째 공지입니다",
+      "date": "2024-12-25",
+      "viewrate": 23
+    },
+    {
+      "id": "2",
+      "no": 2,
+      "title": "두번째 공지입니다",
+      "date": "2024-12-27",
+      "viewrate": 23
+    }
+  ],
+  "members": [
+    {
+      "id": "1",
+      "userName": "tester",
+      "userEmail": "test@email.com",
+      "userPw": "11",
+      "phonenum": "010-0000-0000",
+      "age": "11",
+      "address": "서울시 노원구",
+      "gender": "남",
+      "role": "ROLE_ADMIN",
+      "remark": "특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항"
+    },
+    {
+      "id": "8823",
+      "userName": "lhs",
+      "userEmail": "lhs",
+      "userPw": "lhs",
+      "phonenum": "lhs",
+      "age": "lhs",
+      "address": "lhs",
+      "gender": "남",
+      "role": "ROLE_ADMIN",
+      "remark": ""
+    },
+    {
+      "id": "77eb",
+      "userName": "lsy",
+      "userEmail": "lsy",
+      "userPw": "lsy",
+      "phonenum": "lsy",
+      "age": "lsy",
+      "address": "lsy",
+      "gender": "여",
+      "role": "ROLE_MEMBER",
+      "remark": ""
+    }
+  ],
+  "product": [
+    {
+      "id": "1",
+      "category": "hydro",
+      "name": "수딩 토너1",
+      "price": 20000,
+      "img": "hydro1.jpg",
+      "description": "보습라인 1번 상품입니다"
+    },
+    {
+      "id": "2",
+      "category": "hydro",
+      "name": "수딩 토너2",
+      "price": 20000,
+      "img": "hydro2.jpg",
+      "description": "보습라인 2번 상품입니다"
+    },
+    {
+      "id": "3",
+      "category": "hydro",
+      "name": "모이스처 세럼1",
+      "price": 20000,
+      "img": "hydro3.jpg",
+      "description": "보습라인 3번 상품입니다"
+    },
+    {
+      "id": "4",
+      "category": "hydro",
+      "name": "모이스처 세럼2",
+      "price": 20000,
+      "img": "hydro4.jpg",
+      "description": "보습라인 4번 상품입니다"
+    },
+    {
+      "id": "6",
+      "category": "hydro",
+      "name": "모이스처라이저2",
+      "price": 20000,
+      "img": "hydro6.jpg",
+      "description": "보습라인 6번 상품입니다"
+    },
+    {
+      "id": "7",
+      "category": "hydro",
+      "name": "수딩 크림1",
+      "price": 20000,
+      "img": "hydro7.jpg",
+      "description": "보습라인 7번 상품입니다"
+    },
+    {
+      "id": "8",
+      "category": "hydro",
+      "name": "수딩 크림2",
+      "price": 20000,
+      "img": "hydro8.jpg",
+      "description": "보습라인 8번 상품입니다"
+    },
+    {
+      "id": "9",
+      "category": "hydro",
+      "name": "모이스처 마스크1",
+      "price": 20000,
+      "img": "hydro9.jpg",
+      "description": "보습라인 9번 상품입니다"
+    },
+    {
+      "id": "10",
+      "category": "hydro",
+      "name": "모이스처 마스크2",
+      "price": 20000,
+      "img": "hydro10.jpg",
+      "description": "보습라인 10번 상품입니다"
+    },
+    {
+      "id": "11",
+      "category": "antiage",
+      "name": "항산화test",
+      "price": 20000,
+      "img": "hydro10.jpg",
+      "description": "항산화라인 1번 상품입니다"
+    },
+    {
+      "id": "12",
+      "category": "trouble",
+      "name": "트러블케어test",
+      "price": 20000,
+      "img": "hydro10.jpg",
+      "description": "트러블케어라인 1번 상품입니다"
+    },
+    {
+      "id": "13",
+      "category": "uv",
+      "name": "자외선차단test",
+      "price": 20000,
+      "img": "hydro10.jpg",
+      "description": "자외선차단라인 1번 상품입니다"
+    },
+    {
+      "id": "14",
+      "category": "white",
+      "name": "미백test",
+      "price": 20000,
+      "img": "hydro10.jpg",
+      "description": "미백라인 1번 상품입니다"
+    }
+  ],
+  "reservation": [
+    {
+      "id": "1",
+      "category": "lifting",
+      "name": "울쎄라",
+      "timespan": 2,
+      "price": 200000,
+      "img": "lifting1.jpg",
+      "description": "리프팅라인 울쎄라 진료입니다"
+    },
+    {
+      "id": "2",
+      "category": "lifting",
+      "name": "써마지 FLX",
+      "timespan": 2,
+      "price": 200000,
+      "img": "lifting2.jpg",
+      "description": "리프팅라인 써마지 FLX 진료입니다"
+    },
+    {
+      "id": "3",
+      "category": "lifting",
+      "name": "티타늄 리프팅",
+      "timespan": 2,
+      "price": 200000,
+      "img": "lifting3.jpg",
+      "description": "리프팅라인 티타늄 리프팅 진료입니다"
+    },
+    {
+      "id": "4",
+      "category": "lifting",
+      "name": "엠페이스",
+      "timespan": 2,
+      "price": 200000,
+      "img": "lifting4.jpg",
+      "description": "리프팅라인 엠페이스 진료입니다"
+    }
+  ]
+}
