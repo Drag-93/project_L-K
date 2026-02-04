@@ -14,7 +14,7 @@ const ProdHydro = () => {
         console.log(resData)
         setHydroList(resData)
       }catch(err){
-        alert(err)
+        console.log('로딩 실패')
       }
     }
     hydroFn();
@@ -32,13 +32,13 @@ const ProdHydro = () => {
               {hydroList && hydroList.map((el,idx)=>{
                 return(
                   <li key={el.id}>
-                    <Link to={`detail/${el.id}`}>
+                    <Link to={`detail/${el.id}`}>  {/* 상품별 상세페이지 링크 */}
                     <div className="top">
                       <img src={`/images/${el.img}`} alt={el.img} />
                     </div>
                     <div className="bottom">
-                    <span>{el.name}</span>
-                    <span>{el.price}원</span>
+                    <span>상품명: {el.name}</span>
+                    <span>가격: {el.price}원</span>
                     </div>
                     </Link>
                   </li>
