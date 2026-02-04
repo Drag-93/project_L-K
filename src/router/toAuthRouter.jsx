@@ -5,7 +5,7 @@ const Loading = <div className="loading">...Loading</div>;
 const AuthLogin = lazy(() => import("../components/Auth/AuthLogin"));
 const AuthJoin = lazy(() => import("../components/Auth/AuthJoin"));
 const AuthDetail = lazy(() => import("../components/Auth/AuthDetail"));
-const AuthMemberList = lazy(() => import("../components/Auth/AuthMemberList"));
+const AuthMypage = lazy(() => import("../components/Auth/AuthMypage"));
 
 const toAuthRouter = ()=>{
  return [
@@ -38,10 +38,10 @@ const toAuthRouter = ()=>{
       ),
     },
     {
-      path: "memberList",
+      path: "Mypage/:id",
       element: (
         <Suspense fallback={Loading}>
-          <AuthMemberList/>
+          <AuthMypage/>
         </Suspense>
       ),
     }

@@ -18,9 +18,9 @@
   "members": [
     {
       "id": "1",
-      "userName": "tester",
-      "userEmail": "test@email.com",
-      "userPw": "11",
+      "userName": "관리자",
+      "userEmail": "admin",
+      "userPw": "1234",
       "phonenum": "010-0000-0000",
       "age": "11",
       "address": "서울시 노원구",
@@ -29,28 +29,18 @@
       "remark": "특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항"
     },
     {
-      "id": "8823",
-      "userName": "lhs",
-      "userEmail": "lhs",
-      "userPw": "lhs",
-      "phonenum": "lhs",
-      "age": "lhs",
-      "address": "lhs",
-      "gender": "남",
-      "role": "ROLE_ADMIN",
-      "remark": ""
-    },
-    {
-      "id": "77eb",
-      "userName": "lsy",
-      "userEmail": "lsy",
-      "userPw": "lsy",
-      "phonenum": "lsy",
-      "age": "lsy",
-      "address": "lsy",
-      "gender": "여",
+      "id": "3",
+      "userId": "",
+      "userName": "test",
+      "userEmail": "test",
+      "userPw": "1234",
+      "phonenum": "01012222641",
+      "age": "12",
+      "address": "서울",
+      "gender": "genderM",
       "role": "ROLE_MEMBER",
-      "remark": ""
+      "remark": "",
+      "note": "djqtdma"
     }
   ],
   "product": [

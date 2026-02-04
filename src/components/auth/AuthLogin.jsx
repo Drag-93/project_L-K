@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { API_JSON_SERVER_URL } from '../../api/commonApi'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { loginF } from '../../store/slice/inputSlice'
 
 const loginData={
   userEmail:"",
@@ -18,6 +20,8 @@ const AuthLogin = () => {
   }
   const URL=API_JSON_SERVER_URL
 
+  const dispatch=useDispatch()
+
   const onLoginFn = async()=>{
     try {
       if (!login.userEmail|| !login.userPw ) {
@@ -32,6 +36,7 @@ const AuthLogin = () => {
         return;
       }
       alert("로그인 성공");
+      dispatch(loginF(loginUser))    
       navigate("/")
     } catch (err) {
       console.error(err);
@@ -46,10 +51,10 @@ const AuthLogin = () => {
     <div className="auth-login-con">
       <ul>
           <li>이메일 : <input type="email" name='userEmail' placeholder='이메일을 입력해주세요' value={login.userEmail} onChange={onChangeLoginFn}/></li>
-          <li>비밀번호 : <input type="pw" name='userPw' placeholder='비밀번호를 입력해주세요' value={login.userPw} onChange={onChangeLoginFn}/></li>
+          <li>비밀번호 : <input type="password" name='userPw' placeholder='비밀번호를 입력해주세요' value={login.userPw} onChange={onChangeLoginFn}/></li>
       <li>
         <button type="button" onClick={() => { navigate('/auth/join') }}>회원가입</button>
-        <button type="button" onClick={onLoginFn}>로그인</button>
+        <button type="submit" onClick={onLoginFn}>로그인</button>
         <button type="button" onClick={() => { navigate('/') }}>메인화면</button>
       </li>
       </ul>

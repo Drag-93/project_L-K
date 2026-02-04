@@ -5,7 +5,7 @@ const initialState={
   userEmail:'',
   userPw:'',
   user:null,
-  isState:"false"
+  isState:"true"
 }
 
 const inputSlice = createSlice({
@@ -16,17 +16,17 @@ const inputSlice = createSlice({
       console.log(action.payload)
       state.userEmail=action.payload
     },
-    login:(state, action)=>{
+    loginF:(state, action)=>{
       console.log(action.payload)
       state.user=action.payload
-      state.isState=true
-    },
-    logout:(state, action)=>{
-      state.user=null
       state.isState=false
+    },
+    logoutF:(state, action)=>{
+      state.user=null
+      state.isState=true
     }
   }
 })
 
-export const{input, login, logout}=inputSlice.actions
+export const{input, loginF, logoutF}=inputSlice.actions
 export default inputSlice

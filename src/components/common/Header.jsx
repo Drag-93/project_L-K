@@ -1,11 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import { logoutF } from "../../store/slice/inputSlice";
 
 const Header = () => {
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [pageClass, setPageClass] = useState("");
+
+  const param=useParams();
+
+  const state=useSelector(state=> state)
+  const isState=useSelector(state=> state.input.isState)
+  console.log(state)
+  console.log(state.input.isState)
+  console.log(isState)
+
+  const dispatch=useDispatch()
+  const loginFn=(e)=>{
+    e.preventDefault();
+
+    alert('로그아웃 실행!')
+    dispatch(logoutF());
+  }
+
 
   useEffect(() => {
     if (location.pathname !== '/') {
@@ -34,42 +53,83 @@ const Header = () => {
 
   return (
     <>
-      <header className={`header ${isScrolled || isHovered ? 'active' : ''} ${pageClass} ${isHovered ? 'on' : ''}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      >
-        <div className="header_wrap">
-          <h1>
-            <Link to={`/`}>logo</Link>
-          </h1>
-          <nav className="nav">
-            <ul>
-              <li>
-                <Link to={`/info`}>회사소개</Link>
-              </li>
-              <li>
-                <Link to={`/product`}>상품판매</Link>
-              </li>
-              <li>
-                <Link to={`/reservation`}>진료예약</Link>
-              </li>
-              <li>
-                <Link to={`/shop`}>지점소개</Link>
-              </li>
-              <li>
-                <Link to={'/community'}>커뮤니티</Link>
-              </li>
-            </ul>
-          </nav>
-          <div className="header_auth">
-              <Link to={'/auth'} className="header_auth_btn">
-                <img src="/public/images/icon_user_w.svg"/>
-                <span>로그인</span>
-              </Link>
+      <div className={`header_wrap ${pageClass} ${isHovered ? 'on' : ''}`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+        <header className={`header ${isScrolled || isHovered ? 'active' : ''}`}>
+          <div className="header_box">
+            <h1>
+              <Link to={`/`}>logo</Link>
+            </h1>
+            <nav className="nav">
+              <ul>
+                <li>
+                  <Link to={`/info`}>회사소개</Link>
+                </li>
+                <li>
+                  <Link to={`/product`}>상품판매</Link>
+                </li>
+                <li>
+                  <Link to={`/reservation`}>진료예약</Link>
+                </li>
+                <li>
+                  <Link to={`/shop`}>지점소개</Link>
+                </li>
+                <li>
+                  <Link to={'/community'}>커뮤니티</Link>
+                </li>
+              </ul>
+            </nav>
+            <div className="header_auth">
+                {isState ? 
+                <>
+                  
+                  <Link to={'/auth'} className="header_auth_btn">
+                    <img src="/public/images/icon_user_w.svg"/>
+                    <span>로그인</span>
+                  </Link>
+                </>:
+                <>
+                  <Link onClick={loginFn} className="header_auth_btn">
+                    <span>로그아웃</span>
+                  </Link>
+                  {state.input.user.role==='ROLE_ADMIN' ? 
+                  <Link to={`/admin`} className="header_auth_btn"><span>관리자</span></Link>:
+                  <Link to={`/auth/Mypage/${state.input.user.id}`} className="header_auth_btn"><img src="/public/images/icon_user_w.svg"/><span>MYPAGE</span></Link> 
+                  }
+                </>
+              }
+            </div>
           </div>
+        </header>
+        <div className="header_depth">
+          <ul>
+            <li>
+              <Link to={`/`}>소개</Link>
+              <Link to={`/`}>연혁</Link>
+            </li>
+            <li>
+              <Link to={`/product/hydro`}>보습제품</Link>
+              <Link to={`/product/trouble`}>트러블</Link>
+              <Link to={`/product/white`}>화이트</Link>
+              <Link to={`/product/antiage`}>안티에이징</Link>
+              <Link to={`/product/uv`}>UV</Link>
+            </li>
+            <li>
+              <Link to={`/reservation/lifting`}>리프팅</Link>
+              <Link to={`/reservation/faceline`}>페이스라인</Link>
+              <Link to={`/reservation/regen`}>재생</Link>
+              <Link to={`/reservation/immune`}>면역력</Link>
+            </li>
+            <li>
+              <Link to={`/`}>노원점</Link>
+              <Link to={`/`}>명동점</Link>
+            </li>
+            <li>
+              <Link to={`/info`}>공지사항</Link>
+              <Link to={`/info/write`}>Q&A</Link>
+            </li>
+          </ul>
         </div>
-      </header>
-
+      </div>
     </>
   );
 };
