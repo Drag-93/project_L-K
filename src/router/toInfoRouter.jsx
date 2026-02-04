@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from "react";
 import { Navigate } from "react-router-dom";
-import InfoIntroductionPage from "../page/info/InfoIntroductionPage";
 
 const Loading = <div className="loading">...Loading</div>;
 

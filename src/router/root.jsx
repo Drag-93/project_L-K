@@ -6,6 +6,7 @@ import toProductRouter from "./toProductRouter";
 import toAdminRouter from "./toAdminRouter";
 import toCommunityRouter from "./toCommunityRouter";
 import toShopRouter from "./toShopRouter";
+import toInfoRouter from "./toInfoRouter";
 
 const Loading = (
   <div className="loading">
@@ -45,7 +46,7 @@ const root = createBrowserRouter([
         <InfoLayout />
       </Suspense>
     ),
-    children: toCommunityRouter(),
+    children: toInfoRouter(),
   },
   {
     path: "reservation",

@@ -7,7 +7,7 @@ const AdminLeft = () => {
       <div className="adminLeft-con">
         <h1 className="logo">
           <Link to={"/"}>
-            <img src="" alt="logo" />
+            <img src={`/images/logo.png`} alt="logo" />
           </Link>
         </h1>
         <ul>
@@ -25,6 +25,9 @@ const AdminLeft = () => {
           </li>
           <li>
             <Link to={"/admin/shop"}>지점관리</Link>
+          </li>
+          <li>
+            <Link to={"/admin/notice"}>공지사항</Link>
           </li>
         </ul>
       </div>

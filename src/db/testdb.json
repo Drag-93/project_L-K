@@ -8,11 +8,12 @@
       "viewrate": 23
     },
     {
-      "id": "2",
+      "id": "5cb6",
+      "title": "테스트용 공지사항",
+      "description": "테스트용 공지사항테스트용 공지사항테스트용 공지사항테스트용 공지사항테스트용 공지사항테스트용 공지사항테스트용 공지사항테스트용 공지사항테스트용 공지사항테스트용 공지사항",
       "no": 2,
-      "title": "두번째 공지입니다",
-      "date": "2024-12-27",
-      "viewrate": 23
+      "date": "2026-02-04",
+      "viewrate": 0
     }
   ],
   "members": [
@@ -26,7 +27,7 @@
       "address": "서울시 노원구",
       "gender": "남",
       "role": "ROLE_ADMIN",
-      "remark": "특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항"
+      "remark": "특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항"
     },
     {
       "id": "3",
@@ -147,6 +148,56 @@
       "price": 20000,
       "img": "hydro10.jpg",
       "description": "미백라인 1번 상품입니다"
+    }
+  ],
+  "reservation": [
+    {
+      "id": "21",
+      "category": "lifting",
+      "state": "",
+      "product": "",
+      "user": "",
+      "price": "",
+      "date": "",
+      "paydate": "",
+      "img": "",
+      "description": "리프팅 1번째 상품"
+    },
+    {
+      "id": "22",
+      "category": "faceline",
+      "state": "",
+      "product": "",
+      "user": "",
+      "price": "",
+      "date": "",
+      "paydate": "",
+      "img": "",
+      "description": "페이스라인  1번째 상품"
+    },
+    {
+      "id": "23",
+      "category": "regen",
+      "state": "",
+      "product": "",
+      "user": "",
+      "price": "",
+      "date": "",
+      "paydate": "",
+      "img": "",
+      "description": "피부재생 1번째 상품"
+    },
+    {
+      "id": "24",
+      "category": "immune",
+      "state": "",
+      "product": "",
+      "user": "",
+      "price": "",
+      "date": "",
+      "paydate": "",
+      "img": "",
+      "description": "면역증강 1번째 상품"
     }
   ]
 }
