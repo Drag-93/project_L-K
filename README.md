@@ -46,6 +46,8 @@ json-server --watch src/db/db.json --host 0.0.0.0 --port 3001
 
 npm install axios
 
+npm install @fullpage/react-fullpage
+
 
 # --- CSS 작성규칙 ---
 별도의 css파일 제작 및 작성 후 style.css 에 import
