@@ -8,3 +8,7 @@
 
 /* admin */
 @import url(admin/AdminTest.css);
+
+/* community */
+@import url(community/CommunityNotice.css);
+@import url(community/CommunityNoticeDetail.css);

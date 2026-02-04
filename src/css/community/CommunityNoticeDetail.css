@@ -1,0 +1,87 @@
+/* 상세 페이지 전체 컨테이너 */
+.detail {
+  width: 100%;
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 20px;
+  font-family: 'Pretendard', sans-serif;
+}
+
+/* 게시글 컨텐츠 영역 */
+.detail-con {
+  border-top: 2px solid #333;
+  padding-top: 30px;
+}
+
+/* 제목 스타일 */
+.detail-con h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 25px;
+  line-height: 1.4;
+}
+
+/* 정보 리스트 (작성자, 날짜, 조회수 등) */
+.detail-con ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+/* 각 항목 스타일 */
+.detail-con ul li {
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  color: #555;
+  font-size: 1rem;
+}
+
+/* 내용(Content) 영역 강조 */
+.detail-con ul li:nth-child(4) {
+  min-height: 300px;
+  padding: 40px 10px;
+  line-height: 1.8;
+  color: #333;
+  border-bottom: 2px solid #f4f4f4;
+  white-space: pre-wrap; /* 줄바꿈 허용 */
+}
+
+/* 버튼 그룹 컨테이너 */
+.detail-con .btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+/* 공통 버튼 스타일 */
+.detail-con button {
+  padding: 10px 25px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+/* 목록 버튼 (중앙) */
+.detail-con button:nth-of-type(2) {
+  background-color: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+/* 수정/삭제 버튼 호버 */
+.detail-con button:hover {
+  background-color: #f8f9fa;
+  border-color: #bbb;
+}
+
+/* 삭제 버튼 강조 (선택사항) */
+.detail-con button:last-of-type:hover {
+  background-color: #ff4d4d;
+  color: #fff;
+  border-color: #ff4d4d;
+}
