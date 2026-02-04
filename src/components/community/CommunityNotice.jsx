@@ -2,7 +2,6 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
-import CommunityNoticeWrite from './CommunityNoticeWrite';
 
 const Notice = () => {
   const [noticeList, setNoticeList]=useState([])
@@ -10,10 +9,6 @@ const Notice = () => {
 
 
   const navigate=useNavigate();
-
-    const writeFn=(e)=>{
-    navigate("../write")
-  }
 
     useEffect(()=>{
     const noticeListFn=async (e)=>{
@@ -58,7 +53,6 @@ const Notice = () => {
            })}
         </tbody>
         </table>
-        <button onClick={writeFn}>글쓰기</button>
       </div>
     </div>
   )
