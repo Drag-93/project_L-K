@@ -5,7 +5,6 @@ const Loading = <div className="loading">...Loading</div>;
 const CommunityNoticePage = lazy(() => import("../page/Community/CommunityNoticePage"));
 const CommunityNoticeWritePage = lazy(() => import("../page/Community/CommunityNoticeWritePage"));
 const CommunityNoticeDetailPage = lazy(() => import("../page/Community/CommunityNoticeDetailPage"));
-const CommunityMapsPage = lazy(() => import("../page/Community/CommunityMapsPage"));
 const CommunityFaqPage = lazy(() => import("../page/Community/CommunityFaqPage"));
 
 const CommunityQnAPage = lazy(

@@ -17,44 +17,6 @@
       "viewrate": 3
     }
   ],
-  "qna": [
-    {
-      "id": "1",
-      "no": 1,
-      "title": "테스트용qna",
-      "date": "2026-02-05",
-      "writer": "작성자이름",
-      "writerEmail": "작성자이메일",
-      "viewrate": 11,
-      "question": "테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용",
-      "admin": "관리자이름",
-      "answer": "답변내용답변내용답변내용답변내용답변내용"
-    },
-    {
-      "id": "349c",
-      "title": "QnA테스트용 제목",
-      "question": "질문내용 작성하기질문내용 작성하기질문내용 작성하기질문내용 작성하기질문내용 작성하기",
-      "no": 2,
-      "date": "2026-02-05",
-      "writer": "test",
-      "writerEmail": "test",
-      "viewrate": 2,
-      "admin": "관리자",
-      "answer": "답변내용테스트222"
-    },
-    {
-      "id": "ac9e",
-      "title": "문의 작성하기 테스트",
-      "question": "테스트내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용",
-      "no": 3,
-      "date": "2026-02-05",
-      "writer": "test",
-      "writerEmail": "test",
-      "viewrate": 2,
-      "admin": "",
-      "answer": ""
-    }
-  ],
   "members": [
     {
       "id": "1",
@@ -199,113 +161,17 @@
       "state": "",
       "user": "",
       "date": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
       "settime": [
         "10:00",
         "11:00",
         "14:00",
         "15:00"
       ]
-=======
-=======
->>>>>>> faithyg93
-      "paydate": ""
-    },
-    {
-      "id": "2",
-      "category": "lifting",
-      "name": "써마지 FLX",
-      "timespan": 2,
-      "price": 200000,
-      "img": "lifting2.jpg",
-      "description": "리프팅라인 써마지 FLX 진료입니다",
-      "state": "",
-      "user": "",
-      "date": "",
-      "paydate": ""
-    },
-    {
-      "id": "3",
-      "category": "lifting",
-      "name": "티타늄 리프팅",
-      "timespan": 2,
-      "price": 200000,
-      "img": "lifting3.jpg",
-      "description": "리프팅라인 티타늄 리프팅 진료입니다",
-      "state": "",
-      "user": "",
-      "date": "",
-      "paydate": ""
-    },
-    {
-      "id": "4",
-      "category": "lifting",
-      "name": "엠페이스",
-      "timespan": 2,
-      "price": 200000,
-      "img": "lifting4.jpg",
-      "description": "리프팅라인 엠페이스 진료입니다",
-      "state": "",
-      "user": "",
-      "date": "",
-      "paydate": ""
-    },
-    {
-      "id": "10",
-      "category": "faceline",
-      "name": "인모드",
-      "timespan": 2,
-      "price": 200000,
-      "img": "faceline1.jpg",
-      "description": "페이스라인 인모드 진료입니다",
-      "state": "",
-      "user": "",
-      "date": "",
-      "paydate": ""
-    },
-    {
-      "id": "20",
-      "category": "regen",
-      "name": "쥬베룩",
-      "timespan": 2,
-      "price": 200000,
-      "img": "regen1.jpg",
-      "description": "피부재생라인 쥬베룩 진료입니다",
-      "state": "",
-      "user": "",
-      "date": "",
-      "paydate": ""
-    },
-    {
-      "id": "30",
-      "category": "immune",
-      "name": "글루타치온(백옥주사)",
-      "timespan": 2,
-      "price": 200000,
-      "img": "immune1.jpg",
-      "description": "면역증강라인 글루타치온(백옥주사) 진료입니다",
-      "state": "",
-      "user": "",
-      "date": "",
-      "paydate": ""
-<<<<<<< HEAD
->>>>>>> lhstk114
-=======
->>>>>>> faithyg93
     }
   ],
   "shop": [
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-      "id": 1,
-=======
       "id": 0,
->>>>>>> lhstk114
-=======
-      "id": 1,
->>>>>>> faithyg93
       "name": "노원",
       "lat": 37.6572049,
       "lng": 127.0623355,
@@ -317,15 +183,7 @@
       "bus4": "102, N13(심야), N61(심야)"
     },
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-      "id": 2,
-=======
       "id": 1,
->>>>>>> lhstk114
-=======
-      "id": 2,
->>>>>>> faithyg93
       "name": "신촌",
       "lat": 37.5547061,
       "lng": 126.9374781,
@@ -337,15 +195,7 @@
       "bus4": "이음1(심야)"
     },
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-      "id": 3,
-=======
       "id": 2,
->>>>>>> lhstk114
-=======
-      "id": 3,
->>>>>>> faithyg93
       "name": "강남",
       "lat": 37.4966645,
       "lng": 127.0629804,
@@ -359,15 +209,7 @@
       "bus6": "서초03"
     },
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-      "id": 4,
-=======
       "id": 3,
->>>>>>> lhstk114
-=======
-      "id": 4,
->>>>>>> faithyg93
       "name": "종로",
       "lat": 37.5697291,
       "lng": 126.9897183,
@@ -379,7 +221,6 @@
       "bus4": "9301"
     }
   ],
-<<<<<<< HEAD
   "cart": [
     {
       "id": "1",
@@ -393,7 +234,8 @@
       "user": "",
       "date": "2026-02-12",
       "time": "10:00"
-=======
+    }
+  ],
   "faq": [
     {
       "id": "1",
@@ -422,7 +264,6 @@
       "category": "울쎄라",
       "title": "울쎄라 시술기간은 얼마나 걸리나요?",
       "description": "울쎄라 리프팅은 실시간으로 초음파 화면을 통해 \n 피부 속을 모니터링 하면서 정확한 타겟층에 샷을 분배하고 있으며 \n 1:1 맞춤 상담 및 디자인 시술까지 1시간~1시간 30분 정도 소요됩니다."
->>>>>>> lhstk114
     }
   ]
 }
