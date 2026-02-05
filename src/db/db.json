@@ -149,6 +149,19 @@
       "description": "미백라인 1번 상품입니다"
     }
   ],
+  "review": [
+    {
+      "id":"1",
+      "category":"hydro",
+      "product":"1",
+      "user":"test1",
+      "date":"2026.02.05",
+      "score":5,
+      "viewrate":3,
+      "description":"악건성 피부여서 여러 보습제품 사용해 봤지만, 이 제품으로 정착할것 같습니다. 리앤킴 피부과 시술 때 사용하신다더니, 품질 확실하네요. 추천합니다!",
+      "img":"review1.jpg"
+    }
+  ],
   "reservation": [
     {
       "id": "1",
