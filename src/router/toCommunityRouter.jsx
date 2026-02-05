@@ -6,6 +6,7 @@ const CommunityNoticePage = lazy(() => import("../page/Community/CommunityNotice
 const CommunityNoticeWritePage = lazy(() => import("../page/Community/CommunityNoticeWritePage"));
 const CommunityNoticeDetailPage = lazy(() => import("../page/Community/CommunityNoticeDetailPage"));
 const CommunityMapsPage = lazy(() => import("../page/Community/CommunityMapsPage"));
+const CommunityFaqPage = lazy(() => import("../page/Community/CommunityFaqPage"));
 
 const toCommunityRouter = () => {
   return [
@@ -42,6 +43,14 @@ const toCommunityRouter = () => {
   element: (
   <Suspense fallback={Loading}>
     <CommunityMapsPage />
+    </Suspense>
+  ),
+  },
+    {
+  path: "faq",
+  element: (
+  <Suspense fallback={Loading}>
+    <CommunityFaqPage />
     </Suspense>
   ),
   },

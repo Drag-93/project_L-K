@@ -1,0 +1,110 @@
+/* 전체 컨테이너 */
+.faq {
+  width: 100%;
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 25px;
+  font-family: 'Pretendard', sans-serif;
+}
+
+/* 제목 섹션 */
+.faq-con h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 40px;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+/* 테이블 스타일 */
+.faq-con table {
+  width: 100%;
+  border-collapse: separate; /* 둥근 모서리를 위해 separate 사용 */
+  border-spacing: 0;
+  border-top: 2px solid #111;
+}
+
+/* 헤더 영역 */
+.faq-con thead {
+  background-color: #fcfcfc;
+}
+
+.faq-con thead td {
+  font-weight: 700;
+  color: #555;
+  padding: 18px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+/* 본문 영역 */
+.faq-con tbody tr {
+  transition: all 0.2s ease-in-out;
+}
+
+.faq-con tbody td {
+  padding: 20px 15px;
+  text-align: center;
+  border-bottom: 1px solid #f4f4f4;
+  color: #777;
+  font-size: 1rem;
+}
+
+/* 제목 열(컬럼) 스타일 - 가장 중요 */
+.faq-con tbody td:nth-child(2) {
+  text-align: left;
+  color: #333;
+  font-weight: 600;
+  padding-left: 50px;
+  cursor: pointer;
+}
+
+
+/* 마우스 호버 효과 */
+.faq-con tbody tr:hover {
+  background-color: #f8faff; /* 아주 연한 푸른빛 배경 */
+}
+
+.faq-con tbody tr:hover td:nth-child(2) {
+  color: #007aff; /* 전체 행 호버 시 제목 색상 변경 */
+}
+
+/* 버튼 스타일 (만약 버튼을 쓰신다면) */
+.faq-con button {
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+}
+
+/* 반응형 모바일 대응 */
+@media (max-width: 768px) {
+  .faq-con h1 {
+    font-size: 1.7rem;
+    margin-bottom: 25px;
+  }
+  
+  .faq {
+    margin: 30px auto;
+  }
+
+  /* 모바일에서는 글번호와 날짜를 숨겨서 제목에 집중 */
+  .faq-con thead td:nth-child(1),
+  .faq-con thead td:nth-child(3),
+  .faq-con tbody td:nth-child(1),
+  .faq-con tbody td:nth-child(3) {
+    display: none;
+  }
+
+  .faq-con tbody td:nth-child(2) {
+    padding-left: 20px;
+    font-size: 0.95rem;
+  }
+}

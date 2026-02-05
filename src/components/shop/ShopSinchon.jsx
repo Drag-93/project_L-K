@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
 import axios from "axios";
 
-const ShopJongro = () => {
+const ShopSinchon = () => {
   const mapRef = useRef(null);
   const markerRef = useRef(null);
   
@@ -76,8 +76,8 @@ const ShopJongro = () => {
   }, [selectedShop]);
 
   return (
-    <div className="Jongro">
-      <div className="Jongro-con">
+    <div className="Sinchon">
+      <div className="Sinchon-con">
         <div 
           id="map" 
           style={{ width: '100%', maxWidth: '500px', height: '400px', backgroundColor: '#eee', borderRadius: '20px' }}
@@ -121,4 +121,4 @@ const ShopJongro = () => {
   );
 };
 
-export default ShopJongro;
+export default ShopSinchon;

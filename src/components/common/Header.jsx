@@ -120,11 +120,14 @@ const Header = () => {
               <Link to={`/reservation/immune`}>면역력</Link>
             </li>
             <li>
-              <Link to={`/`}>노원점</Link>
-              <Link to={`/`}>명동점</Link>
+              <Link to={`/shop/nowon`}>노원점</Link>
+              <Link to={`/shop/sinchon`}>신촌점</Link>
+              <Link to={`/shop/gangnam`}>강남점</Link>
+              <Link to={`/shop/jongro`}>종로점</Link>
             </li>
             <li>
-              <Link to={`/info`}>공지사항</Link>
+              <Link to={`/community/notice`}>공지사항</Link>
+              <Link to={`/community/faq`}>자주 묻는 질문</Link>
               <Link to={`/info/write`}>Q&A</Link>
             </li>
           </ul>

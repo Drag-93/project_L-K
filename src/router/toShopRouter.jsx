@@ -4,9 +4,9 @@ import { Navigate } from "react-router-dom";
 const Loading = <div className="loading">...Loading</div>;
 
 const ShopNowonPage = lazy(() => import("../page/shop/ShopNowonPage"));
-const ShopjongroPage = lazy(() => import("../page/shop/ShopjongroPage"));
-const ShopgangnamPage = lazy(() => import("../page/shop/ShopgangnamPage"));
-const ShopbanghakPage = lazy(() => import("../page/shop/ShopbanghakPage"));
+const ShopJongroPage = lazy(() => import("../page/shop/ShopjongroPage"));
+const ShopGangnamPage = lazy(() => import("../page/shop/ShopgangnamPage"));
+const ShopSinchonPage = lazy(() => import("../page/shop/ShopSinchonPage"));
 const toShopRouter = () => {
   return [
     {
@@ -25,7 +25,7 @@ const toShopRouter = () => {
       path: "jongro",
       element: (
         <Suspense fallback={Loading}>
-          <ShopjongroPage />
+          <ShopJongroPage />
         </Suspense>
       ),
     },
@@ -33,15 +33,15 @@ const toShopRouter = () => {
       path: "gangnam",
       element: (
         <Suspense fallback={Loading}>
-          <ShopgangnamPage />
+          <ShopGangnamPage />
         </Suspense>
       ),
     },
     {
-      path: "banghak",
+      path: "sinchon",
       element: (
         <Suspense fallback={Loading}>
-          <ShopbanghakPage />
+          <ShopSinchonPage />
         </Suspense>
       ),
     },
