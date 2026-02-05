@@ -161,92 +161,19 @@
       "state": "",
       "user": "",
       "date": "",
-      "paydate": ""     
-    },
-    {
-      "id": "2",
-      "category": "lifting",
-      "name": "써마지 FLX",
-      "timespan": 2,
-      "price": 200000,
-      "img": "lifting2.jpg",
-      "description": "리프팅라인 써마지 FLX 진료입니다",
-      "state": "",
-      "user": "",
-      "date": "",
-      "paydate": ""     
-    },
-    {
-      "id": "3",
-      "category": "lifting",
-      "name": "티타늄 리프팅",
-      "timespan": 2,
-      "price": 200000,
-      "img": "lifting3.jpg",
-      "description": "리프팅라인 티타늄 리프팅 진료입니다",
-      "state": "",
-      "user": "",
-      "date": "",
-      "paydate": ""     
-    },
-    {
-      "id": "4",
-      "category": "lifting",
-      "name": "엠페이스",
-      "timespan": 2,
-      "price": 200000,
-      "img": "lifting4.jpg",
-      "description": "리프팅라인 엠페이스 진료입니다",
-      "state": "",
-      "user": "",
-      "date": "",
-      "paydate": ""     
-    },
-    {
-      "id": "10",
-      "category": "faceline",
-      "name": "인모드",
-      "timespan": 2,
-      "price": 200000,
-      "img": "faceline1.jpg",
-      "description": "페이스라인 인모드 진료입니다",
-      "state": "",
-      "user": "",
-      "date": "",
-      "paydate": ""     
-    },
-    {
-      "id": "20",
-      "category": "regen",
-      "name": "쥬베룩",
-      "timespan": 2,
-      "price": 200000,
-      "img": "regen1.jpg",
-      "description": "피부재생라인 쥬베룩 진료입니다",
-      "state": "",
-      "user": "",
-      "date": "",
-      "paydate": ""     
-    },
-    {
-      "id": "30",
-      "category": "immune",
-      "name": "글루타치온(백옥주사)",
-      "timespan": 2,
-      "price": 200000,
-      "img": "immune1.jpg",
-      "description": "면역증강라인 글루타치온(백옥주사) 진료입니다",
-      "state": "",
-      "user": "",
-      "date": "",
-      "paydate": ""     
+      "settime": [
+        "10:00",
+        "11:00",
+        "14:00",
+        "15:00"
+      ]
     }
   ],
   "shop": [
     {
-      "id":1,
+      "id": 1,
       "name": "노원",
-      "lat": 37.6572049, 
+      "lat": 37.6572049,
       "lng": 127.0623355,
       "address": "서울 노원구 상계로3길 21, 화일빌딩/ 3층, 6층",
       "subway": "4호선 / 노원역 9번 출구",
@@ -256,9 +183,9 @@
       "bus4": "102, N13(심야), N61(심야)"
     },
     {
-      "id":2,
+      "id": 2,
       "name": "신촌",
-      "lat": 37.5547061, 
+      "lat": 37.5547061,
       "lng": 126.9374781,
       "address": "서울 마포구 신촌로 104/ 4층, 5층",
       "subway": "2호선/신촌역 6번 출구 약 41m",
@@ -268,9 +195,9 @@
       "bus4": "이음1(심야)"
     },
     {
-      "id":3,
+      "id": 3,
       "name": "강남",
-      "lat": 37.4966645, 
+      "lat": 37.4966645,
       "lng": 127.0629804,
       "address": "서울 강남구 테헤란로5길 24, 장연빌딩/ 4~6층",
       "subway": "2호선/강남역 11번, 12번 출구 약 200m",
@@ -282,9 +209,9 @@
       "bus6": "서초03"
     },
     {
-      "id":4,
+      "id": 4,
       "name": "종로",
-      "lat": 37.5697291, 
+      "lat": 37.5697291,
       "lng": 126.9897183,
       "address": "서울 종로구 수표로 96 국일관 2층",
       "subway": "1호선/종로3가역 15번 출구",
@@ -292,6 +219,21 @@
       "bus2": "7212",
       "bus3": "04",
       "bus4": "9301"
+    }
+  ],
+  "cart": [
+    {
+      "id": "1",
+      "category": "lifting",
+      "name": "울쎄라",
+      "timespan": 2,
+      "price": 200000,
+      "img": "lifting1.jpg",
+      "description": "리프팅라인 울쎄라 진료입니다",
+      "state": "",
+      "user": "",
+      "date": "2026-02-12",
+      "time": "10:00"
     }
   ]
 }

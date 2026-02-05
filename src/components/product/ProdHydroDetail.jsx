@@ -46,7 +46,7 @@ const ProdHydroDetail = () => {
   }
   const minusFn=(e)=>{
     if(count<=1){
-      setCount(count=1)
+      setCount(1)
     }else{
     setCount(count-1)
     }
