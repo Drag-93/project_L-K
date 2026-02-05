@@ -7,6 +7,11 @@ const CommunityNoticeDetail = () => {
   const [noticeDetail, setNoticeDetail]=useState([])
   const url=API_JSON_SERVER_URL
 
+  const handleDelete=()=>{
+    if(window.confirm("삭제하시겠습니까?")){
+      dispatch(boardaction_delete)
+    }
+  }
 
   const navigate=useNavigate();
 
@@ -24,8 +29,8 @@ const CommunityNoticeDetail = () => {
   },[])
 
   return(
-    <div className="detail">
-      <div className="detail-con">
+    <div className="Modal">
+      <div className="Modal-con">
         <h1>제목</h1>
         <ul>
           <li>이름</li>

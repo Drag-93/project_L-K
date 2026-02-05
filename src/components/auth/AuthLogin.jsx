@@ -37,7 +37,7 @@ const AuthLogin = () => {
       }
       alert("로그인 성공");
       dispatch(loginF(loginUser))    
-      navigate("/")
+      navigate(-1)
     } catch (err) {
       console.error(err);
       alert("로그인 실패! " + err);

@@ -1,0 +1,40 @@
+.Shop-left {
+  width: 250px;           /* 사이드바 너비 */
+  float: left;            /* 왼쪽으로 밀기 */
+  padding: 20px;
+  background-color: #fff;
+  border-right: 1px solid #eee;
+  min-height: 100vh;      /* 화면 높이만큼 길게 */
+}
+
+.Shop-left-con ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 50px;       /* 헤더 아래로 여백 */
+}
+
+.Shop-left-con li {
+  margin-bottom: 20px;
+}
+
+.Shop-left-con li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: block;         /* 한 줄 전체 클릭 가능하게 */
+  padding: 10px;
+  transition: all 0.2s;
+}
+
+.Shop-left-con li a.active {
+  color: #fff;
+  background-color: #5aa933;
+  border-radius: 8px;
+}
+
+.Shop-left-con li a:hover {
+  color: #007bff;
+  background-color: #f0f7ff;
+  border-radius: 8px;
+}

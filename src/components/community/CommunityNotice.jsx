@@ -2,10 +2,13 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
+import CommunityNoticeModal from './CommunityNoticeModal';
 
-const Notice = () => {
+const CommunityNotice = () => {
   const [noticeList, setNoticeList]=useState([])
   const url=API_JSON_SERVER_URL
+  const [selectedNotice, setSelectedNotice] = useState(null)
+  // const [isBool, setIsBool]=useState(false)
 
 
   const navigate=useNavigate();
@@ -21,12 +24,33 @@ const Notice = () => {
       }
     }
     noticeListFn();
-  },[])
+  },[url])
 
+//   const handleTitleClick = async(notice) => {
+//     setSelectedNotice(notice);
+  
+//   try{
+//     const updatedViewrate = Number(notice.viewrate || 0)+1
+
+//     await axios.patch(`${url}/notice/${notice.id}`,{
+//       viewrate: updatedViewrate
+//     })
+//     setNoticeList(prevList => 
+//         prevList.map(item => 
+//           item.id === notice.id ? { ...item, viewrate: updatedViewrate } : item
+//         )
+//       );
+//   setSelectedNotice(prev=>({...prev, viewrate:updatedViewrate}))
+// }catch(err){
+//   console.err
+// }handleTitleClick()
+// }
 
 
 
   return (
+    <>
+    {/* {isBool && <CommunityNoticeModal setIsBool={setIsBool} data={selectedNotice}/>} */}
     <div className="notice">
       <div className="notice-con">
         <h1>공지사항</h1>
@@ -44,7 +68,7 @@ const Notice = () => {
             return(
           <tr key={el.id}>
             <td>{el.no}</td>
-            <td style={{ cursor: 'pointer' }} onClick={() => navigate(`${el.id}`)}>
+            <td style={{ cursor: 'pointer' }} onClick={()=>navigate(`${el.id}`)}>
                   {el.title}</td>
             <td>{el.date}</td>
             <td>{el.viewrate}</td>
@@ -55,8 +79,9 @@ const Notice = () => {
         </table>
       </div>
     </div>
+     </>
   )
 }
 
 
-export default Notice
+export default CommunityNotice
