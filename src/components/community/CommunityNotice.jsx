@@ -1,6 +1,6 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
 import CommunityNoticeModal from './CommunityNoticeModal';
 
@@ -10,19 +10,18 @@ const CommunityNotice = () => {
   const [selectedNotice, setSelectedNotice] = useState(null)
   // const [isBool, setIsBool]=useState(false)
 
+  const navigate = useNavigate();
 
-  const navigate=useNavigate();
-
-    useEffect(()=>{
-    const noticeListFn=async (e)=>{
-      try{
-        const res=await axios.get(`${url}/notice`)
-        console.log(res)
-        setNoticeList(res.data)
-      }catch(err){
-        alert(err)
+  useEffect(() => {
+    const noticeListFn = async (e) => {
+      try {
+        const res = await axios.get(`${url}/notice`);
+        console.log(res);
+        setNoticeList(res.data);
+      } catch (err) {
+        alert(err);
       }
-    }
+    };
     noticeListFn();
   },[url])
 

@@ -4,34 +4,32 @@ import { Link, useParams } from "react-router-dom";
 import { logoutF } from "../../store/slice/inputSlice";
 
 const Header = () => {
-
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [pageClass, setPageClass] = useState("");
 
-  const param=useParams();
+  const param = useParams();
 
-  const state=useSelector(state=> state)
-  const isState=useSelector(state=> state.input.isState)
-  console.log(state)
-  console.log(state.input.isState)
-  console.log(isState)
+  const state = useSelector((state) => state);
+  const isState = useSelector((state) => state.input.isState);
+  console.log(state);
+  console.log(state.input.isState);
+  console.log(isState);
 
-  const dispatch=useDispatch()
-  const loginFn=(e)=>{
+  const dispatch = useDispatch();
+  const loginFn = (e) => {
     e.preventDefault();
 
-    alert('로그아웃 실행!')
+    alert("로그아웃 실행!");
     dispatch(logoutF());
-  }
-
+  };
 
   useEffect(() => {
-    if (location.pathname !== '/') {
+    if (location.pathname !== "/") {
       setIsScrolled(true); // 다른 페이지에선 active 해제
       setPageClass("");
-      return; 
-    }else{
+      return;
+    } else {
       setPageClass("header-main");
     }
 
@@ -44,17 +42,20 @@ const Header = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    
-    // 언마운트 시 이벤트 리스너 제거 (메모리 누수 방지)
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener("scroll", handleScroll);
 
+    // 언마운트 시 이벤트 리스너 제거 (메모리 누수 방지)
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
-      <div className={`header_wrap ${pageClass} ${isHovered ? 'on' : ''}`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-        <header className={`header ${isScrolled || isHovered ? 'active' : ''}`}>
+      <div
+        className={`header_wrap ${pageClass} ${isHovered ? "on" : ""}`}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <header className={`header ${isScrolled || isHovered ? "active" : ""}`}>
           <div className="header_box">
             <h1>
               <Link to={`/`}>logo</Link>
@@ -74,29 +75,38 @@ const Header = () => {
                   <Link to={`/shop`}>지점소개</Link>
                 </li>
                 <li>
-                  <Link to={'/community'}>커뮤니티</Link>
+                  <Link to={"/community"}>커뮤니티</Link>
                 </li>
               </ul>
             </nav>
             <div className="header_auth">
-                {isState ? 
+              {isState ? (
                 <>
-                  
-                  <Link to={'/auth'} className="header_auth_btn">
-                    <img src="/public/images/icon_user_w.svg"/>
+                  <Link to={"/auth"} className="header_auth_btn">
+                    <img src="/public/images/icon_user_w.svg" />
                     <span>로그인</span>
                   </Link>
-                </>:
+                </>
+              ) : (
                 <>
                   <Link onClick={loginFn} className="header_auth_btn">
                     <span>로그아웃</span>
                   </Link>
-                  {state.input.user.role==='ROLE_ADMIN' ? 
-                  <Link to={`/admin`} className="header_auth_btn"><span>관리자</span></Link>:
-                  <Link to={`/auth/Mypage/${state.input.user.id}`} className="header_auth_btn"><img src="/public/images/icon_user_w.svg"/><span>MYPAGE</span></Link> 
-                  }
+                  {state.input.user.role === "ROLE_ADMIN" ? (
+                    <Link to={`/admin`} className="header_auth_btn">
+                      <span>관리자</span>
+                    </Link>
+                  ) : (
+                    <Link
+                      to={`/auth/Mypage/${state.input.user.id}`}
+                      className="header_auth_btn"
+                    >
+                      <img src="/public/images/icon_user_w.svg" />
+                      <span>MYPAGE</span>
+                    </Link>
+                  )}
                 </>
-              }
+              )}
             </div>
           </div>
         </header>
@@ -128,7 +138,7 @@ const Header = () => {
             <li>
               <Link to={`/community/notice`}>공지사항</Link>
               <Link to={`/community/faq`}>자주 묻는 질문</Link>
-              <Link to={`/info/write`}>Q&A</Link>
+              <Link to={`/community/qna`}>Q&A</Link>
             </li>
           </ul>
         </div>

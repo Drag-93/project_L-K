@@ -8,6 +8,16 @@ const CommunityNoticeDetailPage = lazy(() => import("../page/Community/Community
 const CommunityMapsPage = lazy(() => import("../page/Community/CommunityMapsPage"));
 const CommunityFaqPage = lazy(() => import("../page/Community/CommunityFaqPage"));
 
+const CommunityQnAPage = lazy(
+  () => import("../page/community/CommunityQnAPage"),
+);
+const CommunityQnADetailPage = lazy(
+  () => import("../page/community/CommunityQnADetailPage"),
+);
+const CommunityQnAWritePage = lazy(
+  () => import("../page/community/CommunityQnAWritePage"),
+);
+
 const toCommunityRouter = () => {
   return [
     {
@@ -23,37 +33,44 @@ const toCommunityRouter = () => {
       ),
     },
     {
-      path: "write",
+      path: "notice/:id",
       element: (
         <Suspense fallback={Loading}>
-          <CommunityNoticeWritePage/>
+          <CommunityNoticeDetailPage />
         </Suspense>
       ),
     },
-  {
-  path: "notice/:id",
-  element: (
-  <Suspense fallback={Loading}>
-    <CommunityNoticeDetailPage />
-    </Suspense>
+    {
+    path: "faq",
+    element: (
+    <Suspense fallback={Loading}>
+      <CommunityFaqPage />
+      </Suspense>
     ),
-  },
+    },
+    {path: "qna",
+      element: (
+        <Suspense fallback={Loading}>
+          <CommunityQnAPage />
+        </Suspense>
+      ),
+    },
     {
-  path: "maps",
-  element: (
-  <Suspense fallback={Loading}>
-    <CommunityMapsPage />
-    </Suspense>
-  ),
-  },
+      path: "qna/:id",
+      element: (
+        <Suspense fallback={Loading}>
+          <CommunityQnADetailPage />
+        </Suspense>
+      ),
+    },
     {
-  path: "faq",
-  element: (
-  <Suspense fallback={Loading}>
-    <CommunityFaqPage />
-    </Suspense>
-  ),
-  },
+      path: "qna/write",
+      element: (
+        <Suspense fallback={Loading}>
+          <CommunityQnAWritePage />
+        </Suspense>
+      ),
+    },
   ];
 };
 
