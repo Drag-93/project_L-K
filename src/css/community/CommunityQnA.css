@@ -1,0 +1,236 @@
+/* =========================
+   CommunityQnA.css
+   ========================= */
+
+.QnA,
+.QnA * {
+  box-sizing: border-box;
+}
+
+.QnA {
+  width: 100%;
+  min-height: calc(100vh - 120px);
+  padding: 40px 24px 80px;
+  background: #f5f7fb;
+}
+
+.QnA-con {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 18px 22px 26px;
+}
+
+/* 타이틀 + 검색 */
+.QnA-con .title {
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.QnA-con .title ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.QnA-con .title h1 {
+  margin: 0 0 14px;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.4px;
+  color: #111;
+}
+
+/* 타이틀 밑 굵은 라인 (이미지 느낌) */
+.QnA-con .title::after {
+  content: "";
+  display: block;
+  width: 86%;
+  max-width: 820px;
+  margin: 0 auto;
+  border-top: 2px solid #222;
+  opacity: 0.9;
+}
+
+/* 검색창: 타이틀 아래 우측 정렬 */
+.QnA-con .toolbar {
+  width: 86%;
+  max-width: 820px;
+  margin: 12px auto 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.QnA-con .toolbar input {
+  width: 240px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid #dfe3ea;
+  background: #fff;
+  font-size: 13px;
+  outline: none;
+}
+
+.QnA-con .toolbar input:focus {
+  border-color: #2e7d32;
+}
+
+/* 테이블 */
+.QnA-con table {
+  width: 86%;
+  max-width: 820px;
+  margin: 14px auto 0;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+.QnA-con thead tr {
+  border-top: 1px solid #dcdfe6;
+  border-bottom: 1px solid #dcdfe6;
+}
+
+.QnA-con thead td {
+  padding: 12px 10px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #333;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.QnA-con tbody tr {
+  border-bottom: 1px solid #eceff4;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.QnA-con tbody tr:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.QnA-con tbody td {
+  padding: 14px 10px;
+  font-size: 13px;
+  color: #222;
+  text-align: center;
+}
+
+/* 제목은 살짝 강조 + 왼쪽 정렬 */
+.QnA-con tbody td:nth-child(2) {
+  text-align: left;
+  font-weight: 700;
+}
+
+/* 글번호/조회수 폭 느낌 맞추기 */
+.QnA-con thead td:first-child,
+.QnA-con tbody td:first-child {
+  width: 90px;
+}
+
+.QnA-con thead td:last-child,
+.QnA-con tbody td:last-child {
+  width: 90px;
+}
+
+/* 하단 영역 */
+.QnAFooter {
+  width: 86%;
+  max-width: 820px;
+  margin: 18px auto 0;
+}
+
+.QnAFooter-con {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 페이징 */
+.QnAPaging {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.QnAPaging button {
+  border: 1px solid #dfe3ea;
+  background: #fff;
+  padding: 9px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  transition: 0.15s ease;
+}
+
+.QnAPaging button:hover {
+  filter: brightness(0.98);
+}
+
+.QnAPaging button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.QnAPaging span {
+  font-size: 13px;
+  font-weight: 800;
+  color: #333;
+  min-width: 70px;
+  text-align: center;
+}
+
+/* 글쓰기 버튼 */
+.QnAFooter-con > button {
+  border: 0;
+  background: #2e7d32;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 800;
+  transition: 0.15s ease;
+}
+
+.QnAFooter-con > button:hover {
+  filter: brightness(0.95);
+}
+
+/* =========================
+   반응형
+   ========================= */
+@media (max-width: 720px) {
+  .QnA {
+    padding: 28px 14px 60px;
+  }
+
+  .QnA-con .title::after,
+  .QnA-con .toolbar,
+  .QnA-con table,
+  .QnAFooter {
+    width: 100%;
+  }
+
+  .QnA-con .toolbar {
+    justify-content: center;
+  }
+
+  .QnA-con .toolbar input {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  /* 모바일에서는 테이블 가로 스크롤 허용 */
+  .QnA-con table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .QnAFooter-con {
+    flex-direction: column;
+    align-items: center;
+  }
+}
