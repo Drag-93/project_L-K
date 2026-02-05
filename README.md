@@ -54,7 +54,9 @@ json-server --watch src/db/db.json --host 0.0.0.0 --port 3001
 
 npm install axios
 
-npm install @fullpage/react-fullpage
+npm install @fullpage/react-fullpage   -> 리액트 메인 풀페이지 라이브러리
+
+npm i react-calendar   -> 리액트 캘린더 추가 라이브러리
 
 
 # --- CSS 작성규칙 ---
