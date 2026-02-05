@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import ProdHydroDetailDescription from './ProdHydroDetailDescription';
+import ProdHydroDetailReview from './ProdHydroDetailReview';
+import { API_JSON_SERVER_URL } from '../../api/commonApi';
 
 const initHydroDetail={
   id:'',
@@ -16,10 +19,8 @@ const ProdHydroDetail = () => {
 
   const [hydroDetail, setHydroDetail]=useState(initHydroDetail)
 
-  const url=`http://localhost:3001`
-
-  const [count, setCount]=useState(1)
-
+  const url=API_JSON_SERVER_URL
+  
   useEffect(()=>{
     
     const fetchHydroDetail=async ()=>{
@@ -40,13 +41,15 @@ const ProdHydroDetail = () => {
     }
     fetchHydroDetail();    
   },[])
-
+  
+  const [count, setCount]=useState(1)
+  
   const plusFn=(e)=>{
     setCount(count+1)
   }
   const minusFn=(e)=>{
     if(count<=1){
-      setCount(count=1)
+      setCount(1)
     }else{
     setCount(count-1)
     }
@@ -58,6 +61,8 @@ const ProdHydroDetail = () => {
     navigate(`shop/mypage`);      {/* 장바구니 페이지로 이동~ 장바구니 경로 지정 필요! */}
   }
 
+  const [menuTab, setMenuTab]=useState('description')
+
   return (
     <>
     <div className="prodhydro-detail">
@@ -68,6 +73,7 @@ const ProdHydroDetail = () => {
             <img src={`/images/${hydroDetail.img}`} alt={hydroDetail.name} />
           </div>
           <div className="right">
+            {/* 상품정보 */}
             <div className="right-top">
             <ul>
               <li><span>상품명:</span><span>{hydroDetail.name}</span></li>
@@ -76,9 +82,10 @@ const ProdHydroDetail = () => {
               <li className="deliveryfee">배송비: 3,000원(50,000원 이상 구매 시 무료)</li>
             </ul>
             </div>
+            {/* 상품선택 및 장바구니 담기 */}
             <div className="right-bottom">
               <ul>
-                <li>  {/* 상품개수 선택하기 */}
+                <li>
                   <div className="select">
                   <span>{hydroDetail.name}</span>
                   <div className="counter-wrapper">
@@ -102,16 +109,24 @@ const ProdHydroDetail = () => {
             </div>
           </div>
         </div>
+        {/* 페이지 하단 상세정보&후기 탭 메뉴 */}
         <div className="detail-bottom">
           <ul>
-            <li>
-              <Link to={`#`}>상세정보</Link>            {/* 상세정보 페이지 만들어서 연결 */}
+            <li 
+            className={`bottom-menu ${menuTab === 'description' ? 'active' :'' }`}
+            onClick={()=>setMenuTab('description')}>
+              상세정보
             </li>
-            <li>
-              <Link to={`#`}>후기</Link>               {/* 후기 페이지 만들어서 연결 */}
+            <li 
+            className={`bottom-menu ${menuTab === 'review' ? 'active' : ''}`}
+            onClick={()=>setMenuTab('review')}>
+              후기
             </li>
           </ul>
-        </div>
+          </div>
+        <div className="bottom-content">
+          {menuTab === 'description'? <ProdHydroDetailDescription /> : <ProdHydroDetailReview />}
+        </div>        
       </div>
     </div>
     </>

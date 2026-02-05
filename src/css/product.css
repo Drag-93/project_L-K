@@ -312,16 +312,31 @@
   border-bottom: 1px solid #e2e8f0;
 }
 
-.detail-bottom li {
+.detail-bottom ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  gap: 40px; /* 상세정보와 후기 사이의 간격 */
+  border-bottom: 1px solid #e2e8f0; /* 하단 구분선 */
+}
+
+.detail-bottom .bottom-menu span {
   font-size: 15px;
   font-weight: 600;
   color: #718096;
   cursor: pointer;
   transition: color 0.3s;
+  padding-bottom: 10px;
 }
 
-.detail-bottom li:hover {
+.detail-bottom .bottom-menu span:hover {
   color: #2d3748;
+}
+
+.bottom-menu.active {
+  color: black;
+  font-weight: bold;
+  border-bottom: 2px solid black;
 }
 
 @media (max-width: 768px) {
@@ -338,4 +353,249 @@
     flex-direction: column;
     gap: 15px;
   }
+}
+
+/* ============== 후기(ProdHydroDetailReview) =================== */
+/* 전체 컨테이너 */
+.detail-review {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: 'Pretendard', sans-serif;
+  color: #333;
+}
+
+/* 상단 리뷰 요약 영역 */
+.current-status {
+  display: flex;
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 40px;
+  align-items: center;
+  gap: 40px;
+}
+
+.totalscore {
+  text-align: center;
+  border-right: 1px solid #e2e8f0;
+  padding-right: 40px;
+}
+
+.avrscore {
+  font-size: 32px;
+  font-weight: 800;
+  color: #2d3748;
+  list-style: none;
+}
+
+.totalno {
+  font-size: 14px;
+  color: #718096;
+  list-style: none;
+  margin-top: 4px;
+}
+
+.majorreviews {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+}
+
+.majorreviews li {
+  background: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  border: 1px solid #edf2f7;
+  color: #4a5568;
+}
+
+/* 리뷰 리스트 헤더 */
+.reviews h1 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.reviews button {
+  float: right;
+  background: #2d3748;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.reviews button:hover {
+  background: #4a5568;
+}
+
+/* 개별 리뷰 아이템 (ul 태그) */
+.reviews ul {
+  clear: both;
+  list-style: none;
+  padding: 24px 0;
+  border-bottom: 1px solid #edf2f7;
+  display: grid;
+  grid-template-columns: 150px 1fr 200px; /* 작성자, 내용, 사진 구조 */
+  gap: 20px;
+}
+
+.reviews ul li {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+/* 리뷰 텍스트 강조 */
+.reviews ul li:nth-child(4) { /* 내용 부분 */
+  grid-column: 2;
+  line-height: 1.6;
+  color: #4a5568;
+}
+
+/* 리뷰 이미지 */
+.reviews img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  grid-column: 3;
+  grid-row: 1 / 5; /* 정보를 우측에 고정 */
+}
+
+/* ================= 후기 작성 모달(ProdHydroDetailReviewModal) ============= */
+/* 모달 전체 배경 (어둡게 처리) */
+.review-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* 반투명 검정 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* 모달 흰색 박스 */
+.review-modal-con {
+  background: #fff;
+  width: 100%;
+  max-width: 800px;
+  min-height: 500px;
+  padding: 30px;
+  border-radius: 16px;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 및 닫기 버튼 */
+.review-modal-con h1 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #a0aec0;
+}
+
+/* 작성자 정보 */
+.reviewer {
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #4a5568;
+  border-bottom: 1px solid #edf2f7;
+  padding-bottom: 10px;
+}
+
+/* 입력 리스트 스타일 */
+.review-modal-con ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.review-modal-con ul li {
+  margin-bottom: 20px;
+}
+
+.review-modal-con label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* 평점 라디오 버튼 */
+.score-selector {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.score-selector label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  margin: 0;
+}
+
+/* 상세후기 텍스트 영역 */
+textarea {
+  width: 100%;
+  height: 300px;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  resize: none;
+  font-family: inherit;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #2d3748;
+}
+
+/* 글자수 표시 */
+.review-modal-con li p {
+  text-align: right;
+  font-size: 12px;
+  color: #a0aec0;
+  margin-top: 5px;
+}
+
+/* 사진 업로드 및 미리보기 */
+.image-preview {
+  margin-top: 10px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.image-preview img {
+  border-radius: 8px;
+  border: 1px solid #edf2f7;
+}
+
+.image-preview button {
+  background: #feb2b2;
+  color: #9b2c2c;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
 }
