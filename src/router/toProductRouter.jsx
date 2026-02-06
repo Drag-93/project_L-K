@@ -7,7 +7,6 @@ const ProdListPage = lazy(() => import("../components/product/ProdList"));
 const ProdDetailPage = lazy(() => import("../components/product/ProdDetail"));
 
 
-
 const toProductRouter = () => {
   return [
     {
