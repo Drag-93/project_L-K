@@ -138,11 +138,11 @@ const Header = () => {
               <Link to={`/info/history`}>연혁</Link>
             </li>
             <li>
-              <Link to={`/product/hydro`}>보습제품</Link>
-              <Link to={`/product/trouble`}>트러블</Link>
-              <Link to={`/product/white`}>화이트</Link>
-              <Link to={`/product/antiage`}>안티에이징</Link>
-              <Link to={`/product/uv`}>UV</Link>
+              <Link to={`/product/list/hydro`}>보습제품</Link>
+              <Link to={`/product/list/trouble`}>트러블</Link>
+              <Link to={`/product/list/white`}>화이트</Link>
+              <Link to={`/product/list/antiage`}>안티에이징</Link>
+              <Link to={`/product/list/uv`}>UV</Link>
             </li>
             <li>
               <Link to={`/reservation/lifting`}>리프팅</Link>
