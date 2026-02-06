@@ -55,8 +55,7 @@ const ProdDetail = () => {
 
   const navigate=useNavigate();
   const onCartFn=(e)=>{
-    if(!confirm('장바구니로 이동하시겠습니까?')) return;
-    navigate(`shop/mypage`);      {/* 장바구니 페이지로 이동~ 장바구니 경로 지정 필요! */}    
+    console.log(count)
   }
 
   const [menuTab, setMenuTab]=useState('detaildesc');

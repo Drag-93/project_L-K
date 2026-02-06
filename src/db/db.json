@@ -254,7 +254,27 @@
       "bus4": "9301"
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "id": "dde2",
+      "category": "lifting",
+      "name": "울쎄라",
+      "timespan": 2,
+      "price": 200000,
+      "img": "lifting1.jpg",
+      "description": "리프팅라인 울쎄라 진료입니다",
+      "state": "",
+      "user": "",
+      "date": "2026-02-11",
+      "settime": [
+        "10:00",
+        "11:00",
+        "14:00",
+        "15:00"
+      ],
+      "time": "11:00"
+    }
+  ],
   "faq": [
     {
       "id": "1",
