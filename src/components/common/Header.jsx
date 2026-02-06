@@ -80,8 +80,12 @@ const Header = () => {
               </ul>
             </nav>
             <div className="header_auth">
+            
               {isState ? (
                 <>
+                  <Link to={"/order"} className="header_auth_btn header_basket_btn">
+                      <img src="/public/images/icon_basket.svg" />
+                  </Link>
                   <Link to={"/auth"} className="header_auth_btn">
                     <img src="/public/images/icon_user_w.svg" />
                     <span>로그인</span>
@@ -89,21 +93,30 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <Link onClick={loginFn} className="header_auth_btn">
-                    <span>로그아웃</span>
-                  </Link>
                   {state.input.user.role === "ROLE_ADMIN" ? (
-                    <Link to={`/admin`} className="header_auth_btn">
-                      <span>관리자</span>
-                    </Link>
+                    <>
+                      <Link onClick={loginFn} className="header_auth_btn">
+                        <span>로그아웃</span>
+                      </Link>
+                      <Link to={`/admin`} className="header_auth_btn">
+                        <span>관리자</span>
+                      </Link>
+                    </>
                   ) : (
-                    <Link
-                      to={`/auth/Mypage/${state.input.user.id}`}
-                      className="header_auth_btn"
-                    >
-                      <img src="/public/images/icon_user_w.svg" />
-                      <span>MYPAGE</span>
-                    </Link>
+                    <>
+                      <Link to={"/order"} className="header_auth_btn header_basket_btn">
+                        <img src="/public/images/icon_basket.svg" />
+                      </Link>
+                      <Link onClick={loginFn} className="header_auth_btn">
+                        <span>로그아웃</span>
+                      </Link>
+                      <Link
+                        to={`/auth/Mypage/${state.input.user.id}`}
+                        className="header_auth_btn">
+                        <img src="/public/images/icon_user_w.svg" />
+                        <span>MYPAGE</span>
+                      </Link>
+                    </>
                   )}
                 </>
               )}
@@ -113,8 +126,8 @@ const Header = () => {
         <div className="header_depth">
           <ul>
             <li>
-              <Link to={`/`}>소개</Link>
-              <Link to={`/`}>연혁</Link>
+              <Link to={`/info/introduction`}>소개</Link>
+              <Link to={`/info/history`}>연혁</Link>
             </li>
             <li>
               <Link to={`/product/hydro`}>보습제품</Link>

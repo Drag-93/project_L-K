@@ -1,7 +1,11 @@
-import React from "react";
+import React from 'react'
 
 const InfoIntroduction = () => {
-  return <div>InfoIntroduction</div>;
-};
+  return (
+    <>
+      <div>회사소개</div>
+    </>
+  )
+}
 
-export default InfoIntroduction;
+export default InfoIntroduction

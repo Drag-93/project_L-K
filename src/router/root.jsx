@@ -7,6 +7,7 @@ import toAdminRouter from "./toAdminRouter";
 import toCommunityRouter from "./toCommunityRouter";
 import toShopRouter from "./toShopRouter";
 import toInfoRouter from "./toInfoRouter";
+import toOrderRouter from "./toOrderRouter";
 
 const Loading = (
   <div className="loading">
@@ -14,7 +15,6 @@ const Loading = (
   </div>
 );
 const MainPage = lazy(() => import("../page/MainPage"));
-const MypagePage = lazy(() => import("../page/MypagePage"));
 const InfoLayout = lazy(() => import("../layout/InfoLayout"));
 const CommunityLayout = lazy(() => import("../layout/CommunityLayout"));
 const ReservationLayout = lazy(() => import("../layout/ReservationLayout"));
@@ -22,6 +22,7 @@ const ProductLayout = lazy(() => import("../layout/ProductLayout"));
 const AuthLayout = lazy(() => import("../layout/AuthLayout"));
 const AdminLayout = lazy(() => import("../layout/AdminLayout"));
 const ShopLayout = lazy(() => import("../layout/ShopLayout"));
+const OrderLayout = lazy(() => import("../layout/OrderLayout"));
 
 const root = createBrowserRouter([
   {
@@ -29,14 +30,6 @@ const root = createBrowserRouter([
     element: (
       <Suspense fallback={Loading}>
         <MainPage />
-      </Suspense>
-    ),
-  },
-  {
-    path: "mypage",
-    element: (
-      <Suspense fallback={Loading}>
-        <MypagePage />
       </Suspense>
     ),
   },
@@ -102,6 +95,15 @@ const root = createBrowserRouter([
       </Suspense>
     ),
     children: toAdminRouter(),
+  },
+  {
+    path: "order",
+    element: (
+      <Suspense fallback={Loading}>
+        <OrderLayout/>
+      </Suspense>
+    ),
+    children: toOrderRouter(),
   },
 ]);
 

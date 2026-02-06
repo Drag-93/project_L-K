@@ -6,6 +6,9 @@ const Loading = <div className="loading">...Loading</div>;
 const InfoIntroductionPage = lazy(
   () => import("../page/info/InfoIntroductionPage"),
 );
+const InfoHistoryPage = lazy(
+  () => import("../page/info/InfoHistoryPage"),
+);
 
 const toInfoRouter = () => {
   return [
@@ -21,6 +24,14 @@ const toInfoRouter = () => {
         </Suspense>
       ),
     },
+    {
+      path: "history",
+      element: (
+        <Suspense fallback={Loading}>
+          <InfoHistoryPage />
+        </Suspense>
+      ),
+    }
   ];
 };
 
