@@ -17,7 +17,7 @@ const CommunityQnA = () => {
     if (!q) return qnaList;
 
     return qnaList.filter((m) => {
-      const searchTarget = [m.id, m.no, m.title, m.date, m.writer, m.viewrate]
+      const searchTarget = [m.no, m.title, m.date, m.writer]
         .filter(Boolean)
         .join(" ")
         .toLowerCase();

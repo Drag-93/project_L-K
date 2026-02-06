@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
 import axios from "axios";
 import AdminReservationModal from "./AdminReservationModal";
+import { useLocation } from "react-router-dom";
 const AdminReservation = () => {
   const [reservationList, setReservationList] = useState([]);
   const reservationUrl = API_JSON_SERVER_URL;
@@ -10,20 +11,23 @@ const AdminReservation = () => {
   const [searchText, setSearchText] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("ALL");
 
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const name = params.get("name");
+
+  useEffect(() => {
+    if (name) {
+      setSearchText(name);
+    }
+  }, [name]);
+
   const filtered = reservationList.filter((m) => {
     const q = searchText.trim().toLowerCase();
     if (categoryFilter !== "ALL" && m.category !== categoryFilter) return false;
 
     if (!q) return true;
 
-    const searchTarget = [
-      m.id,
-      m.category,
-      m.name,
-      m.price,
-      m.img,
-      m.description,
-    ]
+    const searchTarget = [m.category, m.name, m.price, m.description]
       .filter(Boolean)
       .join(" ")
       .toLowerCase();
