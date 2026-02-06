@@ -1,161 +1,100 @@
-/* ProdHydro.css */
+/* ProdListPage.css */
 
-.prodHydro {
-  width: 100%;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  padding: 60px 20px;
-}
-
-.prodHydro-con {
+/* 전체 컨테이너 */
+.prod-list {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 50px 20px;
+  font-family: 'Pretendard', sans-serif;
 }
 
-.title {
-  font-size: 48px;
-  font-weight: 700;
-  color: #2c3e50;
-  text-align: center;
-  margin-bottom: 50px;
-  position: relative;
+/* 카테고리 탭 레이아웃 */
+.category {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  list-style: none;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #eee;
   padding-bottom: 20px;
 }
 
-.title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-  border-radius: 2px;
+.category li a {
+  text-decoration: none;
+  color: #666;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
-.hydroList-con ul {
+.category li a:hover {
+  color: #000;
+  font-weight: 700;
+}
+
+/* 상품 리스트 그리드 */
+.list-con ul {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 30px;
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
-.hydroList-con li {
-  background: white;
-  border-radius: 20px;
+/* 개별 상품 카드 */
+.list-con ul li {
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background: #fff;
   cursor: pointer;
 }
 
-.hydroList-con li:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+.list-con ul li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
+/* 상품 이미지 */
 .top {
   width: 100%;
-  height: 300px;
+  aspect-ratio: 1 / 1; /* 정사각형 유지 */
   overflow: hidden;
-  background: #f8f9fa;
-  position: relative;
-}
-
-.top::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.05) 100%);
-  z-index: 1;
+  background-color: #f9f9f9;
 }
 
 .top img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s;
 }
 
-.hydroList-con li:hover .top img {
+.list-con ul li:hover .top img {
   transform: scale(1.1);
 }
 
+/* 상품 정보 섹션 */
 .bottom {
-  padding: 25px 20px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .bottom span:first-child {
-  font-size: 18px;
+  font-size: 1rem;
+  color: #333;
   font-weight: 600;
-  color: #2c3e50;
-  line-height: 1.4;
 }
 
 .bottom span:last-child {
-  font-size: 22px;
-  font-weight: 700;
-  color: #667eea;
-  margin-top: 5px;
+  font-size: 1.2rem;
+  color: #ff4757; /* 가격 강조 색상 */
+  font-weight: 800;
 }
 
-/* 반응형 */
-@media (max-width: 768px) {
-  .prodHydro {
-    padding: 40px 15px;
-  }
-
-  .title {
-    font-size: 36px;
-    margin-bottom: 30px;
-  }
-
-  .hydroList-con ul {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 20px;
-  }
-
-  .top {
-    height: 200px;
-  }
-
-  .bottom {
-    padding: 15px;
-  }
-
-  .bottom span:first-child {
-    font-size: 15px;
-  }
-
-  .bottom span:last-child {
-    font-size: 18px;
-  }
-}
-
-/* 로딩 애니메이션 (선택사항) */
-@keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
-  }
-}
-
-.loading {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 1000px 100%;
-  animation: shimmer 2s infinite;
-}
 
 /* =========== ProdHydroDetail ==============*/
 /* ProdHydroDetail.css - K-Beauty Minimal */

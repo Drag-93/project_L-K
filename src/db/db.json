@@ -79,7 +79,7 @@
     {
       "id": "6",
       "category": "hydro",
-      "name": "모이스처라이저2",
+      "name": "모이스처라이저1",
       "price": 20000,
       "img": "hydro6.jpg",
       "description": "보습라인 6번 상품입니다"
@@ -87,7 +87,7 @@
     {
       "id": "7",
       "category": "hydro",
-      "name": "수딩 크림1",
+      "name": "모이스처라이저2",
       "price": 20000,
       "img": "hydro7.jpg",
       "description": "보습라인 7번 상품입니다"
@@ -95,7 +95,7 @@
     {
       "id": "8",
       "category": "hydro",
-      "name": "수딩 크림2",
+      "name": "모이스처라이저3",
       "price": 20000,
       "img": "hydro8.jpg",
       "description": "보습라인 8번 상품입니다"
@@ -118,35 +118,51 @@
     },
     {
       "id": "11",
-      "category": "antiage",
-      "name": "항산화test",
+      "category": "trouble",
+      "name": "트러블 클렌징 폼1",
       "price": 20000,
-      "img": "hydro10.jpg",
-      "description": "항산화라인 1번 상품입니다"
+      "img": "trouble1.jpg",
+      "description": "트러블케어라인 1번 상품입니다"
     },
     {
       "id": "12",
       "category": "trouble",
-      "name": "트러블케어test",
+      "name": "트러블 클렌징 폼2",
       "price": 20000,
-      "img": "hydro10.jpg",
-      "description": "트러블케어라인 1번 상품입니다"
+      "img": "trouble2.jpg",
+      "description": "트러블케어라인 2번 상품입니다"
     },
     {
       "id": "13",
-      "category": "uv",
-      "name": "자외선차단test",
+      "category": "trouble",
+      "name": "트러블 클렌징 폼3",
       "price": 20000,
-      "img": "hydro10.jpg",
-      "description": "자외선차단라인 1번 상품입니다"
+      "img": "trouble3.jpg",
+      "description": "트러블케어라인 3번 상품입니다"
     },
     {
-      "id": "14",
+      "id": "31",
       "category": "white",
-      "name": "미백test",
+      "name": "미백1",
       "price": 20000,
-      "img": "hydro10.jpg",
+      "img": "white1.jpg",
       "description": "미백라인 1번 상품입니다"
+    },
+    {
+      "id": "41",
+      "category": "antiage",
+      "name": "안티에이징1",
+      "price": 20000,
+      "img": "antiage1.jpg",
+      "description": "안티에이징라인 1번 상품입니다"
+    },
+    {
+      "id": "51",
+      "category": "uv",
+      "name": "UV1",
+      "price": 20000,
+      "img": "uv1.jpg",
+      "description": "UV라인 1번 상품입니다"
     }
   ],
   "review": [

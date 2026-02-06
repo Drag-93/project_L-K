@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-const ProdHydroDetailReviewModal = ({setReviewAddModal}) => {
+const ProdDetailReviewModal = ({setReviewAddModal}) => {
 
   const closeFn=()=>{
     setReviewAddModal(false)
@@ -21,7 +21,7 @@ const ProdHydroDetailReviewModal = ({setReviewAddModal}) => {
     setText(e.target.value);
   }
 
-  const [file, setFile]=useState(null)
+  const [file, setFile]=useState("")
   const [preview, setPreview]=useState("")
   const fileChangeFn=(e)=>{
     const selectedFile=e.target.files[0];
@@ -79,4 +79,4 @@ const ProdHydroDetailReviewModal = ({setReviewAddModal}) => {
   )
 }
 
-export default ProdHydroDetailReviewModal
+export default ProdDetailReviewModal

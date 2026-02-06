@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { API_JSON_SERVER_URL } from '../../api/commonApi'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import ProdHydroDetailReviewModal from './ProdHydroDetailReviewModal'
+import ProdDetailReviewModal from './ProdDetailReviewModal'
+import axios from 'axios'
 
 const initUserReview={
   id:"",
@@ -16,7 +17,7 @@ const initUserReview={
   img:""
 }
 
-const ProdHydroDetailReview = () => {
+const ProdDetailReview = () => {
 
   const {id}=useParams();
   const [userReview, setUserReview]=useState(initUserReview)
@@ -26,10 +27,9 @@ const ProdHydroDetailReview = () => {
   useEffect(()=>{
     const reviewFn=async () =>{
       try{
-        const res=await fetch(`${url}/review/${id}`);
-        const resData=await res.json();
-        console.log(resData);
-        setUserReview(resData);
+        const res=await axios.get(`${url}/review/${id}`);
+        console.log(res);
+        setUserReview(res.data);
       }catch(err){
         console.log('사용자후기 로딩 실패');
       }
@@ -71,7 +71,7 @@ return (
               후기 작성하기 
               </button>}
           {reviewAddModal && (
-            <ProdHydroDetailReviewModal
+            <ProdDetailReviewModal
               setReviewAddModal={setReviewAddModal}
               reviewId={userId}
               onSuccess={()=>{alert('후기가 등록되었습니다')}} />
@@ -90,4 +90,4 @@ return (
   )
 }
 
-export default ProdHydroDetailReview
+export default ProdDetailReview
