@@ -2,10 +2,15 @@ import React, { lazy, Suspense } from "react";
 import { Navigate } from "react-router-dom";
 
 const Loading = <div className="loading">...Loading</div>;
-const CommunityNoticePage = lazy(() => import("../page/Community/CommunityNoticePage"));
-const CommunityNoticeWritePage = lazy(() => import("../page/Community/CommunityNoticeWritePage"));
-const CommunityNoticeDetailPage = lazy(() => import("../page/Community/CommunityNoticeDetailPage"));
-const CommunityFaqPage = lazy(() => import("../page/Community/CommunityFaqPage"));
+const CommunityNoticePage = lazy(
+  () => import("../page/Community/CommunityNoticePage"),
+);
+const CommunityNoticeDetailPage = lazy(
+  () => import("../page/Community/CommunityNoticeDetailPage"),
+);
+const CommunityFaqPage = lazy(
+  () => import("../page/Community/CommunityFaqPage"),
+);
 
 const CommunityQnAPage = lazy(
   () => import("../page/community/CommunityQnAPage"),
@@ -40,14 +45,15 @@ const toCommunityRouter = () => {
       ),
     },
     {
-    path: "faq",
-    element: (
-    <Suspense fallback={Loading}>
-      <CommunityFaqPage />
-      </Suspense>
-    ),
+      path: "faq",
+      element: (
+        <Suspense fallback={Loading}>
+          <CommunityFaqPage />
+        </Suspense>
+      ),
     },
-    {path: "qna",
+    {
+      path: "qna",
       element: (
         <Suspense fallback={Loading}>
           <CommunityQnAPage />

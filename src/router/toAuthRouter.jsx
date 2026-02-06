@@ -1,5 +1,5 @@
-import React, { lazy, Suspense } from 'react'
-import { Navigate } from 'react-router-dom';
+import React, { lazy, Suspense } from "react";
+import { Navigate } from "react-router-dom";
 
 const Loading = <div className="loading">...Loading</div>;
 const AuthLogin = lazy(() => import("../components/Auth/AuthLogin"));
@@ -7,25 +7,25 @@ const AuthJoin = lazy(() => import("../components/Auth/AuthJoin"));
 const AuthDetail = lazy(() => import("../components/Auth/AuthDetail"));
 const AuthMypage = lazy(() => import("../components/Auth/AuthMypage"));
 
-const toAuthRouter = ()=>{
- return [
+const toAuthRouter = () => {
+  return [
     {
       path: "",
       element: <Navigate replace to={"login"} />,
     },
-        {
+    {
       path: "login",
       element: (
         <Suspense fallback={Loading}>
-          <AuthLogin/>
+          <AuthLogin />
         </Suspense>
       ),
     },
-        {
+    {
       path: "join",
       element: (
         <Suspense fallback={Loading}>
-          <AuthJoin/>
+          <AuthJoin />
         </Suspense>
       ),
     },
@@ -33,7 +33,7 @@ const toAuthRouter = ()=>{
       path: "detail/:id",
       element: (
         <Suspense fallback={Loading}>
-          <AuthDetail/>
+          <AuthDetail />
         </Suspense>
       ),
     },
@@ -41,12 +41,11 @@ const toAuthRouter = ()=>{
       path: "Mypage/:id",
       element: (
         <Suspense fallback={Loading}>
-          <AuthMypage/>
+          <AuthMypage />
         </Suspense>
       ),
-    }
+    },
+  ];
+};
 
-
-  ]}
-
-export default toAuthRouter
+export default toAuthRouter;
