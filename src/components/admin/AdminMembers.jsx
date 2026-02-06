@@ -23,7 +23,6 @@ const AdminMembers = () => {
 
     return memberList.filter((m) => {
       const searchTarget = [
-        m.id,
         m.userName,
         m.userEmail,
         m.phonenum,

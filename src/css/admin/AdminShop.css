@@ -1,0 +1,218 @@
+/* ===== AdminShop Base ===== */
+.adminShop,
+.adminShop * {
+  box-sizing: border-box;
+}
+
+.adminShop {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  padding: 28px 24px;
+  background: #f6f7fb;
+}
+
+/* Container card */
+.adminShop-con {
+  max-width: 1280px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  padding: 20px 20px 18px;
+}
+
+/* Title / Toolbar */
+.adminShop .title ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 14px;
+}
+
+.adminShop .toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.adminShop .toolbar input {
+  width: 320px;
+  max-width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #d8dde6;
+  border-radius: 10px;
+  background: #fff;
+  outline: none;
+  font-size: 14px;
+}
+
+.adminShop .toolbar input:focus {
+  border-color: #8aa4ff;
+  box-shadow: 0 0 0 4px rgba(138, 164, 255, 0.18);
+}
+
+/* Table */
+.adminShop table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.adminShop thead th {
+  text-align: left;
+  font-size: 13px;
+  font-weight: 900;
+  color: #2b2f38;
+  background: #f2f5ff;
+  border-bottom: 1px solid #dfe6ff;
+  padding: 12px 10px;
+  white-space: nowrap;
+}
+
+.adminShop tbody td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #eef1f6;
+  font-size: 14px;
+  color: #1f2430;
+  vertical-align: middle;
+}
+
+.adminShop tbody tr:hover {
+  background: #fbfcff;
+}
+
+/* Checkbox column alignment */
+.adminShop th:first-child,
+.adminShop td:first-child {
+  width: 60px;
+  text-align: center;
+}
+
+.adminShop input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Buttons in table */
+.adminShop table button {
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid #d8dde6;
+  background: #ffffff;
+  border-radius: 10px;
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    transform 0.05s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.adminShop table button:hover {
+  border-color: #8aa4ff;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.adminShop table button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Footer */
+.adminShopFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+/* Paging */
+.adminShopPaging {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.adminShopPaging button {
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid #d8dde6;
+  background: #fff;
+  border-radius: 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.adminShopPaging button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.adminShopPaging span {
+  font-size: 13px;
+  font-weight: 800;
+  color: #2b2f38;
+}
+
+/* Footer action buttons */
+.adminShopFooter ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.adminShopFooter li {
+  display: flex;
+  gap: 10px;
+}
+
+.adminShopFooter li button {
+  height: 38px;
+  padding: 0 14px;
+  border: 1px solid #d8dde6;
+  background: #fff;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.adminShopFooter li button:hover {
+  border-color: #8aa4ff;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.adminShopFooter li button:active {
+  transform: translateY(0);
+}
+
+/* Optional: address ellipsis more stable */
+.adminShop td[title] {
+  max-width: 420px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .adminShop-con {
+    padding: 16px;
+  }
+  .adminShop .toolbar input {
+    width: 100%;
+  }
+  .adminShopFooter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .adminShop td[title] {
+    max-width: 240px;
+  }
+}

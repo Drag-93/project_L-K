@@ -1,7 +1,217 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { API_JSON_SERVER_URL } from "../../api/commonApi";
+import axios from "axios";
+import AdminShopModal from "./AdminShopModal";
+import { useNavigate } from "react-router-dom";
 
 const AdminShop = () => {
-  return <div>AdminShop</div>;
+  const [shopList, setShopList] = useState([]);
+  const shopUrl = API_JSON_SERVER_URL;
+  const [searchText, setSearchText] = useState("");
+  const [adminAddModal, setAdminAddModal] = useState(false);
+  const [modalId, setModalId] = useState(null);
+  const [selectedId, setSelectedId] = useState([]);
+
+  const navigate = useNavigate();
+
+  const pageSize = 10;
+  const [page, setPage] = useState(1);
+
+  const filtered = useMemo(() => {
+    const q = searchText.trim().toLowerCase();
+    if (!q) return shopList;
+
+    return shopList.filter((m) => {
+      const searchTarget = [m.name, m.phonenum, m.address]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      return searchTarget.includes(q);
+    });
+  }, [shopList, searchText]);
+
+  const totalPages = useMemo(() => {
+    return Math.max(1, Math.ceil(filtered.length / pageSize));
+  }, [filtered.length, pageSize]);
+
+  const pagedList = useMemo(() => {
+    const startIndex = (page - 1) * pageSize;
+    return filtered.slice(startIndex, startIndex + pageSize);
+  }, [filtered, page, pageSize]);
+
+  useEffect(() => {
+    if (page > totalPages) setPage(totalPages);
+  }, [page, totalPages]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [searchText]);
+
+  const openListFn = async () => {
+    try {
+      const res = await axios.get(`${shopUrl}/shop`);
+      setShopList(res.data);
+    } catch (err) {
+      alert(err);
+    }
+  };
+  useEffect(() => {
+    openListFn();
+  }, []);
+
+  const toggleSelect = (id) => {
+    const key = String(id);
+    setSelectedId((prev) =>
+      prev.includes(key) ? prev.filter((x) => x !== key) : [...prev, key],
+    );
+  };
+
+  const onSelectAllFn = () => {
+    const visibleId = pagedList.map((el) => String(el.id));
+
+    const allSelect =
+      visibleId.length > 0 && visibleId.every((id) => selectedId.includes(id));
+
+    setSelectedId(allSelect ? [] : visibleId);
+  };
+
+  useEffect(() => {
+    setSelectedId([]);
+  }, [page, searchText]);
+
+  const onDeleteSelectedFn = async () => {
+    if (selectedId.length === 0) return alert("삭제할 목록을 선택해 주세요");
+    if (!window.confirm("정말 삭제 하시겠습니까?")) return;
+
+    const idsToDelete = [...selectedId];
+
+    try {
+      await Promise.all(
+        idsToDelete.map((id) => axios.delete(`${shopUrl}/shop/${id}`)),
+      );
+      setShopList((prev) =>
+        prev.filter((n) => !idsToDelete.includes(String(n.id))),
+      );
+      setSelectedId([]);
+      alert("삭제 되었습니다.");
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  const adminModalFn = (id) => {
+    setModalId(id);
+    setAdminAddModal(true);
+  };
+
+  return (
+    <>
+      {adminAddModal && (
+        <AdminShopModal
+          setAdminAddModal={setAdminAddModal}
+          shopId={modalId}
+          onSuccess={openListFn}
+        />
+      )}
+      <div className="adminShop">
+        <div className="adminShop-con">
+          <div className="title">
+            <ul>
+              <li>
+                <div className="toolbar">
+                  <input
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    placeholder="검색어 입력"
+                  />
+                </div>
+              </li>
+            </ul>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>선택</th>
+                <th>지점명</th>
+                <th>연락처</th>
+                <th>주소</th>
+                <th>지도보기</th>
+                <th>예약현황</th>
+                <th>상세보기</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pagedList.map((el) => {
+                return (
+                  <tr key={el.id}>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={selectedId.includes(String(el.id))}
+                        onChange={() => toggleSelect(el.id)}
+                      />
+                    </td>
+                    <td>{el.name}</td>
+                    <td>{el.phonenum}</td>
+                    <td title={el.address}>
+                      {el.address && el.address.length > 15
+                        ? `${el.address.slice(0, 15)}...`
+                        : el.address}
+                    </td>
+                    <td>
+                      <button onClick={() => adminModalFn(el.id)}>위치</button>
+                    </td>
+                    <td>
+                      <button
+                        onClick={() =>
+                          navigate(`/admin/reservation?name=${el.name}`)
+                        }
+                      >
+                        보기
+                      </button>
+                    </td>
+                    <td>
+                      <button onClick={() => adminModalFn(el.id)}>보기</button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          <div className="adminShopFooter">
+            <div className="adminShopPaging">
+              <button
+                onClick={() => setPage((p) => Math.max(p - 1, 1))}
+                disabled={page === 1}
+              >
+                이전
+              </button>
+              <span>
+                {page}/{totalPages}
+              </span>
+              <button
+                onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
+                disabled={page === totalPages}
+              >
+                다음
+              </button>
+            </div>
+            <ul>
+              <li>
+                <button onClick={onSelectAllFn}>
+                  {selectedId.length !== pagedList.length
+                    ? "전체선택"
+                    : "선택해제"}
+                </button>
+                <button onClick={() => adminModalFn(null)}>추가</button>
+                <button onClick={() => onDeleteSelectedFn()}>삭제</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default AdminShop;

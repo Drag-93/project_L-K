@@ -22,14 +22,7 @@ const AdminNotice = () => {
     // if (categoryFilter !== "ALL" && m.category !== categoryFilter) return false;
 
     return noticeList.filter((m) => {
-      const searchTarget = [
-        m.id,
-        m.no,
-        m.title,
-        m.date,
-        m.description,
-        m.viewrate,
-      ]
+      const searchTarget = [m.no, m.title, m.date, m.description]
         .filter(Boolean)
         .join(" ")
         .toLowerCase();
@@ -234,7 +227,7 @@ const AdminNotice = () => {
             <ul>
               <li>
                 <button onClick={() => onSelectAllFn()}>
-                  {allVisibleSelected ? "전체해제" : "전체선택"}
+                  {allVisibleSelected ? "선택해제" : "전체선택"}
                 </button>
                 <button onClick={() => adminModalFn(null)}>작성</button>
                 <button onClick={() => onDeleteSelectedFn()}>삭제</button>

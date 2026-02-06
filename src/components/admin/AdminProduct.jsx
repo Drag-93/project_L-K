@@ -16,14 +16,7 @@ const AdminProduct = () => {
 
     if (!q) return true;
 
-    const searchTarget = [
-      m.id,
-      m.category,
-      m.name,
-      m.price,
-      m.img,
-      m.description,
-    ]
+    const searchTarget = [m.category, m.name, m.price, m.description]
       .filter(Boolean)
       .join(" ")
       .toLowerCase();
