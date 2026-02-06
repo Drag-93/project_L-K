@@ -174,7 +174,12 @@
       "state": "",
       "user": "",
       "date": "",
-      "settime": ["10:00", "11:00", "14:00", "15:00"]
+      "settime": [
+        "10:00",
+        "11:00",
+        "14:00",
+        "15:00"
+      ]
     }
   ],
   "shop": [
@@ -233,21 +238,7 @@
       "bus4": "9301"
     }
   ],
-  "cart": [
-    {
-      "id": "1",
-      "category": "lifting",
-      "name": "울쎄라",
-      "timespan": 2,
-      "price": 200000,
-      "img": "lifting1.jpg",
-      "description": "리프팅라인 울쎄라 진료입니다",
-      "state": "",
-      "user": "",
-      "date": "2026-02-12",
-      "time": "10:00"
-    }
-  ],
+  "cart": [],
   "faq": [
     {
       "id": "1",
@@ -314,6 +305,74 @@
       "viewrate": 2,
       "admin": "",
       "answer": ""
+    }
+  ],
+  "reserveOrders": [
+    {
+      "id": "5a40",
+      "reserveDate": "2026. 2. 6. 오후 4:29:06",
+      "customer": {
+        "userEmail": "test",
+        "userName": "test",
+        "phonenum": "01012222641",
+        "address": "서울",
+        "request": "안전한 배송 부탁드립니다."
+      },
+      "items": [
+        {
+          "id": "def1",
+          "category": "lifting",
+          "name": "울쎄라",
+          "timespan": 2,
+          "price": 200000,
+          "img": "lifting1.jpg",
+          "description": "리프팅라인 울쎄라 진료입니다",
+          "state": "",
+          "user": "",
+          "date": "2026-02-11",
+          "settime": [
+            "10:00",
+            "11:00",
+            "14:00",
+            "15:00"
+          ],
+          "time": "14:00"
+        }
+      ],
+      "totalAmount": 200000
+    },
+    {
+      "id": "051a",
+      "reserveDate": "2026. 2. 6. 오후 4:30:58",
+      "customer": {
+        "userEmail": "test",
+        "userName": "test",
+        "phonenum": "01012222641",
+        "address": "서울",
+        "request": "안전한 배송 부탁드립니다."
+      },
+      "items": [
+        {
+          "id": "c22e",
+          "category": "lifting",
+          "name": "울쎄라",
+          "timespan": 2,
+          "price": 200000,
+          "img": "lifting1.jpg",
+          "description": "리프팅라인 울쎄라 진료입니다",
+          "state": "",
+          "user": "",
+          "date": "2026-02-27",
+          "settime": [
+            "10:00",
+            "11:00",
+            "14:00",
+            "15:00"
+          ],
+          "time": "14:00"
+        }
+      ],
+      "totalAmount": 200000
     }
   ]
 }

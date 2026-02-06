@@ -28,5 +28,5 @@ const inputSlice = createSlice({
   }
 })
 
-export const{input, loginF, logoutF}=inputSlice.actions
-export default inputSlice
+export const{input, loginF, logoutF}=inputSlice.actions;
+export default inputSlice.reducer;

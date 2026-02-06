@@ -125,7 +125,25 @@
 }
 .header .header_box .header_auth .header_auth_btn.header_basket_btn {
     width: 40px;
+    position: relative;
 }
+/**/
+.basket-count{
+    position: absolute;
+    display: block;
+    font-size: 12px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    top: -10px;
+    right: -10px;
+    font-weight: 500;
+    color: #fff;
+    border-radius: 50px;
+    background: #cf2222;
+}
+
 
 .header.active .header_box .header_auth .header_auth_btn {
     background: #5aa933;

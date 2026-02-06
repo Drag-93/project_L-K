@@ -48,6 +48,8 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const basketItems = useSelector(state => state.basket.basketItems);
+
   return (
     <>
       <div
@@ -85,6 +87,9 @@ const Header = () => {
                 <>
                   <Link to={"/order"} className="header_auth_btn header_basket_btn">
                       <img src="/public/images/icon_basket.svg" />
+                      {basketItems.length > 0 && (
+                        <span className="basket-count">{basketItems.length}</span>
+                      )}
                   </Link>
                   <Link to={"/auth"} className="header_auth_btn">
                     <img src="/public/images/icon_user_w.svg" />
@@ -106,6 +111,9 @@ const Header = () => {
                     <>
                       <Link to={"/order"} className="header_auth_btn header_basket_btn">
                         <img src="/public/images/icon_basket.svg" />
+                        {basketItems.length > 0 && (
+                        <span className="basket-count">{basketItems.length}</span>
+                      )}
                       </Link>
                       <Link onClick={loginFn} className="header_auth_btn">
                         <span>로그아웃</span>

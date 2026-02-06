@@ -4,9 +4,9 @@ import { API_JSON_SERVER_URL } from '../../api/commonApi';
 import Calendar from 'react-calendar';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { addBasket } from '../../store/slice/basketSlice';
 
 const reserveData={
-  id:'',
   category:'',
   name:'',
   timespan:0,
@@ -22,6 +22,8 @@ const ReservLiftingDetail = () => {
 
 
   const isState=useSelector(state=>state.input.isState)
+
+  const dispatch=useDispatch()
 
   
   const {id}=useParams();
@@ -120,24 +122,23 @@ const ReservLiftingDetail = () => {
     
     if (!window.confirm(`${reserve.date} ${reserve.time}에 예약하시겠습니까?`)) return;
 
-    if (isState) {
-      alert('로그인해주세요.');
-      return;
-    }
+    // if (isState) {
+    //   alert('로그인해주세요.');
+    //   return;
+    // }
+    const { id, ...item } = reserve;
 
     try {
       // JSON-SERVER를 사용할 경우 보통 /bookedList 또는 /orders 경로를 사용합니다.
       const res = await fetch(`${url}/cart`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...reserve,
-          userId: "user01", // 실제 프로젝트에선 로그인된 유저 ID 전달
-        })
+        body: JSON.stringify(item)
       });
 
       if (res.ok) {
-        alert('예약이 완료되었습니다');
+        const savedItem = await res.json();
+        dispatch(addBasket(savedItem));
         // navigate('/shop/mypage');
       }
     } catch (err) {
