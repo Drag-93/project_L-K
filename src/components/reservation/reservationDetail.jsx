@@ -9,16 +9,14 @@ import { addBasket } from '../../store/slice/basketSlice';
 const reserveData={
   category:'',
   name:'',
-  timespan:0,
   price:0,
   img:'',
-  description:'',
   date: "",
   time: "",
   settime:[]
 }
 
-const ReservLiftingDetail = () => {
+const reservationDetail = () => {
 
 
   const isState=useSelector(state=>state.input.isState)
@@ -38,14 +36,8 @@ const ReservLiftingDetail = () => {
       try{
         const res=await fetch(`${url}/reservation/${id}`)
         const resData=await res.json();
-        console.log(resData)
+        setReserve(resData);
 
-        // category 확인 (보안체크)
-        if (resData.category === 'lifting'){
-          setReserve(resData);
-        }else{
-          console.error('카테고리가 일치하지 않습니다.');
-        }
       }catch(err){
         console.log('로딩 실패')
       }
@@ -97,7 +89,24 @@ const ReservLiftingDetail = () => {
       // 서버에서 해당 날짜와 시간에 이미 예약이 있는지 확인 (쿼리 파라미터 활용)
       const res = await axios.get(`${url}/cart?date=${reserve.date}&time=${selectedTime}`);
       
+     // 2. 이미 결제 완료된 예약 내역(reserveOrders) 중복 체크
+      const orderRes = await axios.get(`${url}/reserveOrders`);
+      const allOrders = orderRes.data;
+
+      const isAlreadyBooked = allOrders.some(order => 
+        order.items.some(item => 
+          item.name === reserve.name && // 진료명 비교 추가
+          item.date === reserve.date && // 날짜 비교
+          item.time === selectedTime    // 시간 비교
+        )
+      );
+      
       if (res.data.length > 0) {
+        alert("장바구니에 담긴 시간대입니다.");
+        return;
+      }
+
+      if (isAlreadyBooked) {
         alert("이미 예약된 시간대입니다. 다른 시간을 선택해주세요.");
         return;
       }
@@ -217,4 +226,4 @@ const ReservLiftingDetail = () => {
   )
 }
 
-export default ReservLiftingDetail
+export default reservationDetail

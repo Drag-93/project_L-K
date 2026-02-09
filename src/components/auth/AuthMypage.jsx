@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { logoutF } from "../../store/slice/inputSlice";
+import PaymentList from "../order/PaymentList";
 
 const myDataFrom = {
   id: "",
@@ -191,6 +192,9 @@ const AuthMemberList = () => {
               <button onClick={myDeleteFn}>삭제</button>
             </li>
           </ul>
+        </div>
+        <div className="mypage_wrap">
+          <PaymentList/>
         </div>
       </div>
     </>

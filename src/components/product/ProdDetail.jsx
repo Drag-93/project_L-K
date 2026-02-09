@@ -4,6 +4,8 @@ import { API_JSON_SERVER_URL } from '../../api/commonApi';
 import axios from 'axios';
 import ProdDetailDesc from './ProdDetailDesc';
 import ProdDetailReview from './ProdDetailReview';
+import { useDispatch } from 'react-redux';
+import { addBasket } from '../../store/slice/basketSlice';
 
 const initDetail={
   id:"",
@@ -11,7 +13,7 @@ const initDetail={
   name:"",
   price:0,
   img:"",
-  description:""  
+  description:""
 }
 
 const ProdDetail = () => {
@@ -19,6 +21,8 @@ const ProdDetail = () => {
   const {category, id}=useParams();
   const url=API_JSON_SERVER_URL;
   const [detail, setDetail]=useState(initDetail);
+  const dispatch=useDispatch()
+
 
   useEffect(()=>{
 
@@ -54,9 +58,55 @@ const ProdDetail = () => {
   }
 
   const navigate=useNavigate();
-  const onCartFn=(e)=>{
-    console.log(count)
-  }
+
+
+  const onCartFn = async () => {
+    try {
+      // 1. 현재 서버 장바구니 데이터 가져오기
+      const checkRes = await axios.get(`${url}/cart`);
+      const isExist = checkRes.data.find(item => item.id === detail.id);
+  
+      if (isExist) {
+        // 2. [중복 발생] 기존 수량 + 새로운 수량 합산
+        const newCount = Number(isExist.count) + Number(count);
+        const newTotalPrice = detail.price * newCount;
+  
+        // 3. 서버 데이터 수정 (PATCH 사용)
+        const patchRes = await axios.patch(`${url}/cart/${isExist.id}`, {
+          count: newCount,
+          totalPrice: newTotalPrice
+        });
+  
+        if (patchRes.status === 200) {
+          // Redux 스토어도 업데이트 (위에서 만든 addBasket 로직 활용)
+          dispatch(addBasket({ ...detail, count: count })); 
+          
+          if (window.confirm("이미 담긴 상품의 수량이 추가되었습니다. 장바구니로 이동하시겠습니까?")) {
+            navigate('/order/basket');
+          }
+        }
+      } else {
+        // 4. [신규 추가] 기존 POST 로직
+        const cartData = {
+          ...detail,
+          count: count,
+          totalPrice: detail.price * count,
+        };
+  
+        const res = await axios.post(`${url}/cart`, cartData);
+  
+        if (res.status === 201) {
+          dispatch(addBasket(res.data));
+          if (window.confirm("장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?")) {
+            navigate('/order/basket');
+          }
+        }
+      }
+    } catch (err) {
+      console.error(err);
+      alert("장바구니 담기에 실패했습니다.");
+    }
+  };
 
   const [menuTab, setMenuTab]=useState('detaildesc');
 

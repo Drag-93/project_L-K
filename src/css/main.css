@@ -279,16 +279,17 @@
 .mypage_inner {
   display: flex;
   justify-content: center;
-  align-items: center;
   min-height: calc(100vh - 100px); /* 헤더 높이를 제외한 중앙 배치 */
   padding: 40px 20px;
   background-color: #f4f7f9;
+  align-items: flex-start;
+  gap: 25px;
 }
 
 /* 마이페이지 화이트 박스 */
 .mypage_wrap {
   width: 100%;
-  max-width: 550px;
+  max-width: 500px;
   background: #ffffff;
   padding: 40px;
   border-radius: 15px;

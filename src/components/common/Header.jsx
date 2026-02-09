@@ -145,10 +145,10 @@ const Header = () => {
               <Link to={`/product/list/uv`}>UV</Link>
             </li>
             <li>
-              <Link to={`/reservation/lifting`}>리프팅</Link>
-              <Link to={`/reservation/faceline`}>페이스라인</Link>
-              <Link to={`/reservation/regen`}>재생</Link>
-              <Link to={`/reservation/immune`}>면역력</Link>
+              <Link to={`/reservation/list/lifting`}>리프팅</Link>
+              <Link to={`/reservation/list/faceline`}>페이스라인</Link>
+              <Link to={`/reservation/list/regen`}>재생</Link>
+              <Link to={`/reservation/list/immune`}>면역력</Link>
             </li>
             <li>
               <Link to={`/shop/nowon`}>노원점</Link>
