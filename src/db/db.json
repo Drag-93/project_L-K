@@ -6,7 +6,7 @@
       "description": "ㅁㄴㅇㄴㅁㅇㅁㄴㅇㅁㄴㅇ",
       "no": 1,
       "date": "2024-12-25",
-      "viewrate": 12
+      "viewrate": 14
     }
   ],
   "members": [
@@ -46,7 +46,8 @@
       "role": "ROLE_MEMBER",
       "remark": ""
     },
-    {"id": "8dc7",
+    {
+      "id": "8dc7",
       "userName": "tester",
       "userEmail": "test@email.com",
       "userPw": "1234",
@@ -56,6 +57,30 @@
       "gender": "남",
       "role": "ROLE_ADMIN",
       "remark": "테스터 어드민"
+    },
+    {
+      "id": "d04e",
+      "userName": "test",
+      "userEmail": "g1@email",
+      "userPw": "22",
+      "phonenum": "01012341234",
+      "age": "0",
+      "address": "22",
+      "gender": "남",
+      "role": "ROLE_MEMBER",
+      "remark": ""
+    },
+    {
+      "id": "d682",
+      "userName": "테스트",
+      "userEmail": "a1@test",
+      "userPw": "1234",
+      "phonenum": "01012222641",
+      "age": "20",
+      "address": "dd",
+      "gender": "남",
+      "role": "ROLE_MEMBER",
+      "remark": ""
     }
   ],
   "product": [
@@ -65,6 +90,7 @@
       "name": "수딩 토너1",
       "price": 20000,
       "img": "hydro1.jpg",
+      "detailImg":"hydro1.jpg",
       "description": "보습라인 1번 상품입니다"
     },
     {
@@ -180,7 +206,7 @@
       "description": "UV라인 1번 상품입니다"
     }
   ],
-  "review": [
+  "productReview": [
     {
       "id": "1",
       "category": "hydro",
@@ -189,7 +215,7 @@
       "userName": "test1",
       "date": "2026.02.05",
       "score": 5,
-      "viewrate": 10,
+      "viewrate": 23,
       "description": "악건성 피부여서 여러 보습제품 사용해 봤지만, 이 제품으로 정착할것 같습니다. 리앤킴 피부과 시술 때 사용하신다더니, 품질 확실하네요. 추천합니다!"
     },
     {
@@ -200,7 +226,7 @@
       "userName": "test",
       "date": "2026. 2. 9. 오전 11:04:38",
       "score": 5,
-      "viewrate": 9,
+      "viewrate": 10,
       "description": "수딩 토너1 후기 테스트111, 후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다."
     },
     {
@@ -246,6 +272,28 @@
       "score": 1,
       "viewrate": 1,
       "description": "수딩 토너1 후기 테스트5555"
+    },
+    {
+      "id": "cb38",
+      "category": "hydro",
+      "productId": "1",
+      "userEmail": "test",
+      "userName": "test",
+      "date": "2026. 2. 9. 오후 5:15:02",
+      "score": 5,
+      "viewrate": 0,
+      "description": "214234234"
+    },
+    {
+      "id": "63f1",
+      "category": "hydro",
+      "productId": "1",
+      "userEmail": "test",
+      "userName": "test",
+      "date": "2026. 2. 9. 오후 5:15:34",
+      "score": 2,
+      "viewrate": 0,
+      "description": "testtest"
     }
   ],
   "reservation": [
@@ -364,46 +412,7 @@
       "directions": "지하철 : 1호선 / 종로3가역 15번 출구\n간선 : 101, 103, 140, 143, 150, 160, 201, 260, 262, 270, 271, 273, 370, 720, 721\n지선 : 7212\n순환 : 04\n직행 : 9301"
     }
   ],
-  "cart": [
-    {
-      "id": "dde2",
-      "category": "lifting",
-      "name": "울쎄라",
-      "timespan": 2,
-      "price": 200000,
-      "img": "lifting1.jpg",
-      "description": "리프팅라인 울쎄라 진료입니다",
-      "state": "",
-      "user": "",
-      "date": "2026-02-11",
-      "settime": [
-        "10:00",
-        "11:00",
-        "14:00",
-        "15:00"
-      ],
-      "time": "11:00"
-    },
-    {
-      "id": "43ab",
-      "category": "lifting",
-      "name": "울쎄라",
-      "timespan": 2,
-      "price": 200000,
-      "img": "lifting1.jpg",
-      "description": "리프팅라인 울쎄라 진료입니다",
-      "state": "",
-      "user": "",
-      "date": "2026-02-18",
-      "settime": [
-        "10:00",
-        "11:00",
-        "14:00",
-        "15:00"
-      ],
-      "time": "15:00"
-    }
-  ],
+  "cart": [],
   "faq": [
     {
       "id": "1",
@@ -442,7 +451,7 @@
       "date": "2026-02-05",
       "writer": "작성자이름",
       "writerEmail": "작성자이메일",
-      "viewrate": 14,
+      "viewrate": 15,
       "question": "테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용",
       "admin": "관리자이름",
       "answer": "답변내용답변내용답변내용답변내용답변내용"
@@ -473,9 +482,202 @@
     }
   ],
   "productOrders": [
-    
+    {
+      "id": "3329",
+      "productDate": "2026. 2. 9. 오후 4:43:46",
+      "customer": {
+        "userEmail": "test",
+        "userName": "test",
+        "phonenum": "01012222641",
+        "address": "서울",
+        "request": "안전한 배송 부탁드립니다."
+      },
+      "items": [
+        {
+          "id": "1",
+          "category": "hydro",
+          "name": "수딩 토너1",
+          "price": 20000,
+          "img": "hydro1.jpg",
+          "description": "보습라인 1번 상품입니다",
+          "count": 4,
+          "totalPrice": 80000
+        }
+      ],
+      "totalAmount": 80000
+    },
+    {
+      "id": "dafd",
+      "productDate": "2026. 2. 9. 오후 4:47:03",
+      "customer": {
+        "userEmail": "test",
+        "userName": "test",
+        "phonenum": "01012222641",
+        "address": "서울",
+        "request": "안전한 배송 부탁드립니다."
+      },
+      "items": [
+        {
+          "id": "2",
+          "category": "hydro",
+          "name": "수딩 토너2",
+          "price": 20000,
+          "img": "hydro2.jpg",
+          "description": "보습라인 2번 상품입니다",
+          "count": 3,
+          "totalPrice": 60000
+        },
+        {
+          "id": "3",
+          "category": "hydro",
+          "name": "모이스처 세럼1",
+          "price": 20000,
+          "img": "hydro3.jpg",
+          "description": "보습라인 3번 상품입니다",
+          "count": 3,
+          "totalPrice": 60000
+        }
+      ],
+      "totalAmount": 120000
+    }
   ],
   "reserveOrders": [
-
+    {
+      "id": "6f66",
+      "reserveDate": "2026. 2. 9. 오후 4:43:46",
+      "customer": {
+        "userEmail": "test",
+        "userName": "test",
+        "phonenum": "01012222641",
+        "request": "안전한 시술 부탁드립니다.",
+        "address": "서울"
+      },
+      "items": [
+        {
+          "id": "284d",
+          "category": "lifting",
+          "name": "울쎄라",
+          "timespan": 2,
+          "price": 200000,
+          "img": "lifting1.jpg",
+          "description": "리프팅라인 울쎄라 진료입니다",
+          "state": "",
+          "user": "",
+          "date": "2026-02-12",
+          "settime": [
+            "10:00",
+            "11:00",
+            "14:00",
+            "15:00"
+          ],
+          "time": "15:00"
+        }
+      ],
+      "totalAmount": 200000
+    },
+    {
+      "id": "7a1d",
+      "reserveDate": "2026. 2. 9. 오후 4:47:03",
+      "customer": {
+        "userEmail": "test",
+        "userName": "test",
+        "phonenum": "01012222641",
+        "request": "안전한 시술 부탁드립니다.",
+        "address": "서울"
+      },
+      "items": [
+        {
+          "id": "41a9",
+          "category": "lifting",
+          "name": "울쎄라",
+          "timespan": 2,
+          "price": 200000,
+          "img": "lifting1.jpg",
+          "description": "리프팅라인 울쎄라 진료입니다",
+          "state": "",
+          "user": "",
+          "date": "2026-02-26",
+          "settime": [
+            "10:00",
+            "11:00",
+            "14:00",
+            "15:00"
+          ],
+          "time": "15:00"
+        }
+      ],
+      "totalAmount": 200000
+    },
+    {
+      "id": "02ca",
+      "reserveDate": "2026. 2. 9. 오후 4:48:35",
+      "customer": {
+        "userEmail": "test",
+        "userName": "test",
+        "phonenum": "01012222641",
+        "request": "안전한 시술 부탁드립니다.",
+        "address": "서울"
+      },
+      "items": [
+        {
+          "id": "4d27",
+          "category": "lifting",
+          "name": "울쎄라",
+          "timespan": 2,
+          "price": 200000,
+          "img": "lifting1.jpg",
+          "description": "리프팅라인 울쎄라 진료입니다",
+          "state": "",
+          "user": "",
+          "date": "2026-02-19",
+          "settime": [
+            "10:00",
+            "11:00",
+            "14:00",
+            "15:00"
+          ],
+          "time": "15:00"
+        },
+        {
+          "id": "bea7",
+          "category": "lifting",
+          "name": "울쎄라",
+          "timespan": 2,
+          "price": 200000,
+          "img": "lifting1.jpg",
+          "description": "리프팅라인 울쎄라 진료입니다",
+          "state": "",
+          "user": "",
+          "date": "2026-02-11",
+          "settime": [
+            "10:00",
+            "11:00",
+            "14:00",
+            "15:00"
+          ],
+          "time": "14:00"
+        },
+        {
+          "id": "868a",
+          "category": "lifting",
+          "name": "울쎄라",
+          "timespan": 2,
+          "price": 200000,
+          "img": "lifting1.jpg",
+          "description": "리프팅라인 울쎄라 진료입니다",
+          "state": "",
+          "user": "",
+          "date": "2026-02-13",
+          "settime": [
+            "10:00",
+            "11:00",
+            "14:00",
+            "15:00"
+          ],
+          "time": "15:00"
+        }
+      ],
+      "totalAmount": 600000
+    }
   ]
 }

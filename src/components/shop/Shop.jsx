@@ -59,7 +59,7 @@ const Shop = () => {
       onLoadKakaoMap();
     } else {
       const script = document.createElement('script');
-      script.async = liue;
+      script.async = true;
       script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=616c83d358b56fc7a54d64894331e300&autoload=false`;
       document.head.appendChild(script);
       script.onload = onLoadKakaoMap;

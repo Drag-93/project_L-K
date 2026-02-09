@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { API_JSON_SERVER_URL } from '../../api/commonApi'
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loginF } from '../../store/slice/inputSlice'
 
 const loginData={
@@ -19,6 +19,18 @@ const AuthLogin = () => {
   setLogin({...login,[name]:value})
   }
   const URL=API_JSON_SERVER_URL
+
+
+  const state = useSelector((state) => state);
+  const isState = useSelector((state) => state.input.isState);
+
+
+ useEffect(() => {
+      if (isState === false) {
+        navigate(`/`);
+      }
+    }, [state]);
+
 
   const dispatch=useDispatch()
 

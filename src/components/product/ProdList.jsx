@@ -25,13 +25,13 @@ const ProdList = () => {
   return (
     <div className='prod-list'>
       <div className="prod-list-con">
-        <div className="category">
+        <ul className="category">
           <li><Link to={`/product/list/hydro`}>보습</Link></li>
           <li><Link to={`/product/list/trouble`}>트러블케어</Link></li>
           <li><Link to={`/product/list/white`}>미백</Link></li>
           <li><Link to={`/product/list/antiage`}>안티에이징</Link></li>
           <li><Link to={`/product/list/uv`}>UV</Link></li>
-        </div>
+        </ul>
         <div className="list-con">
           <ul>
             {/* 카테고리별 상품 보여주기 */}

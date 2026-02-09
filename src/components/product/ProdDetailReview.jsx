@@ -21,7 +21,7 @@ const ProdDetailReview = () => {
   useEffect(()=>{
     const reviewFn=async () =>{
       try{
-        const res=await axios.get(`${url}/review?productId=${id}`);
+        const res=await axios.get(`${url}/productReview?productId=${id}`);
         console.log(res.data);
         setUserReview(Array.isArray(res.data) ? res.data : [res.data]); //review가 하나 밖에 없을 때 map의 오류 방지
       }catch(err){
@@ -41,7 +41,7 @@ const ProdDetailReview = () => {
   //조회수(viewrate) 증가
   const viewrateFn= async (reviewId, currentViewrate) => {
     try{
-      await axios.patch(`${url}/review/${reviewId}`, {
+      await axios.patch(`${url}/productReview/${reviewId}`, {
         viewrate: (currentViewrate ?? 0) + 1
       })    
       setUserReview((prev)=>

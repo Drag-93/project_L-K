@@ -33,12 +33,7 @@ const AuthMemberList = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isState === true) {
-      alert(`로그인 후 이용하세요`);
-      navigate(`/auth/login`);
-    }
-  }, [state]);
+  
 
   const onChangeFn = (e) => {
     const { name, value } = e.target;

@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { API_JSON_SERVER_URL } from '../../api/commonApi'
 import axios from 'axios'
+import { useSelector } from 'react-redux';
 
 const joinData={
   userName:"",
@@ -25,6 +26,17 @@ const AuthJoin = () => {
   };
 
   const URL = API_JSON_SERVER_URL;
+
+  const state = useSelector((state) => state);
+  const isState = useSelector((state) => state.input.isState);
+
+
+ useEffect(() => {
+      if (isState === false) {
+        navigate(`/`);
+      }
+    }, [state]);
+
 
   const onJoinFn = async () => {
     try {

@@ -55,7 +55,7 @@ const ProdDetailReviewModal = ({setReviewAddModal, user, productId}) => {
       return;
     }
     try{
-      const res=await axios.post(`${url}/review`,{
+      const res=await axios.post(`${url}/productReview`,{
         category: product.category,
         productId: productId,
         userEmail: user.userEmail,

@@ -238,7 +238,7 @@ export default function AdminIsMapModal({
             <div style={labelStyle}>선택 주소</div>
             <div style={valueStyle}>{picked.address || "(미선택)"}</div>
           </div>
-          <div style={{ display: "flex", gap: 12 }}>
+          {/* <div style={{ display: "flex", gap: 12 }}>
             <div>
               <div style={labelStyle}>위도(lat)</div>
               <div style={valueStyle}>{picked.lat || "-"}</div>
@@ -247,7 +247,7 @@ export default function AdminIsMapModal({
               <div style={labelStyle}>경도(lng)</div>
               <div style={valueStyle}>{picked.lng || "-"}</div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div style={footerStyle}>
