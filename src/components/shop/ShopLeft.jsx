@@ -1,20 +1,44 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { NavLink } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { API_JSON_SERVER_URL } from '../../api/commonApi'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+
 
 const ShopLeft = () => {
-  return (<>
+  const [shop, setShop]=useState([])
+  const url=API_JSON_SERVER_URL
+  const navigate=useNavigate()
+
+  useEffect(()=>{
+    const setShopFn = async(e)=>{
+      try{
+        const res = await axios.get(`${url}/shop`)
+        // console.log(res)
+        setShop(res.data)
+      }catch(err){
+        alert(err)
+      }
+    }
+    setShopFn()
+  },[])
+
+  return (
+  <>
   <div className="Shop-left">
     <div className="Shop-left-con">
-      <ul>
-        <li><NavLink to ="/Shop/nowon" className={({ isActive }) => (isActive ? 'active' : '')}>노원</NavLink></li>
-        <li><NavLink to= "/Shop/sinchon" className={({ isActive }) => (isActive ? 'active' : '')}>신촌</NavLink></li>
-        <li><NavLink to= "/Shop/gangnam" className={({ isActive }) => (isActive ? 'active' : '')}>강남</NavLink></li>
-        <li><NavLink to= "/Shop/jongro" className={({ isActive }) => (isActive ? 'active' : '')}>종로</NavLink></li>
-      </ul>
+          {shop.map(el=>{
+            return(
+              <ul key={el.id}>
+                <li onClick={()=>navigate(`/shop/${el.id}`)}>
+                  {el.name}
+                  </li>
+              </ul>
+            )
+          })}
     </div>
   </div>
-  </>)
+  </>
+  )
 }
 
 export default ShopLeft

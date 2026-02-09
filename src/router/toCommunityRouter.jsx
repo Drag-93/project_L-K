@@ -5,13 +5,15 @@ const Loading = <div className="loading">...Loading</div>;
 const CommunityNoticePage = lazy(
   () => import("../page/Community/CommunityNoticePage"),
 );
+const CommunityNoticeUpdatePage = lazy(
+  () => import("../page/Community/CommunityNoticeUpdatePage"),
+);
 const CommunityNoticeDetailPage = lazy(
   () => import("../page/Community/CommunityNoticeDetailPage"),
 );
 const CommunityFaqPage = lazy(
   () => import("../page/Community/CommunityFaqPage"),
 );
-
 const CommunityQnAPage = lazy(
   () => import("../page/community/CommunityQnAPage"),
 );
@@ -33,6 +35,14 @@ const toCommunityRouter = () => {
       element: (
         <Suspense fallback={Loading}>
           <CommunityNoticePage />
+        </Suspense>
+      ),
+    },
+    {
+      path: "notice/update/:id",
+      element: (
+        <Suspense fallback={Loading}>
+          <CommunityNoticeUpdatePage />
         </Suspense>
       ),
     },

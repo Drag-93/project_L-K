@@ -1,46 +1,57 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {API_JSON_SERVER_URL} from '../../api/commonApi'
+import { useDispatch } from 'react-redux';
 
 const CommunityNoticeDetail = () => {
-  const [noticeDetail, setNoticeDetail]=useState([])
+  const {id}=useParams()
+  const navigate=useNavigate()
+  const dispatch=useDispatch()
+  const [noticeDetail, setNoticeDetail]=useState({})
   const url=API_JSON_SERVER_URL
 
-  const handleDelete=()=>{
-    if(window.confirm("삭제하시겠습니까?")){
-      dispatch(boardaction_delete)
+  const noticeUpdateFn = async () => {
+    navigate(`/community/notice/update/${id}`); 
+  };
+
+  const noticeDeleteFn=async(e)=>{
+    if(window.confirm('삭제하시겠습니까?')){
+    try{await axios.delete(`${API_JSON_SERVER_URL}/notice/${id}`)
+
+     alert('공지삭제 성공')
+     navigate(`/notice`)
+
+    }catch(err){
+      alert('삭제실패'+err)
     }
   }
+}
 
-  const navigate=useNavigate();
 
     useEffect(()=>{
-    const noticeDetailFn=async (e)=>{
+    const noticeDetailFn=async ()=>{
       try{
-        const res=await axios.get(`${url}/notice`)
-        console.log(res)
+        const res=await axios.get(`${url}/notice/${id}`)
         setNoticeDetail(res.data)
       }catch(err){
         alert(err)
       }
     }
     noticeDetailFn();
-  },[])
+  },[id, url])
 
   return(
-    <div className="Modal">
-      <div className="Modal-con">
-        <h1>제목</h1>
+    <div className="detail">
+      <div className="detail-con">
         <ul>
-          <li>이름</li>
-          <li>작성일</li>
-          <li>조회수</li>
-          <li>내용</li>
-          <button>수정</button>
-          <button onClick={()=>navigate(-1)}>목록</button>
-          <button>삭제</button>
-        </ul>
+            <li>{noticeDetail.title}</li>
+            <li>{noticeDetail.date}</li>
+            <li>{noticeDetail.description}</li>
+            <button onClick={noticeUpdateFn}>수정</button>
+            <button onClick={()=>navigate('/community/notice')}>목록</button>
+            <button onClick={noticeDeleteFn}>삭제</button>
+          </ul>
       </div>
     </div>
   )
