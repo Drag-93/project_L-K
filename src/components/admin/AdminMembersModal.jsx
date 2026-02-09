@@ -5,12 +5,28 @@ import { useNavigate } from "react-router-dom";
 
 const AdminMembersModal = ({ setAdminAddModal, memberId }) => {
   const [detail, setDetail] = useState(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const [postMember, setPostMember] = useState(false);
   const memberUrl = API_JSON_SERVER_URL;
   const navigate = useNavigate();
   useEffect(() => {
     const openDetail = async () => {
       try {
-        if (!memberId) return;
+        if (!memberId) {
+          setPostMember(true);
+          setDetail({
+            userName: "",
+            userEmail: "",
+            userPw: "",
+            phonenum: "",
+            age: "",
+            address: "",
+            gender: "",
+            role: "",
+            remark: "",
+          });
+          return;
+        }
         const res = await axios.get(`${memberUrl}/members/${memberId}`);
         setDetail(res.data);
       } catch (err) {
@@ -24,14 +40,47 @@ const AdminMembersModal = ({ setAdminAddModal, memberId }) => {
     const { name, value } = e.target;
     setDetail({ ...detail, [name]: value });
   };
+  const onPostFn = async () => {
+    if (
+      !detail.userName?.trim() ||
+      !detail.userEmail?.trim() ||
+      !detail.userPw?.trim()
+    ) {
+      alert("이름, 이메일, 비밀번호 는 필수입력 사항입니다.");
+      return;
+    }
+    setIsSaving(true);
+    try {
+      await axios.post(`${memberUrl}/members`, detail);
+
+      alert("추가 되었습니다.");
+      closeFn();
+    } catch (err) {
+      alert(err);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   const onUpdateFn = async (e) => {
+    setIsSaving(true);
+    if (
+      !detail.userName?.trim() ||
+      !detail.userEmail?.trim() ||
+      !detail.userPw?.trim()
+    ) {
+      alert("이름, 이메일, 비밀번호 는 필수입력 사항입니다.");
+      return;
+    }
     try {
       const res = await axios.put(`${memberUrl}/members/${memberId}`, detail);
       alert("수정 되었습니다");
       setDetail(res.data);
-      navigate("/admin/members");
+      closeFn();
     } catch (err) {
       alert(err);
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -39,6 +88,7 @@ const AdminMembersModal = ({ setAdminAddModal, memberId }) => {
     if (!window.confirm("정말 삭제 하시겠습니까")) {
       return;
     } else {
+      setIsSaving(true);
       try {
         const res = await axios.delete(`${memberUrl}/members/${memberId}`);
         alert("삭제 되었습니다");
@@ -46,6 +96,8 @@ const AdminMembersModal = ({ setAdminAddModal, memberId }) => {
         navigate("/admin/members");
       } catch (err) {
         alert(err);
+      } finally {
+        setIsSaving(false);
       }
     }
   };
@@ -82,7 +134,8 @@ const AdminMembersModal = ({ setAdminAddModal, memberId }) => {
               name="userEmail"
               id="userEmail"
               value={detail.userEmail}
-              readOnly
+              readOnly={!postMember}
+              onChange={onChangeFn}
             />
           </li>
           <li>
@@ -170,8 +223,14 @@ const AdminMembersModal = ({ setAdminAddModal, memberId }) => {
             </select>
           </li>
           <li>
-            <button onClick={onUpdateFn}>회원수정</button>
-            <button onClick={onDeleteFn}>회원삭제</button>
+            {memberId ? (
+              <>
+                <button onClick={onUpdateFn}>회원수정</button>
+                <button onClick={onDeleteFn}>회원삭제</button>
+              </>
+            ) : (
+              <button onClick={onPostFn}>회원추가</button>
+            )}
             <button onClick={closeFn}>닫기</button>
           </li>
         </ul>

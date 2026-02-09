@@ -11,17 +11,17 @@ const AdminMembers = () => {
   const [searchText, setSearchText] = useState("");
   const [roleFilter, setRoleFilter] = useState("ALL");
 
-  const pageSize = 10;
   const [page, setPage] = useState(1);
 
   const filtered = useMemo(() => {
     const q = searchText.trim().toLowerCase();
     // 권한 필터가 'ALL'이 아니고, 회원의 role이 선택한 role과 다르면 목록에서 제외
-    if (roleFilter !== "ALL" && m.role !== roleFilter) return false;
-
-    if (!q) return memberList;
 
     return memberList.filter((m) => {
+      if (roleFilter !== "ALL" && m.role !== roleFilter) return false;
+
+      if (!q) return memberList;
+
       const searchTarget = [
         m.userName,
         m.userEmail,
@@ -39,14 +39,24 @@ const AdminMembers = () => {
     });
   }, [memberList, searchText]);
 
-  const totalPages = useMemo(() => {
-    return Math.max(1, Math.ceil(filtered.length / pageSize));
-  }, [filtered.length, pageSize]);
+  const pageSize = 10;
+  const totalPost = filtered.length;
+  const btnRange = 10;
+  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+
+  const lastPage = Math.ceil(totalPost / pageSize);
+  const totalSet = Math.ceil(totalPages / btnRange);
+  const currentSet = Math.ceil(page / btnRange);
+
+  const startPage = (currentSet - 1) * btnRange + 1;
+  const endPage = startPage + btnRange - 1;
+
+  const startPost = (page - 1) * pageSize;
+  const endPost = startPost + pageSize;
 
   const pagedList = useMemo(() => {
-    const firtsPage = (page - 1) * pageSize;
-    return filtered.slice(firtsPage, firtsPage + pageSize);
-  }, [filtered, page, pageSize]);
+    return filtered.slice(startPost, endPost);
+  }, [filtered, startPost, endPost]);
 
   useEffect(() => {
     if (page > totalPages) setPage(totalPages);
@@ -78,6 +88,13 @@ const AdminMembers = () => {
     setAdminAddModal(true);
   };
 
+  const toggleSelect = (id) => {
+    const key = String(id);
+    setSelectedId((prev) =>
+      prev.includes(key) ? prev.filter((x) => x !== key) : [...prev, key],
+    );
+  };
+
   const onSelectAllFn = () => {
     const visibleId = filtered.map((n) => String(n.id));
 
@@ -95,7 +112,7 @@ const AdminMembers = () => {
       await Promise.all(
         idsToDelete.map((id) => axios.delete(`${memberUrl}/members/${id}`)),
       );
-      setNoticeList((prev) =>
+      setMemberList((prev) =>
         prev.filter((n) => !idsToDelete.includes(String(n.id))),
       );
       await memberListFn();
@@ -204,20 +221,58 @@ const AdminMembers = () => {
           </table>
           <div className="adminMembersFooter">
             <div className="adminMembersPaging">
+              <button onClick={() => setPage(1)} disabled={page === 1}>
+                ◀◀
+              </button>
               <button
-                onClick={() => setPage((p) => Math.max(1, p - 1))}
-                disabled={page === 1}
+                onClick={() => setPage(startPage - 1)}
+                disabled={currentSet === 1}
               >
+                ◀
+              </button>
+              <button onClick={() => setPage(page - 1)} disabled={page === 1}>
                 이전
               </button>
-              <span>
-                {page}/{totalPages}
-              </span>
+
+              {Array.from({ length: btnRange }, (_, i) => {
+                const pageNum = startPage + i;
+                if (pageNum > lastPage) return null;
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => {
+                      setPage(pageNum);
+                    }}
+                    className={page === pageNum ? "active" : ""}
+                    disabled={page === pageNum}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
               <button
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                disabled={page === totalPages}
+                onClick={() => {
+                  setPage(page + 1);
+                }}
+                disabled={page === lastPage}
               >
                 다음
+              </button>
+              <button
+                onClick={() => {
+                  setPage(endPage + 1);
+                }}
+                disabled={currentSet === totalSet}
+              >
+                ▶
+              </button>
+              <button
+                onClick={() => {
+                  setPage(lastPage);
+                }}
+                disabled={page === lastPage}
+              >
+                ▶▶
               </button>
             </div>
             <ul>

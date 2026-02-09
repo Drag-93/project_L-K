@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const AdminLeft = () => {
+  const linkClass = ({ isActive }) => (isActive ? "active" : "");
   return (
     <div className="adminLeft">
       <div className="adminLeft-con">
@@ -12,22 +13,34 @@ const AdminLeft = () => {
         </h1>
         <ul>
           <li>
-            <Link to={"/admin/members"}>회원관리</Link>
+            <NavLink to={"/admin/members"} className={linkClass}>
+              회원관리
+            </NavLink>
           </li>
           <li>
-            <Link to={"/admin/reservation"}>예약관리</Link>
+            <NavLink to={"/admin/reservation"} className={linkClass}>
+              예약관리
+            </NavLink>
           </li>
           <li>
-            <Link to={"/admin/product"}>상품관리</Link>
+            <NavLink to={"/admin/product"} className={linkClass}>
+              상품관리
+            </NavLink>
           </li>
           <li>
-            <Link to={"/admin/order"}>주문관리</Link>
+            <NavLink to={"/admin/order"} className={linkClass}>
+              주문관리
+            </NavLink>
           </li>
           <li>
-            <Link to={"/admin/shop"}>지점관리</Link>
+            <NavLink to={"/admin/shop"} className={linkClass}>
+              지점관리
+            </NavLink>
           </li>
           <li>
-            <Link to={"/admin/notice"}>공지사항</Link>
+            <NavLink to={"/admin/notice"} className={linkClass}>
+              공지사항
+            </NavLink>
           </li>
         </ul>
       </div>

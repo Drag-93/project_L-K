@@ -41,6 +41,18 @@
       "gender": "남",
       "role": "ROLE_MEMBER",
       "remark": ""
+    },
+    {
+      "id": "8dc7",
+      "userName": "tester",
+      "userEmail": "test@email.com",
+      "userPw": "1234",
+      "phonenum": "010-0000-0000",
+      "age": "22",
+      "address": "",
+      "gender": "남",
+      "role": "ROLE_ADMIN",
+      "remark": "테스터 어드민"
     }
   ],
   "product": [
@@ -313,7 +325,7 @@
       "date": "2026-02-05",
       "writer": "작성자이름",
       "writerEmail": "작성자이메일",
-      "viewrate": 13,
+      "viewrate": 14,
       "question": "테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용",
       "admin": "관리자이름",
       "answer": "답변내용답변내용답변내용답변내용답변내용"
