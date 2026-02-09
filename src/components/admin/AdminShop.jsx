@@ -14,7 +14,6 @@ const AdminShop = () => {
 
   const navigate = useNavigate();
 
-  const pageSize = 10;
   const [page, setPage] = useState(1);
 
   const filtered = useMemo(() => {
@@ -30,15 +29,28 @@ const AdminShop = () => {
     });
   }, [shopList, searchText]);
 
-  const totalPages = useMemo(() => {
-    return Math.max(1, Math.ceil(filtered.length / pageSize));
-  }, [filtered.length, pageSize]);
+  const pageSize = 10;
+  const totalPost = filtered.length;
+  const btnRange = 10;
+  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+
+  const lastPage = Math.ceil(totalPost / pageSize);
+  const totalSet = Math.ceil(totalPages / btnRange);
+  const currentSet = Math.ceil(page / btnRange);
+
+  const startPage = (currentSet - 1) * btnRange + 1;
+  const endPage = startPage + btnRange - 1;
+
+  const startPost = (page - 1) * pageSize;
+  const endPost = startPost + pageSize;
 
   const pagedList = useMemo(() => {
-    const startIndex = (page - 1) * pageSize;
-    return filtered.slice(startIndex, startIndex + pageSize);
-  }, [filtered, page, pageSize]);
+    return filtered.slice(startPost, endPost);
+  }, [filtered, startPost, endPost]);
 
+  useEffect(() => {
+    if (page > totalPages) setPage(totalPages);
+  }, [page, totalPages]);
   useEffect(() => {
     if (page > totalPages) setPage(totalPages);
   }, [page, totalPages]);
@@ -180,20 +192,58 @@ const AdminShop = () => {
           </table>
           <div className="adminShopFooter">
             <div className="adminShopPaging">
+              <button onClick={() => setPage(1)} disabled={page === 1}>
+                ◀◀
+              </button>
               <button
-                onClick={() => setPage((p) => Math.max(p - 1, 1))}
-                disabled={page === 1}
+                onClick={() => setPage(startPage - 1)}
+                disabled={currentSet === 1}
               >
+                ◀
+              </button>
+              <button onClick={() => setPage(page - 1)} disabled={page === 1}>
                 이전
               </button>
-              <span>
-                {page}/{totalPages}
-              </span>
+
+              {Array.from({ length: btnRange }, (_, i) => {
+                const pageNum = startPage + i;
+                if (pageNum > lastPage) return null;
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => {
+                      setPage(pageNum);
+                    }}
+                    className={page === pageNum ? "active" : ""}
+                    disabled={page === pageNum}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
               <button
-                onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
-                disabled={page === totalPages}
+                onClick={() => {
+                  setPage(page + 1);
+                }}
+                disabled={page === lastPage}
               >
                 다음
+              </button>
+              <button
+                onClick={() => {
+                  setPage(endPage + 1);
+                }}
+                disabled={currentSet === totalSet}
+              >
+                ▶
+              </button>
+              <button
+                onClick={() => {
+                  setPage(lastPage);
+                }}
+                disabled={page === lastPage}
+              >
+                ▶▶
               </button>
             </div>
             <ul>

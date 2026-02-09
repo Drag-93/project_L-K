@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
 import axios from "axios";
 import AdminProductModal from "./AdminProductModal";
@@ -9,28 +9,60 @@ const AdminProduct = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [searchText, setSearchText] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("ALL");
+  const [page, setPage] = useState(1);
 
-  const filtered = productList.filter((m) => {
+  const filtered = useMemo(() => {
     const q = searchText.trim().toLowerCase();
-    if (categoryFilter !== "ALL" && m.category !== categoryFilter) return false;
+    return productList.filter((m) => {
+      if (categoryFilter !== "ALL" && m.category !== categoryFilter)
+        return false;
+      if (!q) return true;
 
-    if (!q) return true;
+      const searchTarget = [m.category, m.name, m.price, m.description]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      return searchTarget.includes(q);
+    });
+  }, [productList, searchText, categoryFilter]);
 
-    const searchTarget = [m.category, m.name, m.price, m.description]
-      .filter(Boolean)
-      .join(" ")
-      .toLowerCase();
-    return searchTarget.includes(q);
-  });
+  const totalPost = filtered.length;
+  const pageRange = 10;
+  const btnRange = 10;
+  const totalPages = Math.max(1, Math.ceil(totalPost / pageRange));
+
+  const lastPage = Math.ceil(totalPost / pageRange);
+  const totalSet = Math.ceil(totalPages / btnRange);
+  const currentSet = Math.ceil(page / btnRange);
+
+  const startPage = (currentSet - 1) * btnRange + 1;
+  const endPage = startPage + btnRange - 1;
+
+  const startPost = (page - 1) * pageRange;
+  const endPost = startPost + pageRange;
+
+  const pagedList = useMemo(() => {
+    return filtered.slice(startPost, endPost);
+  }, [filtered, startPost, endPost]);
+
   useEffect(() => {
-    const productListFn = async (e) => {
-      try {
-        const res = await axios.get(`${productUrl}/product`);
-        setProductList(res.data);
-      } catch (err) {
-        alert(err);
-      }
-    };
+    if (page > totalPages) {
+      setPage(totalPages);
+    }
+  }, [page, totalPages]);
+  useEffect(() => {
+    setPage(1);
+  }, [searchText, categoryFilter]);
+
+  const productListFn = async (e) => {
+    try {
+      const res = await axios.get(`${productUrl}/product`);
+      setProductList(res.data);
+    } catch (err) {
+      alert(err);
+    }
+  };
+  useEffect(() => {
     productListFn();
   }, [productUrl]);
 
@@ -90,34 +122,84 @@ const AdminProduct = () => {
               </tr>
             </thead>
             <tbody>
-              {filtered &&
-                filtered.map((el) => {
-                  return (
-                    <tr key={el.id}>
-                      <td>{el.name}</td>
-                      <td>{el.price}</td>
-                      <td>{el.img}</td>
-                      <td>
-                        <img src={`/images/${el.img}`} alt={el.name} />
-                      </td>
-                      <td>
-                        {el.description && el.description.length > 10
-                          ? `${el.description.slice(0, 10)}...`
-                          : el.description}
-                      </td>
-                      <td>{el.category}</td>
-                      <td
-                        onClick={() => {
-                          adminModalFn(el.id);
-                        }}
-                      >
-                        보기
-                      </td>
-                    </tr>
-                  );
-                })}
+              {pagedList.map((el) => {
+                return (
+                  <tr key={el.id}>
+                    <td>{el.name}</td>
+                    <td>{el.price}</td>
+                    <td>{el.img}</td>
+                    <td>
+                      <img src={`/images/${el.img}`} alt={el.name} />
+                    </td>
+                    <td>
+                      {el.description && el.description.length > 10
+                        ? `${el.description.slice(0, 10)}...`
+                        : el.description}
+                    </td>
+                    <td>{el.category}</td>
+                    <td
+                      onClick={() => {
+                        adminModalFn(el.id);
+                      }}
+                    >
+                      보기
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
+          <div className="adminProductFooter">
+            <div className="adminProductPaging">
+              <button onClick={() => setPage(1)} disabled={page === 1}>
+                ◀◀
+              </button>
+              <button
+                onClick={() => setPage(startPage - 1)}
+                disabled={currentSet === 1}
+              >
+                ◀
+              </button>
+              <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+                이전
+              </button>
+              {Array.from({ length: btnRange }, (_, i) => {
+                const pageNum = startPage + i;
+                if (pageNum > lastPage) return null;
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => setPage(pageNum)}
+                    className={page === pageNum ? "active" : ""}
+                    disabled={page === pageNum}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+              <button
+                className="next"
+                onClick={() => setPage(page + 1)}
+                disabled={page === lastPage}
+              >
+                다음
+              </button>
+              <button
+                className="next-set"
+                onClick={() => setPage(endPage + 1)}
+                disabled={currentSet === totalSet}
+              >
+                ▶
+              </button>
+              <button
+                className="last"
+                onClick={() => setPage(lastPage)}
+                disabled={page === lastPage}
+              >
+                ▶▶
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </>

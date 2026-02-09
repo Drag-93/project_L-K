@@ -45,6 +45,17 @@
       "gender": "남",
       "role": "ROLE_MEMBER",
       "remark": ""
+    },
+    {"id": "8dc7",
+      "userName": "tester",
+      "userEmail": "test@email.com",
+      "userPw": "1234",
+      "phonenum": "010-0000-0000",
+      "age": "22",
+      "address": "",
+      "gender": "남",
+      "role": "ROLE_ADMIN",
+      "remark": "테스터 어드민"
     }
   ],
   "product": [
