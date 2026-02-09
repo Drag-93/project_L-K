@@ -8,10 +8,7 @@ const ShopLayout = () => {
   return (
     <>
       <Header />
-      <ShopLeft/>
-      <div className="Shopcontents">
       <Outlet />
-      </div>
       <Footer />
     </>
   );

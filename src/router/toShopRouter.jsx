@@ -3,48 +3,20 @@ import { Navigate } from "react-router-dom";
 
 const Loading = <div className="loading">...Loading</div>;
 
-const ShopNowonPage = lazy(() => import("../page/shop/ShopNowonPage"));
-const ShopJongroPage = lazy(() => import("../page/shop/ShopjongroPage"));
-const ShopGangnamPage = lazy(() => import("../page/shop/ShopgangnamPage"));
-const ShopSinchonPage = lazy(() => import("../page/shop/ShopSinchonPage"));
+const ShopPage = lazy(() => import("../page/shop/ShopPage"));
+
 const toShopRouter = () => {
   return [
     {
       path: "",
-      element: <Navigate replace to={"nowon"} />,
+      element: <Navigate replace to="0"/>,
     },
     {
-      path: "nowon",
-      element: (
-        <Suspense fallback={Loading}>
-          <ShopNowonPage />
-        </Suspense>
-      ),
-    },
-    {
-      path: "jongro",
-      element: (
-        <Suspense fallback={Loading}>
-          <ShopJongroPage />
-        </Suspense>
-      ),
-    },
-    {
-      path: "gangnam",
-      element: (
-        <Suspense fallback={Loading}>
-          <ShopGangnamPage />
-        </Suspense>
-      ),
-    },
-    {
-      path: "sinchon",
-      element: (
-        <Suspense fallback={Loading}>
-          <ShopSinchonPage />
-        </Suspense>
-      ),
-    },
+      path: ":id",
+      element:(
+        <Suspense fallback={Loading}><ShopPage/></Suspense>
+      )
+    }
   ];
 };
 

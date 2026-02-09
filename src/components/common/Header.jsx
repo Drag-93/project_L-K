@@ -74,9 +74,6 @@ const Header = () => {
                   <Link to={`/reservation`}>진료예약</Link>
                 </li>
                 <li>
-                  <Link to={`/shop`}>지점소개</Link>
-                </li>
-                <li>
                   <Link to={"/community"}>커뮤니티</Link>
                 </li>
               </ul>
@@ -136,6 +133,7 @@ const Header = () => {
             <li>
               <Link to={`/info/introduction`}>소개</Link>
               <Link to={`/info/history`}>연혁</Link>
+              <Link to={`/shop`}>지점소개</Link>
             </li>
             <li>
               <Link to={`/product/list/hydro`}>보습제품</Link>
@@ -149,12 +147,6 @@ const Header = () => {
               <Link to={`/reservation/faceline`}>페이스라인</Link>
               <Link to={`/reservation/regen`}>재생</Link>
               <Link to={`/reservation/immune`}>면역력</Link>
-            </li>
-            <li>
-              <Link to={`/shop/nowon`}>노원점</Link>
-              <Link to={`/shop/sinchon`}>신촌점</Link>
-              <Link to={`/shop/gangnam`}>강남점</Link>
-              <Link to={`/shop/jongro`}>종로점</Link>
             </li>
             <li>
               <Link to={`/community/notice`}>공지사항</Link>

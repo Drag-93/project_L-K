@@ -1,0 +1,98 @@
+/* CommunityNoticeUpdate.css */
+
+.update {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 0 20px;
+  font-family: 'Pretendard', sans-serif;
+}
+
+.update-con {
+  background: #fff;
+  border-top: 2px solid #333; /* 게시판 상단 강조선 */
+  padding: 30px 0;
+}
+
+.update-con ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.update-con li {
+  margin-bottom: 15px;
+}
+
+/* 제목 입력창 */
+.update-con input[name='title'] {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.update-con input[name='title']:focus {
+  border-color: #333;
+}
+
+/* 본문 입력창 */
+.update-con textarea[name='description'] {
+  width: 100%;
+  height: 450px;
+  padding: 15px;
+  font-size: 1rem;
+  line-height: 1.6;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: none;
+  outline: none;
+}
+
+.update-con textarea[name='description']:focus {
+  border-color: #333;
+}
+
+/* 버튼 영역 */
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+  border-top: 1px solid #eee;
+  padding-top: 30px;
+}
+
+.btn-update {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 12px 40px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: 0.2s;
+}
+
+.btn-update:hover {
+  background-color: #000;
+}
+
+.btn-cancel {
+  background-color: #fff;
+  color: #666;
+  border: 1px solid #ccc;
+  padding: 12px 40px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: 0.2s;
+}
+
+.btn-cancel:hover {
+  background-color: #f5f5f5;
+  color: #333;
+}
