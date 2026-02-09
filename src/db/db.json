@@ -20,7 +20,7 @@
       "address": "서울시 노원구",
       "gender": "남",
       "role": "ROLE_ADMIN",
-      "remark": "특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항"
+      "remark": "특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항22"
     },
     {
       "id": "3",
@@ -173,13 +173,68 @@
     {
       "id": "1",
       "category": "hydro",
-      "product": "1",
-      "user": "test1",
+      "productId": "1",
+      "userEmail": "test1",
+      "userName": "test1",
       "date": "2026.02.05",
       "score": 5,
+      "viewrate": 10,
+      "description": "악건성 피부여서 여러 보습제품 사용해 봤지만, 이 제품으로 정착할것 같습니다. 리앤킴 피부과 시술 때 사용하신다더니, 품질 확실하네요. 추천합니다!"
+    },
+    {
+      "id": "3004",
+      "category": "hydro",
+      "productId": "1",
+      "userEmail": "test",
+      "userName": "test",
+      "date": "2026. 2. 9. 오전 11:04:38",
+      "score": 5,
+      "viewrate": 9,
+      "description": "수딩 토너1 후기 테스트111, 후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다."
+    },
+    {
+      "id": "229e",
+      "category": "hydro",
+      "productId": "1",
+      "userEmail": "test",
+      "userName": "test",
+      "date": "2026. 2. 9. 오전 11:04:44",
+      "score": 4,
+      "viewrate": 5,
+      "description": "수딩 토너1 후기 테스트222"
+    },
+    {
+      "id": "d860",
+      "category": "hydro",
+      "productId": "1",
+      "userEmail": "test",
+      "userName": "test",
+      "date": "2026. 2. 9. 오전 11:04:55",
+      "score": 3,
       "viewrate": 3,
-      "description": "악건성 피부여서 여러 보습제품 사용해 봤지만, 이 제품으로 정착할것 같습니다. 리앤킴 피부과 시술 때 사용하신다더니, 품질 확실하네요. 추천합니다!",
-      "img": "review1.jpg"
+      "description": "수딩 토너1 후기 테스트333"
+    },
+    {
+      "id": "5679",
+      "category": "hydro",
+      "productId": "1",
+      "userEmail": "test",
+      "userName": "test",
+      "date": "2026. 2. 9. 오전 11:26:56",
+      "score": 2,
+      "viewrate": 2,
+      "description": "수딩 토너1 후기테스트4444"
+    },
+    {
+      "id": "cce5",
+      "category": "hydro",
+      "productId": "1",
+      "userEmail": "test",
+      "userName": "test",
+      "date": "2026. 2. 9. 오전 11:52:14",
+      "score": 1,
+      "viewrate": 1,
+      "description": "수딩 토너1 후기 테스트5555"
     }
   ],
   "reservation": [
