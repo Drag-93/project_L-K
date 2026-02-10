@@ -6,7 +6,7 @@
       "description": "ㅁㄴㅇㄴㅁㅇㅁㄴㅇㅁㄴㅇ",
       "no": 1,
       "date": "2024-12-25",
-      "viewrate": 14
+      "viewrate": 15
     }
   ],
   "members": [
@@ -417,6 +417,7 @@
       "writer": "작성자이름",
       "writerEmail": "작성자이메일",
       "viewrate": 15,
+      "state": "답변완료",
       "question": "테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용",
       "admin": "관리자이름",
       "answer": "답변내용답변내용답변내용답변내용답변내용"
@@ -426,10 +427,11 @@
       "title": "QnA테스트용 제목",
       "question": "질문내용 작성하기질문내용 작성하기질문내용 작성하기질문내용 작성하기질문내용 작성하기",
       "no": 2,
+      "state": "답변완료",
       "date": "2026-02-05",
       "writer": "test",
       "writerEmail": "test",
-      "viewrate": 2,
+      "viewrate": 3,
       "admin": "관리자",
       "answer": "답변내용테스트222"
     },
@@ -438,12 +440,26 @@
       "title": "문의 작성하기 테스트",
       "question": "테스트내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용",
       "no": 3,
+      "state": "답변대기",
       "date": "2026-02-05",
       "writer": "test",
       "writerEmail": "test",
-      "viewrate": 4,
+      "viewrate": 10,
       "admin": "",
       "answer": ""
+    },
+    {
+      "id": "85af",
+      "title": "문의작성 테스트",
+      "question": "문의작성 테스트문의작성 테스트문의작성 테스트",
+      "no": 4,
+      "date": "2026-02-10",
+      "writer": "test",
+      "writerEmail": "test",
+      "viewrate": 4,
+      "admin": "tester",
+      "answer": "답변 테스트",
+      "state": "답변완료"
     }
   ],
   "productOrders": [

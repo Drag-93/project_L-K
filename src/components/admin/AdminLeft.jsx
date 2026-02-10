@@ -47,6 +47,11 @@ const AdminLeft = () => {
               공지사항
             </NavLink>
           </li>
+          <li>
+            <NavLink to={"/admin/qna"} className={linkClass}>
+              Q&A
+            </NavLink>
+          </li>
         </ul>
       </div>
     </div>
