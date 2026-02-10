@@ -465,8 +465,8 @@
   "productOrders": [],
   "reserveOrders": [
     {
-      "id": "a062",
-      "reserveDate": "2026. 2. 10. 오후 2:44:34",
+      "id": "baae",
+      "reserveDate": "2026. 2. 10. 오후 4:04:41",
       "customer": {
         "userEmail": "test",
         "userName": "test",
@@ -476,14 +476,37 @@
       },
       "items": [
         {
-          "id": "8990",
+          "id": "eac9",
           "category": "lifting",
           "name": "울쎄라",
           "price": 200000,
           "img": "lifting_01.png",
-          "date": "2026-02-12",
-          "shop": "신촌",
+          "descImg": "상세페이지 이미지 경로",
+          "shop": "강남",
+          "date": "2026-02-18",
+          "time": "11:00"
+        },
+        {
+          "id": "bd85",
+          "category": "regen",
+          "name": "쥬베룩",
+          "price": 400000,
+          "img": "regen_01.png",
+          "descImg": "상세페이지 이미지 경로",
+          "shop": "종로",
+          "date": "2026-02-18",
           "time": "14:00"
+        },
+        {
+          "id": "7f6a",
+          "category": "immune",
+          "name": "글루타치온(백옥주사)",
+          "price": 300000,
+          "img": "immune_01.png",
+          "descImg": "상세페이지 이미지 경로",
+          "shop": "강남",
+          "date": "2026-02-18",
+          "time": "11:00"
         }
       ],
       "totalAmount": 200000,
