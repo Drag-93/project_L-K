@@ -2,16 +2,16 @@ import React, { useEffect, useMemo, useState } from "react";
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const CommunityQnA = () => {
   const [qnaList, setQnaList] = useState([]);
   const qnaUrl = API_JSON_SERVER_URL;
   const [searchText, setSearchText] = useState("");
   const navigate = useNavigate();
-
   const pageSize = 10;
   const [page, setPage] = useState(1);
-
+  const user = useSelector((state) => state.input.user);
   const filtered = useMemo(() => {
     const q = searchText.trim().toLowerCase();
     if (!q) return qnaList;
@@ -55,10 +55,52 @@ const CommunityQnA = () => {
     qnaListFn();
   }, []);
 
-  const writeBtn = () => {};
+  const MyQnaList = useMemo(() => {
+    if (!user) return [];
+    return qnaList.filter((qna) => qna.writerEmail === user.userEmail);
+  }, [qnaList, user]);
 
   return (
     <div className="QnA">
+      <div className="MyQna-con">
+        {MyQnaList.length > 0 ? (
+          <div className="title">
+            <h1>MyQ&A</h1>
+            <table>
+              <thead>
+                <tr>
+                  <td>글번호</td>
+                  <td>제목</td>
+                  <td>작성일</td>
+                  <td>작성자</td>
+                  <td>답변상태</td>
+                  <td>조회수</td>
+                </tr>
+              </thead>
+              <tbody>
+                {MyQnaList.map((el) => {
+                  return (
+                    <tr key={el.id} onClick={() => navigate(`${el.id}`)}>
+                      <td onClick={(e) => e.stopPropagation()}>{el.no}</td>
+                      <td>{el.title}</td>
+                      <td>{el.date}</td>
+                      <td>{el.writer}</td>
+                      <td
+                        className={`qnaStateBadge ${el.state === "답변완료" ? "done" : "wait"}`}
+                      >
+                        {el.state}
+                      </td>
+                      <td onClick={(e) => e.stopPropagation()}>
+                        {el.viewrate}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        ) : null}
+      </div>
       <div className="QnA-con">
         <div className="title">
           <ul>
@@ -81,6 +123,7 @@ const CommunityQnA = () => {
               <td>제목</td>
               <td>작성일</td>
               <td>작성자</td>
+              <td>답변상태</td>
               <td>조회수</td>
             </tr>
           </thead>
@@ -92,6 +135,11 @@ const CommunityQnA = () => {
                   <td>{el.title}</td>
                   <td>{el.date}</td>
                   <td>{el.writer}</td>
+                  <td
+                    className={`qnaStateBadge ${el.state === "답변완료" ? "done" : "wait"}`}
+                  >
+                    {el.state}
+                  </td>
                   <td onClick={(e) => e.stopPropagation()}>{el.viewrate}</td>
                 </tr>
               );

@@ -416,7 +416,7 @@
       "date": "2026-02-05",
       "writer": "작성자이름",
       "writerEmail": "작성자이메일",
-      "viewrate": 19,
+      "viewrate": 21,
       "state": "답변완료",
       "question": "테스트내용테스트내용테스트내용테스트내용테스트내용테3123스트내용테스4내용2테스트내용",
       "admin": "관리자",
@@ -431,7 +431,7 @@
       "date": "2026-02-05",
       "writer": "test",
       "writerEmail": "test",
-      "viewrate": 3,
+      "viewrate": 9,
       "admin": "",
       "answer": ""
     },
@@ -444,7 +444,7 @@
       "date": "2026-02-05",
       "writer": "test",
       "writerEmail": "test",
-      "viewrate": 10,
+      "viewrate": 12,
       "admin": "",
       "answer": ""
     },
@@ -456,7 +456,7 @@
       "date": "2026-02-10",
       "writer": "test",
       "writerEmail": "test",
-      "viewrate": 4,
+      "viewrate": 10,
       "admin": "",
       "answer": "",
       "state": "답변대기"
