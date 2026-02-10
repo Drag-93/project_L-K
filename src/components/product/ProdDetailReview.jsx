@@ -36,21 +36,34 @@ const ProdDetailReview = () => {
          el.id === reviewId ? {...el, isOpen : !el.isOpen} : el)
       )
   }
-  //조회수(viewrate) 증가
-  const viewrateFn= async (reviewId, currentViewrate) => {
+  //후기 like(엄지척) 선택하기
+  const [like, setLike]=useState(userReview.like || 0);
+  const [thumbsUp, setThumbsUp]=useState(false);
+  const handleLikeFn=()=>{
+    if(!thumbsUp){
+      setLike(prev=> prev + 1);
+      setThumbsUp(true);
+    }else{
+      setLike(prev=> prev - 1);
+      setThumbsUp(false);
+    }
+  }
+  
+  // ******* 후기 db에 저장 기능 구현하기 *******
+  const likeFn= async (reviewId, currentLike) => {
     try{
-      await axios.patch(`${url}/productReview/${reviewId}`, {
-        viewrate: (currentViewrate ?? 0) + 1
+      await axios.patch(`${url}/productReview/${like}`, {
+        like: (currentLike ?? 0) + 1
       })    
       setUserReview((prev)=>
         prev.map((review)=> review.id === reviewId ? ({
-          ...review, viewrate: (review.viewrate ?? 0) + 1
+          ...review, like: (review.like ?? 0) + 1
         }) : review)  
       )  
     }catch(err){
-      console.log('조회수 업데이트 실패')
+      console.log('좋아요 횟수 업데이트 실패')
     }   
-  }    
+  }
 
   const [reviewAddModal, setReviewAddModal]=useState(false)
 
@@ -171,8 +184,8 @@ return (
                         <>
                         <p>작성일자: {new Date(el.date).toLocaleDateString()}</p>
                         <p>점수: {el.score}점</p>
-                        <p>조회수: {el.viewrate}</p>
-                        <p>내용: {el.description}</p>
+                        <p>좋아요: {el.like}회</p>
+                        <p>{el.description}</p>
                         <div className="edit-buttons">
                         <button onClick={()=> updateFn(el)}>수정하기</button>
                         <button onClick={()=> deleteFn(el.id)}>삭제하기</button>
@@ -187,24 +200,20 @@ return (
           <ul>
             {userReview && userReview.map((el,idx)=>{
               return (
-                <li key={el.id} onClick={()=>{
-                  if(!el.isOpen){                     //접힌 상태에서 클릭할 때만 조회수 증가(열었다 닫을 때 조회수 증가 방지)
-                  viewrateFn(el.id, el.viewrate)}
-                  toggleReview(el.id);
-                  }} style={{cursor: 'pointer'}}>
+                <li key={el.id} onClick={()=>{toggleReview(el.id)}} style={{cursor: 'pointer'}}>
                   <p>작성자: {el.userName}</p>
                   <p>작성일자: {new Date(el.date).toLocaleDateString()}</p>
                   <p>점수: {el.score}점</p>
-                  <p>조회수: {el.viewrate}</p>
                   <p style={{
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     whiteSpace: el.isOpen ? 'normal' : 'nowrap'
                   }}
-                  >내용: {el.description}</p>
+                  >{el.description}</p>
                   <small style={{ color: 'gray' }}>
                     {el.isOpen ? '[접기]' : '...더보기'}
                   </small>
+                  <button onClick={handleLikeFn} style={{ cursor: 'pointer', width: '30px' }}><img src={!thumbsUp ? `/images/icon_like_off.svg` : `/images/icon_like_on.svg`} alt="icon_like" />{like}</button>
                 </li>
               )
             })}

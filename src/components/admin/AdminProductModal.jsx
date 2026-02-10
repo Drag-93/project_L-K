@@ -22,7 +22,8 @@ const AdminProductModal = ({ setAdminAddModal, productId }) => {
 
   const onChangeFn = (e) => {
     const { name, value } = e.target;
-    setDetail({ ...detail, [name]: value });
+    const newValue = name === 'price' ? Number(value) : value;  //가격은 숫자로 저장
+    setDetail({ ...detail, [name]: newValue });
   };
   const onUpdateFn = async (e) => {
     try {
@@ -36,7 +37,7 @@ const AdminProductModal = ({ setAdminAddModal, productId }) => {
   };
 
   const onDeleteFn = async (e) => {
-    if (!window.confirm("정말 삭제 하시겠습니까")) {
+    if (!window.confirm("정말 삭제 하시겠습니까?")) {
       return;
     } else {
       try {
@@ -52,7 +53,7 @@ const AdminProductModal = ({ setAdminAddModal, productId }) => {
   const closeFn = (e) => {
     setAdminAddModal(false);
   };
-  if (!detail) {
+  if (!detail) {      //데이터 없을 경우 오류 방지
     return (
       <div className="adminProductModal">
         <div className="adminProductModal-con">
@@ -94,9 +95,8 @@ const AdminProductModal = ({ setAdminAddModal, productId }) => {
               value={detail.price}
               onChange={onChangeFn}
             />
-          </li>
           <li>
-            <label htmlFor="img">이미지링크</label>
+            <label htmlFor="img">상품이미지 링크</label>
             <input
               type="text"
               name="img"
@@ -105,8 +105,9 @@ const AdminProductModal = ({ setAdminAddModal, productId }) => {
               onChange={onChangeFn}
             />
           </li>
+          </li>
           <li>
-            <img src={`/images/${detail.img}`} alt={detail.name} />
+            <img src={`/images/${detail.category}/${detail.img}`} alt={detail.img} />
           </li>
           <li>
             <label htmlFor="category">카테고리</label>
@@ -117,14 +118,14 @@ const AdminProductModal = ({ setAdminAddModal, productId }) => {
               onChange={onChangeFn}
             >
               <option value="hydro">보습</option>
-              <option value="antiage">항산화</option>
               <option value="trouble">트러블케어</option>
-              <option value="uv">자외선차단</option>
               <option value="white">미백</option>
+              <option value="antiage">안티에이징</option>
+              <option value="uv">UV</option>
             </select>
           </li>
           <li className="description-row">
-            <label htmlFor="description">상세설명</label>
+            <label htmlFor="description">상품설명</label>
             <textarea
               name="description"
               id="description"
@@ -134,8 +135,18 @@ const AdminProductModal = ({ setAdminAddModal, productId }) => {
             />
           </li>
           <li>
-            <button onClick={onUpdateFn}>제품수정</button>
-            <button onClick={onDeleteFn}>제품삭제</button>
+            <label htmlFor="detail-desc">상세정보 이미지 링크</label>
+            <input
+              type="text"
+              name="desc-img"
+              id="desc-img"
+              value={detail.descImg}
+              onChange={onChangeFn}
+            />
+          </li>
+          <li>
+            <button onClick={onUpdateFn}>상품수정</button>
+            <button onClick={onDeleteFn}>상품삭제</button>
             <button onClick={closeFn}>닫기</button>
           </li>
         </ul>

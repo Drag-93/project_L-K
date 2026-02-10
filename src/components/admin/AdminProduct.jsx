@@ -100,10 +100,10 @@ const AdminProduct = () => {
                   >
                     <option value="ALL">전체</option>
                     <option value="hydro">보습</option>
-                    <option value="antiage">항산화</option>
                     <option value="trouble">트러블케어</option>
-                    <option value="uv">자외선차단</option>
                     <option value="white">미백</option>
+                    <option value="antiage">안티에이징</option>
+                    <option value="uv">UV</option>
                   </select>
                 </div>
               </li>
@@ -112,11 +112,12 @@ const AdminProduct = () => {
           <table>
             <thead>
               <tr>
+                <th>상품이미지</th>
                 <th>상품명</th>
                 <th>가격</th>
                 <th>이미지링크</th>
-                <th>예시이미지</th>
-                <th>상세설명</th>
+                <th>상품설명</th>
+                <th>평점/후기건수</th>
                 <th>카테고리</th>
                 <th>상세보기</th>
               </tr>
@@ -125,16 +126,19 @@ const AdminProduct = () => {
               {pagedList.map((el) => {
                 return (
                   <tr key={el.id}>
-                    <td>{el.name}</td>
-                    <td>{el.price}</td>
-                    <td>{el.img}</td>
                     <td>
-                      <img src={`/images/${el.img}`} alt={el.name} />
+                      <img src={`/images/${el.category}/${el.img}`} alt={el.img} />
                     </td>
+                    <td>{el.name}</td>
+                    <td>{el.price.toLocaleString()}원</td>
+                    <td>{`images/${el.category}/${el.img}`}</td>
                     <td>
                       {el.description && el.description.length > 10
                         ? `${el.description.slice(0, 10)}...`
                         : el.description}
+                    </td>
+                    <td>
+                      평점/{userReview.length}건
                     </td>
                     <td>{el.category}</td>
                     <td

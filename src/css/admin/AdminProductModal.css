@@ -37,16 +37,19 @@
   width: 34px;
   height: 34px;
   border-radius: 10px;
+  padding: 5px;
 
   display: grid;
   place-items: center;
 
   cursor: pointer;
   user-select: none;
+  pointer-events: all;
 
   background: #f3f6ff;
   color: #1f2a44;
   font-weight: 900;
+  z-index: 2001;
 }
 
 .adminProductModal .close:hover {
