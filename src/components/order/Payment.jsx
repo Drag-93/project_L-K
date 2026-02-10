@@ -114,20 +114,28 @@ const Payment = () => {
 
     try {
       if (reserveItems.length > 0) {
+
+        //필요없는 데이터 제거
+        const cleanedReserveItems = reserveItems.map(({ setshop, settime, description, ...cleanItem }) => cleanItem);
+
         const reserveData = {
           reserveDate: new Date().toLocaleString(),
           customer: paymentProInfo,
-          items: reserveItems,
+          items: cleanedReserveItems,
           totalAmount: reservePrice,
         };
         await axios.post(`${API_JSON_SERVER_URL}/reserveOrders`, reserveData);
       }
 
       if (productItems.length > 0) {
+
+        //필요없는 데이터 제거
+        const cleanedProducteItems = productItems.map(({ description, ...cleanItem }) => cleanItem);
+
         const productData = {
           productDate: new Date().toLocaleString(),
           customer: paymentInfo,
-          items: productItems,
+          items: cleanedProducteItems,
           totalAmount: productPrice,
         };
         await axios.post(`${API_JSON_SERVER_URL}/productOrders`, productData);

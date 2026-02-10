@@ -53,7 +53,7 @@ const AdminQnA = () => {
 
   const pagedList = useMemo(() => {
     return filtered.slice(startPost, endPost);
-  }, [filtered]);
+  }, [filtered, startPost, endPost]);
 
   const toggleSelect = (id) => {
     const key = String(id);
@@ -91,6 +91,7 @@ const AdminQnA = () => {
       );
       setSelectedId([]);
       alert("삭제 되었습니다");
+      await openListFn();
     } catch (err) {
       alert(err);
     }
@@ -111,10 +112,16 @@ const AdminQnA = () => {
         ),
       );
       setQnaList((prev) =>
-        prev.filter((n) => !idsToCancel.includes(String(n.id))),
+        prev.map((n) =>
+          idsToCancel.includes(String(n.id))
+            ? { ...n, admin: "", answer: "", state: "답변대기" }
+            : n,
+        ),
       );
+
       setSelectedId([]);
       alert("취소 되었습니다");
+      await openListFn();
     } catch (err) {
       alert(err);
     }
@@ -127,7 +134,11 @@ const AdminQnA = () => {
   return (
     <>
       {adminAddModal && (
-        <AdminQnAModal setAdminAddModal={setAdminAddModal} qnaId={modalId} />
+        <AdminQnAModal
+          setAdminAddModal={setAdminAddModal}
+          qnaId={modalId}
+          onSuccess={openListFn}
+        />
       )}
       <div className="adminQnA">
         <div className="adminQnA-con">

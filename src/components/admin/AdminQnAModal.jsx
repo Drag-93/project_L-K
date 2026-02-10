@@ -12,7 +12,6 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
   const [isSaving, setIsSaving] = useState(false);
   const [isAnswering, setIsAnswering] = useState(false);
   const [editAnswer, setEditAnswer] = useState({ answer: "" });
-  const navigate = useNavigate();
   const user = useSelector((state) => state.input.user);
   useEffect(() => {
     const openDetail = async () => {
@@ -63,6 +62,7 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
       }));
       alert("수정 되었습니다");
       setIsEditing(false);
+      onSuccess?.();
       closeFn();
     } catch (err) {
       alert(err);
@@ -79,6 +79,7 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
       setIsSaving(true);
       await axios.delete(`${qnaUrl}/qna/${qnaId}`);
       alert("삭제 되었습니다");
+      onSuccess?.();
       closeFn();
     } catch (err) {
       alert(err);
@@ -116,7 +117,7 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
   };
   const onEditAnswerFn = () => {
     setEditAnswer({
-      answer: detail.answer,
+      answer: detail.answer ?? "",
     });
 
     setIsAnswering(true);
@@ -230,11 +231,8 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
             <textarea
               name="answer"
               id="answer"
-              value={
-                isAnswering
-                  ? editAnswer.answer
-                  : detail.answer || "관리자가 확인 중입니다."
-              }
+              value={isAnswering ? editAnswer.answer : (detail.answer ?? "")}
+              placeholder={detail.answer ? "" : "관리자가 확인 중입니다."}
               onChange={onAnswerChangeFn}
               rows={6}
               readOnly={!isAnswering}
@@ -250,7 +248,13 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
             {isAnswering && (
               <>
                 <button onClick={onSaveAnswerFn}>답변저장하기</button>
-                <button onClick={() => setIsAnswering(false)}>취소하기</button>
+                <button
+                  onClick={() => {
+                    setIsAnswering(false);
+                  }}
+                >
+                  취소하기
+                </button>
               </>
             )}
             <button onClick={() => closeFn()}>닫기</button>

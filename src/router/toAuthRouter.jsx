@@ -4,7 +4,6 @@ import { Navigate } from "react-router-dom";
 const Loading = <div className="loading">...Loading</div>;
 const AuthLogin = lazy(() => import("../components/Auth/AuthLogin"));
 const AuthJoin = lazy(() => import("../components/Auth/AuthJoin"));
-
 const AuthMypage = lazy(() => import("../components/Auth/AuthMypage"));
 
 const toAuthRouter = () => {

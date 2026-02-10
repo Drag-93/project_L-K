@@ -320,20 +320,22 @@
   text-align: center;
   border-right: 1px solid #e2e8f0;
   padding-right: 40px;
+  display: flex;
+  flex-direction: column;
 }
 
-.avrscore {
-  font-size: 32px;
+.totalscore p.avrscore {
+  font-size: 40px;
   font-weight: 800;
-  color: #2d3748;
+  color: black;
   list-style: none;
 }
 
-.totalno {
-  font-size: 14px;
-  color: #718096;
+.totalscore p.totalno {
+  font-size: 20px;
+  color: black;
   list-style: none;
-  margin-top: 4px;
+  margin-top: 5px;
 }
 
 /* .majorreviews {
@@ -624,3 +626,15 @@ textarea:focus {
   font-size: 12px;
   cursor: pointer;
 }
+
+
+/* ================= 상품 상세정보(ProdDetailDesc) ============= */
+.prod-detail-desc-con{
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.prod-detail-desc-con img{
+  width: 100%;
+} 

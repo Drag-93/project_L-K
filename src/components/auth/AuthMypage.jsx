@@ -32,6 +32,13 @@ const AuthMemberList = () => {
   const [myData, setMyData] = useState(myDataFrom);
 
   const navigate = useNavigate();
+  
+  
+   useEffect(() => {
+        if (isState === true) {
+          navigate(`/`);
+        }
+      }, [state]);
 
   
 
@@ -189,7 +196,24 @@ const AuthMemberList = () => {
           </ul>
         </div>
         <div className="mypage_wrap">
-          <PaymentList/>
+        <h2>내 활동내역</h2>
+          <ul>
+            <li>
+              <button onClick={()=>navigate(`/order/paymentList`)}>결제내역</button>
+            </li>
+          </ul>
+          <h2>내 리뷰</h2>
+          <ul>
+            <li>
+              내용
+            </li>
+          </ul>
+          <h2>내 Q&A</h2>
+          <ul>
+            <li>
+              내용
+            </li>
+          </ul>
         </div>
       </div>
     </>

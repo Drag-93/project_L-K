@@ -158,199 +158,312 @@
 }
 
 /* =========== RevervLiftingDetail ==============*/
-/* RevervLiftingDetail.css - K-Beauty Minimal */
 
-.reservlifting-detail {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; /* 항목이 많으므로 여유 있게 설정 */
-  padding: 40px 20px;
-  background-color: #f9f9f9;
+
+.reservlfting-detail {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #444;
 }
 
+/* 제목 영역 */
 .reservlifting-detail-con h1 {
   font-size: 32px;
   font-weight: 700;
-  text-align: center;
+  color: #222;
   margin-bottom: 50px;
-  color: #1a1a1a;
+  text-align: center;
+  letter-spacing: -1px;
 }
 
+/* 상단 배치 */
 .detail-top {
   display: flex;
-  gap: 50px;
-  margin-bottom: 80px;
+  gap: 60px;
+  align-items: flex-start;
+  background: #fff;
   padding: 40px;
-  background: #f9fafb;
-  border-radius: 16px;
+  border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.05);
 }
 
 .detail-top-left {
   flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: sticky;
+  top: 20px;
 }
 
 .detail-top-left img {
   width: 100%;
-  max-width: 400px;
-  height: auto;
-  border-radius: 12px;
+  border-radius: 20px;
   object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
 .detail-top-right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
+  flex: 1.2;
 }
 
 .detail-top-right ul {
   list-style: none;
   padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }
 
 .detail-top-right li {
-  font-size: 16px;
-  color: #4a5568;
-  padding: 15px 20px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 20px;
+}
+
+.detail-top-right li:last-child {
+  border-bottom: none;
+}
+
+.detail-top-right li p {
+  font-size: 15px;
+  font-weight: 600;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+/* 지점 및 시간 버튼 */
+.shop-btns, .time-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.shop-btn, .time-btn {
+  min-width: 90px;
+  padding: 12px 15px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.shop-btn:hover:not(:disabled), .time-btn:hover:not(:disabled) {
+  border-color: #5aa933;
+  background: #f4faf0;
+  color: #5aa933;
+}
+
+.shop-btn.active, .time-btn.active {
+  background: #5aa933;
+  color: #fff;
+  border-color: #5aa933;
+  box-shadow: 0 4px 12px rgba(90, 169, 51, 0.3);
+}
+
+/* 시간 버튼 마감(disabled) 스타일 */
+.time-btn.disabled {
+  background: #f7fafc;
+  color: #cbd5e0;
+  cursor: not-allowed;
+  border-color: #edf2f7;
+  text-decoration: line-through;
+}
+
+/* -----------------------------------------------------
+   🧩 React-Calendar 커스텀 스타일 (세밀한 수정)
+----------------------------------------------------- */
+.react-calendar {
+  width: 100% !important;
+  border: none !important;
+  background: #fff;
+  font-family: 'Noto Sans KR', sans-serif;
+  padding: 10px;
+}
+
+/* 네비게이션 (월 이동 버튼) */
+.react-calendar__navigation {
+  display: flex;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.react-calendar__navigation button {
+  min-width: 44px;
+  background: none;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: #f8f8f8;
+  border-radius: 10px;
+}
+
+/* 요일 표시 */
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 13px;
+  color: #999;
+  padding-bottom: 10px;
+}
+
+.react-calendar__month-view__weekdays abbr {
+  text-decoration: none;
+}
+
+/* 개별 날짜 칸 */
+.react-calendar__tile {
+  height: 50px;
+  background: none;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 12px;
+  margin: 2px 0;
+  transition: all 0.1s;
+}
+
+/* 오늘 날짜 표시 */
+.react-calendar__tile--now {
+  background: #e6f3e0 !important;
+  color: #5aa933 !important;
+}
+
+/* 날짜 호버 스타일 */
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: #f0f0f0;
+}
+
+/* 선택된 날짜 */
+.react-calendar__tile--active {
+  background: #5aa933 !important;
+  color: white !important;
+  box-shadow: 0 4px 10px rgba(90, 169, 51, 0.3);
+}
+
+/* 비활성화된 날짜 (과거 날짜, 주말 등) */
+.react-calendar__tile:disabled {
+  background-color: transparent !important;
+  color: #ccc !important;
+}
+
+/* ----------------------------------------------------- */
+
+/* 선택 내역 요약 */
+.detail-top-right li:nth-last-child(2) {
+  background: #f9fbf7;
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px dashed #5aa933;
+}
+
+.detail-top-right li span {
+  font-size: 18px;
+  font-weight: 700;
+  color: #5aa933;
+  margin-left: 10px;
+}
+
+/* 장바구니 버튼 */
+button[onClick*="onPaymentFn"] {
+  width: 100%;
+  padding: 20px;
+  background: #5aa933;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(90, 169, 51, 0.2);
+  transition: all 0.3s ease;
+}
+
+button[onClick*="onPaymentFn"]:hover {
+  background: #4d912a;
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(90, 169, 51, 0.3);
+}
+
+/* 상세 하단 탭 */
+.detail-bottom {
+  margin-top: 40px;
 }
 
 .detail-bottom ul {
   display: flex;
   justify-content: center;
   gap: 40px;
-  list-style: none;
-  padding: 20px 0;
-  border-top: 1px solid #e2e8f0;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 2px solid #f0f0f0;
 }
 
 .detail-bottom li {
-  font-size: 15px;
+  padding: 20px 10px;
+  font-size: 18px;
   font-weight: 600;
-  color: #718096;
+  color: #bbb;
   cursor: pointer;
-  transition: color 0.3s;
+  position: relative;
 }
 
-.detail-bottom li:hover {
-  color: #2d3748;
+.detail-bottom li:first-child {
+  color: #5aa933;
 }
 
-@media (max-width: 768px) {
-  .detail-top {
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  .detail-top-left img {
-    max-width: 100%;
-  }
-
-  .detail-bottom ul {
-    flex-direction: column;
-    gap: 15px;
-  }
-}
-
-
-
-
-
-/******************************************************************************
-  @캘린더
-******************************************************************************/
-/* 캘린더 전체 컨테이너 */
-.react-calendar {
+.detail-bottom li:first-child::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
   width: 100%;
-  max-width: 400px;
-  background: white;
-  border: 1px solid #e2e2e2;
+  height: 2px;
+  background: #5aa933;
+}
+
+/* 부드럽게 나타나는 효과 */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 안내 문구 스타일 */
+.guide-text {
+  padding: 20px;
+  background: #f8f9fa;
   border-radius: 12px;
-  font-family: 'Pretendard', sans-serif;
-  padding: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-/* 네비게이션 (월/년 이동 버튼) */
-.react-calendar__navigation {
-  display: flex;
-  height: 44px;
-  margin-bottom: 0.5em;
-}
-
-.react-calendar__navigation button {
-  min-width: 44px;
-  background: none;
-  font-size: 16px;
-  font-weight: 600;
-  color: #333;
-}
-
-.react-calendar__navigation button:disabled {
-  background-color: #f0f0f0;
-}
-
-/* 요일 표시 라벨 */
-.react-calendar__month-view__weekdays {
+  color: #999;
+  font-size: 14px;
   text-align: center;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 0.8em;
-  color: #888;
-  padding-bottom: 10px;
+  border: 1px dashed #e2e8f0;
+  margin: 10px 0;
 }
 
-/* 개별 날짜 타일 */
-.react-calendar__tile {
-  max-width: 100%;
-  padding: 12px 6.6667px;
-  background: none;
-  text-align: center;
-  line-height: 16px;
-  border-radius: 8px;
-  transition: background 0.2s, color 0.2s;
+/* 최종 요약 박스 */
+.final-selection {
+  margin-top: 30px;
+  padding: 20px;
+  background: #f4faf0;
+  border-radius: 15px;
+  border: 1px solid #5aa933;
 }
 
-/* 오늘 날짜 표시 */
-.react-calendar__tile--now {
-  background: #fff0f0;
-  color: #ff4d4f;
-  font-weight: bold;
+.selection-summary p {
+  margin: 5px 0;
+  font-weight: 500;
 }
 
-/* 마우스 호버 효과 */
-.react-calendar__tile:enabled:hover,
-.react-calendar__tile:enabled:focus {
-  background-color: #f0f7ff;
-  color: #1890ff;
+.selection-summary span {
+  color: #5aa933;
+  font-weight: 700;
+  margin-left: 10px;
 }
-
-/* 선택된 날짜 스타일 */
-.react-calendar__tile--active {
-  background: #1890ff !important;
-  color: white !important;
-}
-
-/* 비활성화된 날짜 (주말 및 과거/미래 제한) */
-.react-calendar__tile:disabled {
-  background-color: #f5f5f5 !important;
-  color: #ccc !important;
-  cursor: not-allowed;
-}
-
-/* 주말(토, 일) 텍스트 색상 구분 (선택사항) */
-.react-calendar__month-view__weekdays__weekday:nth-child(6) abbr { color: #0000ff; } /* 토요일 */
-.react-calendar__month-view__weekdays__weekday:nth-child(7) abbr { color: #ff0000; } /* 일요일 */

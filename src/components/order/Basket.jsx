@@ -134,7 +134,7 @@ const Basket = () => {
               {reserveItems.map((item, index) => (
               <li key={index} className="cart-item">
                 <div className="item-img">
-                  <img src={`/images/${item.img}`} alt={item.name} />
+                  <img src={`/images/${item.category}/${item.img}`} alt={item.name} />
                 </div>
                 <div className="item-info">
                   <h3 className="item-name">{item.name}<span>예약상품</span></h3>

@@ -6,7 +6,7 @@
       "description": "ㅁㄴㅇㄴㅁㅇㅁㄴㅇㅁㄴㅇ",
       "no": 1,
       "date": "2024-12-25",
-      "viewrate": 14
+      "viewrate": 15
     }
   ],
   "members": [
@@ -90,8 +90,8 @@
       "name": "수딩 토너1",
       "price": 20000,
       "img": "hydro1.jpg",
-      "detailImg": "hydro1.jpg",
-      "description": "보습라인 1번 상품입니다"
+      "description": "보습라인 1번 상품입니다",
+      "descImg": "상세페이지 이미지 경로"
     },
     {
       "id": "2",
@@ -224,76 +224,32 @@
       "productId": "1",
       "userEmail": "test",
       "userName": "test",
-      "date": "2026. 2. 9. 오전 11:04:38",
+      "date": "2026. 2. 9. 11:04:38",
       "score": 5,
       "viewrate": 10,
       "description": "수딩 토너1 후기 테스트111, 후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다."
     },
     {
-      "id": "229e",
+      "id": "8a36",
       "category": "hydro",
       "productId": "1",
       "userEmail": "test",
       "userName": "test",
-      "date": "2026. 2. 9. 오전 11:04:44",
-      "score": 4,
-      "viewrate": 5,
-      "description": "수딩 토너1 후기 테스트222"
+      "date": "2026-02-10 10:05:04",
+      "score": 2,
+      "viewrate": 0,
+      "description": "수딩 토너1 후기테스트2222222 후기 수정을 테스트합니다. 다시 테스트합니다."
     },
     {
-      "id": "d860",
+      "id": "6158",
       "category": "hydro",
       "productId": "1",
       "userEmail": "test",
       "userName": "test",
-      "date": "2026. 2. 9. 오전 11:04:55",
+      "date": "2026-02-10 12:21:18",
       "score": 3,
-      "viewrate": 3,
-      "description": "수딩 토너1 후기 테스트333"
-    },
-    {
-      "id": "5679",
-      "category": "hydro",
-      "productId": "1",
-      "userEmail": "test",
-      "userName": "test",
-      "date": "2026. 2. 9. 오전 11:26:56",
-      "score": 2,
-      "viewrate": 2,
-      "description": "수딩 토너1 후기테스트4444"
-    },
-    {
-      "id": "cce5",
-      "category": "hydro",
-      "productId": "1",
-      "userEmail": "test",
-      "userName": "test",
-      "date": "2026. 2. 9. 오전 11:52:14",
-      "score": 1,
-      "viewrate": 1,
-      "description": "수딩 토너1 후기 테스트5555"
-    },
-    {
-      "id": "cb38",
-      "category": "hydro",
-      "productId": "1",
-      "userEmail": "test",
-      "userName": "test",
-      "date": "2026. 2. 9. 오후 5:15:02",
-      "score": 5,
       "viewrate": 0,
-      "description": "214234234"
-    },
-    {
-      "id": "63f1",
-      "category": "hydro",
-      "productId": "1",
-      "userEmail": "test",
-      "userName": "test",
-      "date": "2026. 2. 9. 오후 5:15:34",
-      "score": 2,
-      "viewrate": 0,
-      "description": "testtest"
+      "description": "후기등록을 테스트합니다33333"
     }
   ],
   "reservation": [
@@ -301,73 +257,45 @@
       "id": "1",
       "category": "lifting",
       "name": "울쎄라",
-      "timespan": 2,
       "price": 200000,
-      "img": "lifting1.jpg",
+      "img": "lifting_01.png",
       "description": "리프팅라인 울쎄라 진료입니다",
-      "state": "",
-      "user": "",
-      "date": "",
-      "settime": [
-        "10:00",
-        "11:00",
-        "14:00",
-        "15:00"
-      ]
+      "descImg": "상세페이지 이미지 경로",
+      "setshop": ["노원", "신촌", "강남", "종로"],
+      "settime": ["10:00", "11:00", "14:00", "15:00"]
     },
     {
       "id": "2",
       "category": "faceline",
       "name": "인모드",
-      "timespan": 2,
       "price": 100000,
-      "img": "lifting2.jpg",
+      "img": "faceline_01.png",
       "description": "페이스라인 인모드 진료입니다",
-      "state": "",
-      "user": "",
-      "date": "",
-      "settime": [
-        "10:00",
-        "11:00",
-        "14:00",
-        "15:00"
-      ]
+      "descImg": "상세페이지 이미지 경로",
+      "setshop": ["노원", "신촌", "강남"],
+      "settime": ["10:00", "11:00", "14:00", "15:00"]
     },
     {
       "id": "3",
       "category": "regen",
       "name": "쥬베룩",
-      "timespan": 2,
       "price": 400000,
-      "img": "lifting3.jpg",
+      "img": "regen_01.png",
       "description": "피부재생 쥬베룩 진료입니다",
-      "state": "",
-      "user": "",
-      "date": "",
-      "settime": [
-        "10:00",
-        "11:00",
-        "14:00",
-        "15:00"
-      ]
+      "descImg": "상세페이지 이미지 경로",
+      "setshop": ["노원", "강남", "종로"],
+      "settime": ["10:00", "11:00", "14:00", "15:00"]
     },
     {
       "id": "4",
       "category": "immune",
       "name": "글루타치온(백옥주사)",
-      "timespan": 2,
       "price": 300000,
-      "img": "lifting4.jpg",
+      "img": "immune_01.png",
       "description": "면역력 글루타치온(백옥주사) 진료입니다",
-      "state": "",
-      "user": "",
-      "date": "",
-      "settime": [
-        "10:00",
-        "11:00",
-        "14:00",
-        "15:00"
-      ]
+      "descImg": "상세페이지 이미지 경로",
+      "setshop": ["신촌", "강남", "종로"],
+      "settime": ["10:00", "11:00", "14:00", "15:00"]
     }
   ],
   "shop": [
@@ -447,120 +375,61 @@
     {
       "id": "1",
       "no": 1,
-      "state": "답변완료",
       "title": "테스트용qna",
       "date": "2026-02-05",
       "writer": "작성자이름",
       "writerEmail": "작성자이메일",
-      "viewrate": 15,
-      "question": "테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용",
-      "admin": "관리자이름",
-      "answer": "답변내용답변내용답변내용답변내용답변내용"
+      "viewrate": 19,
+      "state": "답변완료",
+      "question": "테스트내용테스트내용테스트내용테스트내용테스트내용테3123스트내용테스4내용2테스트내용",
+      "admin": "관리자",
+      "answer": "teatawtaestet"
     },
     {
       "id": "349c",
       "title": "QnA테스트용 제목",
       "question": "질문내용 작성하기질문내용 작성하기질문내용 작성하기질문내용 작성하기질문내용 작성하기",
       "no": 2,
-      "state": "답변완료",
+      "state": "답변대기",
       "date": "2026-02-05",
       "writer": "test",
       "writerEmail": "test",
       "viewrate": 3,
-      "admin": "관리자",
-      "answer": "답변내용테스트답변내용테스트답변내용테스트답변내용테스트"
+      "admin": "",
+      "answer": ""
     },
     {
       "id": "ac9e",
       "title": "문의 작성하기 테스트",
       "question": "테스트내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용",
       "no": 3,
-      "state": "답변완료",
+      "state": "답변대기",
       "date": "2026-02-05",
       "writer": "test",
       "writerEmail": "test",
-      "viewrate": 7,
-      "admin": "관리자",
-      "answer": "답변내용테스트답변내용테스트답변내용테스트답변내용테스트답변내용테스트답변내용테스트답변내용테스트"
-    },
-    {
-      "id": "4aee",
-      "title": "문의문의문의문의문의",
-      "question": "문의문의문의문의문의문의문의문의문의",
-      "no": 4,
-      "state": "답변대기",
-      "date": "2026-02-09",
-      "writer": "test",
-      "writerEmail": "test",
-      "viewrate": 2,
+      "viewrate": 10,
       "admin": "",
       "answer": ""
-    }
-  ],
-  "productOrders": [
-    {
-      "id": "3329",
-      "productDate": "2026. 2. 9. 오후 4:43:46",
-      "customer": {
-        "userEmail": "test",
-        "userName": "test",
-        "phonenum": "01012222641",
-        "address": "서울",
-        "request": "안전한 배송 부탁드립니다."
-      },
-      "items": [
-        {
-          "id": "1",
-          "category": "hydro",
-          "name": "수딩 토너1",
-          "price": 20000,
-          "img": "hydro1.jpg",
-          "description": "보습라인 1번 상품입니다",
-          "count": 4,
-          "totalPrice": 80000
-        }
-      ],
-      "totalAmount": 80000
     },
     {
-      "id": "dafd",
-      "productDate": "2026. 2. 9. 오후 4:47:03",
-      "customer": {
-        "userEmail": "test",
-        "userName": "test",
-        "phonenum": "01012222641",
-        "address": "서울",
-        "request": "안전한 배송 부탁드립니다."
-      },
-      "items": [
-        {
-          "id": "2",
-          "category": "hydro",
-          "name": "수딩 토너2",
-          "price": 20000,
-          "img": "hydro2.jpg",
-          "description": "보습라인 2번 상품입니다",
-          "count": 3,
-          "totalPrice": 60000
-        },
-        {
-          "id": "3",
-          "category": "hydro",
-          "name": "모이스처 세럼1",
-          "price": 20000,
-          "img": "hydro3.jpg",
-          "description": "보습라인 3번 상품입니다",
-          "count": 3,
-          "totalPrice": 60000
-        }
-      ],
-      "totalAmount": 120000
+      "id": "85af",
+      "title": "문의작성 테스트",
+      "question": "문의작성 테스트문의작성 테스트문의작성 테스트",
+      "no": 4,
+      "date": "2026-02-10",
+      "writer": "test",
+      "writerEmail": "test",
+      "viewrate": 4,
+      "admin": "",
+      "answer": "",
+      "state": "답변대기"
     }
   ],
+  "productOrders": [],
   "reserveOrders": [
     {
-      "id": "6f66",
-      "reserveDate": "2026. 2. 9. 오후 4:43:46",
+      "id": "a062",
+      "reserveDate": "2026. 2. 10. 오후 2:44:34",
       "customer": {
         "userEmail": "test",
         "userName": "test",
@@ -570,130 +439,17 @@
       },
       "items": [
         {
-          "id": "284d",
+          "id": "8990",
           "category": "lifting",
           "name": "울쎄라",
-          "timespan": 2,
           "price": 200000,
-          "img": "lifting1.jpg",
-          "description": "리프팅라인 울쎄라 진료입니다",
-          "state": "",
-          "user": "",
+          "img": "lifting_01.png",
           "date": "2026-02-12",
-          "settime": [
-            "10:00",
-            "11:00",
-            "14:00",
-            "15:00"
-          ],
-          "time": "15:00"
-        }
-      ],
-      "totalAmount": 200000
-    },
-    {
-      "id": "7a1d",
-      "reserveDate": "2026. 2. 9. 오후 4:47:03",
-      "customer": {
-        "userEmail": "test",
-        "userName": "test",
-        "phonenum": "01012222641",
-        "request": "안전한 시술 부탁드립니다.",
-        "address": "서울"
-      },
-      "items": [
-        {
-          "id": "41a9",
-          "category": "lifting",
-          "name": "울쎄라",
-          "timespan": 2,
-          "price": 200000,
-          "img": "lifting1.jpg",
-          "description": "리프팅라인 울쎄라 진료입니다",
-          "state": "",
-          "user": "",
-          "date": "2026-02-26",
-          "settime": [
-            "10:00",
-            "11:00",
-            "14:00",
-            "15:00"
-          ],
-          "time": "15:00"
-        }
-      ],
-      "totalAmount": 200000
-    },
-    {
-      "id": "02ca",
-      "reserveDate": "2026. 2. 9. 오후 4:48:35",
-      "customer": {
-        "userEmail": "test",
-        "userName": "test",
-        "phonenum": "01012222641",
-        "request": "안전한 시술 부탁드립니다.",
-        "address": "서울"
-      },
-      "items": [
-        {
-          "id": "4d27",
-          "category": "lifting",
-          "name": "울쎄라",
-          "timespan": 2,
-          "price": 200000,
-          "img": "lifting1.jpg",
-          "description": "리프팅라인 울쎄라 진료입니다",
-          "state": "",
-          "user": "",
-          "date": "2026-02-19",
-          "settime": [
-            "10:00",
-            "11:00",
-            "14:00",
-            "15:00"
-          ],
-          "time": "15:00"
-        },
-        {
-          "id": "bea7",
-          "category": "lifting",
-          "name": "울쎄라",
-          "timespan": 2,
-          "price": 200000,
-          "img": "lifting1.jpg",
-          "description": "리프팅라인 울쎄라 진료입니다",
-          "state": "",
-          "user": "",
-          "date": "2026-02-11",
-          "settime": [
-            "10:00",
-            "11:00",
-            "14:00",
-            "15:00"
-          ],
+          "shop": "신촌",
           "time": "14:00"
-        },
-        {
-          "id": "868a",
-          "category": "lifting",
-          "name": "울쎄라",
-          "timespan": 2,
-          "price": 200000,
-          "img": "lifting1.jpg",
-          "description": "리프팅라인 울쎄라 진료입니다",
-          "state": "",
-          "user": "",
-          "date": "2026-02-13",
-          "settime": [
-            "10:00",
-            "11:00",
-            "14:00",
-            "15:00"
-          ],
-          "time": "15:00"
         }
       ],
-      "totalAmount": 600000
+      "totalAmount": 200000
     }
   ]
 }

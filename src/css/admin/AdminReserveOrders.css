@@ -1,0 +1,167 @@
+/* AdminReserveOrders.css - AdminNotice 스타일 계승 */
+
+.reserveorderlist,
+.reserveorderlist * {
+  box-sizing: border-box;
+}
+
+.reserveorderlist {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  padding: 24px 22px;
+  background: #f6f7fb;
+}
+
+.reserveorderlist-con {
+  max-width: 1280px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  padding: 18px 18px 20px;
+}
+
+/* ===== 상단 타이틀/툴바 ===== */
+.reserveorderlist .title {
+  margin-bottom: 14px;
+}
+
+.reserveorderlist .toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 타이틀과 검색창 분리 */
+  gap: 10px;
+}
+
+.reserveorderlist .toolbar h2 {
+  font-size: 18px;
+  font-weight: 900;
+  color: #2b2f38;
+  margin: 0;
+}
+
+.reserveorderlist .toolbar input {
+  width: min(400px, 100%);
+  height: 42px;
+  padding: 0 14px;
+  border: 1px solid #e4e7ef;
+  border-radius: 10px;
+  outline: none;
+  background: #fff;
+  font-size: 14px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.reserveorderlist .toolbar input:focus {
+  border-color: #6b7cff;
+  box-shadow: 0 0 0 4px rgba(107, 124, 255, 0.15);
+}
+
+/* ===== 테이블 스타일 ===== */
+.reserveorderlist table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.reserveorderlist thead th {
+  background: #f3f5fb;
+  border-bottom: 1px solid #e6e9f2;
+  padding: 12px 10px;
+  font-size: 13px;
+  font-weight: 900;
+  color: #2b2f38;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.reserveorderlist tbody td {
+  border-bottom: 1px solid #eef1f7;
+  padding: 14px 10px;
+  font-size: 13px;
+  color: #2c3240;
+  vertical-align: middle;
+}
+
+.reserveorderlist tbody tr {
+  transition: background 0.12s ease;
+}
+
+.reserveorderlist tbody tr:hover {
+  background: #f7f9ff;
+}
+
+/* ===== 컬럼별 너비 및 정렬 (보내주신 가이드 기준) ===== */
+
+/* 1번: 번호/선택 */
+.reserveorderlist th:nth-child(1),
+.reserveorderlist td:nth-child(1) {
+  width: 60px;
+  text-align: center;
+}
+
+/* 6번: 요청사항 (내용 칸 - 말줄임 적용) */
+.reserveorderlist td:nth-child(6) {
+  max-width: 300px;
+  color: #4a5162;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 7번: 상세보기 (파란색 강조) */
+.reserveorderlist th:nth-child(7),
+.reserveorderlist td:nth-child(7) {
+  width: 100px;
+  text-align: center;
+  font-weight: 900;
+  color: #4d62ff;
+  cursor: pointer;
+}
+
+.reserveorderlist td:nth-child(7):hover {
+  text-decoration: underline;
+}
+
+/* ===== 하단 푸터 및 버튼 ===== */
+.reserveorderlist-footer {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reserveorderlist-footer button {
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid #e4e7ef;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.reserveorderlist-footer button:hover {
+  background: #f3f5fb;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+/* 삭제/취소 버튼 (빨간색 강조) */
+.reserveorderlist-footer button.btn-delete {
+  border-color: rgba(255, 73, 73, 0.35);
+  background: rgba(255, 73, 73, 0.08);
+  color: #b11616;
+}
+
+/* 반응형 */
+@media (max-width: 900px) {
+  .reserveorderlist table {
+    display: block;
+    overflow-x: auto;
+  }
+}

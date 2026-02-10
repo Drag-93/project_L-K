@@ -1,7 +1,11 @@
 import React from "react";
 
 const AdminOrder = () => {
-  return <div>AdminOrder</div>;
+  return (
+  <>
+    <div>상품주문결제내역</div>
+  </>
+  );
 };
 
 export default AdminOrder;

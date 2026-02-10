@@ -1,10 +1,10 @@
 import React from "react";
-import AdminReservation from "../../components/admin/AdminReservation";
+import AdminReserveOrders from "../../components/admin/AdminReserveOrders";
 
 const AdminReservationPage = () => {
   return (
     <>
-      <AdminReservation />
+      <div>예약상품목록</div>
     </>
   );
 };
