@@ -9,6 +9,10 @@ const AdminReservationPage = lazy(
 );
 const AdminShopPage = lazy(() => import("../page/admin/AdminShopPage"));
 const AdminNoticePage = lazy(() => import("../page/admin/AdminNoticePage"));
+
+const AdminReserveOrdersPage = lazy(() => import("../page/admin/AdminReserveOrdersPage"));
+const AdminProductOrdersPage = lazy(() => import("../page/admin/AdminProductOrdersPage"));
+
 const Loading = (
   <div className="loading">
     <h1>...Loading</h1>
@@ -29,10 +33,18 @@ const toAdminRouter = () => {
       ),
     },
     {
-      path: "order",
+      path: "proorder",
       element: (
         <Suspense fallback={Loading}>
-          <AdminOrderPage />
+          <AdminProductOrdersPage/>
+        </Suspense>
+      ),
+    },
+    {
+      path: "resorder",
+      element: (
+        <Suspense fallback={Loading}>
+          <AdminReserveOrdersPage/>
         </Suspense>
       ),
     },

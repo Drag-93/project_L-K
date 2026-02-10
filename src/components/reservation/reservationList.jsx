@@ -40,7 +40,7 @@ const reservationList = () => {
                     <li key={el.id}>
                       <Link to={`/reservation/detail/${el.category}/${el.id}`}>
                       <div className="top">
-                        <img src={`/images/${el.img}`} alt={el.img} />
+                        <img src={`/images/${el.category}/${el.img}`} alt={el.img} />
                       </div>
                       <div className="bottom">
                         <span>진료명: {el.name}</span>

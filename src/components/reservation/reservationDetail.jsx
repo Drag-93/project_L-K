@@ -13,6 +13,8 @@ const reserveData={
   img:'',
   date: "",
   time: "",
+  shop:"",
+  setshop:[],
   settime:[]
 }
 
@@ -44,6 +46,52 @@ const reservationDetail = () => {
     }
     fetchLiftingDetail();
   },[])
+
+  // 예약 완료된 시간들을 저장할 상태 추가
+  const [bookedTimes, setBookedTimes] = useState([]);
+
+  // [핵심 추가] 날짜나 지점, 진료명이 변경될 때마다 예약된 시간을 체크
+  useEffect(() => {
+    const fetchBookedTimes = async () => {
+      // 날짜와 지점이 모두 선택되었을 때만 실행
+      if (!reserve.date || !reserve.shop) return;
+
+      try {
+        // 1. 이미 결제 완료된 예약 내역 가져오기
+        const orderRes = await axios.get(`${url}/reserveOrders`);
+        const bookedInOrders = orderRes.data.flatMap(order => 
+          order.items
+            .filter(item => 
+              item.date === reserve.date && 
+              item.shop === reserve.shop && 
+              item.name === reserve.name
+            )
+            .map(item => item.time)
+        );
+
+        // 2. 다른 사람이 장바구니에 담아둔 시간 가져오기 (실시간 중복 방지)
+        const cartRes = await axios.get(`${url}/cart?date=${reserve.date}&shop=${reserve.shop}&name=${reserve.name}`);
+        const bookedInCart = cartRes.data.map(item => item.time);
+
+        // 3. 두 리스트를 합쳐서 예약 불가능한 시간 설정
+        setBookedTimes([...new Set([...bookedInOrders, ...bookedInCart])]);
+      } catch (err) {
+        console.error("예약 현황 로드 실패", err);
+      }
+    };
+
+    fetchBookedTimes();
+  }, [reserve.date, reserve.shop, reserve.name, url]);
+
+
+
+
+  const availableShops = reserve.setshop;
+
+  const handleShopSelect = (selectedShop) => {
+      setReserve(prev => ({ ...prev, shop: selectedShop }));
+      console.log(reserve)
+  };
 
 
   //캘린더
@@ -80,14 +128,19 @@ const reservationDetail = () => {
   // 시간 선택 핸들러
   const handleTimeSelect = async (selectedTime) => {
 
+    if (!reserve.shop) {
+      alert("진료받으실 병원을 먼저 선택해주세요.");
+      return;
+    }
+
     if (!reserve.date) {
       alert("날짜를 먼저 선택해주세요.");
       return;
     }
 
     try {
-      // 서버에서 해당 날짜와 시간에 이미 예약이 있는지 확인 (쿼리 파라미터 활용)
-      const res = await axios.get(`${url}/cart?date=${reserve.date}&time=${selectedTime}`);
+      // 서버에서 해당 날짜와 시간에 이미 예약이 있는지 확인
+      const res = await axios.get(`${url}/cart?date=${reserve.date}&time=${selectedTime}&shop=${reserve.shop}&name=${reserve.name}`);
       
      // 2. 이미 결제 완료된 예약 내역(reserveOrders) 중복 체크
       const orderRes = await axios.get(`${url}/reserveOrders`);
@@ -97,7 +150,8 @@ const reservationDetail = () => {
         order.items.some(item => 
           item.name === reserve.name && // 진료명 비교 추가
           item.date === reserve.date && // 날짜 비교
-          item.time === selectedTime    // 시간 비교
+          item.time === selectedTime &&   // 시간 비교
+          item.shop === reserve.shop
         )
       );
       
@@ -124,12 +178,12 @@ const reservationDetail = () => {
 
 
   const onPaymentFn = async () => {
-    if (!reserve.date || !reserve.time) {
-      alert('예약 날짜와 시간을 모두 선택해주세요.');
+    if (!reserve.shop || !reserve.date || !reserve.time) {
+      alert('병원, 예약 날짜와 시간을 모두 선택해주세요.');
       return;
     }
     
-    if (!window.confirm(`${reserve.date} ${reserve.time}에 예약하시겠습니까?`)) return;
+    if (!window.confirm(`${reserve.shop}점 병원에서 ${reserve.date} ${reserve.time}에 예약하시겠습니까?`)) return;
 
     // if (isState) {
     //   alert('로그인해주세요.');
@@ -138,17 +192,13 @@ const reservationDetail = () => {
     const { id, ...item } = reserve;
 
     try {
-      // JSON-SERVER를 사용할 경우 보통 /bookedList 또는 /orders 경로를 사용합니다.
-      const res = await fetch(`${url}/cart`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(item)
-      });
+      const res = await axios.post(`${url}/cart`, item);
 
-      if (res.ok) {
-        const savedItem = await res.json();
-        dispatch(addBasket(savedItem));
-        // navigate('/shop/mypage');
+      if (res.status === 201) {
+        dispatch(addBasket(res.data));
+        if(window.confirm("장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?")) {
+          // navigate('/order/basket'); // navigate 임포트 필요
+        }
       }
     } catch (err) {
       alert('통신 오류가 발생했습니다.');
@@ -165,55 +215,89 @@ const reservationDetail = () => {
         <h1>진료 상세페이지</h1>
         <div className="detail-top">
           <div className="detail-top-left">
-            <img src={`/images/${reserve.img}`} alt={reserve.img} />
+            <img src={`/images/${reserve.category}/${reserve.img}`} alt={reserve.img} />
           </div>
           <div className="detail-top-right">
             <ul>
               <li>진료명: {reserve.name}</li>
               <li>소요시간: {reserve.timespan}시간</li>
-              <li>가격: {reserve.price}원</li>
+              <li>가격: {reserve.price.toLocaleString()}원</li>
               <li>진료정보: {reserve.description}</li>
+
+              {/* 1. 병원 선택 (항상 표시) */}
               <li>
-                <Calendar
+                <p>진료병원 선택</p>
+                <div className="shop-btns">
+                  {availableShops.map(s => (
+                    <button 
+                      key={s}
+                      className={`shop-btn ${reserve.shop === s ? 'active' : ''}`}
+                      onClick={() => handleShopSelect(s)}
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              </li>
+
+              {/* 2. 날짜 선택 (병원을 선택해야 나타남) */}
+              {reserve.shop ? (
+                <li className="fade-in">
+                  <p>날짜 선택</p>
+                  <Calendar
                     onChange={handleDateChange} 
                     value={dateValue} 
                     showNeighboringMonth={false}
                     next2Label={null} 
                     prev2Label={null}
                     minDetail="year"  
-                    // 오늘기준 과거는 클릭 비활성화
                     minDate={minDate}
-                    // 오늘기준 3개월 까지만 클릭 활성화
                     maxDate={maxDate}
-                    //날짜 칸에 보여지는 컨텐츠
                     tileDisabled={tileDisabled}
-                    //비활성화 날짜 목록
                   />
-              </li>
-              <li className="time-selection">
-                <p>예약 시간 선택:</p>
-                <div className="time-btns">
-                  {availableTimes.map(t => (
-                    <button 
-                      key={t}
-                      className={`time-btn ${reserve.time === t ? 'active' : ''}`}
-                      onClick={() => handleTimeSelect(t)}
-                    >
-                      {t}
-                    </button>
-                  ))}
-                </div>
-              </li>
-              <li>
-                선택한 날짜 : <span>{reserve.date}</span>
-                선택한 시간 : <span>{reserve.time}</span>
-              </li>
-              <li>
-              <button onClick={onPaymentFn}>장바구니에 담기</button>
-              </li>
+                </li>
+              ) : (
+                <li className="guide-text">병원을 선택하시면 예약 가능한 날짜가 표시됩니다.</li>
+              )}
+
+              {/* 3. 시간 선택 (날짜를 선택해야 나타남) */}
+              {reserve.shop && reserve.date ? (
+                <li className="time-selection fade-in">
+                  <p>예약 시간 선택:</p>
+                  <div className="time-btns">
+                    {availableTimes.map(t => {
+                      const isBooked = bookedTimes.includes(t);
+                      return (
+                        <button 
+                          key={t}
+                          className={`time-btn ${reserve.time === t ? 'active' : ''} ${isBooked ? 'disabled' : ''}`}
+                          onClick={() => !isBooked && handleTimeSelect(t)}
+                          disabled={isBooked}
+                        >
+                          {t}
+                        </button>
+                      )
+                    })}
+                  </div>
+                </li>
+              ) : reserve.shop && (
+                <li className="guide-text">날짜를 선택하시면 예약 가능한 시간이 표시됩니다.</li>
+              )}
+
+              {/* 4. 최종 선택 정보 및 버튼 (시간까지 선택해야 나타남) */}
+              {reserve.time && (
+                <li className="final-selection fade-in">
+                  <div className="selection-summary">
+                    <p>선택한 날짜 : <span>{reserve.date}</span></p>
+                    <p>선택한 시간 : <span>{reserve.time}</span></p>
+                  </div>
+                  <button className="payment-btn" onClick={onPaymentFn}>장바구니에 담기</button>
+                </li>
+              )}
             </ul>
           </div>
         </div>
+        
         <div className="detail-bottom">
           <ul>
             <li>상세정보</li>
@@ -222,7 +306,7 @@ const reservationDetail = () => {
         </div>
       </div>
     </div>
-    </>
+  </>
   )
 }
 

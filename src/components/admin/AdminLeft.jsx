@@ -18,18 +18,23 @@ const AdminLeft = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/admin/reservation"} className={linkClass}>
-              예약관리
-            </NavLink>
-          </li>
-          <li>
             <NavLink to={"/admin/product"} className={linkClass}>
               상품관리
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/admin/order"} className={linkClass}>
-              주문관리
+            <NavLink to={"/admin/reservation"} className={linkClass}>
+              예약관리
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={"/admin/proorder"} className={linkClass}>
+              상품결제관리
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={"/admin/resorder"} className={linkClass}>
+              예약결제관리
             </NavLink>
           </li>
           <li>
