@@ -1,0 +1,295 @@
+/* =========================
+   AdminQnA
+   ========================= */
+
+.adminQnA,
+.adminQnA * {
+  box-sizing: border-box;
+}
+
+.adminQnA {
+  width: 100%;
+  min-height: 100vh;
+  padding: 26px 24px;
+  background: #f6f7fb;
+}
+
+.adminQnA-con {
+  max-width: 1280px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  padding: 18px 18px 22px;
+}
+
+/* =========================
+   Toolbar / Filters
+   ========================= */
+
+.adminQnA .title {
+  margin-bottom: 14px;
+}
+
+.adminQnA .title ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.adminQnA .toolbar input {
+  width: 360px;
+  max-width: 55vw;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #d9dde7;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  background: #fff;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.adminQnA .toolbar input:focus {
+  border-color: #6b7cff;
+  box-shadow: 0 0 0 3px rgba(107, 124, 255, 0.18);
+}
+
+.adminQnA .answerStateSelector select {
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #d9dde7;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* =========================
+   Table
+   ========================= */
+
+.adminQnA table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid #e7eaf3;
+}
+
+.adminQnA thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #f3f6ff;
+  color: #1f2a44;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: -0.2px;
+  text-align: left;
+  padding: 12px 10px;
+  border-bottom: 1px solid #e7eaf3;
+  white-space: nowrap;
+}
+
+.adminQnA tbody td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #eef1f7;
+  font-size: 13px;
+  color: #2c3553;
+  vertical-align: middle;
+}
+
+.adminQnA tbody tr {
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.adminQnA tbody tr:hover {
+  background: #f8faff;
+}
+
+.adminQnA tbody tr.selected {
+  background: rgba(107, 124, 255, 0.12);
+}
+
+.adminQnA tbody td:first-child,
+.adminQnA thead th:first-child {
+  width: 70px;
+  text-align: center;
+}
+
+.adminQnA input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* 제목/내용 컬럼 너무 길 때 보기 좋게 */
+.adminQnA td:nth-child(5),
+.adminQnA td:nth-child(6) {
+  max-width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 상세보기 "보기" 버튼처럼 보이게 */
+.adminQnA tbody td:last-child {
+  color: #4b63ff;
+  font-weight: 800;
+  text-align: center;
+  width: 90px;
+}
+
+.adminQnA tbody td:last-child:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Footer / Paging / Actions
+   ========================= */
+
+.adminQnAFooter {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.adminQnAPaging {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.adminQnAPaging button {
+  height: 34px;
+  min-width: 36px;
+  padding: 0 10px;
+  border: 1px solid #d9dde7;
+  background: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  transition:
+    background 0.12s ease,
+    border-color 0.12s ease;
+}
+
+.adminQnAPaging button:hover:not(:disabled) {
+  background: #f2f5ff;
+  border-color: #c9d1ff;
+}
+
+.adminQnAPaging button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.adminQnAPaging button.active {
+  background: #4b63ff;
+  border-color: #4b63ff;
+  color: #fff;
+  cursor: default;
+}
+
+.adminQnAFooter ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.adminQnAFooter ul li {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.adminQnAFooter ul li button {
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid #d9dde7;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 13px;
+  transition:
+    background 0.12s ease,
+    border-color 0.12s ease;
+}
+
+.adminQnAFooter ul li button:hover {
+  background: #f2f5ff;
+  border-color: #c9d1ff;
+}
+
+/* 삭제 버튼 강조 */
+.adminQnAFooter ul li button:last-child {
+  border-color: #ffd2d2;
+  background: #fff5f5;
+  color: #b42318;
+}
+
+.adminQnAFooter ul li button:last-child:hover {
+  background: #ffecec;
+  border-color: #ffbdbd;
+}
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 900px) {
+  .adminQnA .title ul {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .adminQnA .toolbar input {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .adminQnAFooter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .adminQnAFooter ul li {
+    justify-content: flex-end;
+  }
+}
+.qnaStateBadge {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  border: 1px solid transparent;
+}
+
+.qnaStateBadge.wait {
+  background: #fff7ed;
+  border-color: #fed7aa;
+  color: #9a3412;
+}
+
+.qnaStateBadge.done {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #065f46;
+}

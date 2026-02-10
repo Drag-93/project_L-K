@@ -54,6 +54,7 @@ const CommunityQnAWrite = () => {
         viewrate: 0,
         admin: "",
         answer: "",
+        state: "답변대기",
       };
       await axios.post(`${qnaUrl}/qna`, newQna);
       alert("작성 되었습니다");
