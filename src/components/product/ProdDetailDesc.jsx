@@ -2,7 +2,13 @@ import React from 'react'
 
 const ProdDetailDesc = () => {
   return (
-    <div>보습라인 상품 각각의 상세정보를 보여줍니다(이미지파일로?)</div>
+    <>
+    <div className="prod-detail-desc">
+      <div className="prod-detail-desc-con">
+       <img src={`/images/hydro/hydrodetail1.jpg`} alt="hydrodetail1.jpg" />
+      </div>      
+    </div>
+    </>
   )
 }
 

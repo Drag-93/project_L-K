@@ -18,25 +18,23 @@ const ProdDetailReview = () => {
   const user=useSelector(state=>state.input.user)
 
   //사용자후기 불러오기
-  useEffect(()=>{
-    const reviewFn=async () =>{
-      try{
-        const res=await axios.get(`${url}/productReview?productId=${id}`);
-        console.log(res.data);
-        setUserReview(Array.isArray(res.data) ? res.data : [res.data]); //review가 하나 밖에 없을 때 map의 오류 방지
-      }catch(err){
-        console.log('사용자후기 로딩 실패');
-      }
+  const getReviewFn=async () =>{
+    try{
+      const res=await axios.get(`${url}/productReview?productId=${id}`);
+      console.log(res.data);
+      setUserReview(Array.isArray(res.data) ? res.data : [res.data]); //review가 하나 밖에 없을 때 map의 오류 방지
+    }catch(err){
+      console.log('사용자후기 로딩 실패');
     }
-    reviewFn();
-  },[id, url])  
+  }
+  useEffect(()=>{ getReviewFn() },[id, url])  
   
   //후기 한줄만 보이기, 클릭시 전체내용 보이기
   const toggleReview=(reviewId)=>{
       setUserReview((prev)=>
         prev.map((el)=>
          el.id === reviewId ? {...el, isOpen : !el.isOpen} : el)
-    )
+      )
   }
   //조회수(viewrate) 증가
   const viewrateFn= async (reviewId, currentViewrate) => {
@@ -61,26 +59,46 @@ const ProdDetailReview = () => {
     (userReview.reduce((acc, cur) => acc + (Number(cur.score) || 0), 0)/userReview.length).toFixed(1)
     : 0.0;
 
-  //내가 작성한 후기 수정/삭제하기
-  const updateFn= async() =>{
-    try{                                 //후기 수정 기능 구현 미완성
-      const res=await axios.put(`${url}/review/${userReview}`, userReview.description)
-      alert('후기가 수정되었습니다')
-    }catch(err){
-      console.log('후기 수정 실패')
+  //내가 작성한 후기 수정하기
+  const [editId, setEditId]=useState(null);
+  const [score, setScore]=useState(userReview.score);
+  const [text, setText]=useState(userReview.description);
+  const updateFn= (el) => {
+    setEditId(el.id);
+    setScore(el.score);
+    setText(el.description);
+  };
+  const handleUpdateFn= async () =>{
+    if(text.length===0){
+      alert('내용을 작성해 주세요');
+      return;
     }
-  }
+    try{
+      const res=await axios.patch(`${url}/productReview/${editId}`,{
+        score: score,
+        description: text
+      })
+      alert('후기를 수정했습니다');
+      setEditId(null);
+      getReviewFn();  //수정 후 최신 후기 불러오기
+    }catch(err){
+      console.log('후기 수정 실패');
+    }
+  };
+
+  //내가 작성한 후기 삭제하기
   const deleteFn= async() =>{
     if(!window.confirm('정말 삭제하시겠습니까?')){
       return;
     }
     try{
-      const res=await axios.delete(`${url}/review/${userReview}`)
-      alert('후기가 삭제되었습니다')
+      const res=await axios.delete(`${url}/productReview/${el.id}`)
+      alert('후기가 삭제되었습니다');
+      getReviewFn();
     }catch(err){
-      console.log('후기 수정 실패')
+      console.log('후기 삭제 실패')
     }
-  }
+  };
 
 
 return (
@@ -90,8 +108,8 @@ return (
         {/* 리뷰 현황 요약 보이기 */}
         <div className="current-status">
           <div className='totalscore'>
-            <li className='avrscore'>평균: {averageScore}점</li>
-            <li className='totalno'>전체후기: {userReview.length}건</li>
+            <p className='avrscore'>평균: {averageScore}점</p>
+            <p className='totalno'>전체후기: {userReview.length}건</p>
           </div>
           {/* <div className='majorreviews'>
             <li>베스트 후기1</li>
@@ -113,7 +131,10 @@ return (
               setReviewAddModal={setReviewAddModal}
               productId={id}
               user={user}
-              // onSuccess={()=>{alert('후기가 등록되었습니다')}}
+              onSuccess={()=>{
+                alert('후기가 등록되었습니다');
+                getReviewFn();
+              }}
               />
           )}
           <ul>
@@ -121,14 +142,44 @@ return (
              userReview.filter((el)=> el.userEmail === user?.userEmail).map((el)=>(
                 <li key={el.id}>
                   <strong>[내가 작성한 후기]</strong>
-                  <p>작성일자: {new Date(el.date).toLocaleDateString()}</p>
-                  <p>점수: {el.score}점</p>
-                  <p>조회수: {el.viewrate}</p>
-                  <p>내용: {el.description}</p>
-                  <div className="edit-buttons">
-                  <button onClick={updateFn}>수정하기</button>
-                  <button onClick={deleteFn}>삭제하기</button>
-                  </div>
+                      {editId===el.id ? (
+                        <>
+                        <li className='score-selector'>
+                        <label htmlFor="score">평점:</label>
+                        {[1,2,3,4,5].map((num)=>(
+                        <span key={num}>
+                          <input type="radio" name="score" id="score"
+                          value={num}
+                          checked={score === num}
+                          onChange={(e) => setScore(Number(e.target.value))} />
+                          {num}점
+                        </span>
+                        ))}
+                        </li>
+                        <li>
+                        <label htmlFor="textarea">상세후기:</label>
+                        <textarea name="review-text" id="review-text"
+                          value={text}
+                          onChange={(e) => setText(e.target.value)}
+                          maxLength="500" />
+                        <p>{text.length}/500자</p>
+                        </li>
+                        <button onClick={()=>handleUpdateFn()}>수정 완료</button>
+                        <button onClick={()=>setEditId(null)}>수정 취소</button>
+                        </>
+                      ) : (
+                        <>
+                        <p>작성일자: {new Date(el.date).toLocaleDateString()}</p>
+                        <p>점수: {el.score}점</p>
+                        <p>조회수: {el.viewrate}</p>
+                        <p>내용: {el.description}</p>
+                        <div className="edit-buttons">
+                        <button onClick={()=> updateFn(el)}>수정하기</button>
+                        <button onClick={()=> deleteFn(el.id)}>삭제하기</button>
+                        </div>
+                        </>
+                      )
+                      }
                 </li>
               )
             )}
@@ -154,7 +205,6 @@ return (
                   <small style={{ color: 'gray' }}>
                     {el.isOpen ? '[접기]' : '...더보기'}
                   </small>
-                  {/* <img src={`/images/${el.img}`} alt={el.img} /> */}
                 </li>
               )
             })}
@@ -163,8 +213,8 @@ return (
         </div>
       </div>
     </div>
-    </>
-  )
+  </>
+)
 }
 
 export default ProdDetailReview
