@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 const Loading = <div className="loading">...Loading</div>;
 const AuthLogin = lazy(() => import("../components/Auth/AuthLogin"));
 const AuthJoin = lazy(() => import("../components/Auth/AuthJoin"));
-const AuthDetail = lazy(() => import("../components/Auth/AuthDetail"));
+
 const AuthMypage = lazy(() => import("../components/Auth/AuthMypage"));
 
 const toAuthRouter = () => {
@@ -26,14 +26,6 @@ const toAuthRouter = () => {
       element: (
         <Suspense fallback={Loading}>
           <AuthJoin />
-        </Suspense>
-      ),
-    },
-    {
-      path: "detail/:id",
-      element: (
-        <Suspense fallback={Loading}>
-          <AuthDetail />
         </Suspense>
       ),
     },

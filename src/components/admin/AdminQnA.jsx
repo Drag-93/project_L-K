@@ -1,48 +1,45 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
+import AdminQnAModal from "./AdminQnAModal";
 import axios from "axios";
-import AdminMembersModal from "./AdminMembersModal";
-const AdminMembers = () => {
-  const [memberList, setMemberList] = useState([]);
-  const memberUrl = API_JSON_SERVER_URL;
-  const [adminAddModal, setAdminAddModal] = useState(false);
-  const [modalId, setModalId] = useState(false);
-  const [selectedId, setSelectedId] = useState([]);
-  const [searchText, setSearchText] = useState("");
-  const [roleFilter, setRoleFilter] = useState("ALL");
 
+const AdminQnA = () => {
+  const [qnaList, setQnaList] = useState([]);
+  const qnaUrl = API_JSON_SERVER_URL;
+
+  const [adminAddModal, setAdminAddModal] = useState(false);
+  const [modalId, setModalId] = useState(null);
+  const [selectedId, setSelectedId] = useState([]);
   const [page, setPage] = useState(1);
+  const [searchText, setSearchText] = useState("");
+  const [stateFilter, setStateFilter] = useState("ALL");
+
+  const openListFn = async () => {
+    const res = await axios.get(`${qnaUrl}/qna`);
+    setQnaList(res.data);
+  };
+  useEffect(() => {
+    openListFn();
+  }, [qnaList]);
 
   const filtered = useMemo(() => {
     const q = searchText.trim().toLowerCase();
-    // 권한 필터가 'ALL'이 아니고, 회원의 role이 선택한 role과 다르면 목록에서 제외
-
-    return memberList.filter((m) => {
-      if (roleFilter !== "ALL" && m.role !== roleFilter) return false;
-
+    return qnaList.filter((m) => {
+      if (stateFilter !== "ALL" && m.state !== stateFilter) return false;
       if (!q) return true;
 
-      const searchTarget = [
-        m.userName,
-        m.userEmail,
-        m.phonenum,
-        m.address,
-        m.remark,
-        m.role,
-        m.gender,
-        m.age,
-      ]
+      const searchTarget = [m.state, m.no, m.title, m.date, m.admin, m.question]
         .filter(Boolean)
         .join(" ")
         .toLowerCase();
       return searchTarget.includes(q);
     });
-  }, [memberList, searchText, roleFilter]);
+  }, [searchText, qnaList, stateFilter]);
 
   const pageSize = 10;
-  const totalPost = filtered.length;
   const btnRange = 10;
-  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+  const totalPost = filtered.length;
+  const totalPages = Math.max(1, Math.ceil(totalPost / pageSize));
 
   const lastPage = Math.ceil(totalPost / pageSize);
   const totalSet = Math.ceil(totalPages / btnRange);
@@ -56,37 +53,7 @@ const AdminMembers = () => {
 
   const pagedList = useMemo(() => {
     return filtered.slice(startPost, endPost);
-  }, [filtered, startPost, endPost]);
-
-  useEffect(() => {
-    if (page > totalPages) setPage(totalPages);
-  }, [page, totalPages]);
-
-  useEffect(() => {
-    setPage(1);
-  }, [searchText]);
-
-  const memberListFn = async () => {
-    try {
-      const res = await axios.get(`${memberUrl}/members`);
-      setMemberList(res.data);
-    } catch (err) {
-      alert(err);
-    }
-  };
-  useEffect(() => {
-    memberListFn();
-  }, []);
-
-  useEffect(() => {
-    const visibleId = new Set(filtered.map((n) => String(n.id)));
-    setSelectedId((prev) => prev.filter((id) => visibleId.has(String(id))));
   }, [filtered]);
-
-  const adminModalFn = (id) => {
-    setModalId(id);
-    setAdminAddModal(true);
-  };
 
   const toggleSelect = (id) => {
     const key = String(id);
@@ -95,48 +62,75 @@ const AdminMembers = () => {
     );
   };
 
+  const visibleId = pagedList.map((el) => String(el.id));
+  const allSelect =
+    visibleId.length > 0 && visibleId.every((id) => selectedId.includes(id));
   const onSelectAllFn = () => {
-    const visibleId = filtered.map((n) => String(n.id));
-
-    const allSelect =
-      visibleId.length > 0 && visibleId.every((id) => selectedId.includes(id));
-
     setSelectedId(allSelect ? [] : visibleId);
   };
 
+  useEffect(() => {
+    setSelectedId([]);
+  }, [page, searchText]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [searchText, stateFilter]);
+
   const onDeleteSelectedFn = async () => {
-    if (selectedId.length === 0) return alert("삭제할 멤버를 선택하세요");
-    if (!window.confirm("삭제 하시겠습니까?")) return;
+    if (selectedId.length === 0) return alert("삭제할 목록을 선택해 주세요");
+    if (!window.confirm("정말 삭제 하시겠습니까?")) return;
     const idsToDelete = [...selectedId];
+
     try {
       await Promise.all(
-        idsToDelete.map((id) => axios.delete(`${memberUrl}/members/${id}`)),
+        idsToDelete.map((id) => axios.delete(`${qnaUrl}/qna/${id}`)),
       );
-      setMemberList((prev) =>
+      setQnaList((prev) =>
         prev.filter((n) => !idsToDelete.includes(String(n.id))),
       );
-      await memberListFn();
       setSelectedId([]);
-      alert("삭제 되었습니다.");
+      alert("삭제 되었습니다");
     } catch (err) {
       alert(err);
     }
   };
 
-  const allVisibleSelected =
-    filtered.length > 0 &&
-    filtered.every((n) => selectedId.includes(String(n.id)));
+  const onCancelFn = async () => {
+    if (selectedId.length === 0) return alert("취소할 목록을 선택해 주세요");
+    if (!window.confirm("정말 취소 하시겠습니까?")) return;
+    const idsToCancel = [...selectedId];
+    try {
+      await Promise.all(
+        idsToCancel.map((id) =>
+          axios.patch(`${qnaUrl}/qna/${id}`, {
+            admin: "",
+            answer: "",
+            state: "답변대기",
+          }),
+        ),
+      );
+      setQnaList((prev) =>
+        prev.filter((n) => !idsToCancel.includes(String(n.id))),
+      );
+      setSelectedId([]);
+      alert("취소 되었습니다");
+    } catch (err) {
+      alert(err);
+    }
+  };
+  const adminModalFn = (id) => {
+    setModalId(id);
+    setAdminAddModal(true);
+  };
 
   return (
     <>
       {adminAddModal && (
-        <AdminMembersModal
-          setAdminAddModal={setAdminAddModal}
-          memberId={modalId}
-        />
+        <AdminQnAModal setAdminAddModal={setAdminAddModal} qnaId={modalId} />
       )}
-      <div className="adminMembers">
-        <div className="adminMembers-con">
+      <div className="adminQnA">
+        <div className="adminQnA-con">
           <div className="title">
             <ul>
               <li>
@@ -149,14 +143,14 @@ const AdminMembers = () => {
                 </div>
               </li>
               <li>
-                <div className="roleSelector">
+                <div className="answerStateSelector">
                   <select
-                    value={roleFilter}
-                    onChange={(e) => setRoleFilter(e.target.value)}
+                    value={stateFilter}
+                    onChange={(e) => setStateFilter(e.target.value)}
                   >
                     <option value="ALL">전체</option>
-                    <option value="ROLE_MEMBER">일반회원</option>
-                    <option value="ROLE_ADMIN">관리자</option>
+                    <option value="답변대기">답변대기</option>
+                    <option value="답변완료">답변완료</option>
                   </select>
                 </div>
               </li>
@@ -166,15 +160,13 @@ const AdminMembers = () => {
             <thead>
               <tr>
                 <th>선택</th>
-                <th>이름</th>
-                <th>이메일</th>
-                <th>연락처</th>
-                <th>나이</th>
-                <th>성별</th>
-                <th>주소?지역</th>
-                <th>특이사항</th>
-                <th>권한</th>
-                <th>상세보기</th>
+                <th>글번호</th>
+                <th>답변상태</th>
+                <th>작성일</th>
+                <th>제목</th>
+                <th>내용</th>
+                <th>조회수</th>
+                <th>상세내용</th>
               </tr>
             </thead>
             <tbody>
@@ -194,18 +186,26 @@ const AdminMembers = () => {
                         onChange={() => toggleSelect(el.id)}
                       />
                     </td>
-                    <td>{el.userName}</td>
-                    <td>{el.userEmail}</td>
-                    <td>{el.phonenum}</td>
-                    <td>{el.age}</td>
-                    <td>{el.gender}</td>
-                    <td>{el.address}</td>
+                    <td>{el.no}</td>
                     <td>
-                      {el.remark && el.remark.length > 10
-                        ? `${el.remark.slice(0, 10)}...`
-                        : el.remark}
+                      <span
+                        className={`qnaStateBadge ${el.state === "답변완료" ? "done" : "wait"}`}
+                      >
+                        {el.state}
+                      </span>
                     </td>
-                    <td>{el.role}</td>
+                    <td>{el.date}</td>
+                    <td title={el.title}>
+                      {el.title && el.title.length > 10
+                        ? `${el.title.slice(0, 10)}...`
+                        : el.title}
+                    </td>
+                    <td>
+                      {el.question && el.question.length > 15
+                        ? `${el.question.slice(0, 15)}...`
+                        : el.question}
+                    </td>
+                    <td>{el.viewrate}</td>
                     <td
                       onClick={(e) => {
                         e.stopPropagation();
@@ -219,8 +219,8 @@ const AdminMembers = () => {
               })}
             </tbody>
           </table>
-          <div className="adminMembersFooter">
-            <div className="adminMembersPaging">
+          <div className="adminQnAFooter">
+            <div className="adminQnAPaging">
               <button onClick={() => setPage(1)} disabled={page === 1}>
                 ◀◀
               </button>
@@ -278,9 +278,9 @@ const AdminMembers = () => {
             <ul>
               <li>
                 <button onClick={() => onSelectAllFn()}>
-                  {allVisibleSelected ? "전체해제" : "전체선택"}
+                  {allSelect ? "선택해제" : "전체선택"}
                 </button>
-                <button onClick={() => adminModalFn(null)}>추가</button>
+                <button onClick={() => onCancelFn()}>답변취소</button>
                 <button onClick={() => onDeleteSelectedFn()}>삭제</button>
               </li>
             </ul>
@@ -291,4 +291,4 @@ const AdminMembers = () => {
   );
 };
 
-export default AdminMembers;
+export default AdminQnA;

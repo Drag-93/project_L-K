@@ -1,0 +1,297 @@
+/* =========================================================
+   AdminQnAModal ONLY
+   ========================================================= */
+
+.adminQnAModal,
+.adminQnAModal * {
+  box-sizing: border-box;
+}
+
+/* -------------------------
+   Overlay
+------------------------- */
+.adminQnAModal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(10, 18, 40, 0.55);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 18px;
+}
+
+/* -------------------------
+   Left Panel (문의 내용)
+------------------------- */
+.adminQnAModal-con {
+  width: 560px;
+  max-width: 94vw;
+
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25);
+
+  padding: 18px 18px 16px;
+  position: relative;
+}
+
+/* -------------------------
+   Right Panel (관리자 답변)
+------------------------- */
+.adminQnAModalAnswer-con {
+  width: 560px;
+  max-width: 94vw;
+
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25);
+
+  padding: 18px 18px 16px;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* -------------------------
+   Close Button
+------------------------- */
+.adminQnAModal .close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+
+  cursor: pointer;
+  font-weight: 900;
+
+  background: #f3f6ff;
+  border: 1px solid #e3e8ff;
+}
+
+.adminQnAModal .close:hover {
+  background: #eaf0ff;
+}
+
+/* -------------------------
+   Title
+------------------------- */
+.adminQnAModal .title {
+  padding-right: 50px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.adminQnAModal .title h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 900;
+  color: #1f2a44;
+}
+
+/* -------------------------
+   Form Layout
+------------------------- */
+.adminQnAModal-con > ul,
+.adminQnAModalAnswer-con > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.adminQnAModal-con li,
+.adminQnAModalAnswer-con li {
+  display: grid;
+  gap: 6px;
+}
+
+/* -------------------------
+   Labels
+------------------------- */
+.adminQnAModal label,
+.adminQnAModalAnswer-con label {
+  font-size: 12px;
+  font-weight: 800;
+  color: #3a4563;
+}
+
+/* -------------------------
+   Inputs / Textarea
+------------------------- */
+.adminQnAModal input,
+.adminQnAModal textarea,
+.adminQnAModalAnswer-con input,
+.adminQnAModalAnswer-con textarea {
+  width: 100%;
+  border: 1px solid #d9dde7;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 13px;
+  outline: none;
+  background: #fff;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.adminQnAModal textarea,
+.adminQnAModalAnswer-con textarea {
+  resize: vertical;
+  min-height: 260px;
+}
+
+.adminQnAModal input:focus,
+.adminQnAModal textarea:focus,
+.adminQnAModalAnswer-con input:focus,
+.adminQnAModalAnswer-con textarea:focus {
+  border-color: #6b7cff;
+  box-shadow: 0 0 0 3px rgba(107, 124, 255, 0.18);
+}
+
+/* readonly */
+.adminQnAModal input[readonly],
+.adminQnAModal textarea[readonly],
+.adminQnAModalAnswer-con input[readonly],
+.adminQnAModalAnswer-con textarea[readonly] {
+  background: #f7f8fc;
+  color: #2c3553;
+}
+
+/* =========================================================
+   Left Panel Footer Buttons
+   ========================================================= */
+
+.adminQnAModalFooter {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.adminQnAModalFooter-con {
+  display: flex;
+  gap: 10px;
+}
+
+.adminQnAModalFooter button {
+  height: 40px;
+  min-width: 100px;
+  padding: 0 14px;
+
+  border-radius: 12px;
+  border: 1px solid #d9dde7;
+  background: #fff;
+
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 13px;
+
+  transition: 0.12s;
+}
+
+.adminQnAModalFooter button:hover {
+  background: #f2f5ff;
+  border-color: #c9d1ff;
+}
+
+/* 삭제 버튼 */
+.adminQnAModalFooter button:nth-child(2) {
+  border-color: #ffd2d2;
+  background: #fff5f5;
+  color: #b42318;
+}
+
+.adminQnAModalFooter button:nth-child(2):hover {
+  background: #ffecec;
+}
+
+/* =========================================================
+   Answer Panel Footer Buttons
+   ========================================================= */
+
+/* 마지막 li = 버튼 영역 */
+.adminQnAModalAnswer-con > ul > li:last-child {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  margin-top: 10px;
+  padding-top: 12px;
+
+  border-top: 1px solid #eef1f7;
+}
+
+/* 버튼 공통 */
+.adminQnAModalAnswer-con > ul > li:last-child button {
+  height: 40px;
+  min-width: 110px;
+  padding: 0 14px;
+
+  border-radius: 12px;
+  border: 1px solid #d9dde7;
+  background: #fff;
+
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 13px;
+
+  transition: 0.12s;
+}
+
+.adminQnAModalAnswer-con > ul > li:last-child button:hover {
+  background: #f2f5ff;
+  border-color: #c9d1ff;
+}
+
+/* Primary (답변하기 / 저장하기) */
+.adminQnAModalAnswer-con > ul > li:last-child button:first-child {
+  background: #4b63ff;
+  border-color: #4b63ff;
+  color: white;
+}
+
+.adminQnAModalAnswer-con > ul > li:last-child button:first-child:hover {
+  background: #3f58ff;
+}
+
+/* 닫기 버튼 */
+.adminQnAModalAnswer-con > ul > li:last-child button:last-child {
+  background: #f7f8fc;
+}
+
+.adminQnAModalAnswer-con > ul > li:last-child button:last-child:hover {
+  background: #eef1f7;
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 1100px) {
+  .adminQnAModal {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .adminQnAModal-con,
+  .adminQnAModalAnswer-con {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .adminQnAModal textarea,
+  .adminQnAModalAnswer-con textarea {
+    min-height: 200px;
+  }
+}

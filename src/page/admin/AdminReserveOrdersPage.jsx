@@ -4,7 +4,7 @@ import AdminReserveOrders from "../../components/admin/AdminReserveOrders";
 const AdminReserveOrdersPage = () => {
   return (
     <>
-  <AdminReserveOrders/>
+      <AdminReserveOrders />
     </>
   );
 };
