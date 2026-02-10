@@ -32,15 +32,12 @@ const AuthMemberList = () => {
   const [myData, setMyData] = useState(myDataFrom);
 
   const navigate = useNavigate();
-  
-  
-   useEffect(() => {
-        if (isState === true) {
-          navigate(`/`);
-        }
-      }, [state]);
 
-  
+  useEffect(() => {
+    if (isState === true) {
+      navigate(`/`);
+    }
+  }, [state]);
 
   const onChangeFn = (e) => {
     const { name, value } = e.target;
@@ -85,6 +82,21 @@ const AuthMemberList = () => {
       alert(`오류발생!!`);
     }
   };
+
+  // myQna
+  const [myQnaList, setMyQnaList] = useState([]);
+  const myQnaListFn = async () => {
+    try {
+      const res = await axios.get(`${url}/qna?writerEmail=${myData.userEmail}`);
+      setMyQnaList(res.data);
+    } catch (err) {
+      alert(err);
+    }
+  };
+  useEffect(() => {
+    if (!myData?.userEmail) return;
+    myQnaListFn();
+  }, [myData?.userEmail]);
 
   return (
     <>
@@ -196,22 +208,59 @@ const AuthMemberList = () => {
           </ul>
         </div>
         <div className="mypage_wrap">
-        <h2>내 활동내역</h2>
+          <h2>내 활동내역</h2>
           <ul>
             <li>
-              <button onClick={()=>navigate(`/order/paymentList`)}>결제내역</button>
+              <button onClick={() => navigate(`/order/paymentList`)}>
+                결제내역
+              </button>
             </li>
           </ul>
           <h2>내 리뷰</h2>
           <ul>
-            <li>
-              내용
-            </li>
+            <li>내용</li>
           </ul>
           <h2>내 Q&A</h2>
           <ul>
+            {/* myQna */}
             <li>
-              내용
+              {myQnaList.length > 0 ? (
+                <table>
+                  <thead>
+                    <tr>
+                      <td>글번호</td>
+                      <td>제목</td>
+                      <td>작성일</td>
+                      <td>작성자</td>
+                      <td>답변상태</td>
+                      <td>조회수</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {myQnaList.map((el) => {
+                      return (
+                        <tr
+                          key={el.id}
+                          onClick={() => navigate(`/community/qna/${el.id}`)}
+                        >
+                          <td onClick={(e) => e.stopPropagation()}>{el.no}</td>
+                          <td>{el.title}</td>
+                          <td>{el.date}</td>
+                          <td>{el.writer}</td>
+                          <td
+                            className={`qnaStateBadge ${el.state === "답변완료" ? "done" : "wait"}`}
+                          >
+                            {el.state}
+                          </td>
+                          <td onClick={(e) => e.stopPropagation()}>
+                            {el.viewrate}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              ) : null}
             </li>
           </ul>
         </div>

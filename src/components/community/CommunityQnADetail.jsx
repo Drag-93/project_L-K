@@ -230,15 +230,24 @@ const CommunityQnADetail = () => {
         </ul>
         <div className="QnADetailFooter">
           <div className="QnADetailFooter-con">
-            {!isEditing ? (
-              <button onClick={onEditFn}>수정하기</button>
-            ) : (
+            {user?.userEmail === detail.writerEmail ||
+            user.role === "ROLE_ADMIN" ? (
               <>
-                <button onClick={onUpdateFn}>저장하기</button>
-                <button onClick={() => setIsEditing(false)}>취소하기</button>
+                {!isEditing ? (
+                  <>
+                    <button onClick={onEditFn}>수정하기</button>
+                    <button onClick={onDeleteFn}>삭제하기</button>
+                  </>
+                ) : (
+                  <>
+                    <button onClick={onUpdateFn}>저장하기</button>
+                    <button onClick={() => setIsEditing(false)}>
+                      취소하기
+                    </button>
+                  </>
+                )}
               </>
-            )}
-            <button onClick={onDeleteFn}>삭제하기</button>
+            ) : null}
           </div>
         </div>
       </div>

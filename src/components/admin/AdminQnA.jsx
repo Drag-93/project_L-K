@@ -223,7 +223,7 @@ const AdminQnA = () => {
                         adminModalFn(el.id);
                       }}
                     >
-                      보기
+                      답변하기
                     </td>
                   </tr>
                 );

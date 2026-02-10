@@ -202,7 +202,7 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
           <div className="adminQnAModalFooter-con">
             {!isEditing ? (
               <>
-                <button onClick={onEditFn}>수정하기</button>
+                {/* <button onClick={onEditFn}>수정하기</button> */}
                 <button onClick={onDeleteFn}>삭제하기</button>
               </>
             ) : (
@@ -216,7 +216,7 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
       </div>
       <div className="adminQnAModalAnswer-con">
         <ul>
-          <li>
+          {/* <li>
             <label htmlFor="admin">답변자</label>
             <input
               type="text"
@@ -225,7 +225,7 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
               value={detail?.state === "답변대기" ? "" : detail.admin}
               readOnly
             />
-          </li>
+          </li> */}
           <li>
             <label htmlFor="answer">답변내용</label>
             <textarea
@@ -244,7 +244,6 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
                 {!detail.answer ? "답변하기" : "답변수정하기"}
               </button>
             )}
-
             {isAnswering && (
               <>
                 <button onClick={onSaveAnswerFn}>답변저장하기</button>
