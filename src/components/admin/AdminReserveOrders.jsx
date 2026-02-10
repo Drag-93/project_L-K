@@ -46,28 +46,36 @@ const AdminReserveOrders = () => {
                 <th>상세보기</th>
               </tr>
             </thead>
-            <tbody>
-              {reserveOrderList.map((el) => {
-                const items = el.items?.[0];
-                return (
-                  <tr key={el.id}>
-                    <td>{items?.name}</td>
-                    <td>{el.customer?.userName}</td>
-                    <td>{el.customer?.phonenum}</td>
-                    <td>{items?.date}</td>
-                    <td>{items?.time}</td>
-                    <td>{el.customer?.request}</td>
-                    <td 
-                      onClick={() => handleOpenModal(el)} 
-                      style={{ cursor: 'pointer', color: 'blue' }}
-                    >
-                      보기
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+<tbody>
+  {reserveOrderList.map((el) => (
+    <tr key={el.id}>
+      <td>
+        {el.items?.map((item, idx) => (
+          <div key={idx}>{item.name}</div>
+        ))}
+      </td>
+      <td>{el.customer?.userName}</td>
+      <td>{el.customer?.phonenum}</td>
+      <td>
+        {el.items?.map((item, idx) => (
+          <div key={idx}>{item.date}</div>
+        ))}
+      </td>
+      <td>
+        {el.items?.map((item, idx) => (
+          <div key={idx}>{item.time}</div>
+        ))}
+      </td>
+      <td>{el.customer?.request}</td>
+      <td 
+        onClick={() => handleOpenModal(el)} 
+        style={{ cursor: 'pointer', color: 'blue' }}
+      >
+        보기
+      </td>
+    </tr>
+  ))}
+</tbody>          </table>
         </div>
       </div>
       {isModalOpen && (
