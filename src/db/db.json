@@ -463,55 +463,7 @@
     }
   ],
   "productOrders": [
-    {
-      "id": "4a59",
-      "productDate": "2026. 2. 10. 오후 12:56:35",
-      "customer": {
-        "userEmail": "test",
-        "userName": "test",
-        "phonenum": "01012222641",
-        "address": "서울",
-        "request": "안전한 배송 부탁드립니다."
-      },
-      "items": [
-        {
-          "id": "1",
-          "category": "hydro",
-          "name": "수딩 토너1",
-          "price": 20000,
-          "img": "hydro1.jpg",
-          "detailImg": "hydro1.jpg",
-          "count": 8,
-          "totalPrice": 60000
-        }
-      ],
-      "totalAmount": 160000
-    }
   ],
   "reserveOrders": [
-    {
-      "id": "5d1f",
-      "reserveDate": "2026. 2. 10. 오후 12:27:39",
-      "customer": {
-        "userEmail": "test",
-        "userName": "test",
-        "phonenum": "01012222641",
-        "request": "안전한 시술 부탁드립니다.",
-        "address": "서울"
-      },
-      "items": [
-        {
-          "id": "a6fc",
-          "category": "lifting",
-          "name": "울쎄라",
-          "price": 200000,
-          "img": "lifting_01.png",
-          "date": "2026-02-11",
-          "shop": "노원",
-          "time": "10:00"
-        }
-      ],
-      "totalAmount": 200000
-    }
   ]
 }
