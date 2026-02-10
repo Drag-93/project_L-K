@@ -208,6 +208,12 @@ const AuthMemberList = () => {
               내용
             </li>
           </ul>
+          <h2>내 Q&A</h2>
+          <ul>
+            <li>
+              내용
+            </li>
+          </ul>
         </div>
       </div>
     </>

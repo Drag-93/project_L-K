@@ -90,8 +90,8 @@
       "name": "수딩 토너1",
       "price": 20000,
       "img": "hydro1.jpg",
-      "detailImg": "hydro1.jpg",
-      "description": "보습라인 1번 상품입니다"
+      "description": "보습라인 1번 상품입니다",
+      "descImg": "상세페이지 이미지 경로"
     },
     {
       "id": "2",
@@ -260,7 +260,7 @@
       "price": 200000,
       "img": "lifting_01.png",
       "description": "리프팅라인 울쎄라 진료입니다",
-      "date": "",
+      "descImg": "상세페이지 이미지 경로",
       "setshop": [
         "노원",
         "신촌",
@@ -281,7 +281,7 @@
       "price": 100000,
       "img": "faceline_01.png",
       "description": "페이스라인 인모드 진료입니다",
-      "date": "",
+      "descImg": "상세페이지 이미지 경로",
       "setshop": [
         "노원",
         "신촌",
@@ -301,7 +301,7 @@
       "price": 400000,
       "img": "regen_01.png",
       "description": "피부재생 쥬베룩 진료입니다",
-      "date": "",
+      "descImg": "상세페이지 이미지 경로",
       "setshop": [
         "노원",
         "강남",
@@ -321,7 +321,7 @@
       "price": 300000,
       "img": "immune_01.png",
       "description": "면역력 글루타치온(백옥주사) 진료입니다",
-      "date": "",
+      "descImg": "상세페이지 이미지 경로",
       "setshop": [
         "신촌",
         "강남",
@@ -416,24 +416,24 @@
       "date": "2026-02-05",
       "writer": "작성자이름",
       "writerEmail": "작성자이메일",
-      "viewrate": 15,
+      "viewrate": 19,
       "state": "답변완료",
-      "question": "테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용",
-      "admin": "관리자이름",
-      "answer": "답변내용답변내용답변내용답변내용답변내용"
+      "question": "테스트내용테스트내용테스트내용테스트내용테스트내용테3123스트내용테스4내용2테스트내용",
+      "admin": "관리자",
+      "answer": "teatawtaestet"
     },
     {
       "id": "349c",
       "title": "QnA테스트용 제목",
       "question": "질문내용 작성하기질문내용 작성하기질문내용 작성하기질문내용 작성하기질문내용 작성하기",
       "no": 2,
-      "state": "답변완료",
+      "state": "답변대기",
       "date": "2026-02-05",
       "writer": "test",
       "writerEmail": "test",
       "viewrate": 3,
-      "admin": "관리자",
-      "answer": "답변내용테스트222"
+      "admin": "",
+      "answer": ""
     },
     {
       "id": "ac9e",
@@ -457,13 +457,36 @@
       "writer": "test",
       "writerEmail": "test",
       "viewrate": 4,
-      "admin": "tester",
-      "answer": "답변 테스트",
-      "state": "답변완료"
+      "admin": "",
+      "answer": "",
+      "state": "답변대기"
     }
   ],
-  "productOrders": [
-  ],
+  "productOrders": [],
   "reserveOrders": [
+    {
+      "id": "a062",
+      "reserveDate": "2026. 2. 10. 오후 2:44:34",
+      "customer": {
+        "userEmail": "test",
+        "userName": "test",
+        "phonenum": "01012222641",
+        "request": "안전한 시술 부탁드립니다.",
+        "address": "서울"
+      },
+      "items": [
+        {
+          "id": "8990",
+          "category": "lifting",
+          "name": "울쎄라",
+          "price": 200000,
+          "img": "lifting_01.png",
+          "date": "2026-02-12",
+          "shop": "신촌",
+          "time": "14:00"
+        }
+      ],
+      "totalAmount": 200000
+    }
   ]
 }

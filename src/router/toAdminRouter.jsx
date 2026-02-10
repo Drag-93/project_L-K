@@ -34,22 +34,6 @@ const toAdminRouter = () => {
       ),
     },
     {
-      path: "proorder",
-      element: (
-        <Suspense fallback={Loading}>
-          <AdminProductOrdersPage/>
-        </Suspense>
-      ),
-    },
-    {
-      path: "resorder",
-      element: (
-        <Suspense fallback={Loading}>
-          <AdminReserveOrdersPage/>
-        </Suspense>
-      ),
-    },
-    {
       path: "product",
       element: (
         <Suspense fallback={Loading}>
@@ -66,10 +50,18 @@ const toAdminRouter = () => {
       ),
     },
     {
-      path: "reservationOrder",
+      path: "proorder",
       element: (
         <Suspense fallback={Loading}>
-          <AdminReserveOrdersPage />
+          <AdminProductOrdersPage/>
+        </Suspense>
+      ),
+    },
+    {
+      path: "resorder",
+      element: (
+        <Suspense fallback={Loading}>
+          <AdminReserveOrdersPage/>
         </Suspense>
       ),
     },

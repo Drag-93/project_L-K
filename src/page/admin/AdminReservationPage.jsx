@@ -4,7 +4,7 @@ import AdminReserveOrders from "../../components/admin/AdminReserveOrders";
 const AdminReservationPage = () => {
   return (
     <>
-      <AdminReserveOrders />
+      <div>예약상품목록</div>
     </>
   );
 };
