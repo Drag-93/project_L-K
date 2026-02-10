@@ -6,7 +6,7 @@
       "description": "ㅁㄴㅇㄴㅁㅇㅁㄴㅇㅁㄴㅇ",
       "no": 1,
       "date": "2024-12-25",
-      "viewrate": 14
+      "viewrate": 16
     }
   ],
   "members": [
@@ -90,7 +90,7 @@
       "name": "수딩 토너1",
       "price": 20000,
       "img": "hydro1.jpg",
-      "detailImg":"hydro1.jpg",
+      "detailImg": "hydro1.jpg",
       "description": "보습라인 1번 상품입니다"
     },
     {
@@ -543,39 +543,6 @@
   ],
   "reserveOrders": [
     {
-      "id": "6f66",
-      "reserveDate": "2026. 2. 9. 오후 4:43:46",
-      "customer": {
-        "userEmail": "test",
-        "userName": "test",
-        "phonenum": "01012222641",
-        "request": "안전한 시술 부탁드립니다.",
-        "address": "서울"
-      },
-      "items": [
-        {
-          "id": "284d",
-          "category": "lifting",
-          "name": "울쎄라",
-          "timespan": 2,
-          "price": 200000,
-          "img": "lifting1.jpg",
-          "description": "리프팅라인 울쎄라 진료입니다",
-          "state": "",
-          "user": "",
-          "date": "2026-02-12",
-          "settime": [
-            "10:00",
-            "11:00",
-            "14:00",
-            "15:00"
-          ],
-          "time": "15:00"
-        }
-      ],
-      "totalAmount": 200000
-    },
-    {
       "id": "7a1d",
       "reserveDate": "2026. 2. 9. 오후 4:47:03",
       "customer": {
@@ -678,6 +645,39 @@
         }
       ],
       "totalAmount": 600000
+    },
+    {
+      "id": "1828",
+      "reserveDate": "2026. 2. 10. 오전 10:38:44",
+      "customer": {
+        "userEmail": "test",
+        "userName": "test",
+        "phonenum": "01012222641",
+        "request": "안전한 시술 부탁드립니다.",
+        "address": "서울"
+      },
+      "items": [
+        {
+          "id": "8cd1",
+          "category": "regen",
+          "name": "쥬베룩",
+          "timespan": 2,
+          "price": 400000,
+          "img": "lifting3.jpg",
+          "description": "피부재생 쥬베룩 진료입니다",
+          "state": "",
+          "user": "",
+          "date": "2026-02-26",
+          "settime": [
+            "10:00",
+            "11:00",
+            "14:00",
+            "15:00"
+          ],
+          "time": "14:00"
+        }
+      ],
+      "totalAmount": 400000
     }
   ]
 }

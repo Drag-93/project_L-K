@@ -18,7 +18,7 @@ const AdminLeft = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/admin/reservation"} className={linkClass}>
+            <NavLink to={"/admin/reservationorder"} className={linkClass}>
               예약관리
             </NavLink>
           </li>
