@@ -116,11 +116,12 @@ const Payment = () => {
       if (reserveItems.length > 0) {
 
         //필요없는 데이터 제거
-        const cleanedReserveItems = reserveItems.map(({ setshop, settime, description, ...cleanItem }) => cleanItem);
+        const cleanedReserveItems = reserveItems.map(({ setshop, settime, description,descImg, ...cleanItem }) => cleanItem);
+        const { address, ...cleanedpaymentProInfo } = paymentProInfo
 
         const reserveData = {
           reserveDate: new Date().toLocaleString(),
-          customer: paymentProInfo,
+          customer: cleanedpaymentProInfo,
           items: cleanedReserveItems,
           totalAmount: reservePrice,
         };
@@ -130,7 +131,7 @@ const Payment = () => {
       if (productItems.length > 0) {
 
         //필요없는 데이터 제거
-        const cleanedProducteItems = productItems.map(({ description, ...cleanItem }) => cleanItem);
+        const cleanedProducteItems = productItems.map(({ description,descImg, ...cleanItem }) => cleanItem);
 
         const productData = {
           productDate: new Date().toLocaleString(),
