@@ -228,12 +228,9 @@ const AuthMemberList = () => {
                 <table>
                   <thead>
                     <tr>
-                      <td>글번호</td>
-                      <td>제목</td>
                       <td>작성일</td>
-                      <td>작성자</td>
+                      <td>제목</td>
                       <td>답변상태</td>
-                      <td>조회수</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -243,17 +240,15 @@ const AuthMemberList = () => {
                           key={el.id}
                           onClick={() => navigate(`/community/qna/${el.id}`)}
                         >
-                          <td onClick={(e) => e.stopPropagation()}>{el.no}</td>
+                          <td onClick={(e) => e.stopPropagation()}>
+                            {el.date}
+                          </td>
                           <td>{el.title}</td>
-                          <td>{el.date}</td>
-                          <td>{el.writer}</td>
                           <td
+                            onClick={(e) => e.stopPropagation()}
                             className={`qnaStateBadge ${el.state === "답변완료" ? "done" : "wait"}`}
                           >
                             {el.state}
-                          </td>
-                          <td onClick={(e) => e.stopPropagation()}>
-                            {el.viewrate}
                           </td>
                         </tr>
                       );

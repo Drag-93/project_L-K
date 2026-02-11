@@ -30,6 +30,9 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
     setEdit((prev) => ({ ...prev, [name]: value }));
   };
   const closeFn = () => {
+    if (isAnswering) {
+      setIsAnswering(false);
+    }
     setAdminAddModal(false);
   };
 
@@ -126,6 +129,12 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
     const { name, value } = e.target;
     setEditAnswer((prev) => ({ ...prev, [name]: value }));
   };
+
+  //창 열면 바로 답변상태
+  useEffect(() => {
+    if (!detail) return;
+    if (!detail.answer) setIsAnswering(true);
+  });
 
   if (!detail) {
     return (
@@ -232,13 +241,13 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
               name="answer"
               id="answer"
               value={isAnswering ? editAnswer.answer : (detail.answer ?? "")}
-              placeholder={detail.answer ? "" : "관리자가 확인 중입니다."}
+              placeholder={detail.answer ? "" : "답변 내용 작성."}
               onChange={onAnswerChangeFn}
               rows={6}
               readOnly={!isAnswering}
             />
           </li>
-          <li>
+          {/* <li>
             {!isAnswering && (
               <button onClick={onEditAnswerFn}>
                 {!detail.answer ? "답변하기" : "답변수정하기"}
@@ -256,6 +265,23 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
                 </button>
               </>
             )}
+            <button onClick={() => closeFn()}>닫기</button>
+          </li> */}
+          <li>
+            {detail.answer ? (
+              <button onClick={onEditAnswerFn}> 답변수정하기</button>
+            ) : (
+              <button onClick={onSaveAnswerFn}>답변저장하기</button>
+            )}
+            {isAnswering ? (
+              <button
+                onClick={() => {
+                  setIsAnswering(false);
+                }}
+              >
+                취소하기
+              </button>
+            ) : null}
             <button onClick={() => closeFn()}>닫기</button>
           </li>
         </ul>

@@ -174,6 +174,7 @@ const CommunityQnADetail = () => {
   };
 
   if (!detail) return <div>...Loading</div>;
+
   return (
     <div className="QnADetail">
       <div className="QnADetail-con">
