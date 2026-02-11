@@ -80,9 +80,192 @@
 }
 
 
-/* 상세보기 텍스트 버튼 */
-td:last-child {
-  color: #5aa933;
-  font-weight: bold;
-  text-decoration: underline;
+
+
+
+/*****************************************************************************
+  @modal
+*****************************************************************************/
+/* 모달 전체 배경 (오버레이) */
+.reservemodal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* 배경 어둡게 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px); /* 배경 살짝 흐리게 */
 }
+
+/* 모달 컨텐츠 박스 */
+.reservemodal-con {
+  background-color: #fff;
+  width: 700px;
+  max-width: 90%;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 헤더 섹션 */
+.modal-header {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #999;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+/* 바디 섹션 */
+.modal-body {
+  padding: 24px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.info-group {
+  margin-bottom: 25px;
+}
+
+.info-group h3 {
+  font-size: 1rem;
+  color: #2c3e50;
+  border-left: 4px solid #3498db;
+  padding-left: 10px;
+  margin-bottom: 15px;
+}
+
+.reg-date {
+  text-align: right;
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0;
+}
+
+.info-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px dashed #f0f0f0;
+}
+
+.info-row span {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.info-row strong {
+  color: #333;
+  font-weight: 600;
+}
+
+/* 요청사항 박스 */
+.request-box p {
+  background-color: #fcf8e3;
+  padding: 15px;
+  border-radius: 8px;
+  color: #8a6d3b;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  white-space: pre-wrap; /* 줄바꿈 유지 */
+}
+
+/* 푸터 섹션 */
+.modal-footer {
+  padding: 15px 24px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-footer button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid #ddd;
+}
+
+/* 예약 취소 버튼 (경고 의미로 Red) */
+.modal-footer button:first-child {
+  background-color: #fff;
+  color: #e74c3c;
+  border-color: #e74c3c;
+}
+
+.modal-footer button:first-child:hover {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+/* 확인 버튼 (Blue) */
+.confirm-btn {
+  background-color: #3498db;
+  color: #fff;
+  border: none !important;
+}
+
+.confirm-btn:hover {
+  background-color: #2980b9;
+}
+
+.res_order_state {
+  border-bottom: none !important;
+}
+.res_order_state span{
+  font-size: 12px !important;
+  background: #eee !important;
+  color: #999 !important;
+  padding: 2px 8px !important;
+  border-radius: 4px !important;
+}
+
+.res_order_state span.ok {
+  font-size: 12px !important;
+  background: #e9fcdf !important;
+  color: #5aa933 !important;
+  padding: 2px 8px !important;
+  border-radius: 4px !important;
+}
+
+.reserveorderlist-flex {display: flex; gap: 10px;}

@@ -74,8 +74,16 @@
 /* 예약상품 배지 */
 .item-name span {
   font-size: 12px;
-  background: #e7f1ff;
-  color: #007bff;
+  background: #eee;
+  color: #999;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.item-name span.ok {
+  font-size: 12px;
+  background: #e9fcdf;
+  color: #5aa933;
   padding: 2px 8px;
   border-radius: 4px;
 }

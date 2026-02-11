@@ -116,11 +116,17 @@ const Payment = () => {
       if (reserveItems.length > 0) {
 
         //필요없는 데이터 제거
-        const cleanedReserveItems = reserveItems.map(({ setshop, settime, description,descImg, ...cleanItem }) => cleanItem);
+        const cleanedReserveItems = reserveItems.map(({ setshop, settime, description, descImg, ...cleanItem }) => ({
+          ...cleanItem,
+          state: "예약대기" // 상태값 추가
+        }));
         const { address, ...cleanedpaymentProInfo } = paymentProInfo
 
         const reserveData = {
-          reserveDate: new Date().toLocaleString(),
+          reserveDate: new Date().toISOString(),
+          // 관리자 결제내역에서 처리를 쉽게하기 위해 ISO 표준 포맷으로 데이터를 전송(정렬용)
+          reserveUserDate: new Date().toLocaleString(),
+          // 화면에 보이는 용도
           customer: cleanedpaymentProInfo,
           items: cleanedReserveItems,
           totalAmount: reservePrice,
@@ -129,6 +135,7 @@ const Payment = () => {
       }
 
       if (productItems.length > 0) {
+
 
         //필요없는 데이터 제거
         const cleanedProducteItems = productItems.map(({ description,descImg, ...cleanItem }) => cleanItem);

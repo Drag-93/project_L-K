@@ -105,8 +105,14 @@ const PaymentList = () => {
                   />
                   <div className="item-info">
                     <p className="item-cat">[{item.category}]</p>
-                    <p className="item-name">{item.name}</p>
+                    <p className="item-name">
+                      {item.name}
+                      <span className={item.state === '예약완료' ? 'ok' : ''}>
+                        {item.state}
+                      </span>
+                    </p>
                     <p className="item-time">예약일시: {item.date} {item.time}</p>
+                    
                   </div>
                 </div>
               ))}

@@ -15,34 +15,78 @@ const AdminReserveOrders = () => {
   //검색 변수
   const [selectedId, setSelectedId] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const [roleFilter, setRoleFilter] = useState("ALL");
+
+  //필터기능 변수
+  const [filterShop, setFilterShop] = useState("all");
+  const [filterCategory, setFilterCategory] = useState("all");
+  const [filterStatus, setFilterStatus] = useState("all");
+
+  const [sortType, setSortType] = useState("reserveDateDesc"); //정렬기능변수
 
   const [page, setPage] = useState(1);
 
   const filtered = useMemo(() => {
-      const q = searchText.trim().toLowerCase();
-      // 권한 필터가 'ALL'이 아니고, 회원의 role이 선택한 role과 다르면 목록에서 제외
-  
-      return reserveOrderList.filter((m) => {
-        if (roleFilter !== "ALL" && m.role !== roleFilter) return false;
-  
-        if (!q) return true;
-  
-        const searchTarget = [
-          m.customer?.userName,
-          m.customer?.userEmail,
-          m.customer?.phonenum,
-          ...(m.items?.map(item => item.date) || []),
-          ...(m.items?.map(item => item.time) || []),
-          ...(m.items?.map(item => item.shop) || []),
-          ...(m.items?.map(item => item.name) || []),
-        ]
-          .filter(Boolean)
-          .join(" ")
-          .toLowerCase();
-        return searchTarget.includes(q);
-      });
-    }, [reserveOrderList, searchText, roleFilter]);
+    // 1. 평탄화
+    const allItems = reserveOrderList.flatMap((order) => 
+      order.items.map((item) => ({
+        ...item,
+        customer: order.customer,
+        reserveDate: order.reserveDate,
+        reserveUserDate: order.reserveUserDate,
+        orderId: order.id,
+        uniqueKey: `${order.id}-${item.id}`
+      }))
+    );
+
+    const q = searchText.trim().toLowerCase();
+
+    // 2. 필터링 (순서: 전체 데이터 -> 조건 걸러내기)
+    const filteredItems = allItems.filter((item) => {
+
+      // 드롭다운 필터 조건
+      const matchShop = filterShop === "all" || item.shop === filterShop;
+      const matchCategory = filterCategory === "all" || item.category === filterCategory;
+      const matchStatus = filterStatus === "all" || item.state === filterStatus;
+      
+      // 검색어 필터 조건
+      const totalTime = `${item.date} / ${item.time}`;
+      const searchTarget = [
+        item.customer?.userName,
+        item.customer?.phonenum,
+        item.name,
+        item.shop,
+        item.date,
+        item.time,
+        totalTime,
+        item.state,
+        item.reserveUserDate
+      ].filter(Boolean).join(" ").toLowerCase();
+      
+      const matchSearch = !q || searchTarget.includes(q);
+
+      // 모든 조건이 일치해야 함 (AND 조건)
+      return matchShop && matchCategory && matchStatus && matchSearch;
+    });
+
+    // 3. 정렬 (필터링된 결과만 정렬하여 성능 최적화)
+    return filteredItems.sort((a, b) => {
+      const parseReserveDate = (str) => (str ? new Date(str).getTime() : 0);
+      const parseVisitDate = (d, t) => (d && t ? new Date(`${d}T${t}:00`).getTime() : 0);
+
+      switch (sortType) {
+        case "reserveDateAsc":
+          return parseReserveDate(a.reserveDate) - parseReserveDate(b.reserveDate);
+        case "reserveDateDesc":
+          return parseReserveDate(b.reserveDate) - parseReserveDate(a.reserveDate);
+        case "visitDateAsc":
+          return parseVisitDate(a.date, a.time) - parseVisitDate(b.date, b.time);
+        case "visitDateDesc":
+          return parseVisitDate(b.date, b.time) - parseVisitDate(a.date, a.time);
+        default:
+          return 0;
+      }
+    });
+  }, [reserveOrderList, searchText, sortType, filterShop, filterCategory, filterStatus]);
   
     const pageSize = 10;
     const totalPost = filtered.length;
@@ -87,66 +131,95 @@ const AdminReserveOrders = () => {
   
     useEffect(() => {
       setPage(1);
-    }, [searchText]);
+    }, [searchText, filterShop, filterCategory, filterStatus]);
 
+
+
+
+
+    // [수정] 체크박스 선택을 위한 ID 목록 생성 시 uniqueKey 사용
+  const allVisibleIds = useMemo(() => filtered.map((n) => String(n.uniqueKey)), [filtered]);
 
     useEffect(() => {
-        const visibleId = new Set(filtered.map((n) => String(n.id)));
-        setSelectedId((prev) => prev.filter((id) => visibleId.has(String(id))));
-      }, [filtered]);
-
-    const toggleSelect = (id) => {
-      const key = String(id);
+      // 필터링된 결과가 바뀔 때 선택된 ID들 중 더 이상 보이지 않는 ID 제거
+      setSelectedId((prev) => prev.filter((id) => allVisibleIds.includes(id)));
+    }, [allVisibleIds]);
+  
+    const toggleSelect = (uniqueKey) => {
+      const key = String(uniqueKey);
       setSelectedId((prev) =>
-        prev.includes(key) ? prev.filter((x) => x !== key) : [...prev, key],
+        prev.includes(key) ? prev.filter((x) => x !== key) : [...prev, key]
       );
     };
-
+  
     const onSelectAllFn = () => {
-      const visibleId = filtered.map((n) => String(n.id));
-  
       const allSelect =
-        visibleId.length > 0 && visibleId.every((id) => selectedId.includes(id));
+        allVisibleIds.length > 0 && allVisibleIds.every((id) => selectedId.includes(id));
   
-      setSelectedId(allSelect ? [] : visibleId);
+      setSelectedId(allSelect ? [] : allVisibleIds);
     };
-
+  
     const onDeleteSelectedFn = async () => {
-    if (selectedId.length === 0) return alert("삭제할 항목을 선택하세요");
-    if (!window.confirm("정말 삭제하시겠습니까?")) return;
-
-    const idsToDelete = [...selectedId];
-    try {
-      // 모든 삭제 요청 완료 대기
-      await Promise.all(
-        idsToDelete.map((id) => axios.delete(`${url}/reserveOrders/${id}`))
-      );
-
-      // 로컬 상태 즉시 반영 및 서버 데이터 재요청
-      setReserveOrderList((prev) =>
-        prev.filter((n) => !idsToDelete.includes(String(n.id)))
-      );
-      
-      setSelectedId([]); // 선택 초기화
-      alert("삭제 되었습니다.");
-      // fetchReserveOrders(); // 필요한 경우 서버와 완전 동기화
-    } catch (err) {
-      console.error("삭제 실패:", err);
-      alert("삭제 중 오류가 발생했습니다.");
-    }
-  };
-
+      if (selectedId.length === 0) return alert("삭제할 항목을 선택하세요");
+      if (!window.confirm("선택한 진료 항목을 삭제하시겠습니까?")) return;
+    
+      // 1. 선택된 uniqueKey들을 주문 ID별로 그룹화
+      // 결과 예시: { "baae": ["eac9", "bd85"], "8acf": ["177f"] }
+      const deletionMap = selectedId.reduce((acc, key) => {
+        const [orderId, itemId] = key.split('-');
+        if (!acc[orderId]) acc[orderId] = [];
+        acc[orderId].push(itemId);
+        return acc;
+      }, {});
+    
+      try {
+        const orderIds = Object.keys(deletionMap);
+    
+        await Promise.all(
+          orderIds.map(async (orderId) => {
+            // 원본 주문 데이터 찾기
+            const originalOrder = reserveOrderList.find(ord => String(ord.id) === orderId);
+            if (!originalOrder) return;
+    
+            // 삭제 대상이 아닌 아이템들만 추출
+            const remainingItems = originalOrder.items.filter(
+              (item) => !deletionMap[orderId].includes(String(item.id))
+            );
+    
+            if (remainingItems.length === 0) {
+              // [케이스 1] 남은 아이템이 없으면 주문 전체 삭제
+              await axios.delete(`${url}/reserveOrders/${orderId}`);
+            } else {
+              // [케이스 2] 남은 아이템이 있으면 아이템 배열과 총액(totalAmount) 업데이트
+              const newTotalAmount = remainingItems.reduce((sum, item) => sum + item.price, 0);
+              await axios.patch(`${url}/reserveOrders/${orderId}`, {
+                items: remainingItems,
+                totalAmount: newTotalAmount
+              });
+            }
+          })
+        );
+    
+        alert("삭제되었습니다.");
+        setSelectedId([]);
+        fetchReserveOrders(); // 데이터 다시 불러오기 (서버와 상태 동기화)
+      } catch (err) {
+        console.error("삭제 실패:", err);
+        alert("삭제 중 오류가 발생했습니다.");
+      }
+    };
+  
     const allVisibleSelected =
-    filtered.length > 0 &&
-    filtered.every((n) => selectedId.includes(String(n.id)));
+      allVisibleIds.length > 0 &&
+      allVisibleIds.every((id) => selectedId.includes(id));
 
 
 
 
 
 
-  const handleOpenModal = (order) => {
-    setSelectedOrder(order);
+  const handleOpenModal = (item) => {
+    setSelectedOrder(item);
     setIsModalOpen(true);
   };
 
@@ -156,7 +229,7 @@ const AdminReserveOrders = () => {
         <div className="reserveorderlist-con">
         <div className="title">
             <ul>
-              <li>
+              <li className='reserveorderlist-flex'>
                 <div className="toolbar">
                   <input
                     value={searchText}
@@ -164,16 +237,44 @@ const AdminReserveOrders = () => {
                     placeholder="검색어 입력"
                   />
                 </div>
+                <div className="roleSelector">
+                  <select value={filterShop} onChange={(e) => setFilterShop(e.target.value)}>
+                    <option value="all">병원</option>
+                    <option value="노원">노원</option>
+                    <option value="신촌">신촌</option>
+                    <option value="강남">강남</option>
+                    <option value="종로">종로</option>
+                  </select>
+                </div>
+
+                {/* 내용이 길어서 카테고리는 제외함 */}
+
+                {/* <div className="roleSelector">
+                  <select value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)}>
+                    <option value="all">카테고리</option>
+                    <option value="lifting">리프팅</option>
+                    <option value="faceline">페이스라인</option>
+                    <option value="regen">피부재생</option>
+                    <option value="immune">면역력</option>
+                  </select>
+                </div>   */}
+
+
+                <div className="roleSelector">
+                  <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
+                    <option value="all">상태</option>
+                    <option value="예약대기">예약대기</option>
+                    <option value="예약완료">예약완료</option>
+                  </select>
+                </div>
               </li>
               <li>
                 <div className="roleSelector">
-                  <select
-                    value={roleFilter}
-                    onChange={(e) => setRoleFilter(e.target.value)}
-                  >
-                    <option value="ALL">전체</option>
-                    <option value="ROLE_MEMBER">일반회원</option>
-                    <option value="ROLE_ADMIN">관리자</option>
+                <select value={sortType} onChange={(e) => setSortType(e.target.value)}>
+                    <option value="reserveDateDesc">등록순 (최신순)</option>
+                    <option value="reserveDateAsc">등록순 (과거순)</option>
+                    <option value="visitDateAsc">예약시간순 (가까운일정)</option>
+                    <option value="visitDateDesc">예약시간순 (먼일정)</option>
                   </select>
                 </div>
               </li>
@@ -183,44 +284,49 @@ const AdminReserveOrders = () => {
           <table>
             <thead>
               <tr>
-              <th>선택</th>
-                <th>병원명</th>
-                <th>진료명</th>
+                <th>
+                  <input 
+                  type="checkbox"
+                  onChange={() => onSelectAllFn()}
+                  checked={allVisibleSelected}
+                  />
+                </th>
                 <th>고객명</th>
                 <th>전화번호</th>
+                <th>병원명</th>
+                <th>진료명</th>
                 <th>예약시간</th>
-                <th>상세보기</th>
+                <th>등록시간</th>
+                <th>상태</th>
               </tr>
             </thead>
-            <tbody>
-              {pagedList.map((el) => {
-                const items = el.items?.[0];
-                return (
-                  <tr key={el.id} onClick={() => toggleSelect(el.id)}
-                  className={
-                    selectedId.includes(String(el.id)) ? "selected" : ""
-                  }>
-                    <td onClick={(e) => e.stopPropagation()}>
-                      <input
-                        type="checkbox"
-                        checked={selectedId.includes(String(el.id))}
-                        onChange={() => toggleSelect(el.id)}
-                      />
-                    </td>
-                    <td>{items?.shop}</td>
-                    <td>{items?.name}</td>
-                    <td>{el.customer?.userName}</td>
-                    <td>{el.customer?.phonenum}</td>
-                    <td>{items?.date} / {items?.time}</td>
-                    <td 
-                      onClick={(e) => {e.stopPropagation(); handleOpenModal(el)}} 
-                      style={{ cursor: 'pointer', color: 'blue' }}
-                    >
-                      보기
-                    </td>
-                  </tr>
-                );
-              })}
+             <tbody>
+              {pagedList.map((item) => (
+                <tr 
+                  key={item.uniqueKey} 
+                  onClick={() => handleOpenModal(item)}
+                  className={selectedId.includes(String(item.uniqueKey)) ? "selected" : ""}
+                >
+                  <td onClick={(e) => e.stopPropagation()}>
+                    <input
+                      type="checkbox"
+                      checked={selectedId.includes(String(item.uniqueKey))}
+                      onChange={() => toggleSelect(item.uniqueKey)}
+                    />
+                  </td>
+                  <td>{item.customer?.userName}</td>
+                  <td>{item.customer?.phonenum}</td>
+                  <td>{item.shop}</td>
+                  <td>{item.name}</td> 
+                  <td>{item.date} / {item.time}</td>
+                  <td>{item.reserveUserDate}</td>
+                  <td className='res_order_state'>
+                    <span className={item.state === '예약완료' ? 'ok' : ''}>
+                      {item.state}
+                    </span>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
           <div className="adminMembersFooter">
@@ -228,14 +334,8 @@ const AdminReserveOrders = () => {
               <button onClick={() => setPage(1)} disabled={page === 1}>
                 ◀◀
               </button>
-              <button
-                onClick={() => setPage(startPage - 1)}
-                disabled={currentSet === 1}
-              >
-                ◀
-              </button>
               <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-                이전
+                ◀
               </button>
 
               {Array.from({ length: btnRange }, (_, i) => {
@@ -260,15 +360,7 @@ const AdminReserveOrders = () => {
                 }}
                 disabled={page === lastPage}
               >
-                다음
-              </button>
-              <button
-                onClick={() => {
-                  setPage(endPage + 1);
-                }}
-                disabled={currentSet === totalSet}
-              >
-                ▶
+                 ▶
               </button>
               <button
                 onClick={() => {
@@ -281,9 +373,6 @@ const AdminReserveOrders = () => {
             </div>
             <ul>
               <li>
-                <button onClick={() => onSelectAllFn()}>
-                  {allVisibleSelected ? "전체해제" : "전체선택"}
-                </button>
                 <button onClick={() => onDeleteSelectedFn()}>삭제</button>
               </li>
             </ul>
@@ -292,8 +381,9 @@ const AdminReserveOrders = () => {
       </div>
       {isModalOpen && (
         <AdminReserveOrdersModal 
-          id={selectedOrder.id} 
+          item={selectedOrder}
           onClose={() => setIsModalOpen(false)} 
+          onRefresh={fetchReserveOrders}
         />
       )}
     </>
