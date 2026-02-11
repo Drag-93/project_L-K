@@ -136,9 +136,11 @@ const Payment = () => {
 
       if (productItems.length > 0) {
 
-
         //필요없는 데이터 제거
-        const cleanedProducteItems = productItems.map(({ description,descImg, ...cleanItem }) => cleanItem);
+        const cleanedProducteItems = productItems.map(({ description,descImg, ...cleanItem }) => ({
+          ...cleanItem,
+          state: "배송준비중"
+        }));
 
         const productData = {
           productDate: new Date().toLocaleString(),
