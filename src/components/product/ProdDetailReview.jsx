@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { API_JSON_SERVER_URL } from '../../api/commonApi'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import ProdDetailReviewModal from './ProdDetailReviewModal'
 import axios from 'axios'
 
 
 const ProdDetailReview = () => {
-
   const {id}=useParams();
   const [userReview, setUserReview]=useState([])
   const url=API_JSON_SERVER_URL
-  
-  // const state=useSelector(state=>state)
-  // console.log("리덕스 전체 스토어:", state);
   const isState=useSelector(state=>state.input.isState)
   const user=useSelector(state=>state.input.user)
-
+  const navigate=useNavigate();
+  
+  //전체 리뷰 평균점수 계산
+  const averageScore = userReview.length > 0 
+   ? (userReview.reduce((acc, cur) => acc + (Number(cur.score) || 0), 0)/userReview.length).toFixed(1)
+   : 0.0;
+  
   //사용자후기 불러오기
   const getReviewFn=async () =>{
     try{
@@ -36,41 +38,43 @@ const ProdDetailReview = () => {
          el.id === reviewId ? {...el, isOpen : !el.isOpen} : el)
       )
   }
-  //후기 like(엄지척) 선택하기
-  const [like, setLike]=useState(userReview.like || 0);
-  const [thumbsUp, setThumbsUp]=useState(false);
-  const handleLikeFn=()=>{
-    if(!thumbsUp){
-      setLike(prev=> prev + 1);
-      setThumbsUp(true);
-    }else{
-      setLike(prev=> prev - 1);
-      setThumbsUp(false);
+  //후기 좋아요(엄지척)
+  const [thumbsUp, setThumbsUp]=useState({});
+  const handleLikeFn= async (el) => {
+    if(isState){
+      alert("로그인 후 이용해 주세요");
+      navigate(`/auth/login`);
+      return;
     }
-  }
-  
-  // ******* 후기 db에 저장 기능 구현하기 *******
-  const likeFn= async (reviewId, currentLike) => {
+    const hasLiked=el.likedUsers?.includes(user.userEmail);
+    const nextLike=hasLiked ? (el.like || 0) - 1 : (el.like || 0) + 1;  //이미 좋아요 상태이면 감소, 아니면 증가
+    const updateLikedUsers= hasLiked
+          ? el.likedUsers.filter(email => email !== user.userEmail)  //좋아요 취소 시 사용자 이메일 제거
+          : [...(el.likedUsers || []), user.userEmail];  //좋아요 시 사용자 이메일 추가
+    //UI 반영
+    setThumbsUp(prev => ({ ...prev, [el.id]: !hasLiked }));
+    setUserReview((prev)=>
+      prev.map((review)=> 
+        review.id === el.id ? ({...review, like: nextLike, likedUsers: updateLikedUsers}) : review))    
+    //db에 반영
     try{
-      await axios.patch(`${url}/productReview/${like}`, {
-        like: (currentLike ?? 0) + 1
-      })    
-      setUserReview((prev)=>
-        prev.map((review)=> review.id === reviewId ? ({
-          ...review, like: (review.like ?? 0) + 1
-        }) : review)  
-      )  
+      const res=await axios.patch(`${url}/productReview/${el.id}`,
+        { 
+          like: nextLike,
+          likedUsers: updateLikedUsers
+        }
+      )
     }catch(err){
-      console.log('좋아요 횟수 업데이트 실패')
-    }   
-  }
+      setThumbsUp(prev => ({ ...prev, [el.id]: hasLiked }));
+      setLike((prev)=>({
+        ...prev.map((review)=> 
+          review.id === el.id ? ({...review, like: el.like, likedUsers: el.likedUsers }) : review) 
+      }))
+      console.log('좋아요 업데이트 실패');
+    }
+  };
 
   const [reviewAddModal, setReviewAddModal]=useState(false)
-
-  //전체 리뷰 평균점수 계산
-  const averageScore = userReview.length > 0 ?
-    (userReview.reduce((acc, cur) => acc + (Number(cur.score) || 0), 0)/userReview.length).toFixed(1)
-    : 0.0;
 
   //내가 작성한 후기 수정하기
   const [editId, setEditId]=useState(null);
@@ -83,7 +87,7 @@ const ProdDetailReview = () => {
   };
   const handleUpdateFn= async () =>{
     if(text.length===0){
-      alert('내용을 작성해 주세요');
+      alert("내용을 작성해 주세요");
       return;
     }
     try{
@@ -91,22 +95,21 @@ const ProdDetailReview = () => {
         score: score,
         description: text
       })
-      alert('후기를 수정했습니다');
+      alert("후기를 수정했습니다");
       setEditId(null);
       getReviewFn();  //수정 후 최신 후기 불러오기
     }catch(err){
       console.log('후기 수정 실패');
     }
   };
-
   //내가 작성한 후기 삭제하기
-  const deleteFn= async() =>{
+  const deleteFn= async(reviewId) =>{
     if(!window.confirm('정말 삭제하시겠습니까?')){
       return;
     }
     try{
-      const res=await axios.delete(`${url}/productReview/${el.id}`)
-      alert('후기가 삭제되었습니다');
+      const res=await axios.delete(`${url}/productReview/${reviewId}`)
+      alert("후기가 삭제되었습니다");
       getReviewFn();
     }catch(err){
       console.log('후기 삭제 실패')
@@ -118,7 +121,7 @@ return (
   <>
     <div className="detail-review">
       <div className="detail-review-con">
-        {/* 리뷰 현황 요약 보이기 */}
+        {/* 후기 현황 요약 보이기 */}
         <div className="current-status">
           <div className='totalscore'>
             <p className='avrscore'>평균: {averageScore}점</p>
@@ -129,12 +132,17 @@ return (
             <li>베스트 후기2</li>                 
           </div>           */}
         </div>
-        {/* 리뷰 내용 */}
+        {/* 후기 리스트 */}
         <div className="reviews">
           <h1>사용자 후기</h1>
           {!isState &&                     //로그인 된 경우에만 작성버튼 활성화
             <button 
              onClick={()=>{
+               console.log(userReview)
+              if(userReview.some(review => review.userEmail === user?.userEmail)){
+                alert("이미 후기를 작성하셨습니다");  //후기 추가 작성 방지
+                return;
+              }
                setReviewAddModal(true)}}
             >
               후기 작성하기 
@@ -145,7 +153,7 @@ return (
               productId={id}
               user={user}
               onSuccess={()=>{
-                alert('후기가 등록되었습니다');
+                alert("후기가 등록되었습니다");
                 getReviewFn();
               }}
               />
@@ -213,7 +221,19 @@ return (
                   <small style={{ color: 'gray' }}>
                     {el.isOpen ? '[접기]' : '...더보기'}
                   </small>
-                  <button onClick={handleLikeFn} style={{ cursor: 'pointer', width: '30px' }}><img src={!thumbsUp ? `/images/icon_like_off.svg` : `/images/icon_like_on.svg`} alt="icon_like" />{like}</button>
+                  <button 
+                  onClick={(e)=>{
+                    e.stopPropagation();
+                    handleLikeFn(el);
+                    }}                  
+                  style={{ cursor: 'pointer', width: '30px' }}
+                  >
+                    <img
+                     src={el.likedUsers?.includes(user?.userEmail) ? 
+                      `/images/icon_like_on.svg` : `/images/icon_like_off.svg`}
+                   alt="icon_like"/>
+                   {el.like ?? 0}
+                   </button>
                 </li>
               )
             })}

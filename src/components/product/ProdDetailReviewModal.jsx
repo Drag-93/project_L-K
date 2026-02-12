@@ -44,7 +44,7 @@ const ProdDetailReviewModal = ({setReviewAddModal, user, productId, onSuccess}) 
         productId: productId,
         userEmail: user.userEmail,
         userName: user.userName,
-        date: getKoreaDate(),
+        date: new Date().toISOString(),
         score: score,
         viewrate: 0,
         description: text
