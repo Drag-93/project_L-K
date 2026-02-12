@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
 
@@ -7,6 +7,46 @@ const CommunityFaq = () => {
   const [faqList, setFaqList] = useState([])
   const url = API_JSON_SERVER_URL
   const [openId, setOpenId] = useState(null)
+
+  //검색변수
+  const [searchText, setSearchText] = useState("");
+
+  //페이징변수
+  const pageSize = 8;
+  const [page, setPage] = useState(1);
+
+  //검색
+  const filtered = useMemo(() => {
+      const q = searchText.trim().toLowerCase();
+      if (!q) return faqList;
+  
+      return faqList.filter((m) => {
+        const searchTarget = [m.title]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+  
+        return searchTarget.includes(q);
+      });
+    }, [faqList, searchText]);
+
+  //페이징
+  const totalPages = useMemo(() => {
+      return Math.max(1, Math.ceil(filtered.length / pageSize));
+    }, [filtered.length, pageSize]);
+
+    const pagedList = useMemo(() => {
+      const firstPage = (page - 1) * pageSize;
+      return filtered.slice(firstPage, firstPage + pageSize);
+    }, [filtered, page, pageSize]);
+
+    useEffect(() => {
+      if (page > totalPages) setPage(totalPages);
+    }, [page, totalPages]);
+
+    useEffect(() => {
+      setPage(1);
+    }, [searchText]);
 
   const navigate = useNavigate();
 
@@ -30,6 +70,13 @@ const CommunityFaq = () => {
     <div className="faq">
       <div className="faq-con">
         <h1>자주 묻는 질문</h1>
+        <div className="toolbar">
+          <input
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            placeholder="검색어 입력"
+          />
+        </div>
         <table>
           <thead>
             <tr>
@@ -38,7 +85,7 @@ const CommunityFaq = () => {
             </tr>
           </thead>
           <tbody>
-            {faqList.map((el) => {
+            {pagedList && pagedList.map((el) => {
               return (
                 <React.Fragment key={el.id}>
                   <tr>
@@ -64,6 +111,27 @@ const CommunityFaq = () => {
             })}
           </tbody>
         </table>
+        <div className="QnAFooter">
+          <div className="QnAFooter-con">
+            <div className="QnAPaging">
+              <button
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                disabled={page === 1}
+              >
+                이전
+              </button>
+              <span>
+                {page}/{totalPages}
+              </span>
+              <button
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                disabled={page === totalPages}
+              >
+                다음
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

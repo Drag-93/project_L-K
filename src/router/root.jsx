@@ -24,6 +24,8 @@ const AdminLayout = lazy(() => import("../layout/AdminLayout"));
 const ShopLayout = lazy(() => import("../layout/ShopLayout"));
 const OrderLayout = lazy(() => import("../layout/OrderLayout"));
 
+const SearchPage = lazy(() => import("../page/SearchPage"));
+
 const root = createBrowserRouter([
   {
     path: "",
@@ -104,6 +106,14 @@ const root = createBrowserRouter([
       </Suspense>
     ),
     children: toOrderRouter(),
+  },
+  {
+    path: "search",
+    element: (
+      <Suspense fallback={Loading}>
+        <SearchPage/>
+      </Suspense>
+    )
   },
 ]);
 

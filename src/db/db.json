@@ -6,7 +6,23 @@
       "description": "ㅁㄴㅇㄴㅁㅇㅁㄴㅇㅁㄴㅇ",
       "no": 1,
       "date": "2024-12-25",
-      "viewrate": 15
+      "viewrate": 16
+    },
+    {
+      "id": "03a4",
+      "title": "테스트입니다",
+      "description": "ㅂㅈㄷㅂㄱㄷㄷㅂㄱㅂ",
+      "no": 2,
+      "date": "2026-02-12",
+      "viewrate": 3
+    },
+    {
+      "id": "5055",
+      "title": "테스트2",
+      "description": "123ㄱㅂㅈㅂㄱㄷㅎ",
+      "no": 3,
+      "date": "2026-02-12",
+      "viewrate": 2
     }
   ],
   "members": [
@@ -97,7 +113,7 @@
       "id": "2",
       "category": "hydro",
       "name": "수딩 토너2",
-      "price": 20000,
+      "price": 30000,
       "img": "hydro2.jpg",
       "description": "보습라인 2번 상품입니다"
     },
@@ -121,7 +137,7 @@
       "id": "6",
       "category": "hydro",
       "name": "모이스처라이저1",
-      "price": 20000,
+      "price": 10000,
       "img": "hydro6.jpg",
       "description": "보습라인 6번 상품입니다"
     },
@@ -129,7 +145,7 @@
       "id": "7",
       "category": "hydro",
       "name": "모이스처라이저2",
-      "price": 20000,
+      "price": 40000,
       "img": "hydro7.jpg",
       "description": "보습라인 7번 상품입니다"
     },
@@ -153,7 +169,7 @@
       "id": "10",
       "category": "hydro",
       "name": "모이스처 마스크2",
-      "price": 20000,
+      "price": 50000,
       "img": "hydro10.jpg",
       "description": "보습라인 10번 상품입니다"
     },
@@ -420,7 +436,7 @@
       "date": "2026-02-05",
       "writer": "test",
       "writerEmail": "test",
-      "viewrate": 10,
+      "viewrate": 11,
       "admin": "관리자",
       "answer": "답변테스트"
     },

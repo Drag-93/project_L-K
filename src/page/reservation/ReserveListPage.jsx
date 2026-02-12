@@ -1,10 +1,10 @@
 import React from "react";
-import reservationList from "../../components/reservation/reservationList";
+import ReservationList from "../../components/reservation/ReservationList";
 
 const ReserveListPage = () => {
   return (
     <>
-      <reservationList />
+      <ReservationList />
     </>
   );
 };

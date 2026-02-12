@@ -62,45 +62,6 @@ const CommunityQnA = () => {
 
   return (
     <div className="QnA">
-      <div className="MyQna-con">
-        {MyQnaList.length > 0 ? (
-          <div className="title">
-            <h1>MyQ&A</h1>
-            <table>
-              <thead>
-                <tr>
-                  <td>글번호</td>
-                  <td>제목</td>
-                  <td>작성일</td>
-                  <td>작성자</td>
-                  <td>답변상태</td>
-                  <td>조회수</td>
-                </tr>
-              </thead>
-              <tbody>
-                {MyQnaList.map((el) => {
-                  return (
-                    <tr key={el.id} onClick={() => navigate(`${el.id}`)}>
-                      <td onClick={(e) => e.stopPropagation()}>{el.no}</td>
-                      <td>{el.title}</td>
-                      <td>{el.date}</td>
-                      <td>{el.writer}</td>
-                      <td
-                        className={`qnaStateBadge ${el.state === "답변완료" ? "done" : "wait"}`}
-                      >
-                        {el.state}
-                      </td>
-                      <td onClick={(e) => e.stopPropagation()}>
-                        {el.viewrate}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        ) : null}
-      </div>
       <div className="QnA-con">
         <div className="title">
           <ul>
@@ -159,7 +120,7 @@ const CommunityQnA = () => {
                 {page}/{totalPages}
               </span>
               <button
-                onClick={() => setPage((p) => Math.min(p, p + 1))}
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                 disabled={page === totalPages}
               >
                 다음

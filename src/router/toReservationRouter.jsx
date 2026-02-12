@@ -3,8 +3,8 @@ import { Navigate } from "react-router-dom";
 
 const Loading = <div className="loading">...Loading</div>;
 
-const ReserveListPage = lazy(() => import("../components/reservation/reservationList"));
-const ReserveDetailPage = lazy(() => import("../components/reservation/reservationDetail"));
+const ReserveListPage = lazy(() => import("../components/reservation/ReservationList"));
+const ReserveDetailPage = lazy(() => import("../components/reservation/ReservationDetail"));
 
 
 const toReservationRouter = () => {
@@ -15,7 +15,13 @@ const toReservationRouter = () => {
           {
             index: true,
             element: (
-              <Navigate replace to={'list/lifting'} />            
+              <Navigate replace to={'list'} />            
+            )
+          },
+          {
+            path: "list",
+            element: (
+              <Suspense fallback={Loading}><ReserveListPage/></Suspense>            
             )
           },
           {

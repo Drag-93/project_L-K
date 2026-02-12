@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { logoutF } from "../../store/slice/inputSlice";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [pageClass, setPageClass] = useState("");
+
+  // 검색기능변수
+  const [keyword, setKeyword] = useState("");
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const navigate = useNavigate();
 
   const param = useParams();
 
@@ -50,8 +55,34 @@ const Header = () => {
 
   const basketItems = useSelector(state => state.basket.basketItems);
 
+
+  // 검색기능로직
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (!keyword.trim()) return;
+
+    // 검색 페이지로 검색어를 포함해 이동
+    setIsSearchOpen(false);
+    navigate(`/search?search=${encodeURIComponent(keyword)}`);
+    setKeyword(""); // 입력창 비우기
+  };
+
   return (
     <>
+    <div className={`header_search ${isSearchOpen ? "active" : ""}`}>
+      <form className="search-bar" onSubmit={handleSearch}>
+        <div className="search_box">
+          <input
+            type="text"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            placeholder="검색어를 입력하세요..."
+          />
+          <button type="submit"></button>
+        </div>
+        <span onClick={() => setIsSearchOpen(false)}>X</span>
+      </form>
+    </div>
       <div
         className={`header_wrap ${pageClass} ${isHovered ? "on" : ""}`}
         onMouseEnter={() => setIsHovered(true)}
@@ -59,9 +90,11 @@ const Header = () => {
       >
         <header className={`header ${isScrolled || isHovered ? "active" : ""}`}>
           <div className="header_box">
-            <h1>
-              <Link to={`/`}>logo</Link>
-            </h1>
+            <div className="header_left">
+              <h1>
+                <Link to={`/`}>logo</Link>
+              </h1>
+            </div>
             <nav className="nav">
               <ul>
                 <li>
@@ -79,7 +112,9 @@ const Header = () => {
               </ul>
             </nav>
             <div className="header_auth">
-            
+                  <span className="header_auth_btn header_search_btn" onClick={() => setIsSearchOpen(true)}>
+                    <img src="/public/images/icon_search_w.svg" />
+                  </span>
               {isState ? (
                 <>
                   <Link to={"/order"} className="header_auth_btn header_basket_btn">

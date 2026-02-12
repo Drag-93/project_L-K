@@ -15,7 +15,13 @@ const toProductRouter = () => {
         {
           index: true,
           element: (
-            <Navigate replace to={'list/hydro'} />            
+            <Navigate replace to={'list'} />            
+          )
+        },
+        {
+          path: "list",
+          element: (
+            <Suspense fallback={Loading}><ProdListPage /></Suspense>            
           )
         },
         {

@@ -18,7 +18,7 @@ const reserveData={
   settime:[]
 }
 
-const reservationDetail = () => {
+const ReservationDetail = () => {
 
 
   const isState=useSelector(state=>state.input.isState)
@@ -310,4 +310,4 @@ const reservationDetail = () => {
   )
 }
 
-export default reservationDetail
+export default ReservationDetail

@@ -1,10 +1,10 @@
 import React from 'react'
-import reservationDetail from '../../components/reservation/reservationDetail'
+import ReservationDetail from '../../components/reservation/ReservationDetail'
 
 const ReserveDetailPage = () => {
   return (
     <>
-      <reservationDetail/>
+      <ReservationDetail/>
     </>
   )
 }
