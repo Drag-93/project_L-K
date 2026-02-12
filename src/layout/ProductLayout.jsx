@@ -16,7 +16,6 @@ const ProductLayout = () => {
           <li><NavLink to={`/product/list/antiage`}>안티에이징</NavLink></li>
           <li><NavLink to={`/product/list/uv`}>UV</NavLink></li>
         </ul>
-
       </div>
       <Outlet />
       <Footer />
