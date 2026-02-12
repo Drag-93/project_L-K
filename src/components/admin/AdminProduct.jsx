@@ -138,7 +138,7 @@ const AdminProduct = () => {
                         : el.description}
                     </td>
                     <td>
-                      평점/{userReview.length}건
+                      {/* 평점/{userReview.length}건 */}
                     </td>
                     <td>{el.category}</td>
                     <td

@@ -6,7 +6,7 @@
       "description": "ㅁㄴㅇㄴㅁㅇㅁㄴㅇㅁㄴㅇ",
       "no": 1,
       "date": "2024-12-25",
-      "viewrate": 15
+      "viewrate": 16
     }
   ],
   "members": [
@@ -86,12 +86,24 @@
   "product": [
     {
       "id": "1",
-      "category": "hydro",
-      "name": "수딩 토너1",
-      "price": 20000,
-      "img": "hydro1.jpg",
-      "description": "보습라인 1번 상품입니다",
-      "descImg": "상세페이지 이미지 경로"
+      "category": "lifting",
+      "name": "울쎄라",
+      "price": 200000,
+      "img": "lifting_01.png",
+      "description": "리프팅라인 울쎄라 진료입니다",
+      "descImg": "상세페이지 이미지 경로",
+      "setshop": [
+        "노원",
+        "신촌",
+        "강남",
+        "종로"
+      ],
+      "settime": [
+        "10:00",
+        "11:00",
+        "14:00",
+        "15:00"
+      ]
     },
     {
       "id": "2",
@@ -416,13 +428,13 @@
       "title": "QnA테스트용 제목",
       "question": "질문내용 작성하기질문내용 작성하기질문내용 작성하기질문내용 작성하기질문내용 작성하기",
       "no": 2,
-      "state": "답변완료",
+      "state": "답변대기",
       "date": "2026-02-05",
       "writer": "test",
       "writerEmail": "test",
-      "viewrate": 10,
-      "admin": "관리자",
-      "answer": "답변테스트"
+      "viewrate": 9,
+      "admin": "",
+      "answer": ""
     },
     {
       "id": "ac9e",
@@ -433,7 +445,7 @@
       "date": "2026-02-05",
       "writer": "test",
       "writerEmail": "test",
-      "viewrate": 13,
+      "viewrate": 12,
       "admin": "",
       "answer": ""
     },
@@ -451,189 +463,116 @@
       "state": "답변대기"
     }
   ],
-  "productOrders": [
-    {
-      "id": "f19f",
-      "productDate": "2026. 2. 11. 오전 9:56:46",
-      "customer": {
-        "userEmail": "test",
-        "userName": "test",
-        "phonenum": "01012222641",
-        "address": "서울",
-        "request": "안전한 배송 부탁드립니다."
-      },
-      "items": [
-        {
-          "id": "1",
-          "category": "hydro",
-          "name": "수딩 토너1",
-          "price": 20000,
-          "img": "hydro1.jpg",
-          "count": 2,
-          "totalPrice": 40000
-        },
-        {
-          "id": "3",
-          "category": "hydro",
-          "name": "모이스처 세럼1",
-          "price": 20000,
-          "img": "hydro3.jpg",
-          "count": 3,
-          "totalPrice": 60000
-        },
-        {
-          "id": "9",
-          "category": "hydro",
-          "name": "모이스처 마스크1",
-          "price": 20000,
-          "img": "hydro9.jpg",
-          "count": 2,
-          "totalPrice": 40000
-        }
-      ],
-      "totalAmount": 140000
-    },
-    {
-      "id": "842b",
-      "productDate": "2026. 12. 11. 오후 2:35:36",
-      "customer": {
-        "userEmail": "test2@naver.com",
-        "userName": "테스트",
-        "phonenum": "01012341234",
-        "address": "미국",
-        "request": "안전한 배송 부탁드립니다."
-      },
-      "items": [
-        {
-          "id": "12",
-          "category": "trouble",
-          "name": "트러블 클렌징 폼2",
-          "price": 20000,
-          "img": "trouble2.jpg",
-          "count": 2,
-          "totalPrice": 40000
-        },
-        {
-          "id": "4",
-          "category": "hydro",
-          "name": "모이스처 세럼2",
-          "price": 20000,
-          "img": "hydro4.jpg",
-          "count": 3,
-          "totalPrice": 60000
-        },
-        {
-          "id": "51",
-          "category": "uv",
-          "name": "UV1",
-          "price": 20000,
-          "img": "uv1.jpg",
-          "count": 1,
-          "totalPrice": 20000
-        },
-        {
-          "id": "31",
-          "category": "white",
-          "name": "미백1",
-          "price": 20000,
-          "img": "white1.jpg",
-          "count": 3,
-          "totalPrice": 60000
-        }
-      ],
-      "totalAmount": 180000
-    },
-    {
-      "id": "91bb",
-      "productDate": "2026. 2. 11. 오후 5:35:26",
-      "customer": {
-        "userEmail": "test",
-        "userName": "test",
-        "phonenum": "01012222641",
-        "address": "서울",
-        "request": "안전한 배송 부탁드립니다."
-      },
-      "items": [
-        {
-          "id": "1",
-          "category": "hydro",
-          "name": "수딩 토너1",
-          "price": 20000,
-          "img": "hydro1.jpg",
-          "count": 1,
-          "totalPrice": 20000,
-          "state": "배송준비중"
-        }
-      ],
-      "totalAmount": 20000
-    }
-  ],
+  "productOrders": [],
   "reserveOrders": [
     {
-      "id": "0874",
-      "reserveDate": "2026-02-11T06:00:13.948Z",
-      "reserveUserDate": "2026. 2. 11. 오후 3:00:13",
+      "id": "baae",
+      "reserveDate": "2026. 2. 10. 오후 4:04:41",
       "customer": {
         "userEmail": "test",
         "userName": "test",
         "phonenum": "01012222641",
-        "request": "안전한 시술 부탁드립니다."
+        "request": "안전한 시술 부탁드립니다.",
+        "address": "서울"
       },
       "items": [
         {
-          "id": "8018",
+          "id": "eac9",
           "category": "lifting",
           "name": "울쎄라",
           "price": 200000,
           "img": "lifting_01.png",
-          "shop": "신촌",
-          "date": "2026-02-20",
-          "time": "11:00",
-          "state": "예약완료"
-        }
-      ],
-      "totalAmount": 200000
-    },
-    {
-      "id": "b4bc",
-      "reserveDate": "2026-02-11T06:30:11.550Z",
-      "reserveUserDate": "2026. 2. 11. 오후 3:30:11",
-      "customer": {
-        "userEmail": "test",
-        "userName": "test",
-        "phonenum": "01012222641",
-        "request": "안전한 시술 부탁드립니다."
-      },
-      "items": [
-        {
-          "id": "6c94",
-          "category": "lifting",
-          "name": "울쎄라",
-          "price": 200000,
-          "img": "lifting_01.png",
-          "shop": "신촌",
-          "date": "2026-02-13",
-          "time": "15:00",
-          "state": "예약대기"
+          "descImg": "상세페이지 이미지 경로",
+          "shop": "강남",
+          "date": "2026-02-18",
+          "time": "11:00"
         },
         {
-          "id": "6c9c",
+          "id": "bd85",
+          "category": "regen",
+          "name": "쥬베룩",
+          "price": 400000,
+          "img": "regen_01.png",
+          "descImg": "상세페이지 이미지 경로",
+          "shop": "종로",
+          "date": "2026-02-18",
+          "time": "14:00"
+        },
+        {
+          "id": "7f6a",
+          "category": "immune",
+          "name": "글루타치온(백옥주사)",
+          "price": 300000,
+          "img": "immune_01.png",
+          "descImg": "상세페이지 이미지 경로",
+          "shop": "강남",
+          "date": "2026-02-18",
+          "time": "11:00"
+        }
+      ],
+      "totalAmount": 200000,
+      "date": "2026-02-1"
+    },
+    {
+      "id": "5734",
+      "reserveDate": "2026. 2. 10. 오후 5:04:08",
+      "customer": {
+        "userEmail": "test",
+        "userName": "test",
+        "phonenum": "01012222641",
+        "request": "안전한 시술 부탁드립니다."
+      },
+      "items": [
+        {
+          "id": "5429",
           "category": "regen",
           "name": "쥬베룩",
           "price": 400000,
           "img": "regen_01.png",
           "shop": "종로",
-          "date": "2026-02-18",
-          "time": "11:00",
-          "state": "예약완료"
+          "date": "2026-02-12",
+          "time": "15:00"
+        }
+      ],
+      "totalAmount": 400000
+    },
+    {
+      "id": "8acf",
+      "reserveDate": "2026. 2. 10. 오후 5:05:32",
+      "customer": {
+        "userEmail": "test",
+        "userName": "test",
+        "phonenum": "01012222641",
+        "request": "안전한 시술 부탁드립니다."
+      },
+      "items": [
+        {
+          "id": "177f",
+          "category": "immune",
+          "name": "글루타치온(백옥주사)",
+          "price": 300000,
+          "img": "immune_01.png",
+          "shop": "신촌",
+          "date": "2026-02-12",
+          "time": "15:00"
+        },
+        {
+          "id": "240b",
+          "category": "immune",
+          "name": "글루타치온(백옥주사)",
+          "price": 300000,
+          "img": "immune_01.png",
+          "shop": "신촌",
+          "date": "2026-02-13",
+          "time": "15:00"
         }
       ],
       "totalAmount": 600000
     },
     {
-      "id": "e219",
-      "reserveDate": "2026-02-11T06:45:06.908Z",
-      "reserveUserDate": "2026. 2. 11. 오후 3:45:06",
+      "id": "d420",
+      "reserveDate": "2026-02-12T00:27:41.686Z",
+      "reserveUserDate": "2026. 2. 12. 오전 9:27:41",
       "customer": {
         "userEmail": "test",
         "userName": "test",
@@ -642,120 +581,18 @@
       },
       "items": [
         {
-          "id": "cf34",
+          "id": "0530",
           "category": "lifting",
           "name": "울쎄라",
           "price": 200000,
           "img": "lifting_01.png",
-          "shop": "강남",
-          "date": "2026-02-13",
-          "time": "15:00",
-          "state": "예약대기"
-        },
-        {
-          "id": "415f",
-          "category": "faceline",
-          "name": "인모드",
-          "price": 100000,
-          "img": "faceline_01.png",
-          "shop": "강남",
-          "date": "2026-02-18",
-          "time": "14:00",
-          "state": "예약대기"
-        },
-        {
-          "id": "d0b2",
-          "category": "regen",
-          "name": "쥬베룩",
-          "price": 400000,
-          "img": "regen_01.png",
-          "shop": "강남",
-          "date": "2026-02-26",
-          "time": "10:00",
-          "state": "예약대기"
-        },
-        {
-          "id": "95fd",
-          "category": "immune",
-          "name": "글루타치온(백옥주사)",
-          "price": 300000,
-          "img": "immune_01.png",
-          "shop": "종로",
-          "date": "2026-02-27",
+          "shop": "노원",
+          "date": "2026-02-19",
           "time": "10:00",
           "state": "예약대기"
         }
       ],
-      "totalAmount": 1000000
-    },
-    {
-      "id": "4989",
-      "reserveDate": "2026-02-11T06:47:49.875Z",
-      "reserveUserDate": "2026. 2. 11. 오후 3:47:49",
-      "customer": {
-        "userEmail": "test",
-        "userName": "test",
-        "phonenum": "01012222641",
-        "request": "안전한 시술 부탁드립니다."
-      },
-      "items": [
-        {
-          "id": "d350",
-          "category": "lifting",
-          "name": "울쎄라",
-          "price": 200000,
-          "img": "lifting_01.png",
-          "shop": "강남",
-          "date": "2026-02-13",
-          "time": "14:00",
-          "state": "예약대기"
-        },
-        {
-          "id": "a95b",
-          "category": "lifting",
-          "name": "울쎄라",
-          "price": 200000,
-          "img": "lifting_01.png",
-          "shop": "강남",
-          "date": "2026-02-18",
-          "time": "11:00",
-          "state": "예약대기"
-        },
-        {
-          "id": "2310",
-          "category": "lifting",
-          "name": "울쎄라",
-          "price": 200000,
-          "img": "lifting_01.png",
-          "shop": "강남",
-          "date": "2026-02-26",
-          "time": "14:00",
-          "state": "예약완료"
-        },
-        {
-          "id": "9401",
-          "category": "faceline",
-          "name": "인모드",
-          "price": 100000,
-          "img": "faceline_01.png",
-          "shop": "강남",
-          "date": "2026-02-17",
-          "time": "11:00",
-          "state": "예약대기"
-        },
-        {
-          "id": "3f2d",
-          "category": "faceline",
-          "name": "인모드",
-          "price": 100000,
-          "img": "faceline_01.png",
-          "shop": "강남",
-          "date": "2026-02-17",
-          "time": "15:00",
-          "state": "예약대기"
-        }
-      ],
-      "totalAmount": 800000
+      "totalAmount": 200000
     }
   ]
 }
