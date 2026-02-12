@@ -13,6 +13,7 @@ const AdminQnA = () => {
   const [page, setPage] = useState(1);
   const [searchText, setSearchText] = useState("");
   const [stateFilter, setStateFilter] = useState("ALL");
+  const [sortType, setSortType] = useState("Latest");
 
   const openListFn = async () => {
     const res = await axios.get(`${qnaUrl}/qna`);
@@ -54,6 +55,16 @@ const AdminQnA = () => {
   const pagedList = useMemo(() => {
     return filtered.slice(startPost, endPost);
   }, [filtered, startPost, endPost]);
+
+  const sortedList = useMemo(() => {
+    return [...pagedList].sort((a, b) => {
+      if (sortType === "Latest") return new Date(b.date) - new Date(a.date);
+      if (sortType === "Earliest") return new Date(a.date) - new Date(b.date);
+      if (sortType === "Highest") return b.viewrate - a.viewrate;
+      if (sortType === "Lowest") return a.viewrate - b.viewrate;
+      return 0;
+    });
+  }, [sortType, pagedList]);
 
   const toggleSelect = (id) => {
     const key = String(id);
@@ -154,6 +165,19 @@ const AdminQnA = () => {
                 </div>
               </li>
               <li>
+                <div className="sortSelector">
+                  <select
+                    value={sortType}
+                    onChange={(e) => setSortType(e.target.value)}
+                  >
+                    <option value="Latest">등록순 (최신순)</option>
+                    <option value="Earliest">등록순 (과거순)</option>
+                    <option value="Highest">조회수 (높은순)</option>
+                    <option value="Lowest">조회순 (낮은순)</option>
+                  </select>
+                </div>
+              </li>
+              <li>
                 <div className="answerStateSelector">
                   <select
                     value={stateFilter}
@@ -170,25 +194,26 @@ const AdminQnA = () => {
           <table>
             <thead>
               <tr>
-                <th>선택</th>
+                <th>
+                  <input type="checkbox" onChange={onSelectAllFn} />
+                </th>
                 <th>글번호</th>
                 <th>답변상태</th>
                 <th>작성일</th>
                 <th>제목</th>
                 <th>내용</th>
                 <th>조회수</th>
-                <th>상세내용</th>
               </tr>
             </thead>
             <tbody>
-              {pagedList.map((el) => {
+              {sortedList.map((el) => {
                 return (
                   <tr
                     key={el.id}
-                    onClick={() => toggleSelect(el.id)}
-                    className={
-                      selectedId.includes(String(el.id)) ? "selected" : ""
-                    }
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      adminModalFn(el.id);
+                    }}
                   >
                     <td onClick={(e) => e.stopPropagation()}>
                       <input
@@ -217,14 +242,6 @@ const AdminQnA = () => {
                         : el.question}
                     </td>
                     <td>{el.viewrate}</td>
-                    <td
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        adminModalFn(el.id);
-                      }}
-                    >
-                      답변하기
-                    </td>
                   </tr>
                 );
               })}
@@ -235,14 +252,8 @@ const AdminQnA = () => {
               <button onClick={() => setPage(1)} disabled={page === 1}>
                 ◀◀
               </button>
-              <button
-                onClick={() => setPage(startPage - 1)}
-                disabled={currentSet === 1}
-              >
-                ◀
-              </button>
               <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-                이전
+                ◀
               </button>
 
               {Array.from({ length: btnRange }, (_, i) => {
@@ -267,16 +278,9 @@ const AdminQnA = () => {
                 }}
                 disabled={page === lastPage}
               >
-                다음
-              </button>
-              <button
-                onClick={() => {
-                  setPage(endPage + 1);
-                }}
-                disabled={currentSet === totalSet}
-              >
                 ▶
               </button>
+
               <button
                 onClick={() => {
                   setPage(lastPage);

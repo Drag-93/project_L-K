@@ -1,8 +1,13 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
 import axios from "axios";
 import AdminShopModal from "./AdminShopModal";
 import { useNavigate } from "react-router-dom";
+import {
+  createKakaoMap,
+  createMarker,
+  loadKakaoMap,
+} from "../../utils/kakaoMapUtil";
 
 const AdminShop = () => {
   const [shopList, setShopList] = useState([]);
@@ -143,7 +148,9 @@ const AdminShop = () => {
           <table>
             <thead>
               <tr>
-                <th>선택</th>
+                <th>
+                  <input type="checkbox" onChange={onSelectAllFn} />
+                </th>
                 <th>지점명</th>
                 <th>연락처</th>
                 <th>주소</th>
@@ -176,7 +183,7 @@ const AdminShop = () => {
                     <td>
                       <button
                         onClick={() =>
-                          navigate(`/admin/reservation?name=${el.name}`)
+                          navigate(`/admin/resorder?name=${el.name}`)
                         }
                       >
                         보기
@@ -195,14 +202,8 @@ const AdminShop = () => {
               <button onClick={() => setPage(1)} disabled={page === 1}>
                 ◀◀
               </button>
-              <button
-                onClick={() => setPage(startPage - 1)}
-                disabled={currentSet === 1}
-              >
-                ◀
-              </button>
               <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-                이전
+                ◀
               </button>
 
               {Array.from({ length: btnRange }, (_, i) => {
@@ -226,14 +227,6 @@ const AdminShop = () => {
                   setPage(page + 1);
                 }}
                 disabled={page === lastPage}
-              >
-                다음
-              </button>
-              <button
-                onClick={() => {
-                  setPage(endPage + 1);
-                }}
-                disabled={currentSet === totalSet}
               >
                 ▶
               </button>

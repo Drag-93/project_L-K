@@ -2,88 +2,97 @@ import React, { useEffect, useRef, useState } from "react";
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import {
+  loadKakaoMap,
+  createKakaoMap,
+  createMarker,
+  moveMap,
+} from "../../utils/kakaoMapUtil";
 
 const Shop = () => {
-  const mapRef = useRef(null);
-  const markerRef = useRef(null);
-  const {id}=useParams()
-  
+  const mapRef = useRef(null); // kakao map instance
+  const markerRef = useRef(null); // kakao marker instance
+  const { id } = useParams();
+
+  console.log(id);
   const [selectedShop, setSelectedShop] = useState({
-    name: '',
-    address: '',
-    time:'',
-    lat: '',
-    lng: '',
-    directions : ''
+    name: "",
+    address: "",
+    time: "",
+    lat: "",
+    lng: "",
+    directions: "",
+    phonenum: "",
   });
-  const url=API_JSON_SERVER_URL
+
+  const url = API_JSON_SERVER_URL;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${API_JSON_SERVER_URL}/shop`);
+        const res = await axios.get(`${url}/shop/${id}`);
         if (res.data) {
-          setSelectedShop(res.data[id]);
+          setSelectedShop(res.data);
         }
       } catch (err) {
         console.error("데이터를 불러오는데 실패했습니다:", err);
       }
     };
     fetchData();
-  }, [id]);
+  }, [id, url]);
 
+  // 지도 생성/이동 (util사용)
   useEffect(() => {
-    if(!selectedShop) return;
+    const initOrMoveMap = async () => {
+      const lat = Number(selectedShop?.lat);
+      const lng = Number(selectedShop?.lng);
+      if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
 
-    const onLoadKakaoMap = () => {
-      window.kakao.maps.load(() => {
-        const container = document.getElementById('map');
-        const options = {
-          center: new window.kakao.maps.LatLng(selectedShop.lat, selectedShop.lng),
-          level: 1,
-        };
-        
-        const map = new window.kakao.maps.Map(container, options);
-        const marker = new window.kakao.maps.Marker({
-          position: map.getCenter(),
-        });
+      await loadKakaoMap();
 
-        marker.setMap(map);
-        mapRef.current = map;
-        markerRef.current = marker;
-        map.relayout()
-      });
+      const container = document.getElementById("map");
+      if (!container) return;
+
+      // 최초 생성
+      if (!mapRef.current) {
+        mapRef.current = createKakaoMap(container, lat, lng);
+        markerRef.current = createMarker(mapRef.current, lat, lng);
+        mapRef.current.relayout();
+
+        //  레이아웃 확정 후 중심/마커 다시 세팅
+        setTimeout(() => {
+          mapRef.current.relayout();
+          moveMap(mapRef.current, lat, lng);
+
+          const kakao = window.kakao;
+          markerRef.current?.setPosition(new kakao.maps.LatLng(lat, lng));
+        }, 0);
+
+        return;
+      }
+      // 이후 이동
+      moveMap(mapRef.current, lat, lng);
+      const kakao = window.kakao;
+      markerRef.current?.setPosition(new kakao.maps.LatLng(lat, lng));
     };
 
-    if (window.kakao && window.kakao.maps && window.kakao.maps.Map) {
-      onLoadKakaoMap();
-    } else {
-      const script = document.createElement('script');
-      script.async = true;
-      script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=616c83d358b56fc7a54d64894331e300&autoload=false`;
-      document.head.appendChild(script);
-      script.onload = onLoadKakaoMap;
-    }
-  }, []);
-
-  useEffect(() => {
-    if (mapRef.current && markerRef.current && selectedShop.lat) {
-      const { kakao } = window;
-      const moveLatLon = new kakao.maps.LatLng(selectedShop.lat, selectedShop.lng);
-      
-      mapRef.current.panTo(moveLatLon);
-      markerRef.current.setPosition(moveLatLon);
-    }
-  }, [selectedShop]);
+    initOrMoveMap();
+  }, [selectedShop?.lat, selectedShop?.lng]);
 
   return (
     <div className="shop">
       <div className="shop-con">
-        <div 
-          id="map" 
-          style={{ widdiv: '100%', maxWiddiv: '500px', height: '400px', backgroundColor: '#eee', borderRadius: '20px' }}
+        <div
+          id="map"
+          style={{
+            width: "100%",
+            maxWidth: "500px",
+            height: "400px",
+            backgroundColor: "#eee",
+            borderRadius: "20px",
+          }}
         ></div>
-        
+
         <div className="maps-bottom">
           <div className="maps-bottom-con">
             <div>
@@ -92,22 +101,30 @@ const Shop = () => {
                   <div colSpan="2">{selectedShop.name}점 오시는 방법</div>
                 </li>
               </div>
+
               <div>
                 <li>
                   <div>주소</div>
                   <div>{selectedShop.address}</div>
                 </li>
+
                 <li>
                   <div>진료시간</div>
-                  <div style={{ whiteSpace: "pre-wrap" }}>{selectedShop.time}</div>
+                  <div style={{ whiteSpace: "pre-wrap" }}>
+                    {selectedShop.time}
+                  </div>
                 </li>
+
                 <li>
                   <div>연락처</div>
                   <div>{selectedShop.phonenum}</div>
                 </li>
+
                 <li>
                   <div>오시는 길</div>
-                  <div style={{ whiteSpace: "pre-wrap" }}>{selectedShop.directions}</div>
+                  <div style={{ whiteSpace: "pre-wrap" }}>
+                    {selectedShop.directions}
+                  </div>
                 </li>
               </div>
             </div>

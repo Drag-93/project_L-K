@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
 import axios from "axios";
 
 const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
   const [detail, setDetail] = useState(null);
-  const [edit, setEdit] = useState(null);
-  const [isEdit, setIsEdit] = useState(false);
-  const [isSaving, setIsSaving] = useState(false);
   const prodUrl = API_JSON_SERVER_URL;
   // const [customer, setCustomer] = useState({});
   // const [items, setItems] = useState([]);
@@ -16,7 +13,13 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
       if (prodId == null) {
         setDetail({
           productDate: "",
-          customer: "",
+          customer: {
+            userEmail: "",
+            userName: "",
+            phonenum: "",
+            address: "",
+            request: "",
+          },
           items: [],
           totalAmount: 0,
         });
@@ -24,7 +27,6 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
       }
       const res = await axios.get(`${prodUrl}/productOrders/${prodId}`);
       setDetail(res.data);
-      setEdit(res.data);
     } catch (err) {
       alert(err);
     }
@@ -33,19 +35,55 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
     openDetail();
   }, [prodId, prodUrl]);
 
-  // console.log(detail);
-  // console.log(detail?.customer);
-  // console.log(detail?.items);
-
   const customer = detail ? detail.customer : {};
   const items = detail ? detail.items : [];
 
-  console.log(customer);
-  console.log(items);
+  const onChangeFn = (id, value) => {
+    setDetail((prev) => ({
+      ...prev,
+      // customer: { ...prev.customer, [name]: value },
+      items: prev.items.map((it) =>
+        it.id === id ? { ...it, state: value } : it,
+      ),
+    }));
+  };
 
-  const onChangeFn = (e) => {
-    const { name, value } = e.target;
-    setDetail((prev) => ({ ...prev, [name]: value }));
+  const onDeleteFn = async () => {
+    if (!window.confirm("정말 삭제 하시겠습니까?")) return;
+    try {
+      await axios.delete(`${prodUrl}/productOrders/${prodId}`);
+      alert("삭제 되었습니다");
+      onSuccess?.();
+      closeFn();
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  const onUpdateFn = async () => {
+    if (!window.confirm("수정 하시겠습니까?")) return;
+    try {
+      await axios.patch(`${prodUrl}/productOrders/${prodId}`, {
+        items: detail.items,
+      });
+      alert("수정 되었습니다.");
+      onSuccess?.();
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  const allState = useMemo(() => {
+    if (items.length === 0) return;
+    const allDone = items.every((m) => (m.state ?? "").includes("완료"));
+    return allDone ? "배송완료" : "배송준비중";
+  }, [items]);
+
+  const setAllItemsState = (value) => {
+    setDetail((prev) => ({
+      ...prev,
+      items: (prev.items ?? []).map((it) => ({ ...it, state: value })),
+    }));
   };
 
   const closeFn = () => {
@@ -82,7 +120,7 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
 
         <ul>
           <li>
-            <label htmlFor="userName">주문자</label>
+            <label htmlFor="userName">주문자명</label>
             <input
               type="text"
               name="userName"
@@ -92,12 +130,13 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
             />
           </li>
           <li>
-            <label htmlFor="productDate">주문일자</label>
+            <label htmlFor="productDate">주문시각</label>
             <input
               type="text"
               name="productDate"
               id="productDate"
               value={detail.productDate}
+              readOnly
             />
           </li>
           <li>
@@ -107,6 +146,7 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
               name="phonenum"
               id="phonenum"
               value={customer.phonenum}
+              readOnly
             />
           </li>
 
@@ -117,15 +157,18 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
               name="address"
               id="address"
               value={customer.address}
+              readOnly
             />
           </li>
           <li>
             <label htmlFor="request">요청사항</label>
-            <input
+            <textarea
               type="text"
               name="request"
               id="request"
               value={customer.request}
+              rows={2}
+              readOnly
             />
           </li>
           <li>
@@ -136,6 +179,7 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
                   <th>상품명</th>
                   <th>수량</th>
                   <th>가격</th>
+                  <th>배송현황</th>
                 </tr>
               </thead>
               <tbody>
@@ -145,12 +189,49 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
                       <td>{m.category}</td>
                       <td>{m.name}</td>
                       <td>{m.count}</td>
-                      <td>{m.totalPrice}</td>
+                      <td>{m.totalPrice.toLocaleString()}원</td>
+                      <td>
+                        <select
+                          name="state"
+                          value={m.state}
+                          onChange={(e) => onChangeFn(m.id, e.target.value)}
+                        >
+                          <option value="배송준비중">배송준비중</option>
+                          <option value="배송완료">배송완료</option>
+                        </select>
+                      </td>
                     </tr>
                   );
                 })}
               </tbody>
             </table>
+          </li>
+          <li>
+            <label htmlFor="totalAmount">총 금액</label>
+            <span>
+              <input
+                name="totalAmount"
+                id="totalAmount"
+                value={detail.totalAmount.toLocaleString()}
+                readOnly
+              />
+              원
+            </span>
+          </li>
+          <li>
+            <label>전체 배송현황</label>
+            <select
+              value={allState ?? "배송준비중"}
+              onChange={(e) => setAllItemsState(e.target.value)}
+            >
+              <option value="배송준비중">배송준비중</option>
+              <option value="배송완료">배송완료</option>
+            </select>
+          </li>
+          <li>
+            <button onClick={() => onUpdateFn()}>수정</button>
+            <button onClick={() => onDeleteFn()}>삭제</button>
+            <button onClick={() => closeFn()}>닫기</button>
           </li>
         </ul>
       </div>

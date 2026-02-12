@@ -3,7 +3,7 @@ import { API_JSON_SERVER_URL } from "../../api/commonApi";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const AdminMembersModal = ({ setAdminAddModal, memberId }) => {
+const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
   const [detail, setDetail] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
   const [postMember, setPostMember] = useState(false);
@@ -54,6 +54,7 @@ const AdminMembersModal = ({ setAdminAddModal, memberId }) => {
       await axios.post(`${memberUrl}/members`, detail);
 
       alert("추가 되었습니다.");
+      onSuccess?.();
       closeFn();
     } catch (err) {
       alert(err);
@@ -76,6 +77,7 @@ const AdminMembersModal = ({ setAdminAddModal, memberId }) => {
       const res = await axios.put(`${memberUrl}/members/${memberId}`, detail);
       alert("수정 되었습니다");
       setDetail(res.data);
+      onSuccess?.();
       closeFn();
     } catch (err) {
       alert(err);
@@ -92,6 +94,7 @@ const AdminMembersModal = ({ setAdminAddModal, memberId }) => {
       try {
         const res = await axios.delete(`${memberUrl}/members/${memberId}`);
         alert("삭제 되었습니다");
+        onSuccess?.();
         closeFn();
         navigate("/admin/members");
       } catch (err) {
