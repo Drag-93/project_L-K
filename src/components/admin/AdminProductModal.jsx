@@ -108,7 +108,6 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
           X
         </span>
         <div className="title">{detail.name}</div>
-
         <ul>
           <li>
             <label htmlFor="name">제품명</label>
