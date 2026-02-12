@@ -91,7 +91,8 @@
       "price": 20000,
       "img": "hydro1.jpg",
       "description": "보습라인 1번 상품입니다",
-      "descImg": "상세페이지 이미지 경로"
+      "descImg": "상세페이지 이미지 경로",
+      "regDate": "2026-02-1T05:56:49.676Z"
     },
     {
       "id": "2",
@@ -99,7 +100,9 @@
       "name": "수딩 토너2",
       "price": 20000,
       "img": "hydro2.jpg",
-      "description": "보습라인 2번 상품입니다"
+      "description": "보습라인 2번 상품입니다",
+      "descImg": "상세페이지 이미지 경로",
+      "regDate": "2026-02-1T05:56:49.676Z"
     },
     {
       "id": "3",
@@ -107,7 +110,9 @@
       "name": "모이스처 세럼1",
       "price": 20000,
       "img": "hydro3.jpg",
-      "description": "보습라인 3번 상품입니다"
+      "description": "보습라인 3번 상품입니다",
+      "descImg": "상세페이지 이미지 경로",
+      "regDate": "2026-02-02T05:56:49.676Z"
     },
     {
       "id": "4",
@@ -115,7 +120,9 @@
       "name": "모이스처 세럼2",
       "price": 20000,
       "img": "hydro4.jpg",
-      "description": "보습라인 4번 상품입니다"
+      "description": "보습라인 4번 상품입니다",
+      "descImg": "상세페이지 이미지 경로",
+      "regDate": "2026-02-02T05:56:49.676Z"
     },
     {
       "id": "6",
@@ -123,7 +130,9 @@
       "name": "모이스처라이저1",
       "price": 20000,
       "img": "hydro6.jpg",
-      "description": "보습라인 6번 상품입니다"
+      "description": "보습라인 6번 상품입니다",
+      "descImg": "상세페이지 이미지 경로",
+      "regDate": "2026-02-03T05:56:49.676Z"
     },
     {
       "id": "7",
@@ -131,15 +140,9 @@
       "name": "모이스처라이저2",
       "price": 20000,
       "img": "hydro7.jpg",
-      "description": "보습라인 7번 상품입니다"
-    },
-    {
-      "id": "8",
-      "category": "hydro",
-      "name": "모이스처라이저3",
-      "price": 20000,
-      "img": "hydro8.jpg",
-      "description": "보습라인 8번 상품입니다"
+      "description": "보습라인 7번 상품입니다",
+      "descImg": "상세페이지 이미지 경로",
+      "regDate": "2026-02-03T05:56:49.676Z"
     },
     {
       "id": "9",
@@ -147,7 +150,9 @@
       "name": "모이스처 마스크1",
       "price": 20000,
       "img": "hydro9.jpg",
-      "description": "보습라인 9번 상품입니다"
+      "description": "보습라인 9번 상품입니다",
+      "descImg": "상세페이지 이미지 경로",
+      "regDate": "2026-02-04T05:56:49.676Z"
     },
     {
       "id": "10",
@@ -155,7 +160,9 @@
       "name": "모이스처 마스크2",
       "price": 20000,
       "img": "hydro10.jpg",
-      "description": "보습라인 10번 상품입니다"
+      "description": "보습라인 10번 상품입니다",
+      "descImg": "상세페이지 이미지 경로",
+      "regDate": "2026-02-04T05:56:49.676Z"
     },
     {
       "id": "11",
@@ -163,15 +170,19 @@
       "name": "트러블 클렌징 폼1",
       "price": 20000,
       "img": "trouble1.jpg",
-      "description": "트러블케어라인 1번 상품입니다"
+      "description": "트러블케어라인 1번 상품입니다",
+      "descImg": "상세페이지 이미지 경로",
+      "regDate": "2026-02-05T05:56:49.676Z"
     },
     {
       "id": "12",
       "category": "trouble",
       "name": "트러블 클렌징 폼2",
-      "price": 20000,
+      "price": 25000,
       "img": "trouble2.jpg",
-      "description": "트러블케어라인 2번 상품입니다"
+      "description": "트러블케어라인 2번 상품입니다",
+      "descImg": "상세페이지 이미지 경로",
+      "regDate": "2026-02-05T05:56:49.676Z"
     },
     {
       "id": "13",
@@ -179,7 +190,9 @@
       "name": "트러블 클렌징 폼3",
       "price": 20000,
       "img": "trouble3.jpg",
-      "description": "트러블케어라인 3번 상품입니다"
+      "description": "트러블케어라인 3번 상품입니다",
+      "descImg": "상세페이지 이미지 경로",
+      "regDate": "2026-02-06T05:56:49.676Z"
     },
     {
       "id": "31",
@@ -187,7 +200,9 @@
       "name": "미백1",
       "price": 20000,
       "img": "white1.jpg",
-      "description": "미백라인 1번 상품입니다"
+      "description": "미백라인 1번 상품입니다",
+      "descImg": "상세페이지 이미지 경로",
+      "regDate": "2026-02-06T05:56:49.676Z"
     },
     {
       "id": "41",
@@ -195,7 +210,9 @@
       "name": "안티에이징1",
       "price": 20000,
       "img": "antiage1.jpg",
-      "description": "안티에이징라인 1번 상품입니다"
+      "description": "안티에이징라인 1번 상품입니다",
+      "descImg": "상세페이지 이미지 경로",
+      "regDate": "2026-02-12T05:56:49.676Z"
     },
     {
       "id": "51",
@@ -203,7 +220,39 @@
       "name": "UV1",
       "price": 20000,
       "img": "uv1.jpg",
-      "description": "UV라인 1번 상품입니다"
+      "description": "UV라인 1번 상품입니다",
+      "descImg": "상세페이지 이미지 경로",
+      "regDate": "2026-02-12T05:56:49.676Z"
+    },
+    {
+      "id": "837d",
+      "name": "선블록",
+      "category": "uv",
+      "price": 25000,
+      "img": "uv1.jpg",
+      "description": "상품추가 테스트입니다.",
+      "descImg": "",
+      "regDate": "2026-02-12T05:56:49.676Z"
+    },
+    {
+      "id": "dc22",
+      "name": "수딩 토너1",
+      "category": "hydro",
+      "price": 10000,
+      "img": "hydro1.jpg",
+      "description": "상품추가 후 리스트갱신 테스트",
+      "descImg": "hydrodetail1.jpg",
+      "regDate": "2026-02-12T05:56:49.676Z"
+    },
+    {
+      "id": "da3c",
+      "name": "수딩 토너1",
+      "category": "hydro",
+      "price": 30000,
+      "img": "hydro1.jpg",
+      "description": "상품추가 후 리스트 갱신 테스트 22222",
+      "descImg": "hydrod1_desc.jpg",
+      "regDate": "2026-02-12T05:57:17.107Z"
     }
   ],
   "productReview": [
@@ -215,7 +264,10 @@
       "userName": "test1",
       "date": "2026.02.05",
       "score": 5,
-      "like": 0,
+      "like": 3,
+      "likedUsers": [
+        "test"
+      ],
       "description": "악건성 피부여서 여러 보습제품 사용해 봤지만, 이 제품으로 정착할것 같습니다. 리앤킴 피부과 시술 때 사용하신다더니, 품질 확실하네요. 추천합니다!"
     },
     {
@@ -227,6 +279,7 @@
       "date": "2026. 2. 9. 11:04:38",
       "score": 5,
       "like": 0,
+      "likedUsers": [],
       "description": "수딩 토너1 후기 테스트111, 후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다."
     },
     {
@@ -238,7 +291,19 @@
       "date": "2026-02-10 10:05:04",
       "score": 2,
       "like": 0,
+      "likedUsers": [],
       "description": "수딩 토너1 후기테스트2222222 후기 수정을 테스트합니다. 다시 테스트합니다."
+    },
+    {
+      "id": "467d",
+      "category": "hydro",
+      "productId": "1",
+      "userEmail": "test",
+      "userName": "test",
+      "date": "2026-02-12T04:07:34.240Z",
+      "score": 5,
+      "viewrate": 0,
+      "description": "후기등록 date 확인용입니다."
     }
   ],
   "reservation": [
