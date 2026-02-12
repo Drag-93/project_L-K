@@ -10,6 +10,7 @@ const AdminNotice = () => {
   const [modalId, setModalId] = useState(null);
   const [selectedId, setSelectedId] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [sortType, setSortType] = useState("Latest");
   // const [categoryFilter, setCategoryFilter] = useState("ALL");
 
   const [page, setPage] = useState(1);
@@ -48,6 +49,16 @@ const AdminNotice = () => {
     return filtered.slice(startPost, endPost);
   }, [filtered, startPost, endPost]);
 
+  const sortedList = useMemo(() => {
+    return [...pagedList].sort((a, b) => {
+      if (sortType === "Latest") return new Date(b.date) - new Date(a.date);
+      if (sortType === "Earliest") return new Date(a.date) - new Date(b.date);
+      if (sortType === "Highest") return b.viewrate - a.viewrate;
+      if (sortType === "Lowest") return a.viewrate - b.viewrate;
+      return 0;
+    });
+  }, [sortType, pagedList]);
+
   useEffect(() => {
     if (page > totalPages) setPage(totalPages);
   }, [page, totalPages]);
@@ -61,7 +72,7 @@ const AdminNotice = () => {
   }, [searchText]);
 
   //목록 불러오기
-  const noticeListFn = async () => {
+  const openListFn = async () => {
     try {
       const res = await axios.get(`${noticeUrl}/notice`);
       setNoticeList(res.data);
@@ -70,7 +81,7 @@ const AdminNotice = () => {
     }
   };
   useEffect(() => {
-    noticeListFn();
+    openListFn();
   }, []);
 
   //보이지 않는 선택 제거
@@ -114,7 +125,7 @@ const AdminNotice = () => {
       setNoticeList((prev) =>
         prev.filter((n) => !idsToDelete.includes(String(n.id))),
       );
-      await noticeListFn();
+      await openListFn();
       setSelectedId([]);
       alert("삭제 되었습니다.");
     } catch (err) {
@@ -132,7 +143,7 @@ const AdminNotice = () => {
         <AdminNoticeModal
           setAdminAddModal={setAdminAddModal}
           noticeId={modalId}
-          onSuccess={noticeListFn}
+          onSuccess={openListFn}
         />
       )}
       <div className="adminNotice">
@@ -148,44 +159,43 @@ const AdminNotice = () => {
                   />
                 </div>
               </li>
-              {/* <li>
-                <div className="categorySelector">
+              <li>
+                <div className="sortSelector">
                   <select
-                    value={categoryFilter}
-                    onChange={(e) => setCategoryFilter(e.target.value)}
+                    value={sortType}
+                    onChange={(e) => setSortType(e.target.value)}
                   >
-                    <option value="ALL">전체</option>
-                    <option value="hydro">보습</option>
-                    <option value="antiage">항산화</option>
-                    <option value="trouble">트러블케어</option>
-                    <option value="uv">자외선차단</option>
-                    <option value="white">미백</option>
+                    <option value="Latest">등록순 (최신순)</option>
+                    <option value="Earliest">등록순 (과거순)</option>
+                    <option value="Highest">조회수 (높은순)</option>
+                    <option value="Lowest">조회순 (낮은순)</option>
                   </select>
                 </div>
-              </li> */}
+              </li>
             </ul>
           </div>
           <table>
             <thead>
               <tr>
-                <th>선택</th>
+                <th>
+                  <input type="checkbox" onChange={onSelectAllFn} />
+                </th>
                 <th>글번호</th>
                 <th>작성일</th>
                 <th>제목</th>
                 <th>내용</th>
                 <th>조회수</th>
-                <th>상세내용</th>
               </tr>
             </thead>
             <tbody>
-              {pagedList.map((el) => {
+              {sortedList.map((el) => {
                 return (
                   <tr
                     key={el.id}
-                    onClick={() => toggleSelect(el.id)}
-                    className={
-                      selectedId.includes(String(el.id)) ? "selected" : ""
-                    }
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      adminModalFn(el.id);
+                    }}
                   >
                     <td onClick={(e) => e.stopPropagation()}>
                       <input
@@ -203,15 +213,6 @@ const AdminNotice = () => {
                         : el.description}
                     </td>
                     <td>{el.viewrate}</td>
-
-                    <td
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        adminModalFn(el.id);
-                      }}
-                    >
-                      수정하기
-                    </td>
                   </tr>
                 );
               })}
@@ -222,14 +223,8 @@ const AdminNotice = () => {
               <button onClick={() => setPage(1)} disabled={page === 1}>
                 ◀◀
               </button>
-              <button
-                onClick={() => setPage(startPage - 1)}
-                disabled={currentSet === 1}
-              >
-                ◀
-              </button>
               <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-                이전
+                ◀
               </button>
 
               {Array.from({ length: btnRange }, (_, i) => {
@@ -253,14 +248,6 @@ const AdminNotice = () => {
                   setPage(page + 1);
                 }}
                 disabled={page === lastPage}
-              >
-                다음
-              </button>
-              <button
-                onClick={() => {
-                  setPage(endPage + 1);
-                }}
-                disabled={currentSet === totalSet}
               >
                 ▶
               </button>

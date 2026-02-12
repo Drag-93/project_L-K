@@ -10,6 +10,8 @@ const AdminMembers = () => {
   const [selectedId, setSelectedId] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [roleFilter, setRoleFilter] = useState("ALL");
+  const [genderFilter, setGenderFilter] = useState("ALL");
+  const [sortType, setSortType] = useState("");
 
   const [page, setPage] = useState(1);
 
@@ -19,6 +21,7 @@ const AdminMembers = () => {
 
     return memberList.filter((m) => {
       if (roleFilter !== "ALL" && m.role !== roleFilter) return false;
+      if (genderFilter !== "ALL" && m.gender !== genderFilter) return false;
 
       if (!q) return true;
 
@@ -37,7 +40,7 @@ const AdminMembers = () => {
         .toLowerCase();
       return searchTarget.includes(q);
     });
-  }, [memberList, searchText, roleFilter]);
+  }, [memberList, searchText, roleFilter, genderFilter]);
 
   const pageSize = 10;
   const totalPost = filtered.length;
@@ -57,6 +60,16 @@ const AdminMembers = () => {
   const pagedList = useMemo(() => {
     return filtered.slice(startPost, endPost);
   }, [filtered, startPost, endPost]);
+
+  const sortedList = useMemo(() => {
+    return [...pagedList].sort((a, b) => {
+      if (sortType === "Male")
+        return parseDate(b.productDate) - parseDate(a.productDate);
+      if (sortType === "Female")
+        return parseDate(a.productDate) - parseDate(b.productDate);
+      return 0;
+    });
+  }, [sortType, pagedList]);
 
   useEffect(() => {
     if (page > totalPages) setPage(totalPages);
@@ -133,6 +146,7 @@ const AdminMembers = () => {
         <AdminMembersModal
           setAdminAddModal={setAdminAddModal}
           memberId={modalId}
+          onSuccess={memberListFn}
         />
       )}
       <div className="adminMembers">
@@ -160,12 +174,26 @@ const AdminMembers = () => {
                   </select>
                 </div>
               </li>
+              <li>
+                <div className="genderSelector">
+                  <select
+                    value={genderFilter}
+                    onChange={(e) => setGenderFilter(e.target.value)}
+                  >
+                    <option value="ALL">전체</option>
+                    <option value="남">남</option>
+                    <option value="여">여</option>
+                  </select>
+                </div>
+              </li>
             </ul>
           </div>
           <table>
             <thead>
               <tr>
-                <th>선택</th>
+                <th>
+                  <input type="checkbox" onChange={onSelectAllFn} />
+                </th>
                 <th>이름</th>
                 <th>이메일</th>
                 <th>연락처</th>
@@ -174,7 +202,6 @@ const AdminMembers = () => {
                 <th>주소?지역</th>
                 <th>특이사항</th>
                 <th>권한</th>
-                <th>상세보기</th>
               </tr>
             </thead>
             <tbody>
@@ -182,10 +209,10 @@ const AdminMembers = () => {
                 return (
                   <tr
                     key={el.id}
-                    onClick={() => toggleSelect(el.id)}
-                    className={
-                      selectedId.includes(String(el.id)) ? "selected" : ""
-                    }
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      adminModalFn(el.id);
+                    }}
                   >
                     <td onClick={(e) => e.stopPropagation()}>
                       <input
@@ -205,15 +232,7 @@ const AdminMembers = () => {
                         ? `${el.remark.slice(0, 10)}...`
                         : el.remark}
                     </td>
-                    <td>{el.role}</td>
-                    <td
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        adminModalFn(el.id);
-                      }}
-                    >
-                      보기
-                    </td>
+                    <td>{el.role === "ROLE_ADMIN" ? "관리자" : "일반회원"}</td>
                   </tr>
                 );
               })}
@@ -224,14 +243,8 @@ const AdminMembers = () => {
               <button onClick={() => setPage(1)} disabled={page === 1}>
                 ◀◀
               </button>
-              <button
-                onClick={() => setPage(startPage - 1)}
-                disabled={currentSet === 1}
-              >
-                ◀
-              </button>
               <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-                이전
+                ◀
               </button>
 
               {Array.from({ length: btnRange }, (_, i) => {
@@ -255,14 +268,6 @@ const AdminMembers = () => {
                   setPage(page + 1);
                 }}
                 disabled={page === lastPage}
-              >
-                다음
-              </button>
-              <button
-                onClick={() => {
-                  setPage(endPage + 1);
-                }}
-                disabled={currentSet === totalSet}
               >
                 ▶
               </button>

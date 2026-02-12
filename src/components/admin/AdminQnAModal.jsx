@@ -202,7 +202,7 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
               id="question"
               value={isEditing ? edit.question : detail.question}
               onChange={onChangeFn}
-              rows={6}
+              rows={4}
               readOnly={!isEditing}
             />
           </li>
@@ -243,7 +243,7 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
               value={isAnswering ? editAnswer.answer : (detail.answer ?? "")}
               placeholder={detail.answer ? "" : "답변 내용 작성."}
               onChange={onAnswerChangeFn}
-              rows={6}
+              rows={4}
               readOnly={!isAnswering}
             />
           </li>
@@ -268,7 +268,7 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
             <button onClick={() => closeFn()}>닫기</button>
           </li> */}
           <li>
-            {detail.answer ? (
+            {detail.answer && !isAnswering ? (
               <button onClick={onEditAnswerFn}> 답변수정하기</button>
             ) : (
               <button onClick={onSaveAnswerFn}>답변저장하기</button>

@@ -1,0 +1,241 @@
+/* =========================
+  AdminProductOrdersModal
+========================= */
+.adminProductOrdersModal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.adminProductOrdersModal-con {
+  position: relative;
+  width: min(920px, 100%);
+  max-height: 88vh;
+  overflow: auto;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25);
+  padding: 22px 22px 18px;
+}
+
+/* close */
+.adminProductOrdersModal .close {
+  position: sticky; /* 스크롤 내려도 상단에 유지 */
+  top: 0;
+  float: right;
+  display: inline-flex;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: #f3f4f6;
+  color: #111;
+  font-weight: 700;
+  user-select: none;
+  margin-left: auto;
+  z-index: 999;
+}
+
+.adminProductOrdersModal .close:hover {
+  background: #e5e7eb;
+}
+
+/* loading */
+.adminProductOrdersModal .loading {
+  padding: 60px 0;
+  text-align: center;
+}
+.adminProductOrdersModal .loading h1 {
+  font-size: 18px;
+  color: #374151;
+}
+
+/* title */
+.adminProductOrdersModal .title ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 14px;
+}
+.adminProductOrdersModal .title h1 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0;
+}
+
+/* form list layout */
+.adminProductOrdersModal-con > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+
+/* each row */
+.adminProductOrdersModal-con > ul > li {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.adminProductOrdersModal-con label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #374151;
+}
+
+.adminProductOrdersModal-con input,
+.adminProductOrdersModal-con textarea,
+.adminProductOrdersModal-con select {
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #111827;
+  outline: none;
+}
+
+.adminProductOrdersModal-con textarea {
+  resize: vertical;
+  line-height: 1.4;
+}
+
+.adminProductOrdersModal-con input:read-only,
+.adminProductOrdersModal-con textarea:read-only {
+  background: #f9fafb;
+  color: #374151;
+}
+
+/* total amount row: label + span */
+.adminProductOrdersModal-con > ul > li span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.adminProductOrdersModal-con > ul > li span input {
+  max-width: 240px;
+}
+
+/* =========================
+  Table
+========================= */
+.adminProductOrdersModal-con table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.adminProductOrdersModal-con thead th {
+  background: #f3f4f6;
+  color: #111827;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.adminProductOrdersModal-con tbody td {
+  font-size: 13px;
+  padding: 12px 10px;
+  border-bottom: 1px solid #f1f5f9;
+  text-align: center;
+  color: #111827;
+}
+
+.adminProductOrdersModal-con tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.adminProductOrdersModal-con table select {
+  max-width: 140px;
+  margin: 0 auto;
+}
+
+/* 테이블 들어간 li는 1열로 */
+.adminProductOrdersModal-con > ul > li:has(table) {
+  grid-template-columns: 1fr;
+}
+
+/* =========================
+  Buttons row
+========================= */
+.adminProductOrdersModal-con > ul > li:last-child {
+  grid-template-columns: 1fr;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 6px;
+}
+
+.adminProductOrdersModal-con button {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  background: #111827;
+  color: #fff;
+}
+
+.adminProductOrdersModal-con button:hover {
+  opacity: 0.9;
+}
+
+/* 버튼별 컬러(순서: 수정/삭제/닫기) */
+.adminProductOrdersModal-con > ul > li:last-child button:nth-child(1) {
+  background: #2563eb; /* 수정 */
+}
+.adminProductOrdersModal-con > ul > li:last-child button:nth-child(2) {
+  background: #dc2626; /* 삭제 */
+}
+.adminProductOrdersModal-con > ul > li:last-child button:nth-child(3) {
+  background: #374151; /* 닫기 */
+}
+
+/* =========================
+  Responsive
+========================= */
+@media (max-width: 720px) {
+  .adminProductOrdersModal-con {
+    padding: 18px 16px 14px;
+  }
+
+  .adminProductOrdersModal-con > ul > li {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  .adminProductOrdersModal-con label {
+    font-size: 12px;
+  }
+
+  .adminProductOrdersModal-con table select {
+    max-width: 100%;
+  }
+
+  .adminProductOrdersModal-con > ul > li:last-child {
+    justify-content: stretch;
+  }
+
+  .adminProductOrdersModal-con > ul > li:last-child button {
+    width: 100%;
+  }
+}

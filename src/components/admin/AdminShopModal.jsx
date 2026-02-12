@@ -2,12 +2,21 @@ import React, { useEffect, useRef, useState } from "react";
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
 import axios from "axios";
 import AdminIsMapModal from "./AdminIsMapModal";
+import {
+  createKakaoMap,
+  createMarker,
+  loadKakaoMap,
+} from "../../utils/kakaoMapUtil";
 
 const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
   const [detail, setDetail] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
   const [isMapModalOpen, setIsMapModalOpen] = useState(false);
   const shopUrl = API_JSON_SERVER_URL;
+
+  const mapRef = useRef(null);
+  const mapInstanceRef = useRef(null);
+  const markerRef = useRef(null);
 
   const openDetail = async () => {
     try {
@@ -30,7 +39,54 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
   };
   useEffect(() => {
     openDetail();
-  }, [shopId, shopUrl]);
+  }, [shopId]);
+
+  const handlePickLocation = ({ address, lat, lng }) => {
+    setDetail((prev) => ({
+      ...prev,
+      address: address ?? prev.address,
+      lat,
+      lng,
+    }));
+    setIsMapModalOpen(false);
+  };
+
+  // 지도 최초 생성: SDK 로드 후 map 생성 + marker 생성
+  useEffect(() => {
+    if (!detail) return;
+    if (!mapRef.current) return;
+    if (mapInstanceRef.current) return; // 이미 생성됐으면 스킵
+
+    const initMap = async () => {
+      await loadKakaoMap();
+
+      const lat = Number(detail.lat) || 37.5665;
+      const lng = Number(detail.lng) || 126.978;
+
+      mapInstanceRef.current = createKakaoMap(mapRef.current, lat, lng);
+      markerRef.current = createMarker(mapInstanceRef.current, lat, lng);
+    };
+
+    initMap();
+  }, [detail]);
+
+  //lat/lng 바뀌면 지도 중심 + 마커 위치 이동
+  useEffect(() => {
+    if (!detail) return;
+    if (!mapInstanceRef.current) return;
+
+    const lat = Number(detail.lat);
+    const lng = Number(detail.lng);
+    if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+
+    // util moveMap 있으면 사용
+    moveMap(mapInstanceRef.current, lat, lng);
+
+    // 마커 업데이트
+    const kakao = window.kakao;
+    const pos = new kakao.maps.LatLng(lat, lng);
+    if (markerRef.current) markerRef.current.setPosition(pos);
+  }, [detail?.lat, detail?.lng]);
 
   const onChangeFn = (e) => {
     const { name, value } = e.target;
@@ -95,63 +151,6 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
     }
   };
 
-  // ✅ 지도/마커/컨테이너 ref
-  const mapElRef = useRef(null);
-  const mapRef = useRef(null);
-  const markerRef = useRef(null);
-
-  // ✅ 지도 최초 1회 생성 (detail 로딩되고 DOM 준비된 후)
-  useEffect(() => {
-    if (!detail) return;
-    if (!mapElRef.current) return;
-    if (!window.kakao?.maps) return; // SDK 로딩 안 된 경우 방어
-
-    // 좌표 없으면(신규등록) 기본 좌표
-    const lat = Number(detail.lat) || 37.5665;
-    const lng = Number(detail.lng) || 126.978;
-
-    // 이미 만든 지도면 재생성 X
-    if (mapRef.current) return;
-
-    const center = new window.kakao.maps.LatLng(lat, lng);
-    const map = new window.kakao.maps.Map(mapElRef.current, {
-      center,
-      level: 3,
-    });
-
-    const marker = new window.kakao.maps.Marker({ position: center });
-    marker.setMap(map);
-
-    mapRef.current = map;
-    markerRef.current = marker;
-  }, [detail]);
-
-  // ✅ lat/lng 바뀔 때마다 지도 중심/마커 갱신
-  useEffect(() => {
-    if (!detail) return;
-    if (!mapRef.current || !markerRef.current) return;
-
-    const lat = Number(detail.lat);
-    const lng = Number(detail.lng);
-
-    // 입력이 아직 숫자가 아니면(빈값/문자) 갱신하지 않음
-    if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
-
-    const pos = new window.kakao.maps.LatLng(lat, lng);
-    mapRef.current.setCenter(pos);
-    markerRef.current.setPosition(pos);
-  }, [detail?.lat, detail?.lng]);
-
-  // ✅ 지도 모달에서 좌표/주소 받아서 detail에 주입
-  const handlePickLocation = ({ address, lat, lng }) => {
-    setDetail((prev) => ({
-      ...prev,
-      address,
-      lat: String(lat),
-      lng: String(lng),
-    }));
-    setIsMapModalOpen(false);
-  };
   if (!detail) {
     return (
       <div className="adminShopModal">
@@ -239,7 +238,7 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
             <li>
               <label htmlFor="subway">지도</label>
               <div
-                ref={mapElRef}
+                ref={mapRef}
                 style={{
                   width: 300,
                   height: 260,

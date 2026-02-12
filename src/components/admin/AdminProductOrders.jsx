@@ -13,6 +13,7 @@ const AdminProductOrders = () => {
   const [adminAddModal, setAdminAddModal] = useState(false);
   const [modalId, setModalId] = useState(null);
   const [stateFilter, setStateFilter] = useState("ALL");
+  const [sortType, setSortType] = useState("Latest");
 
   const openListFn = async () => {
     const res = await axios.get(`${prodUrl}/productOrders`);
@@ -22,15 +23,26 @@ const AdminProductOrders = () => {
     openListFn();
   }, [prodUrl]);
 
+  const allState = (m) => {
+    const items = m?.items ?? [];
+    if (items.length === 0) return "배송준비중";
+    const allDone = items.every((it) => (it.state ?? "").includes("완료"));
+    return allDone ? "배송완료" : "배송준비중";
+  };
+
   const filtered = useMemo(() => {
     const q = searchText.trim().toLowerCase();
     return prodList.filter((m) => {
-      if (stateFilter !== "ALL" && m.state !== stateFilter) return false;
+      // if (stateFilter !== "ALL" && m.items.state !== stateFilter) return false;
+      if (stateFilter !== "ALL" && allState(m) !== stateFilter) return false;
       if (!q) return true;
 
       const itemText = (m.items ?? [])
         .map((item) =>
-          [item.name, item.category].filter(Boolean).join(" ").toLowerCase(),
+          [item.name, item.category, item.state]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase(),
         )
         .join(" ");
 
@@ -43,7 +55,7 @@ const AdminProductOrders = () => {
         .join(" ")
         .toLowerCase();
 
-      return `${customerText}${itemText}`.includes(q);
+      return `${customerText} ${itemText}`.includes(q);
     });
   }, [prodList, searchText, stateFilter]);
 
@@ -64,7 +76,27 @@ const AdminProductOrders = () => {
 
   const pagedList = useMemo(() => {
     return filtered.slice(startPost, endPost);
-  }, [filtered, page]);
+  }, [filtered, startPost, endPost]);
+
+  // productOrders("2025. 12. 11. 오후 2:35:36")에서 날짜만 추출
+  const parseDate = (str) => {
+    if (!str) return 0;
+    const match = str.match(/(\d{4})\.\s*(\d{1,2})\.\s*(\d{1,2})\./);
+    if (!match) return 0;
+    const [, year, month, day] = match;
+    return new Date(Number(year), Number(month) - 1, Number(day)).getTime();
+  };
+
+  const sortedList = useMemo(() => {
+    return [...pagedList].sort((a, b) => {
+      if (sortType === "Latest")
+        return parseDate(b.productDate) - parseDate(a.productDate);
+      if (sortType === "Earliest")
+        return parseDate(a.productDate) - parseDate(b.productDate);
+      return 0;
+    });
+  }, [sortType, pagedList]);
+  // console.log("sortType", sortType);
 
   const toggleSelect = (id) => {
     const key = String(id);
@@ -104,6 +136,14 @@ const AdminProductOrders = () => {
       alert(err);
     }
   };
+  console.log(
+    "filtered len",
+    filtered.length,
+    "page",
+    page,
+    "startPost",
+    startPost,
+  );
 
   if (!prodList) return;
   return (
@@ -129,7 +169,18 @@ const AdminProductOrders = () => {
                 </div>
               </li>
               <li>
-                <div className="answerStateSelector">
+                <div className="stateSelector">
+                  <select
+                    value={sortType}
+                    onChange={(e) => setSortType(e.target.value)}
+                  >
+                    <option value="Latest">등록순 (최신순)</option>
+                    <option value="Earliest">등록순 (과거순)</option>
+                  </select>
+                </div>
+              </li>
+              <li>
+                <div className="stateSelector">
                   <select
                     value={stateFilter}
                     onChange={(e) => setStateFilter(e.target.value)}
@@ -146,7 +197,9 @@ const AdminProductOrders = () => {
           <table>
             <thead>
               <tr>
-                <th>선택</th>
+                <th>
+                  <input type="checkbox" onChange={onSelectAllFn} />
+                </th>
                 <th>주문일</th>
                 <th>주문자</th>
                 <th>주문 품목</th>
@@ -154,16 +207,18 @@ const AdminProductOrders = () => {
                 <th>총 금액</th>
                 <th>요청사항</th>
                 <th>배송 상태</th>
-                <th>상세보기</th>
               </tr>
             </thead>
             <tbody>
-              {pagedList.map((el) => {
+              {sortedList.map((el) => {
                 const itemNames = el.items?.flatMap((m) => m.name).join(",");
                 const itemQty = el.items?.reduce((sum, m) => sum + m.count, 0);
+                const allDone = el.items?.every((it) =>
+                  (it.state ?? "").includes("완료"),
+                );
                 return (
-                  <tr key={el.id}>
-                    <td>
+                  <tr key={el.id} onClick={() => adminModalFn(el.id)}>
+                    <td onClick={(e) => e.stopPropagation()}>
                       <input
                         type="checkbox"
                         checked={selectedId.includes(String(el.id))}
@@ -188,10 +243,7 @@ const AdminProductOrders = () => {
                         ? `${el.customer.request.slice(0, 10)}...`
                         : el.customer.request}
                     </td>
-                    <td>배송상태추가</td>
-                    <td>
-                      <button onClick={() => adminModalFn(el.id)}>보기</button>
-                    </td>
+                    <td>{allDone ? "배송완료" : "배송준비중"}</td>
                   </tr>
                 );
               })}
@@ -202,14 +254,8 @@ const AdminProductOrders = () => {
               <button onClick={() => setPage(1)} disabled={page === 1}>
                 ◀◀
               </button>
-              <button
-                onClick={() => setPage(startPage - 1)}
-                disabled={currentSet === 1}
-              >
-                ◀
-              </button>
               <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-                이전
+                ◀
               </button>
 
               {Array.from({ length: btnRange }, (_, i) => {
@@ -234,16 +280,9 @@ const AdminProductOrders = () => {
                 }}
                 disabled={page === lastPage}
               >
-                다음
-              </button>
-              <button
-                onClick={() => {
-                  setPage(endPage + 1);
-                }}
-                disabled={currentSet === totalSet}
-              >
                 ▶
               </button>
+
               <button
                 onClick={() => {
                   setPage(lastPage);
@@ -255,11 +294,11 @@ const AdminProductOrders = () => {
             </div>
             <ul>
               <li>
-                <button onClick={onSelectAllFn}>
+                {/* <button onClick={onSelectAllFn}>
                   {selectedId.length !== pagedList.length
                     ? "전체선택"
                     : "선택해제"}
-                </button>
+                </button> */}
                 {/* <button onClick={() => adminModalFn(null)}>추가</button> */}
                 <button onClick={() => onDeleteSelectedFn()}>삭제</button>
               </li>

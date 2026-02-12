@@ -1,108 +1,71 @@
-/* =========================================================
-   AdminQnAModal ONLY
-   ========================================================= */
-
-.adminQnAModal,
-.adminQnAModal * {
-  box-sizing: border-box;
-}
-
-/* -------------------------
-   Overlay
-------------------------- */
+/* ✅ 모달 배경: 화면에 고정, 페이지 스크롤 안 생기게 */
 .adminQnAModal {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(10, 18, 40, 0.55);
+  background: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  flex-direction: column; /* ⭐ 세로로 쌓기 */
+  align-items: center;
+  justify-content: center; /* ⭐ 화면 중앙에 고정 */
+
+  padding: 16px;
+
+  /* ⭐ 바깥(페이지) 스크롤 차단 */
+  overflow: hidden;
+}
+
+/* ✅ 문의/답변 카드 공통: 폭 줄이고, 전체 높이를 화면 안에 맞춤 */
+.adminQnAModal-con,
+.adminQnAModalAnswer-con {
+  width: min(720px, 100%);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ 두 카드가 합쳐서 90vh 안에 들어오도록 컨트롤 */
+.adminQnAModal-con {
+  position: relative;
+  padding: 16px;
+  /* 문의영역이 너무 커지지 않게 제한 */
+  max-height: 48vh;
+  overflow: hidden; /* 문의 영역 자체 스크롤도 막음(텍스트는 textarea 안에서 스크롤) */
+}
+
+.adminQnAModalAnswer-con {
+  margin-top: 10px;
+  padding: 14px 16px;
+
+  /* 답변영역도 화면 넘지 않게 */
+  max-height: 38vh;
+  overflow: hidden;
+}
+
+/* ✅ close 버튼 클릭 안 막히게 */
+.adminQnAModal .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  padding: 18px;
-}
-
-/* -------------------------
-   Left Panel (문의 내용)
-------------------------- */
-.adminQnAModal-con {
-  width: 560px;
-  max-width: 94vw;
-
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25);
-
-  padding: 18px 18px 16px;
-  position: relative;
-}
-
-/* -------------------------
-   Right Panel (관리자 답변)
-------------------------- */
-.adminQnAModalAnswer-con {
-  width: 560px;
-  max-width: 94vw;
-
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25);
-
-  padding: 18px 18px 16px;
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-}
-
-/* -------------------------
-   Close Button
-------------------------- */
-.adminQnAModal .close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-
-  width: 36px;
-  height: 36px;
-
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
 
   cursor: pointer;
-  font-weight: 900;
-
-  background: #f3f6ff;
-  border: 1px solid #e3e8ff;
+  user-select: none;
+  background: #f1f5f9;
+  font-weight: 800;
 }
 
-.adminQnAModal .close:hover {
-  background: #eaf0ff;
-}
-
-/* -------------------------
-   Title
-------------------------- */
-.adminQnAModal .title {
-  padding-right: 50px;
-  margin-bottom: 14px;
-  text-align: center;
-}
-
-.adminQnAModal .title h1 {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 900;
-  color: #1f2a44;
-}
-
-/* -------------------------
-   Form Layout
-------------------------- */
-.adminQnAModal-con > ul,
-.adminQnAModalAnswer-con > ul {
+/* ✅ 문의 폼 레이아웃 */
+.adminQnAModal-con > ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -110,188 +73,88 @@
   gap: 10px;
 }
 
-.adminQnAModal-con li,
-.adminQnAModalAnswer-con li {
+.adminQnAModal-con > ul > li {
   display: grid;
-  gap: 6px;
+  grid-template-columns: 90px 1fr;
+  gap: 8px;
+  align-items: center;
 }
 
-/* -------------------------
-   Labels
-------------------------- */
-.adminQnAModal label,
-.adminQnAModalAnswer-con label {
+.adminQnAModal label {
   font-size: 12px;
   font-weight: 800;
-  color: #3a4563;
+  color: #374151;
 }
 
-/* -------------------------
-   Inputs / Textarea
-------------------------- */
 .adminQnAModal input,
-.adminQnAModal textarea,
-.adminQnAModalAnswer-con input,
-.adminQnAModalAnswer-con textarea {
+.adminQnAModal textarea {
   width: 100%;
-  border: 1px solid #d9dde7;
-  border-radius: 12px;
-  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 8px 10px;
   font-size: 13px;
   outline: none;
-  background: #fff;
-
-  transition:
-    border-color 0.15s ease,
-    box-shadow 0.15s ease;
 }
 
-.adminQnAModal textarea,
-.adminQnAModalAnswer-con textarea {
-  resize: vertical;
-  min-height: 260px;
+.adminQnAModal textarea {
+  resize: none; /* ⭐ 화면에 맞추려고 일단 고정 */
+  overflow: auto; /* ⭐ 내용 많으면 textarea 내부에서만 스크롤 */
+  line-height: 1.35;
 }
 
-.adminQnAModal input:focus,
-.adminQnAModal textarea:focus,
-.adminQnAModalAnswer-con input:focus,
-.adminQnAModalAnswer-con textarea:focus {
-  border-color: #6b7cff;
-  box-shadow: 0 0 0 3px rgba(107, 124, 255, 0.18);
+/* ✅ 질문 textarea 높이 줄이기 (rows 무시하고 CSS로 고정) */
+#question {
+  height: 140px; /* 필요하면 110~160 사이로 조절 */
 }
 
-/* readonly */
-.adminQnAModal input[readonly],
-.adminQnAModal textarea[readonly],
-.adminQnAModalAnswer-con input[readonly],
-.adminQnAModalAnswer-con textarea[readonly] {
-  background: #f7f8fc;
-  color: #2c3553;
+/* ✅ 답변 textarea 높이 줄이기 */
+#answer {
+  height: 160px; /* 필요하면 120~180 사이로 조절 */
 }
 
-/* =========================================================
-   Left Panel Footer Buttons
-   ========================================================= */
-
+/* ✅ footer 버튼 영역도 공간 적게 */
 .adminQnAModalFooter {
-  margin-top: 14px;
-  display: flex;
-  justify-content: flex-end;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eef2f7;
 }
 
 .adminQnAModalFooter-con {
   display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.adminQnAModal button {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  background: #111827;
+  color: #fff;
+}
+
+/* ✅ 답변 영역 레이아웃 */
+.adminQnAModalAnswer-con ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
   gap: 10px;
 }
 
-.adminQnAModalFooter button {
-  height: 40px;
-  min-width: 100px;
-  padding: 0 14px;
-
-  border-radius: 12px;
-  border: 1px solid #d9dde7;
-  background: #fff;
-
-  cursor: pointer;
-  font-weight: 900;
-  font-size: 13px;
-
-  transition: 0.12s;
+.adminQnAModalAnswer-con li {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 8px;
+  align-items: start;
 }
 
-.adminQnAModalFooter button:hover {
-  background: #f2f5ff;
-  border-color: #c9d1ff;
-}
-
-/* 삭제 버튼 */
-.adminQnAModalFooter button:nth-child(2) {
-  border-color: #ffd2d2;
-  background: #fff5f5;
-  color: #b42318;
-}
-
-.adminQnAModalFooter button:nth-child(2):hover {
-  background: #ffecec;
-}
-
-/* =========================================================
-   Answer Panel Footer Buttons
-   ========================================================= */
-
-/* 마지막 li = 버튼 영역 */
-.adminQnAModalAnswer-con > ul > li:last-child {
+.adminQnAModalAnswer-con li:last-child {
+  grid-template-columns: 1fr;
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
-  flex-wrap: wrap;
-
-  margin-top: 10px;
-  padding-top: 12px;
-
-  border-top: 1px solid #eef1f7;
-}
-
-/* 버튼 공통 */
-.adminQnAModalAnswer-con > ul > li:last-child button {
-  height: 40px;
-  min-width: 110px;
-  padding: 0 14px;
-
-  border-radius: 12px;
-  border: 1px solid #d9dde7;
-  background: #fff;
-
-  cursor: pointer;
-  font-weight: 900;
-  font-size: 13px;
-
-  transition: 0.12s;
-}
-
-.adminQnAModalAnswer-con > ul > li:last-child button:hover {
-  background: #f2f5ff;
-  border-color: #c9d1ff;
-}
-
-/* Primary (답변하기 / 저장하기) */
-.adminQnAModalAnswer-con > ul > li:last-child button:first-child {
-  background: #4b63ff;
-  border-color: #4b63ff;
-  color: white;
-}
-
-.adminQnAModalAnswer-con > ul > li:last-child button:first-child:hover {
-  background: #3f58ff;
-}
-
-/* 닫기 버튼 */
-.adminQnAModalAnswer-con > ul > li:last-child button:last-child {
-  background: #f7f8fc;
-}
-
-.adminQnAModalAnswer-con > ul > li:last-child button:last-child:hover {
-  background: #eef1f7;
-}
-
-/* =========================================================
-   Responsive
-   ========================================================= */
-@media (max-width: 1100px) {
-  .adminQnAModal {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .adminQnAModal-con,
-  .adminQnAModalAnswer-con {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .adminQnAModal textarea,
-  .adminQnAModalAnswer-con textarea {
-    min-height: 200px;
-  }
+  gap: 8px;
 }
