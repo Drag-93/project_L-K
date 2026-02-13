@@ -1,18 +1,18 @@
 /* ===============================
     AdminReservationModal 
-    =============================== */
+   =============================== */
 
 /* 모달 배경 레이어 */
 .reservationModal {
   position: fixed;
   inset: 0;
   z-index: 2000;
-  background: rgba(15, 23, 42, 0.6); /* 뒷배경을 조금 더 차분하게 조정 */
+  background: rgba(15, 23, 42, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  backdrop-filter: blur(4px); /* 현대적인 블러 효과 추가 */
+  backdrop-filter: blur(4px);
 }
 
 /* 모달 컨텐츠 박스 */
@@ -33,37 +33,6 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-.checkbox-group {
-  display: flex;
-  flex-wrap: wrap; /* 자리가 없으면 다음 줄로 */
-  gap: 15px;
-  padding: 10px;
-  background: #f8fafc;
-  border-radius: 10px;
-  border: 1px solid #e2e8f0;
-}
-
-.checkbox-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  color: #475569;
-}
-
-.checkbox-item input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
-  accent-color: #3b82f6; /* 체크박스 포인트 컬러 */
-}
-
-.checkbox-item:hover {
-  color: #3b82f6;
-}
-
 /* 닫기 버튼 (X) */
 .reservationModal .close {
   position: absolute;
@@ -82,11 +51,6 @@
   transition: all 0.2s;
 }
 
-.reservationModal .close:hover {
-  background: #e2e8f0;
-  color: #0f172a;
-}
-
 /* 제목 */
 .reservationModal h1 {
   font-size: 22px;
@@ -97,7 +61,7 @@
   padding-bottom: 12px;
 }
 
-/* 폼 리스트 (ul, li) */
+/* 폼 리스트 */
 .reservationModal ul {
   list-style: none;
   padding: 0;
@@ -109,7 +73,7 @@
 
 .reservationModal li {
   display: flex;
-  flex-direction: column; /* 모바일 우선: 라벨이 위로 */
+  flex-direction: column;
   gap: 8px;
 }
 
@@ -118,29 +82,72 @@
   font-size: 14px;
   font-weight: 700;
   color: #475569;
-  padding-left: 2px;
 }
 
 /* 입력창 공통 스타일 */
-.reservationModal input {
+.reservationModal input,
+.reservationModal select {
   width: 100%;
   border: 1.5px solid #e2e8f0;
   border-radius: 10px;
   padding: 12px 14px;
   font-size: 15px;
   color: #1e293b;
-  transition: all 0.2s;
   background: #f8fafc;
+  transition: all 0.2s;
 }
 
-.reservationModal input:focus {
+.reservationModal input:focus,
+.reservationModal select:focus {
   outline: none;
   border-color: #3b82f6;
   background: #ffffff;
   box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
 }
 
-/* 버튼 그룹 (마지막 li) */
+/* ★ 중요: 단위 텍스트(원, 시간)가 포함된 span 처리 */
+.reservationModal li > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #64748b;
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+.reservationModal li > span input {
+  flex: 1; /* 인풋이 가용 공간을 차지하게 함 */
+}
+
+/* 체크박스 그룹 */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.checkbox-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #3b82f6;
+}
+
+/* 버튼 그룹 */
 .reservationModal li:last-child {
   flex-direction: row;
   justify-content: flex-end;
@@ -148,55 +155,35 @@
   margin-top: 20px;
 }
 
-/* 공통 버튼 스타일 */
 .reservationModal button {
   padding: 10px 20px;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s;
   border: none;
+  transition: 0.2s;
 }
 
-/* 수정 버튼 (Primary) */
+/* 수정/추가 (Primary) */
 .reservationModal button:nth-child(1) {
   background: #3b82f6;
   color: white;
 }
 
-.reservationModal button:nth-child(1):hover {
-  background: #2563eb;
-}
-
-/* 삭제 버튼 (Danger) */
-.reservationModal button:nth-child(2) {
+/* 삭제 (Danger) */
+.reservationModal button:nth-child(2):not(:last-child) {
   background: #fee2e2;
   color: #ef4444;
 }
 
-.reservationModal button:nth-child(2):hover {
-  background: #fecaca;
-}
-
-/* 목록/취소 버튼 (Secondary) */
-.reservationModal button:nth-child(3) {
+/* 닫기 (Secondary) */
+.reservationModal button:last-child {
   background: #f1f5f9;
   color: #64748b;
 }
 
-.reservationModal button:nth-child(3):hover {
-  background: #e2e8f0;
-}
-
-/* 로딩 스타일 */
-.reservationModal .loading {
-  padding: 50px 0;
-  text-align: center;
-  color: #94a3b8;
-}
-
-/* 반응형 처리: 화면이 넓어지면 라벨을 옆으로 */
+/* 반응형 처리 */
 @media (min-width: 520px) {
   .reservationModal li:not(:last-child) {
     display: grid;
@@ -204,7 +191,8 @@
     align-items: center;
   }
   
-  .reservationModal label {
-    margin-bottom: 0;
+  /* 단위가 포함된 span도 grid 안에서 적절히 배치 */
+  .reservationModal li > span {
+    width: 100%;
   }
 }

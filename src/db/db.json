@@ -325,8 +325,8 @@
   "reservation": [
     {
       "id": "1",
-      "category": "lifting",
-      "name": "울쎄라",
+      "category": "faceline",
+      "name": "인모드",
       "price": 200000,
       "img": "lifting_01.png",
       "description": "리프팅라인 울쎄라 진료입니다",
@@ -334,14 +334,28 @@
       "setshop": [
         "노원",
         "신촌",
+<<<<<<< HEAD
         "강남",
         "종로"
+=======
+        "강남"
+>>>>>>> lhstk114
       ],
       "settime": [
         "10:00",
         "11:00",
         "14:00",
+<<<<<<< HEAD
         "15:00"
+=======
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "timespan": [
+        1
+>>>>>>> lhstk114
       ]
     },
     {
@@ -361,15 +375,25 @@
         "10:00",
         "11:00",
         "14:00",
+<<<<<<< HEAD
         "15:00"
       ]
+=======
+        "15:00",
+        "16:00",
+        "18:00",
+        "17:00"
+      ],
+      "timespan": "2"
+>>>>>>> lhstk114
     },
     {
-      "id": "3",
-      "category": "regen",
+      "id": "98b5",
       "name": "쥬베룩",
-      "price": 400000,
+      "category": "regen",
+      "price": 123213213,
       "img": "regen_01.png",
+<<<<<<< HEAD
       "description": "피부재생 쥬베룩 진료입니다",
       "descImg": "상세페이지 이미지 경로",
       "setshop": [
@@ -383,14 +407,32 @@
         "14:00",
         "15:00"
       ]
+=======
+      "description": "면역력 글루타치온(백옥주사) 진료입니다",
+      "descImg": "E:\\이현성\\풀스택 개발 기초 프로그래밍\\Full_01\\project_L-k\\public\\images\\regen\\regen_01.png",
+      "setshop": [
+        "노원",
+        "신촌",
+        "종로"
+      ],
+      "settime": [
+        "15:00",
+        "11:00",
+        "17:00",
+        "14:00"
+      ],
+      "regDate": "2026-02-13T02:37:45.910Z",
+      "timespan": "3"
+>>>>>>> lhstk114
     },
     {
-      "id": "4",
-      "category": "immune",
+      "id": "277c",
       "name": "글루타치온(백옥주사)",
+      "category": "immune",
       "price": 300000,
-      "img": "immune_01.png",
+      "img": "\\immune_01.png",
       "description": "면역력 글루타치온(백옥주사) 진료입니다",
+<<<<<<< HEAD
       "descImg": "상세페이지 이미지 경로",
       "setshop": [
         "신촌",
@@ -403,6 +445,23 @@
         "14:00",
         "15:00"
       ]
+=======
+      "descImg": "E:\\이현성\\풀스택 개발 기초 프로그래밍\\Full_01\\project_L-k\\public\\images\\immune\\immune_01.png",
+      "setshop": [
+        "노원",
+        "강남",
+        "신촌"
+      ],
+      "settime": [
+        "11:00",
+        "17:00",
+        "14:00",
+        "15:00",
+        "16:00"
+      ],
+      "regDate": "2026-02-13T03:31:16.843Z",
+      "timespan": "2"
+>>>>>>> lhstk114
     }
   ],
   "shop": [
