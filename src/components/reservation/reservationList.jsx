@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import { API_JSON_SERVER_URL } from '../../api/commonApi'
 import axios from 'axios'
 
@@ -106,6 +106,16 @@ const ReservationList = () => {
     <>
     <div className='prod-list'>
         <div className="prod-list-con">
+        <img src={`/images/banner_${category || 'all'}.png`} />
+          <div className="aside_wrap">
+            <ul className="category">
+              <li><NavLink to={`/reservation/list`} end>전체</NavLink></li>
+              <li><NavLink to={`/reservation/list/lifting`}>리프팅</NavLink></li>
+              <li><NavLink to={`/reservation/list/faceline`}>페이스라인</NavLink></li>
+              <li><NavLink to={`/reservation/list/regen`}>피부재생</NavLink></li>
+              <li><NavLink to={`/reservation/list/immune`}>면역력</NavLink></li>
+            </ul>
+          </div>
           <div className="list_search_wrap">
             <div className="list_search_box">
               <div className="toolbar">
@@ -142,6 +152,7 @@ const ReservationList = () => {
               </div>
             </div>
           </div>
+          
           <div className="list-con">
             <ul>
               {/* 카테고리별 상품 보여주기 */}
