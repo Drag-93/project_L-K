@@ -17,7 +17,7 @@ const AdminHeader = () => {
       <div className="adminHeader-con">
         <ul>
           <li>
-            <h1>{user?.userName}관리자님</h1>
+            <h1>{user?.userName}님</h1>
           </li>
           <button onClick={logoutFn}>로그아웃</button>
         </ul>

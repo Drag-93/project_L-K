@@ -1,20 +1,22 @@
+@import url(AdminHeader.css);
 @import url(AdminLeft.css);
-@import url(AdminMembers.css);
+/* @import url(AdminMembers.css);
 @import url(AdminMembersModal.css);
 @import url(AdminProduct.css);
 @import url(AdminProductModal.css);
 @import url(AdminNotice.css);
 @import url(AdminNoticeModal.css);
-@import url(AdminHeader.css);
 @import url(AdminShop.css);
 @import url(AdminShopModal.css);
 @import url(AdminQnA.css);
 @import url(AdminQnAModal.css);
+/*  */
 @import url(AdminReserveOrders.css);
-@import url(AdminReservation.css);
+/* @import url(AdminReservation.css);
 @import url(AdminReservationModal.css);
 @import url(AdminProductOrders.css);
-@import url(AdminProductOrdersModal.css);
+@import url(AdminProductOrdersModal.css); */
+@import url(Admin.css);
 /* ===============================
    Admin Layout Base (Header placeholder)
    =============================== */
@@ -32,8 +34,8 @@
 .adminHeader {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: var(--admin-left-w);
+  width: calc(100% - var(--admin-left-w));
   height: var(--admin-header-h);
   /* 지금은 디자인 안 넣음 (배경/테두리/그림자 X) */
   z-index: 1000;
@@ -42,10 +44,10 @@
 /* 좌측 */
 .adminLeft {
   position: fixed;
-  top: var(--admin-header-h);
+  top: 0;
   left: 0;
   width: var(--admin-left-w);
-  height: calc(100vh - var(--admin-header-h));
+  height: 100vh;
   overflow-y: auto;
   /* 지금은 디자인 안 넣어도 됨 */
 }
@@ -56,4 +58,6 @@
   margin-left: var(--admin-left-w);
   min-height: calc(100vh - var(--admin-header-h));
   padding: 24px;
+  display: flex;
+  justify-content: center;
 }

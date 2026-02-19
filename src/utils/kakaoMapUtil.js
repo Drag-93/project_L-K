@@ -125,7 +125,7 @@ export const loadKakaoMap = () => {
       return;
     }
 
-    const key = process.env.a708ee8cac332feda75a293b3b44d4c8;
+    const key = "616c83d358b56fc7a54d64894331e300";
     if (!key) {
       reject(new Error("REACT_APP_KAKAO_KEY가 .env에 없습니다."));
       return;

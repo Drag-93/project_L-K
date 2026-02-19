@@ -109,8 +109,8 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
   };
   if (!detail) {
     return (
-      <div className="adminMembersModal">
-        <div className="adminMembersModal-con">
+      <div className="adminModal">
+        <div className="adminModal-con">
           <span className="close" onClick={closeFn}>
             X
           </span>
@@ -122,12 +122,12 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
     );
   }
   return (
-    <div className="adminMembersModal">
-      <div className="adminMembersModal-con">
+    <div className="adminModal">
+      <div className="adminModal-con">
         <span className="close" onClick={closeFn}>
           X
         </span>
-        <div className="title">{detail.userName}님</div>
+        <div className="adminModal-title">{detail.userName}님</div>
 
         <ul>
           <li>
@@ -225,18 +225,20 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
               <option value="ROLE_ADMIN">관리자</option>
             </select>
           </li>
-          <li>
-            {memberId ? (
-              <>
-                <button onClick={onUpdateFn}>회원수정</button>
-                <button onClick={onDeleteFn}>회원삭제</button>
-              </>
-            ) : (
-              <button onClick={onPostFn}>회원추가</button>
-            )}
-            <button onClick={closeFn}>닫기</button>
-          </li>
         </ul>
+      </div>
+      <div className="adminModal-footer">
+        <div className="adminModal-footer-con">
+          {memberId ? (
+            <>
+              <button onClick={onUpdateFn}>회원수정</button>
+              <button onClick={onDeleteFn}>회원삭제</button>
+            </>
+          ) : (
+            <button onClick={onPostFn}>회원추가</button>
+          )}
+          <button onClick={closeFn}>닫기</button>
+        </div>
       </div>
     </div>
   );

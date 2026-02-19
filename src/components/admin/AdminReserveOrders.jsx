@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import AdminReserveOrdersModal from "./AdminReserveOrdersModal";
 
@@ -24,6 +24,16 @@ const AdminReserveOrders = () => {
   const [sortType, setSortType] = useState("reserveDateDesc"); //정렬기능변수
 
   const [page, setPage] = useState(1);
+
+  //검색어 이동
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const name = searchParams.get("name");
+    if (name) {
+      setFilterShop(name);
+    }
+  }, [searchParams]);
 
   const filtered = useMemo(() => {
     // 1. 평탄화
@@ -240,19 +250,19 @@ const AdminReserveOrders = () => {
 
   return (
     <>
-      <div className="reserveorderlist">
-        <div className="reserveorderlist-con">
-          <div className="title">
-            <ul>
-              <li className="reserveorderlist-flex">
-                <div className="toolbar">
+      <div className="admin">
+        <div className="admin-title">
+          <ul>
+            <li>
+              <div className="admin-toolbar">
+                <div className="admin-toolbar-searchtext">
                   <input
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
                     placeholder="검색어 입력"
                   />
                 </div>
-                <div className="roleSelector">
+                <div className="admin-toolbar-selector">
                   <select
                     value={filterShop}
                     onChange={(e) => setFilterShop(e.target.value)}
@@ -277,137 +287,134 @@ const AdminReserveOrders = () => {
                   </select>
                 </div>   */}
 
-                <div className="roleSelector">
-                  <select
-                    value={filterStatus}
-                    onChange={(e) => setFilterStatus(e.target.value)}
-                  >
-                    <option value="all">상태</option>
-                    <option value="예약대기">예약대기</option>
-                    <option value="예약완료">예약완료</option>
-                  </select>
+                <div className="admin-selector">
+                  <div className="admin-selector-state">
+                    <select
+                      value={filterStatus}
+                      onChange={(e) => setFilterStatus(e.target.value)}
+                    >
+                      <option value="all">상태</option>
+                      <option value="예약대기">예약대기</option>
+                      <option value="예약완료">예약완료</option>
+                    </select>
+                  </div>
+                  <div className="admin-selector-date">
+                    <select
+                      value={sortType}
+                      onChange={(e) => setSortType(e.target.value)}
+                    >
+                      <option value="reserveDateDesc">등록순 (최신순)</option>
+                      <option value="reserveDateAsc">등록순 (과거순)</option>
+                      <option value="visitDateAsc">
+                        예약시간순 (가까운일정)
+                      </option>
+                      <option value="visitDateDesc">예약시간순 (먼일정)</option>
+                    </select>
+                  </div>
                 </div>
-              </li>
-              <li>
-                <div className="roleSelector">
-                  <select
-                    value={sortType}
-                    onChange={(e) => setSortType(e.target.value)}
-                  >
-                    <option value="reserveDateDesc">등록순 (최신순)</option>
-                    <option value="reserveDateAsc">등록순 (과거순)</option>
-                    <option value="visitDateAsc">
-                      예약시간순 (가까운일정)
-                    </option>
-                    <option value="visitDateDesc">예약시간순 (먼일정)</option>
-                  </select>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <table>
-            <thead>
-              <tr>
-                <th>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div className="admin-button">
+          <button onClick={() => onDeleteSelectedFn()}>삭제</button>
+        </div>
+      </div>
+      <div className="admin-con">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  type="checkbox"
+                  onChange={() => onSelectAllFn()}
+                  checked={allVisibleSelected}
+                />
+              </th>
+              <th>고객명</th>
+              <th>전화번호</th>
+              <th>병원명</th>
+              <th>진료명</th>
+              <th>예약시간</th>
+              <th>등록시간</th>
+              <th>상태</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pagedList.map((item) => (
+              <tr
+                key={item.uniqueKey}
+                onClick={() => handleOpenModal(item)}
+                className={
+                  selectedId.includes(String(item.uniqueKey)) ? "selected" : ""
+                }
+              >
+                <td onClick={(e) => e.stopPropagation()}>
                   <input
                     type="checkbox"
-                    onChange={() => onSelectAllFn()}
-                    checked={allVisibleSelected}
+                    checked={selectedId.includes(String(item.uniqueKey))}
+                    onChange={() => toggleSelect(item.uniqueKey)}
                   />
-                </th>
-                <th>고객명</th>
-                <th>전화번호</th>
-                <th>병원명</th>
-                <th>진료명</th>
-                <th>예약시간</th>
-                <th>등록시간</th>
-                <th>상태</th>
+                </td>
+                <td>{item.customer?.userName}</td>
+                <td>{item.customer?.phonenum}</td>
+                <td>{item.shop}</td>
+                <td>{item.name}</td>
+                <td>
+                  {item.date} / {item.time}
+                </td>
+                <td>{item.reserveUserDate}</td>
+                <td className="res_order_state">
+                  <span className={item.state === "예약완료" ? "ok" : ""}>
+                    {item.state}
+                  </span>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {pagedList.map((item) => (
-                <tr
-                  key={item.uniqueKey}
-                  onClick={() => handleOpenModal(item)}
-                  className={
-                    selectedId.includes(String(item.uniqueKey))
-                      ? "selected"
-                      : ""
-                  }
-                >
-                  <td onClick={(e) => e.stopPropagation()}>
-                    <input
-                      type="checkbox"
-                      checked={selectedId.includes(String(item.uniqueKey))}
-                      onChange={() => toggleSelect(item.uniqueKey)}
-                    />
-                  </td>
-                  <td>{item.customer?.userName}</td>
-                  <td>{item.customer?.phonenum}</td>
-                  <td>{item.shop}</td>
-                  <td>{item.name}</td>
-                  <td>
-                    {item.date} / {item.time}
-                  </td>
-                  <td>{item.reserveUserDate}</td>
-                  <td className="res_order_state">
-                    <span className={item.state === "예약완료" ? "ok" : ""}>
-                      {item.state}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div className="adminMembersFooter">
-            <div className="adminMembersPaging">
-              <button onClick={() => setPage(1)} disabled={page === 1}>
-                ◀◀
-              </button>
-              <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-                ◀
-              </button>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="admin-footer">
+        <div className="admin-paging">
+          <button onClick={() => setPage(1)} disabled={page === 1}>
+            ◀◀
+          </button>
+          <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+            ◀
+          </button>
 
-              {Array.from({ length: btnRange }, (_, i) => {
-                const pageNum = startPage + i;
-                if (pageNum > lastPage) return null;
-                return (
-                  <button
-                    key={pageNum}
-                    onClick={() => {
-                      setPage(pageNum);
-                    }}
-                    className={page === pageNum ? "active" : ""}
-                    disabled={page === pageNum}
-                  >
-                    {pageNum}
-                  </button>
-                );
-              })}
+          {Array.from({ length: btnRange }, (_, i) => {
+            const pageNum = startPage + i;
+            if (pageNum > lastPage) return null;
+            return (
               <button
+                key={pageNum}
                 onClick={() => {
-                  setPage(page + 1);
+                  setPage(pageNum);
                 }}
-                disabled={page === lastPage}
+                className={page === pageNum ? "active" : ""}
+                disabled={page === pageNum}
               >
-                ▶
+                {pageNum}
               </button>
-              <button
-                onClick={() => {
-                  setPage(lastPage);
-                }}
-                disabled={page === lastPage}
-              >
-                ▶▶
-              </button>
-            </div>
-            <ul>
-              <li>
-                <button onClick={() => onDeleteSelectedFn()}>삭제</button>
-              </li>
-            </ul>
-          </div>
+            );
+          })}
+          <button
+            onClick={() => {
+              setPage(page + 1);
+            }}
+            disabled={page === lastPage}
+          >
+            ▶
+          </button>
+          <button
+            onClick={() => {
+              setPage(lastPage);
+            }}
+            disabled={page === lastPage}
+          >
+            ▶▶
+          </button>
         </div>
       </div>
       {isModalOpen && (

@@ -1,56 +1,54 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { API_JSON_SERVER_URL } from '../../api/commonApi'
-import axios from 'axios'
-import { useDispatch, useSelector } from 'react-redux'
-import { loginF } from '../../store/slice/inputSlice'
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { API_JSON_SERVER_URL } from "../../api/commonApi";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { loginF } from "../../store/slice/inputSlice";
 
-const loginData={
-  userEmail:"",
-  userPw:"",
-}
+const loginData = {
+  userEmail: "",
+  userPw: "",
+};
 
 const AuthLogin = () => {
-  const [login,setLogin] = useState(loginData)
-  const navigate=useNavigate()
+  const [login, setLogin] = useState(loginData);
+  const navigate = useNavigate();
 
   const onChangeLoginFn = (e) => {
-  const {name, value} = e.target
-  setLogin({...login,[name]:value})
-  }
-  const URL=API_JSON_SERVER_URL
-
+    const { name, value } = e.target;
+    setLogin({ ...login, [name]: value });
+  };
+  const URL = API_JSON_SERVER_URL;
 
   const state = useSelector((state) => state);
   const isState = useSelector((state) => state.input.isState);
 
+  useEffect(() => {
+    if (isState === false) {
+      navigate(`/`);
+    }
+  }, [state]);
 
- useEffect(() => {
-      if (isState === false) {
-        navigate(`/`);
-      }
-    }, [state]);
+  const dispatch = useDispatch();
 
-
-  const dispatch=useDispatch()
-
-  const onLoginFn = async(e)=>{
+  const onLoginFn = async (e) => {
     e.preventDefault();
     try {
-      if (!login.userEmail|| !login.userPw ) {
-        alert("이메일, 비밀번호는 필수입니다!")
+      if (!login.userEmail || !login.userPw) {
+        alert("이메일, 비밀번호는 필수입니다!");
         return;
       }
       const res = await axios.get(`${URL}/members`);
-      const loginUser = res.data.find(el => 
-        el.userEmail === login.userEmail && el.userPw === login.userPw)
+      const loginUser = res.data.find(
+        (el) => el.userEmail === login.userEmail && el.userPw === login.userPw,
+      );
       if (!loginUser) {
         alert("이메일, 비밀번호가 틀렸습니다.");
         return;
       }
       alert("로그인 성공");
-      dispatch(loginF(loginUser))    
-      navigate(-1)
+      dispatch(loginF(loginUser));
+      navigate(-1);
     } catch (err) {
       console.error(err);
       alert("로그인 실패! " + err);
@@ -60,21 +58,21 @@ const AuthLogin = () => {
 
 
   return(
-  <div className="auth-login">
-    <div className="auth-login-con">
-      <form onSubmit={onLoginFn} method='post'>
-      <ul>
-          <li>이메일 : <input type="email" name='userEmail' placeholder='이메일을 입력해주세요' value={login.userEmail} onChange={onChangeLoginFn}/></li>
-          <li>비밀번호 : <input type="password" name='userPw' placeholder='비밀번호를 입력해주세요' value={login.userPw} onChange={onChangeLoginFn}/></li>
-      <li>
-        <button type="button" onClick={() => { navigate('/auth/join') }}>회원가입</button>
-        <button type="button" onClick={onLoginFn}>로그인</button>
-        <button type="button" onClick={() => { navigate('/') }}>메인화면</button>
-      </li>
-      </ul>
-      </form>
+    <div className="auth-login">
+      <div className="auth-login-con">
+        <form onSubmit={onLoginFn} method='post'>
+        <ul>
+            <li>이메일 : <input type="email" name='userEmail' placeholder='이메일을 입력해주세요' value={login.userEmail} onChange={onChangeLoginFn}/></li>
+            <li>비밀번호 : <input type="password" name='userPw' placeholder='비밀번호를 입력해주세요' value={login.userPw} onChange={onChangeLoginFn}/></li>
+        <li>
+          <button type="button" onClick={() => { navigate('/auth/join') }}>회원가입</button>
+          <button type="button" onClick={onLoginFn}>로그인</button>
+          <button type="button" onClick={() => { navigate('/') }}>메인화면</button>
+        </li>
+        </ul>
+        </form>
+      </div>
     </div>
-  </div>
-  )
-}
-export default AuthLogin
+  );
+};
+export default AuthLogin;

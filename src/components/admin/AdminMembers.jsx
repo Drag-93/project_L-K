@@ -149,45 +149,52 @@ const AdminMembers = () => {
           onSuccess={memberListFn}
         />
       )}
-      <div className="adminMembers">
-        <div className="adminMembers-con">
-          <div className="title">
-            <ul>
-              <li>
-                <div className="toolbar">
-                  <input
-                    value={searchText}
-                    onChange={(e) => setSearchText(e.target.value)}
-                    placeholder="검색어 입력"
-                  />
-                </div>
-              </li>
-              <li>
-                <div className="roleSelector">
-                  <select
-                    value={roleFilter}
-                    onChange={(e) => setRoleFilter(e.target.value)}
-                  >
-                    <option value="ALL">전체</option>
-                    <option value="ROLE_MEMBER">일반회원</option>
-                    <option value="ROLE_ADMIN">관리자</option>
-                  </select>
-                </div>
-              </li>
-              <li>
-                <div className="genderSelector">
-                  <select
-                    value={genderFilter}
-                    onChange={(e) => setGenderFilter(e.target.value)}
-                  >
-                    <option value="ALL">전체</option>
-                    <option value="남">남</option>
-                    <option value="여">여</option>
-                  </select>
-                </div>
-              </li>
-            </ul>
+      <div className="admin">
+        <div className="admin-title">
+          <div className="admin-toolbar">
+            <input
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              placeholder="검색어 입력"
+            />
           </div>
+          <ul>
+            <li>
+              <div className="admin-selector">
+                <ul>
+                  <li>
+                    <select
+                      value={genderFilter}
+                      onChange={(e) => setGenderFilter(e.target.value)}
+                    >
+                      <option value="ALL">전체</option>
+                      <option value="남">남</option>
+                      <option value="여">여</option>
+                    </select>
+                  </li>
+                  <li>
+                    <select
+                      value={roleFilter}
+                      onChange={(e) => setRoleFilter(e.target.value)}
+                    >
+                      <option value="ALL">전체</option>
+                      <option value="ROLE_MEMBER">일반회원</option>
+                      <option value="ROLE_ADMIN">관리자</option>
+                    </select>
+                  </li>
+                </ul>
+              </div>
+              <div className="admin-button">
+                {/* <button onClick={() => onSelectAllFn()}>
+              {allVisibleSelected ? "전체해제" : "전체선택"}
+              </button> */}
+                <button onClick={() => adminModalFn(null)}>추가</button>
+                <button onClick={() => onDeleteSelectedFn()}>삭제</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div className="admin-con">
           <table>
             <thead>
               <tr>
@@ -238,57 +245,48 @@ const AdminMembers = () => {
               })}
             </tbody>
           </table>
-          <div className="adminMembersFooter">
-            <div className="adminMembersPaging">
-              <button onClick={() => setPage(1)} disabled={page === 1}>
-                ◀◀
-              </button>
-              <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-                ◀
-              </button>
+        </div>
+        <div className="admin-footer">
+          <div className="admin-paging">
+            <button onClick={() => setPage(1)} disabled={page === 1}>
+              ◀◀
+            </button>
+            <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+              ◀
+            </button>
 
-              {Array.from({ length: btnRange }, (_, i) => {
-                const pageNum = startPage + i;
-                if (pageNum > lastPage) return null;
-                return (
-                  <button
-                    key={pageNum}
-                    onClick={() => {
-                      setPage(pageNum);
-                    }}
-                    className={page === pageNum ? "active" : ""}
-                    disabled={page === pageNum}
-                  >
-                    {pageNum}
-                  </button>
-                );
-              })}
-              <button
-                onClick={() => {
-                  setPage(page + 1);
-                }}
-                disabled={page === lastPage}
-              >
-                ▶
-              </button>
-              <button
-                onClick={() => {
-                  setPage(lastPage);
-                }}
-                disabled={page === lastPage}
-              >
-                ▶▶
-              </button>
-            </div>
-            <ul>
-              <li>
-                <button onClick={() => onSelectAllFn()}>
-                  {allVisibleSelected ? "전체해제" : "전체선택"}
+            {Array.from({ length: btnRange }, (_, i) => {
+              const pageNum = startPage + i;
+              if (pageNum > lastPage) return null;
+              return (
+                <button
+                  key={pageNum}
+                  onClick={() => {
+                    setPage(pageNum);
+                  }}
+                  className={page === pageNum ? "active" : ""}
+                  disabled={page === pageNum}
+                >
+                  {pageNum}
                 </button>
-                <button onClick={() => adminModalFn(null)}>추가</button>
-                <button onClick={() => onDeleteSelectedFn()}>삭제</button>
-              </li>
-            </ul>
+              );
+            })}
+            <button
+              onClick={() => {
+                setPage(page + 1);
+              }}
+              disabled={page === lastPage}
+            >
+              ▶
+            </button>
+            <button
+              onClick={() => {
+                setPage(lastPage);
+              }}
+              disabled={page === lastPage}
+            >
+              ▶▶
+            </button>
           </div>
         </div>
       </div>

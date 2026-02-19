@@ -17,7 +17,14 @@ const AdminQnA = () => {
 
   const openListFn = async () => {
     const res = await axios.get(`${qnaUrl}/qna`);
-    setQnaList(res.data);
+
+    const listWithNumber = res.data
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .map((item, index, arr) => ({
+        ...item,
+        number: arr.length - index,
+      }));
+    setQnaList(listWithNumber);
   };
   useEffect(() => {
     openListFn();
@@ -151,46 +158,54 @@ const AdminQnA = () => {
           onSuccess={openListFn}
         />
       )}
-      <div className="adminQnA">
-        <div className="adminQnA-con">
-          <div className="title">
-            <ul>
-              <li>
-                <div className="toolbar">
-                  <input
-                    value={searchText}
-                    onChange={(e) => setSearchText(e.target.value)}
-                    placeholder="검색어 입력"
-                  />
-                </div>
-              </li>
-              <li>
-                <div className="sortSelector">
-                  <select
-                    value={sortType}
-                    onChange={(e) => setSortType(e.target.value)}
-                  >
-                    <option value="Latest">등록순 (최신순)</option>
-                    <option value="Earliest">등록순 (과거순)</option>
-                    <option value="Highest">조회수 (높은순)</option>
-                    <option value="Lowest">조회순 (낮은순)</option>
-                  </select>
-                </div>
-              </li>
-              <li>
-                <div className="answerStateSelector">
-                  <select
-                    value={stateFilter}
-                    onChange={(e) => setStateFilter(e.target.value)}
-                  >
-                    <option value="ALL">전체</option>
-                    <option value="답변대기">답변대기</option>
-                    <option value="답변완료">답변완료</option>
-                  </select>
-                </div>
-              </li>
-            </ul>
+      <div className="admin">
+        <div className="admin-title">
+          <div className="admin-toolbar">
+            <div className="admin-toolbar-searchtext">
+              <input
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                placeholder="검색어 입력"
+              />
+            </div>
+            <div className="admin-toolbar-selector">
+              <select
+                value={sortType}
+                onChange={(e) => setSortType(e.target.value)}
+              >
+                <option value="Latest">등록순 (최신순)</option>
+                <option value="Earliest">등록순 (과거순)</option>
+                <option value="Highest">조회수 (높은순)</option>
+                <option value="Lowest">조회순 (낮은순)</option>
+              </select>
+            </div>
           </div>
+
+          <ul>
+            <li>
+              <div className="admin-selector">
+                <select
+                  value={stateFilter}
+                  onChange={(e) => setStateFilter(e.target.value)}
+                >
+                  <option value="ALL">전체</option>
+                  <option value="답변대기">답변대기</option>
+                  <option value="답변완료">답변완료</option>
+                </select>
+              </div>
+            </li>
+            <li>
+              <div className="admin-button">
+                {/* <button onClick={() => onSelectAllFn()}>
+              {allSelect ? "선택해제" : "전체선택"}
+            </button> */}
+                <button onClick={() => onCancelFn()}>답변취소</button>
+                <button onClick={() => onDeleteSelectedFn()}>삭제</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div className="admin-con">
           <table>
             <thead>
               <tr>
@@ -222,7 +237,7 @@ const AdminQnA = () => {
                         onChange={() => toggleSelect(el.id)}
                       />
                     </td>
-                    <td>{el.no}</td>
+                    <td>{el.number}</td>
                     <td>
                       <span
                         className={`qnaStateBadge ${el.state === "답변완료" ? "done" : "wait"}`}
@@ -247,58 +262,49 @@ const AdminQnA = () => {
               })}
             </tbody>
           </table>
-          <div className="adminQnAFooter">
-            <div className="adminQnAPaging">
-              <button onClick={() => setPage(1)} disabled={page === 1}>
-                ◀◀
-              </button>
-              <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-                ◀
-              </button>
+        </div>
+        <div className="admin-footer">
+          <div className="admin-paging">
+            <button onClick={() => setPage(1)} disabled={page === 1}>
+              ◀◀
+            </button>
+            <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+              ◀
+            </button>
 
-              {Array.from({ length: btnRange }, (_, i) => {
-                const pageNum = startPage + i;
-                if (pageNum > lastPage) return null;
-                return (
-                  <button
-                    key={pageNum}
-                    onClick={() => {
-                      setPage(pageNum);
-                    }}
-                    className={page === pageNum ? "active" : ""}
-                    disabled={page === pageNum}
-                  >
-                    {pageNum}
-                  </button>
-                );
-              })}
-              <button
-                onClick={() => {
-                  setPage(page + 1);
-                }}
-                disabled={page === lastPage}
-              >
-                ▶
-              </button>
-
-              <button
-                onClick={() => {
-                  setPage(lastPage);
-                }}
-                disabled={page === lastPage}
-              >
-                ▶▶
-              </button>
-            </div>
-            <ul>
-              <li>
-                <button onClick={() => onSelectAllFn()}>
-                  {allSelect ? "선택해제" : "전체선택"}
+            {Array.from({ length: btnRange }, (_, i) => {
+              const pageNum = startPage + i;
+              if (pageNum > lastPage) return null;
+              return (
+                <button
+                  key={pageNum}
+                  onClick={() => {
+                    setPage(pageNum);
+                  }}
+                  className={page === pageNum ? "active" : ""}
+                  disabled={page === pageNum}
+                >
+                  {pageNum}
                 </button>
-                <button onClick={() => onCancelFn()}>답변취소</button>
-                <button onClick={() => onDeleteSelectedFn()}>삭제</button>
-              </li>
-            </ul>
+              );
+            })}
+            <button
+              onClick={() => {
+                setPage(page + 1);
+              }}
+              disabled={page === lastPage}
+            >
+              ▶
+            </button>
+
+            <button
+              onClick={() => {
+                setPage(lastPage);
+              }}
+              disabled={page === lastPage}
+            >
+              ▶▶
+            </button>
           </div>
         </div>
       </div>

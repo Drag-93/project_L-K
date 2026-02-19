@@ -92,8 +92,8 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
 
   if (!detail) {
     return (
-      <div className="adminProductOrdersModal">
-        <div className="adminProductOrdersModal-con">
+      <div className="adminModal">
+        <div className="adminModal-con">
           <span className="close" onClick={closeFn}>
             X
           </span>
@@ -105,12 +105,12 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
     );
   }
   return (
-    <div className="adminProductOrdersModal">
-      <div className="adminProductOrdersModal-con">
-        <span className="close" onClick={closeFn}>
+    <div className="adminModal">
+      <div className="adminModal-con">
+        <span className="adminModal-close" onClick={closeFn}>
           X
         </span>
-        <div className="title">
+        <div className="adminModal-title">
           <ul>
             <li>
               <h1>주문 상세내역</h1>
@@ -228,12 +228,14 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
               <option value="배송완료">배송완료</option>
             </select>
           </li>
-          <li>
-            <button onClick={() => onUpdateFn()}>수정</button>
-            <button onClick={() => onDeleteFn()}>삭제</button>
-            <button onClick={() => closeFn()}>닫기</button>
-          </li>
         </ul>
+      </div>
+      <div className="adminModal-footer">
+        <div className="adminModal-footer-con">
+          <button onClick={() => onUpdateFn()}>수정</button>
+          <button onClick={() => onDeleteFn()}>삭제</button>
+          <button onClick={() => closeFn()}>닫기</button>
+        </div>
       </div>
     </div>
   );

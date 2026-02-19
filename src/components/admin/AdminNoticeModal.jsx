@@ -109,9 +109,9 @@ const AdminNoticeModal = ({ setAdminAddModal, noticeId, onSuccess }) => {
 
   if (!detail) {
     return (
-      <div className="adminNoticeModal">
-        <div className="adminNoticeModal-con">
-          <span className="close" onClick={closeFn}>
+      <div className="adminModal">
+        <div className="adminModal-con">
+          <span className="adminModal-close" onClick={closeFn}>
             X
           </span>
           <div className="loading">
@@ -122,12 +122,12 @@ const AdminNoticeModal = ({ setAdminAddModal, noticeId, onSuccess }) => {
     );
   }
   return (
-    <div className="adminNoticeModal">
-      <div className="adminNoticeModal-con">
-        <span className="close" onClick={closeFn}>
+    <div className="adminModal">
+      <div className="adminModal-con">
+        <span className="adminModal-close" onClick={closeFn}>
           X
         </span>
-        <div className="title">
+        <div className="adminModal-title">
           {noticeId != null ? detail.title : "공지 등록"}
         </div>
 
@@ -142,7 +142,7 @@ const AdminNoticeModal = ({ setAdminAddModal, noticeId, onSuccess }) => {
               onChange={onChangeFn}
             />
           </li>
-          <li className="description-row">
+          <li className="adminModal-description-row">
             <label htmlFor="description">내용</label>
             <textarea
               name="description"
@@ -152,26 +152,28 @@ const AdminNoticeModal = ({ setAdminAddModal, noticeId, onSuccess }) => {
               className="description-textarea"
             />
           </li>
-          <li>
-            {noticeId != null ? (
-              <>
-                <button onClick={onUpdateFn} disabled={isSaving}>
-                  수정
-                </button>
-                <button onClick={onDeleteFn} disabled={isSaving}>
-                  삭제
-                </button>
-              </>
-            ) : (
-              <button onClick={onPostFn} disabled={isSaving}>
-                글쓰기
-              </button>
-            )}
-            <button onClick={closeFn} disabled={isSaving}>
-              닫기
-            </button>
-          </li>
         </ul>
+      </div>
+      <div className="adminModal-footer">
+        <div className="adminModal-footer-con">
+          {noticeId != null ? (
+            <>
+              <button onClick={onUpdateFn} disabled={isSaving}>
+                수정
+              </button>
+              <button onClick={onDeleteFn} disabled={isSaving}>
+                삭제
+              </button>
+            </>
+          ) : (
+            <button onClick={onPostFn} disabled={isSaving}>
+              글쓰기
+            </button>
+          )}
+          <button onClick={closeFn} disabled={isSaving}>
+            닫기
+          </button>
+        </div>
       </div>
     </div>
   );

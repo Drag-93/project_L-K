@@ -1,0 +1,176 @@
+/* Admin */
+.admin {
+  border: 1px solid;
+  box-sizing: border-box;
+  width: 1400px;
+
+  justify-content: center;
+}
+.admin .admin-title {
+  padding: 5px;
+  border: 1px blue;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.admin .admin-title ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.admin .admin-title .admin-toolbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 0.2vw;
+
+  height: 40px;
+  max-width: 30vw;
+
+  border: 1px solid;
+  border-radius: 12px;
+  background-color: #fff;
+
+  padding: 3px;
+}
+.admin .admin-title .admin-toolbar input {
+  flex: 1;
+
+  min-width: 20vw;
+  height: 30px;
+  border: none;
+  outline: none;
+
+  padding: 0 10px;
+  font-size: 14px;
+
+  background: transparent;
+}
+
+.admin .admin-title .admin-toolbar-selector select {
+  flex: 1;
+
+  max-width: 20vw;
+  height: 30px;
+  border: none;
+  outline: none;
+
+  padding: 0 10px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border-left: 1px solid #e5e7eb;
+}
+.admin .admin-title ul {
+  /* min-width: 20vw; */
+}
+.admin .admin-title ul li {
+  width: 100%;
+  gap: 0.2vh;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.admin .admin-title ul > li .admin-selector {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+
+  gap: 0.2vw;
+
+  border: 1px solid;
+  border-radius: 6px;
+  background-color: #fff;
+
+  padding: 3px;
+}
+.admin .admin-title ul > li .admin-selector select {
+  flex: 1;
+
+  max-width: 20vw;
+  height: 40px;
+  border: none;
+  outline: none;
+
+  padding: 0 10px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+
+.admin .admin-title ul > li .admin-button {
+  display: flex;
+  justify-content: end;
+}
+.admin .admin-title ul > li .admin-button button {
+  width: 80px;
+  height: 40px;
+  padding: 1px 20px;
+  border-radius: 6px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid #dddddd;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.admin .admin-title .admin-button button:hover {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.admin .admin-con {
+  width: 100%;
+  min-height: 60vh;
+  background: #fff;
+
+  border: 1px solid #1f2a44;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.admin .admin-con table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin .admin-con thead {
+  background: #f9fafb;
+}
+
+.admin .admin-con th,
+.admin .admin-con td {
+  padding: 12px 10px;
+  font-size: 14px;
+  text-align: center;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.admin .admin-con th {
+  font-weight: 600;
+  color: #374151;
+}
+
+.admin .admin-con tbody tr:hover {
+  background: #f9fafb;
+}
+
+.admin .admin-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin .admin-footer .admin-footer-paging {
+}

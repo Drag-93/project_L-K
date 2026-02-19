@@ -153,8 +153,8 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
 
   if (!detail) {
     return (
-      <div className="adminShopModal">
-        <div className="adminShopModal-con">
+      <div className="adminModal">
+        <div className="adminModal-con">
           <span className="close" onClick={closeFn}>
             X
           </span>
@@ -177,8 +177,8 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
           onPick={handlePickLocation}
         />
       )}
-      <div className="adminShopModal">
-        <div className="adminShopModal-con">
+      <div className="adminModal">
+        <div className="adminModal-con">
           <span className="close" onClick={closeFn}>
             X
           </span>
@@ -258,27 +258,28 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
                 onChange={onChangeFn}
               />
             </li>
-
-            <li>
-              {shopId != null ? (
-                <>
-                  <button onClick={onUpdateFn} disabled={isSaving}>
-                    수정
-                  </button>
-                  <button onClick={onDeleteFn} disabled={isSaving}>
-                    삭제
-                  </button>
-                </>
-              ) : (
-                <button onClick={onPostFn} disabled={isSaving}>
-                  추가하기
-                </button>
-              )}
-              <button onClick={closeFn} disabled={isSaving}>
-                닫기
-              </button>
-            </li>
           </ul>
+        </div>
+        <div className="adminModal-footer">
+          <div className="adminModal-footer-con">
+            {shopId != null ? (
+              <>
+                <button onClick={onUpdateFn} disabled={isSaving}>
+                  수정
+                </button>
+                <button onClick={onDeleteFn} disabled={isSaving}>
+                  삭제
+                </button>
+              </>
+            ) : (
+              <button onClick={onPostFn} disabled={isSaving}>
+                추가하기
+              </button>
+            )}
+            <button onClick={closeFn} disabled={isSaving}>
+              닫기
+            </button>
+          </div>
         </div>
       </div>
     </>
