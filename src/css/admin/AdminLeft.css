@@ -5,7 +5,7 @@
 /* 전체 사이드바 */
 .adminLeft {
   width: var(--admin-left-w, 240px);
-  height: calc(100vh - var(--admin-header-h, 64px));
+  height: 100vh;
   background: #1f2a44;
   color: #ffffff;
   overflow-y: auto;
