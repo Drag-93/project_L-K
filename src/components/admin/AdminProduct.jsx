@@ -3,6 +3,14 @@ import { API_JSON_SERVER_URL } from "../../api/commonApi";
 import axios from "axios";
 import AdminProductModal from "./AdminProductModal";
 
+const categoryMap = {
+  hydro: "보습",
+  trouble: "트러블케어",
+  white: "미백",
+  antiage: "안티에이징",
+  uv: "UV"
+}
+
 const AdminProduct = () => {
   const [productList, setProductList] = useState([]);
   const productUrl = API_JSON_SERVER_URL;
@@ -12,7 +20,7 @@ const AdminProduct = () => {
   const [categoryFilter, setCategoryFilter] = useState("ALL");
   const [sortType, setSortType] = useState("regDateDesc");
   const [page, setPage] = useState(1);
-
+  
   const productListFn = async (e) => {
     try {
       const res = await axios.get(`${productUrl}/product`);
@@ -24,9 +32,33 @@ const AdminProduct = () => {
   useEffect(() => {
     productListFn();
   }, [productUrl]);
-
+            
+  //상품후기 불러오기
+  const [productReview, setProductReview]=useState([]);
+  useEffect(() => {
+  const productReviewFn = async () => {
+    try{
+      const res=await axios.get(`${productUrl}/productReview`);
+      console.log(res.data)
+      setProductReview(Array.isArray(res.data) ? res.data : [res.data]);
+    }catch(err){
+        console.log('상품후기 로딩 실패');
+    }
+    }
+    productReviewFn();
+  },[productUrl])
+  //상품후기 평점 계산
+  const reviewStatus = (productId) => {
+     const reviews = productReview.filter((review) => review.productId === productId)
+     const revCount = reviews.length
+     const avrScore = revCount > 0
+           ? (reviews.reduce((acc, cur) => acc + (Number(cur.score) || 0), 0)/revCount).toFixed(1)
+           : 0.0;      
+     return {revCount, avrScore: Number(avrScore)}
+  }
+  
   const filtered = useMemo(() => {
-
+    
     //검색 및 카테고리 필터링
     const q = searchText.trim().toLowerCase();
     const filteredList = productList.filter((m) => {
@@ -40,11 +72,11 @@ const AdminProduct = () => {
       .toLowerCase();
       return searchTarget.includes(q);
     });
-
+    
     //정렬
     return filteredList.sort((a, b) => {
       const parseRegDate = (str) => (str ? new Date(str).getTime() : 0);
-      
+
       switch (sortType) {
         case "regDateAsc":
           return parseRegDate(a.regDate) - parseRegDate(b.regDate);
@@ -54,25 +86,17 @@ const AdminProduct = () => {
           return a.price - b.price;
         case "priceDesc":
           return b.price - a.price;
-      }    
-    });
-
-  }, [productList, searchText, categoryFilter, sortType]);
-  
-  //상품후기 불러오기
-  const [productReview, setProductReview]=useState([]);
-  useEffect(() => {
-    const productReviewFn = async () => {
-      try{
-        const res=await axios.get(`${productUrl}/productReview`);
-        console.log(res.data)
-        setProductReview(Array.isArray(res.data) ? res.data : [res.data]);
-      }catch(err){
-        console.log('상품후기 로딩 실패');
-      }
-    }
-    productReviewFn();
-  },[productUrl])
+        case "avrScoreAsc":
+          return reviewStatus(a.id).avrScore - reviewStatus(b.id).avrScore;
+        case "avrScoreDesc":
+          return reviewStatus(b.id).avrScore - reviewStatus(a.id).avrScore;
+        case "revCountAsc":
+          return reviewStatus(a.id).revCount - reviewStatus(b.id).revCount;
+        case "revCountDesc":
+          return reviewStatus(b.id).revCount - reviewStatus(a.id).revCount;
+        }    
+        });          
+  }, [productList, searchText, categoryFilter, sortType, productReview]);
 
   //리스트 항목 선택/해제
   const [checkedItems, setCheckedItems] = useState([]);
@@ -190,6 +214,10 @@ const AdminProduct = () => {
                     <option value="regDateAsc">등록순 (과거순)</option>
                     <option value="priceDesc">가격순 (높은순)</option>
                     <option value="priceAsc">가격순 (낮은순)</option>
+                    <option value="avrScoreDesc">평점순 (높은순)</option>
+                    <option value="avrScoreAsc">평점순 (낮은순)</option>
+                    <option value="revCountDesc">후기순 (많은순)</option>
+                    <option value="revCountAsc">후기순 (적은순)</option>
                   </select>
                 </div>
               </li>
@@ -208,20 +236,19 @@ const AdminProduct = () => {
                 <th>가격</th>
                 <th>평점/후기건수</th>
                 <th>카테고리</th>
-                <th>상세보기</th>
               </tr>
             </thead>
             <tbody>
               {pagedList.map((el) => {
-                
-                //상품별 후기 필터링 및 평점 계산
-                const reviews= productReview.filter((review)=> review.productId === el.id);
-                const avrScore = reviews.length > 0 ?
-                  (reviews.reduce((acc, cur) => acc + (Number(cur.score) || 0), 0)/reviews.length).toFixed(1)
-                  : 0.0;
-
+                const {revCount, avrScore} = reviewStatus(el.id);
                 return (
-                  <tr key={el.id}>
+                  <tr
+                   key={el.id}
+                   onClick={(e)=>{
+                    e.stopPropagation();
+                    adminModalFn(el.id);
+                   }}                   
+                  >
                     <td>
                       <input type="checkbox" name="checkSingle" id="checkSingle"
                        onChange={(e)=>{handleSingleCheck(e.target.checked, el.id)}}
@@ -233,16 +260,9 @@ const AdminProduct = () => {
                     <td>{el.name}</td>
                     <td>{el.price.toLocaleString()}원</td>
                     <td>
-                      {avrScore}점/{reviews.length}건
+                      {avrScore}점/{revCount}건
                     </td>
-                    <td>{el.category}</td>
-                    <td
-                      onClick={() => {
-                        adminModalFn(el.id);
-                      }}
-                    >
-                      보기
-                    </td>
+                    <td>{categoryMap[el.category] || el.category}</td>
                   </tr>
                 );
               })}

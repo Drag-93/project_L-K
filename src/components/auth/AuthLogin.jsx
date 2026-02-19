@@ -34,7 +34,11 @@ const AuthLogin = () => {
 
   const dispatch=useDispatch()
 
-  const onLoginFn = async()=>{
+  const onLoginFn = async(e)=>{
+    
+    e.preventDefault();
+
+
     try {
       if (!login.userEmail|| !login.userPw ) {
         alert("이메일, 비밀번호는 필수입니다!")

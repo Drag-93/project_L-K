@@ -83,6 +83,37 @@ const AuthMemberList = () => {
     }
   };
 
+  // myReview(product&reservation)  -->  통합시키기
+  const [myProdReviewList, setMyProdReviewList] = useState([]);
+  const myProdReviewListFn = async () => {
+    try {
+      const res = await axios.get(`${url}/productReview?userEmail=${myData.userEmail}`);
+      setMyProdReviewList(res.data)
+      console.log(res.data)
+    } catch (err) {
+      alert(err);
+    }
+  }
+  useEffect(() => {
+    if (!myData?.userEmail) return;
+    myProdReviewListFn();
+  }, [myData?.userEmail])
+  
+  const [myReservReviewList, setMyReservReviewList] = useState([]);
+  const myReservReviewListFn = async () => {
+    try {
+      const res = await axios.get(`${url}/reservReview?userEmail=${myData.userEmail}`);
+      setMyReservReviewList(res.data)
+      console.log(res.data)
+    } catch (err) {
+      alert(err);
+    }
+  }
+  useEffect(() => {
+    if (!myData?.userEmail) return;
+    myReservReviewListFn();
+  }, [myData?.userEmail])
+
   // myQna
   const [myQnaList, setMyQnaList] = useState([]);
   const myQnaListFn = async () => {
@@ -218,7 +249,62 @@ const AuthMemberList = () => {
           </ul>
           <h2>내 리뷰</h2>
           <ul>
-            <li>내용</li>
+            <li>
+            {myProdReviewList.length > 0 || myReservReviewList.length > 0 ? (
+                <table> 
+                  <thead>
+                    <tr>
+                      <td>작성일</td>
+                      <td>상품/진료명</td>
+                      <td>내용</td>
+                      <td>추천수</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {myProdReviewList.length > 0 && myProdReviewList.map((el)=>{
+                      return (
+                     <tr
+                      key={el.id}
+                      onClick={(e)=> {
+                       e.stopPropagation();
+                       navigate(`/product/detail/${el.category}/${el.productId}`, 
+                                 {state: { scrollTo: 'review' } })}
+                      }
+                     >
+                      <td>{new Date(el.date).toLocaleDateString()}</td>
+                      <td>{el.productName}</td>
+                      <td>{el.description && el.description.length > 15 
+                           ? `${el.description.slice(0, 15)}...`
+                           : el.description}
+                      </td>
+                      <td>{el.like}회</td>
+                    </tr>
+                      )
+                    })}
+                    {myReservReviewList.length > 0 && myReservReviewList.map((el)=>{
+                      return (
+                     <tr
+                      key={el.id}
+                      onClick={(e)=> {
+                       e.stopPropagation();
+                       navigate(`/reservation/detail/${el.category}/${el.reservId}`, 
+                                 {state: { scrollTo: 'review' } })}
+                      }
+                     >
+                      <td>{new Date(el.date).toLocaleDateString()}</td>
+                      <td>{el.reservName}</td>
+                      <td>{el.description && el.description.length > 15 
+                           ? `${el.description.slice(0, 15)}...`
+                           : el.description}
+                      </td>
+                      <td>{el.like}회</td>
+                    </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>                                
+              ) : null}
+            </li>
           </ul>
           <h2>내 Q&A</h2>
           <ul>

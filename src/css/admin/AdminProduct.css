@@ -65,6 +65,7 @@ td {
 
 tr:hover {
   background-color: #f9fbff; /* 마우스 올렸을 때 강조 */
+  cursor: pointer;
 }
 
 /* 상품 이미지 작은 썸네일 처리 */
@@ -73,20 +74,6 @@ table img {
   height: 45px;
   border-radius: 4px;
   object-fit: cover;
-}
-
-/* 4. 상세보기 버튼 및 텍스트 */
-/* 상세보기 버튼 (td 클릭 시) */
-td:last-child {
-  color: #4a90e2;
-  font-weight: bold;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-td:last-child:hover {
-  color: #2c5ba7;
-  text-decoration: underline;
 }
 
 /* 가격 텍스트 강조 */
