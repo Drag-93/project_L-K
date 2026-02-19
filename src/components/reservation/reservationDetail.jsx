@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { API_JSON_SERVER_URL } from '../../api/commonApi';
 import Calendar from 'react-calendar';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { addBasket } from '../../store/slice/basketSlice';
+import ReservDetailDesc from './ReservDetailDesc';
+import ReservDetailReview from './ReservDetailReview';
 
 const reserveData={
   category:'',
@@ -19,22 +21,20 @@ const reserveData={
 }
 
 const ReservationDetail = () => {
-
-
-  const isState=useSelector(state=>state.input.isState)
-
-  const dispatch=useDispatch()
-
   
+  const isState=useSelector(state=>state.input.isState)
+  const dispatch=useDispatch()  
   const {id}=useParams();
-
   const [reserve, setReserve]=useState(reserveData)
-
   const url = API_JSON_SERVER_URL
+
+  const navigate=useNavigate();
+  const location=useLocation();
+  const [menuTab, setMenuTab]=useState('detaildesc');
 
   useEffect(()=>{
     
-    const fetchLiftingDetail=async ()=>{
+    const fetchDetail=async ()=>{
       try{
         const res=await fetch(`${url}/reservation/${id}`)
         const resData=await res.json();
@@ -44,7 +44,7 @@ const ReservationDetail = () => {
         console.log('로딩 실패')
       }
     }
-    fetchLiftingDetail();
+    fetchDetail();
   },[])
 
   // 예약 완료된 시간들을 저장할 상태 추가
@@ -173,9 +173,6 @@ const ReservationDetail = () => {
     
   };
   
-  
-  
-
 
   const onPaymentFn = async () => {
     if (!reserve.shop || !reserve.date || !reserve.time) {
@@ -205,13 +202,19 @@ const ReservationDetail = () => {
     }
   };
 
-
+  //마이페이지에서 후기로 링크
+  useEffect(()=>{
+    if(location.state?.scrollTo === 'review') {
+      setMenuTab('review')
+      document.getElementById('review')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [location.state]);
 
 
   return (
     <>
-    <div className="reservlfting-detail">
-      <div className="reservlifting-detail-con">
+    <div className="reserv-detail">
+      <div className="reserv-detail-con">
         <h1>진료 상세페이지</h1>
         <div className="detail-top">
           <div className="detail-top-left">
@@ -299,10 +302,23 @@ const ReservationDetail = () => {
         </div>
         
         <div className="detail-bottom">
-          <ul>
-            <li>상세정보</li>
-            <li>후기</li>
-          </ul>
+           <ul>
+            <li
+            className={`bottom-menu ${menuTab === 'detaildesc' ? 'active' :''}`}
+            onClick={()=>{setMenuTab('detaildesc')}}
+            >
+              상세정보
+            </li>
+            <li
+            className={`bottom-menu ${menuTab === 'review' ? 'active' :''}`}
+            onClick={()=>{setMenuTab('review')}}
+            >
+              후기
+            </li>
+           </ul>
+           <div className="bottom-content">
+            {menuTab === 'detaildesc' ? <ReservDetailDesc /> : <ReservDetailReview />}
+           </div>
         </div>
       </div>
     </div>

@@ -1,12 +1,10 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { API_JSON_SERVER_URL } from '../../api/commonApi'
-import { useNavigate, useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import ProdDetailReviewModal from './ProdDetailReviewModal'
-import axios from 'axios'
+import { useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { API_JSON_SERVER_URL } from '../../api/commonApi';
 
-
-const ProdDetailReview = () => {
+const ReservDetailReview = () => {
   const {id}=useParams();
   const [userReview, setUserReview]=useState([])
   const url=API_JSON_SERVER_URL
@@ -22,7 +20,7 @@ const ProdDetailReview = () => {
   //사용자후기 불러오기
   const getReviewFn=async () =>{
     try{
-      const res=await axios.get(`${url}/productReview?productId=${id}`);
+      const res=await axios.get(`${url}/reservReview?reservId=${id}`);
       console.log(res.data);
       setUserReview(Array.isArray(res.data) ? res.data : [res.data]); //review가 하나 밖에 없을 때 map의 오류 방지
     }catch(err){
@@ -58,7 +56,7 @@ const ProdDetailReview = () => {
         review.id === el.id ? ({...review, like: nextLike, likedUsers: updateLikedUsers}) : review))    
     //db에 반영
     try{
-      const res=await axios.patch(`${url}/productReview/${el.id}`,
+      const res=await axios.patch(`${url}/reservReview/${el.id}`,
         { 
           like: nextLike,
           likedUsers: updateLikedUsers
@@ -91,7 +89,7 @@ const ProdDetailReview = () => {
       return;
     }
     try{
-      const res=await axios.patch(`${url}/productReview/${editId}`,{
+      const res=await axios.patch(`${url}/reservReview/${editId}`,{
         score: score,
         description: text
       })
@@ -108,7 +106,7 @@ const ProdDetailReview = () => {
       return;
     }
     try{
-      const res=await axios.delete(`${url}/productReview/${reviewId}`)
+      const res=await axios.delete(`${url}/reservReview/${reviewId}`)
       alert("후기가 삭제되었습니다");
       getReviewFn();
     }catch(err){
@@ -136,9 +134,9 @@ return (
               후기 작성하기 
             </button>}
           {reviewAddModal && (
-            <ProdDetailReviewModal
+            <ReservDetailReviewModal
               setReviewAddModal={setReviewAddModal}
-              productId={id}
+              reservId={id}
               user={user}
               onSuccess={()=>{
                 alert("후기가 등록되었습니다");
@@ -236,4 +234,4 @@ return (
 )
 }
 
-export default ProdDetailReview
+export default ReservDetailReview

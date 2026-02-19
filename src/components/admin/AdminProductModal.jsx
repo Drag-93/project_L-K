@@ -13,7 +13,7 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
           setDetail({
             name: "",
             category: "",
-            price: 0,
+            price: "",
             img: "",
             description: "",
             descImg: "",
@@ -128,6 +128,7 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
               type="text"
               name="price"
               id="price"
+              placeholder="금액만 입력하세요(예: 20000)"
               value={detail.price}
               onChange={onChangeFn}
             />
@@ -174,7 +175,7 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
             />
           </li>
           <li>
-            <label htmlFor="detail-desc">상세정보 이미지</label>
+            <label htmlFor="descImg">상세정보 이미지</label>
             <input
               type="text"
               name="descImg"

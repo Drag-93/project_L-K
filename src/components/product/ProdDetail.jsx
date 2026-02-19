@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { API_JSON_SERVER_URL } from '../../api/commonApi';
 import axios from 'axios';
 import ProdDetailDesc from './ProdDetailDesc';
@@ -22,7 +22,9 @@ const ProdDetail = () => {
   const url=API_JSON_SERVER_URL;
   const [detail, setDetail]=useState(initDetail);
   const dispatch=useDispatch()
-
+  const navigate=useNavigate();
+  const location=useLocation();
+  const [menuTab, setMenuTab]=useState('detaildesc');
 
   useEffect(()=>{
 
@@ -45,7 +47,6 @@ const ProdDetail = () => {
   },[category, id])
 
   const [count, setCount]=useState(1);
-
   const plusFn=(e)=>{
     setCount(count+1)
   }
@@ -56,9 +57,6 @@ const ProdDetail = () => {
       setCount(count-1)
     }
   }
-
-  const navigate=useNavigate();
-
 
   const onCartFn = async () => {
     try {
@@ -109,27 +107,34 @@ const ProdDetail = () => {
     }
   };
 
-  const [menuTab, setMenuTab]=useState('detaildesc');
+  //마이페이지에서 후기로 링크
+  useEffect(()=>{
+    if(location.state?.scrollTo === 'review') {
+      setMenuTab('review')
+      document.getElementById('review')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [location.state]);
+
 
   return (
     <div className='prod-detail'>
       <div className="prod-detail-con">
         <h1>제품 상세페이지</h1>
         <div className="detail-top">
-          <div className="left">
+          <div className="detail-top-left">
             <img src={`/images/${detail.category}/${detail.img}`} alt={detail.img} />
           </div>
           <div className="right">
             {/* 상품정보(개요) */}
-            <div className="right-top">
+            <div className="detail-top-right1">
              <ul>
               <li><span>상품명:</span><span>{detail.name}</span></li>
-              <li><span>상품가격:</span><span>{detail.price.toLocaleString()}원</span></li>
+              <li><span>가격:</span><span>{detail.price.toLocaleString()}원</span></li>
               <li><span>상품정보:</span><span>{detail.description}</span></li>
              </ul>              
             </div>
             {/* 상품선택 및 장바구니 담기 */}
-            <div className="right-bottom">
+            <div className="detail-top-right2">
               <ul>
                 <li>
                   <div className="select">

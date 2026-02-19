@@ -3,6 +3,14 @@ import { API_JSON_SERVER_URL } from "../../api/commonApi";
 import axios from "axios";
 import AdminProductModal from "./AdminProductModal";
 
+const categoryMap = {
+  hydro: "보습",
+  trouble: "트러블케어",
+  white: "미백",
+  antiage: "안티에이징",
+  uv: "UV"
+}
+
 const AdminProduct = () => {
   const [productList, setProductList] = useState([]);
   const productUrl = API_JSON_SERVER_URL;
@@ -12,7 +20,7 @@ const AdminProduct = () => {
   const [categoryFilter, setCategoryFilter] = useState("ALL");
   const [sortType, setSortType] = useState("regDateDesc");
   const [page, setPage] = useState(1);
-
+  
   const productListFn = async (e) => {
     try {
       const res = await axios.get(`${productUrl}/product`);
@@ -24,8 +32,36 @@ const AdminProduct = () => {
   useEffect(() => {
     productListFn();
   }, [productUrl]);
-
+            
+  //상품후기 불러오기
+  const [productReview, setProductReview]=useState([]);
+  useEffect(() => {
+  const productReviewFn = async () => {
+    try{
+      const res=await axios.get(`${productUrl}/productReview`);
+      console.log(res.data)
+      setProductReview(Array.isArray(res.data) ? res.data : [res.data]);
+    }catch(err){
+        console.log('상품후기 로딩 실패');
+    }
+    }
+    productReviewFn();
+  },[productUrl])
+  //상품후기 평점 계산
+  const reviewStatus = (productId) => {
+     const reviews = productReview.filter((review) => review.productId === productId)
+     const revCount = reviews.length
+     const avrScore = revCount > 0
+           ? (reviews.reduce((acc, cur) => acc + (Number(cur.score) || 0), 0)/revCount).toFixed(1)
+           : 0.0;      
+     return {revCount, avrScore: Number(avrScore)}
+  }
+  
   const filtered = useMemo(() => {
+<<<<<<< HEAD
+=======
+    
+>>>>>>> snooze30
     //검색 및 카테고리 필터링
     const q = searchText.trim().toLowerCase();
     const filteredList = productList.filter((m) => {
@@ -39,7 +75,7 @@ const AdminProduct = () => {
         .toLowerCase();
       return searchTarget.includes(q);
     });
-
+    
     //정렬
     return filteredList.sort((a, b) => {
       const parseRegDate = (str) => (str ? new Date(str).getTime() : 0);
@@ -53,6 +89,7 @@ const AdminProduct = () => {
           return a.price - b.price;
         case "priceDesc":
           return b.price - a.price;
+<<<<<<< HEAD
       }
     });
   }, [productList, searchText, categoryFilter, sortType]);
@@ -71,6 +108,19 @@ const AdminProduct = () => {
     };
     productReviewFn();
   }, [productUrl]);
+=======
+        case "avrScoreAsc":
+          return reviewStatus(a.id).avrScore - reviewStatus(b.id).avrScore;
+        case "avrScoreDesc":
+          return reviewStatus(b.id).avrScore - reviewStatus(a.id).avrScore;
+        case "revCountAsc":
+          return reviewStatus(a.id).revCount - reviewStatus(b.id).revCount;
+        case "revCountDesc":
+          return reviewStatus(b.id).revCount - reviewStatus(a.id).revCount;
+        }    
+        });          
+  }, [productList, searchText, categoryFilter, sortType, productReview]);
+>>>>>>> snooze30
 
   //리스트 항목 선택/해제
   const [checkedItems, setCheckedItems] = useState([]);
@@ -149,6 +199,7 @@ const AdminProduct = () => {
           onSuccess={() => productListFn()}
         />
       )}
+<<<<<<< HEAD
       <div className="admin">
         <div className="admin-title">
           <div className="admin-toolbar">
@@ -170,6 +221,54 @@ const AdminProduct = () => {
                 <option value="priceAsc">가격순 (낮은순)</option>
               </select>
             </div>
+=======
+      <div className="adminProduct">
+        <div className="adminProduct-con">
+          <div className="title">
+            <ul>
+              <li>
+                <div className="toolbar">
+                  <input
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    placeholder="검색어 입력"
+                  />
+                </div>
+              </li>
+              <li>
+                <div className="categorySelector">
+                  <select
+                    value={categoryFilter}
+                    onChange={(e) => setCategoryFilter(e.target.value)}
+                  >
+                    <option value="ALL">전체</option>
+                    <option value="hydro">보습</option>
+                    <option value="trouble">트러블케어</option>
+                    <option value="white">미백</option>
+                    <option value="antiage">안티에이징</option>
+                    <option value="uv">UV</option>
+                  </select>
+                </div>
+              </li>
+              <li>
+                <div className="sorterSelector">
+                  <select
+                    value={sortType}
+                    onChange={(e) => setSortType(e.target.value)}
+                  >
+                    <option value="regDateDesc">등록순 (최신순)</option>
+                    <option value="regDateAsc">등록순 (과거순)</option>
+                    <option value="priceDesc">가격순 (높은순)</option>
+                    <option value="priceAsc">가격순 (낮은순)</option>
+                    <option value="avrScoreDesc">평점순 (높은순)</option>
+                    <option value="avrScoreAsc">평점순 (낮은순)</option>
+                    <option value="revCountDesc">후기순 (많은순)</option>
+                    <option value="revCountAsc">후기순 (적은순)</option>
+                  </select>
+                </div>
+              </li>
+            </ul>
+>>>>>>> snooze30
           </div>
           <ul>
             <li>
@@ -213,11 +312,15 @@ const AdminProduct = () => {
                 <th>가격</th>
                 <th>평점/후기건수</th>
                 <th>카테고리</th>
+<<<<<<< HEAD
                 {/* <th>상세보기</th> */}
+=======
+>>>>>>> snooze30
               </tr>
             </thead>
             <tbody>
               {pagedList.map((el) => {
+<<<<<<< HEAD
                 //상품별 후기 필터링 및 평점 계산
                 const reviews = productReview.filter(
                   (review) => review.productId === el.id,
@@ -244,6 +347,21 @@ const AdminProduct = () => {
                         }}
                         checked={checkedItems.includes(el.id)}
                       />
+=======
+                const {revCount, avrScore} = reviewStatus(el.id);
+                return (
+                  <tr
+                   key={el.id}
+                   onClick={(e)=>{
+                    e.stopPropagation();
+                    adminModalFn(el.id);
+                   }}                   
+                  >
+                    <td>
+                      <input type="checkbox" name="checkSingle" id="checkSingle"
+                       onChange={(e)=>{handleSingleCheck(e.target.checked, el.id)}}
+                        checked={checkedItems.includes(el.id)} />
+>>>>>>> snooze30
                     </td>
                     <td>
                       <img
@@ -254,6 +372,7 @@ const AdminProduct = () => {
                     <td>{el.name}</td>
                     <td>{el.price.toLocaleString()}원</td>
                     <td>
+<<<<<<< HEAD
                       {avrScore}점/{reviews.length}건
                     </td>
                     <td>{el.category}</td>
@@ -264,6 +383,11 @@ const AdminProduct = () => {
                     >
                       보기
                     </td> */}
+=======
+                      {avrScore}점/{revCount}건
+                    </td>
+                    <td>{categoryMap[el.category] || el.category}</td>
+>>>>>>> snooze30
                   </tr>
                 );
               })}

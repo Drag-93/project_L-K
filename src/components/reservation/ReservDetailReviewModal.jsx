@@ -1,9 +1,8 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import { API_JSON_SERVER_URL } from '../../api/commonApi'
-import { useEffect } from 'react'
-import axios from 'axios'
 
-const ProdDetailReviewModal = ({setReviewAddModal, user, productId, onSuccess}) => {
+const ReservDetailReviewModal = ({setReviewAddModal, user, reservId, onSuccess}) => {
 
   const closeFn=()=>{
     setReviewAddModal(false)
@@ -12,19 +11,19 @@ const ProdDetailReviewModal = ({setReviewAddModal, user, productId, onSuccess}) 
   // const state=useSelector(state=>state)
   // console.log("전체스토어 구조", state)
   const url=API_JSON_SERVER_URL
-  const [product, setProduct]=useState([])
+  const [reservation, setReservation]=useState([])
   useEffect(()=>{
-    const productFn=async () =>{
+    const reservFn=async () =>{
       try{
-        const res=await axios.get(`${url}/product/${productId}`);
+        const res=await axios.get(`${url}/reservation/${reservId}`);
         console.log(res.data);
-        setProduct(res.data);
+        setReservation(res.data);
       }catch(err){
-        console.log('상품데이터 로딩 실패');
+        console.log('진료데이터 로딩 실패');
       }
     }
-    productFn();
-  },[productId])
+    reservFn();
+  },[reservId])
 
   const [score, setScore]=useState(5)
   const [text, setText]=useState("")
@@ -35,10 +34,10 @@ const ProdDetailReviewModal = ({setReviewAddModal, user, productId, onSuccess}) 
       return;
     }
     try{
-      const res=await axios.post(`${url}/productReview`,{
-        category: product.category,
-        productId: productId,
-        productName: product.name,
+      const res=await axios.post(`${url}/reservReview`,{
+        category: reservation.category,
+        reservId: reservId,
+        reservName: reservation.name,
         userEmail: user.userEmail,
         userName: user.userName,
         date: new Date().toISOString(),
@@ -62,7 +61,7 @@ const ProdDetailReviewModal = ({setReviewAddModal, user, productId, onSuccess}) 
         <span className='close' onClick={closeFn}>X</span>
         <div className="reviewer">
           <p>작성자: {user.userName}</p>
-          <p>상품명: {product.name}</p>
+          <p>진료명: {reservation.name}</p>
         </div>
         <ul>
           <li className='score-selector'>
@@ -93,4 +92,4 @@ const ProdDetailReviewModal = ({setReviewAddModal, user, productId, onSuccess}) 
   )
 }
 
-export default ProdDetailReviewModal
+export default ReservDetailReviewModal
