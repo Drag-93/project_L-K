@@ -27,10 +27,6 @@
 * {
   box-sizing: border-box;
 }
-body {
-  margin: 0;
-  background: #f6f7fb;
-}
 
 /* 헤더: 지금은 자리만 */
 .adminHeader {

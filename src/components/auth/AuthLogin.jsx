@@ -34,7 +34,8 @@ const AuthLogin = () => {
 
   const dispatch=useDispatch()
 
-  const onLoginFn = async()=>{
+  const onLoginFn = async(e)=>{
+    e.preventDefault();
     try {
       if (!login.userEmail|| !login.userPw ) {
         alert("이메일, 비밀번호는 필수입니다!")
@@ -61,13 +62,13 @@ const AuthLogin = () => {
   return(
   <div className="auth-login">
     <div className="auth-login-con">
-      <form onSubmit={onLoginFn}>
+      <form onSubmit={onLoginFn} method='post'>
       <ul>
           <li>이메일 : <input type="email" name='userEmail' placeholder='이메일을 입력해주세요' value={login.userEmail} onChange={onChangeLoginFn}/></li>
           <li>비밀번호 : <input type="password" name='userPw' placeholder='비밀번호를 입력해주세요' value={login.userPw} onChange={onChangeLoginFn}/></li>
       <li>
         <button type="button" onClick={() => { navigate('/auth/join') }}>회원가입</button>
-        <button type="submit" onClick={onLoginFn}>로그인</button>
+        <button type="button" onClick={onLoginFn}>로그인</button>
         <button type="button" onClick={() => { navigate('/') }}>메인화면</button>
       </li>
       </ul>

@@ -9,6 +9,9 @@ const ReservationList = () => {
   const [list, setList]=useState([]);
   const {category}=useParams();
 
+  // 검색툴바의 활성화 상태 관리
+  const [isSearchActive, setIsSearchActive] = useState(false);
+
   //검색변수
   const [searchText, setSearchText] = useState("");
 
@@ -24,8 +27,8 @@ const ReservationList = () => {
   const sortOptions = [
     { value: "dateN", label: "최신순" },
     { value: "dateP", label: "오래된순" },
-    { value: "priceN", label: "높은가격순" },
-    { value: "priceP", label: "낮은가격순" },
+    { value: "priceN", label: "높은가격" },
+    { value: "priceP", label: "낮은가격" },
   ];
 
   const currentSortLabel = sortOptions.find(opt => opt.value === sortType)?.label;
@@ -104,11 +107,11 @@ const ReservationList = () => {
   
   return (
     <>
-    <div className='prod-list'>
-        <div className="prod-list-con">
-        <img src={`/images/banner_${category || 'all'}.png`} />
+    <div className='inner'>
+        <div className="sell_list_wrap">
+          <img src={`/images/banner_${category || 'all'}.png`} className="sell_banner" />
           <div className="aside_wrap">
-            <ul className="category">
+            <ul>
               <li><NavLink to={`/reservation/list`} end>전체</NavLink></li>
               <li><NavLink to={`/reservation/list/lifting`}>리프팅</NavLink></li>
               <li><NavLink to={`/reservation/list/faceline`}>페이스라인</NavLink></li>
@@ -117,13 +120,21 @@ const ReservationList = () => {
             </ul>
           </div>
           <div className="list_search_wrap">
+            <span className="list_search_length">상품 <b>{pagedList.length}</b>개</span>
             <div className="list_search_box">
-              <div className="toolbar">
-              <input
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-                placeholder="검색어 입력"
-              />
+              <div className={`toolbar ${isSearchActive ? "active" : ""}`} onClick={() => setIsSearchActive(true)}>
+                <input
+                  value={searchText}
+                  onChange={(e) => setSearchText(e.target.value)}
+                  placeholder="검색어 입력"
+                />
+                <span className="list_search_btn"onClick={(e) => {
+                    e.stopPropagation();
+                    setIsSearchActive(false);
+                    setSearchText("");
+                  }}>
+                  <img src="/public/images/icon_close_w.svg" />
+                </span>
               </div>
               <div className="custom-select-container">
                 <div 
@@ -153,47 +164,74 @@ const ReservationList = () => {
             </div>
           </div>
           
-          <div className="list-con">
-            <ul>
-              {/* 카테고리별 상품 보여주기 */}
-              {pagedList && pagedList.map((el,idx)=>{
-                return (
+          <div className="sell_list">
+           {pagedList && pagedList.length > 0 ? (
+              <ul>
+                {pagedList.map((el) => (
                   <li key={el.id}>
                     <Link to={`/reservation/detail/${el.category}/${el.id}`}>
-                    <div className="top">
-                      <img src={`/images/${el.category}/${el.img}`} alt={el.img} />
-                    </div>
-                    <div className="bottom">
-                      <span>진료명: {el.name}</span>
-                      <span>소요시간: {el.timespan}시간</span>
-                      <span>가격: {el.price.toLocaleString()}원</span>
-                    </div>
+                      <div className="top">
+                        <div className="time">
+                          {el.timespan}시간
+                        </div>
+                        <img src={el.img ? `/images/${el.category}/${el.img}` : `/images/all_none.png`} alt={el.name} />
+                      </div>
+                      <div className="bottom">
+                        <span className="name">{el.name}</span>
+                        <span className="price">{el.price.toLocaleString()}<small>원</small></span>
+                      </div>
                     </Link>
                   </li>
-                )
-              })}
-            </ul>
-          </div>
-          <div className="QnAFooter">
-            <div className="QnAFooter-con">
-              <div className="QnAPaging">
-                <button
-                  onClick={() => setPage((p) => Math.max(1, p - 1))}
-                  disabled={page === 1}
-                >
-                  이전
-                </button>
-                <span>
-                  {page}/{totalPages}
-                </span>
-                <button
-                  onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                  disabled={page === totalPages}
-                >
-                  다음
-                </button>
+                ))}
+              </ul>
+            ) : (
+              <div className="no_data_wrap">
+                <div className="no_data_img"></div>
+                <span className="no_data_text">등록된 상품이 없습니다</span>
               </div>
-            </div>
+
+            )}
+          </div>
+          <div className="paging_wrap">
+            <button
+              onClick={() => setPage(1)}
+              disabled={page === 1}
+              className="paging_double first"
+            >
+              &lt;&lt; {/* 또는 '맨처음' */}
+            </button>
+            <button
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={page === 1}
+              className="paging_one prev"
+            >
+              이전
+            </button>
+            <ul className="page_numbers">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+                <li
+                  key={num}
+                  onClick={() => setPage(num)}
+                  className={page === num ? "active" : ""}
+                >
+                  {num}
+                </li>
+              ))}
+            </ul>
+            <button
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={page === totalPages}
+              className="paging_one next"
+            >
+              다음
+            </button>
+            <button
+              onClick={() => setPage(totalPages)}
+              disabled={page === totalPages}
+              className="paging_double last"
+            >
+              &gt;&gt; {/* 또는 '맨끝' */}
+            </button>
           </div>
         </div>
       </div>

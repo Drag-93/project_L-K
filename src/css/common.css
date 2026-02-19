@@ -7,6 +7,17 @@
 
 
 /*****************************************************************************
+    @layout
+****************************************************************************/
+.inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 5rem 10px 10rem 10px;
+}
+
+
+
+/*****************************************************************************
     @Header
 ****************************************************************************/
 .header_wrap {
@@ -276,6 +287,15 @@
     line-height: 32px;
 }
 
+/*****************************************************************************
+    @footer
+****************************************************************************/
+.footer {
+    width: 100%;
+    padding: 6rem;
+    background-color: #003C26;
+}
+
 
 /*****************************************************************************
     @aside
@@ -283,7 +303,39 @@
 .aside_wrap {
     padding: 50px 0 0 0;
 }
+.aside_wrap ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    border-bottom: 1px solid #ccc;
+}
+.aside_wrap ul li {
 
+}
+.aside_wrap ul li a {
+    display: block;
+    font-size: 2.4rem;
+    font-weight: 500;
+    color: #777;
+    position: relative;
+    padding: 0px 1rem 2rem 1rem;
+}
+.aside_wrap ul li a.active {
+    color: #556a4b;
+    font-weight: 700;
+    border-bottom: 2px solid #556a4b;
+}
+.aside_wrap ul li a.active::before {
+    content: "";
+    background: url(/public/images/icon_star.png) no-repeat center center;
+    background-size: 2rem;
+    top: -1.2rem;
+    right: -1.6rem;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+}
 
 
 
@@ -291,58 +343,101 @@
     @드롭다운 메뉴 - 검색, 정렬, 필터
 ****************************************************************************/
 .list_search_wrap {
-    padding: 20px;
+    padding: 20px 0;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: end;
+
+}
+.list_search_wrap .list_search_length {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #333;
+}
+.list_search_wrap .list_search_length b {
+    color: #556a4b;
+    font-weight: 700;
 }
 .list_search_wrap .list_search_box {
     display: flex;
+    justify-content: flex-end;
+    align-items: center;
     gap: 10px;
+}
+.list_search_wrap .list_search_box .toolbar {
+    position: relative;
+    height: 4rem;
+    width: 4rem;
+    background: url(/public/images/icon_search_w.svg) no-repeat center center #556a4b;
+    background-size: 2.2rem;
+}
+.list_search_wrap .list_search_box .toolbar.active{
+    width: 42rem;
+    background: url(/public/images/icon_search_g.svg) no-repeat #fff;
+    background-size: 2.4rem;
+    background-position: 0.8rem;
 }
 
 .list_search_wrap .list_search_box .toolbar input {
-    width: 500px;
-    border: 2px solid #5aa933;
-    height: 44px;
-    line-height: 24px;
-    font-size: 20px;
-    padding: 10px 20px;
-    border-radius: 50px;
-    transition: 0.25s;
+    width: 0px;
+    font-size: 2rem;
 }
-.list_search_wrap .list_search_box .toolbar input:focus {
+.list_search_wrap .list_search_box .toolbar.active input{
+    width: 100%;
+    height: 100%;
+    padding-left: 3.6rem;
+    border: 2px solid #556a4b;
+}
+/* .list_search_wrap .list_search_box .toolbar input:focus {
     border: 2px solid #3b721f;
     outline: none;
     transition: 0.25s;
-}
+} */
 
+.list_search_wrap .list_search_box .toolbar .list_search_btn {
+    width: 4rem;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+    background: #556a4b;
+}
+.list_search_wrap .list_search_box .toolbar.active .list_search_btn {
+    display: flex;
+}
+.list_search_wrap .list_search_box .toolbar .list_search_btn img{
+    width: 50%;
+    height: 50%;
+}
 .custom-select-container {
     position: relative;
-    width: 140px;
+    width: 12rem;
     user-select: none;
   }
   
   /* 선택된 영역 (상자) */
   .select-selected {
-    padding: 10px 15px;
-    border-radius: 50px;
-    height: 44px;
+    padding: 0.6rem 1rem;
+    height: 4rem;
     cursor: pointer;
     font-size: 16px;
     display: flex;
     justify-content: space-between;
     color: #fff;
     font-weight: 500;
-    background: #5aa933;
+    background: #556a4b;
     align-items: center;
     transition: all 0.3s ease;
     position: relative;
   }
   .select-selected img {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    right: 15px;
+    width: 2.2rem;
+    height: 2.2rem;
+    right: 0.8rem;
     top: 50%;
     transform: translateY(-50%);
   }
@@ -359,7 +454,6 @@
     top: 100%; left: 0; right: 0;
     z-index: 99;
     margin-top: 5px;
-    border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     overflow: hidden;
     padding: 0;
@@ -385,4 +479,93 @@
     font-weight: bold;
   }
 
-  
+
+
+
+/*****************************************************************************
+    @페이징
+****************************************************************************/
+.paging_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10rem;
+}
+
+.paging_wrap button {
+    display: flex;
+    width: 3.2rem;
+    height: 3.2rem;
+    align-items: center;
+    justify-content: center;
+    font-size: 0;
+    cursor: pointer;
+}
+.paging_wrap button.paging_double {
+    background: url(/public/images/icon_arrow_last.svg) no-repeat center center / cover;
+}
+.paging_wrap button.paging_double:disabled {
+    background: url(/public/images/icon_arrow_last_w.svg) no-repeat center center / cover;
+}
+.paging_wrap button.paging_one {
+    background: url(/public/images/icon_arrow_next.svg) no-repeat center center / cover;
+}
+.paging_wrap button.paging_one:disabled {
+    background: url(/public/images/icon_arrow_next_w.svg) no-repeat center center / cover;
+}
+.paging_wrap button.paging_double.last, .paging_wrap button.paging_one.next {
+    transform: rotate(180deg);
+}
+.paging_wrap .page_numbers {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0 2.4rem;
+}
+.paging_wrap .page_numbers li {
+    display: flex;
+    width: 3.8rem;
+    height: 3.8rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: .4rem;
+    font-weight: 300;
+    color: #aaa;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+.paging_wrap .page_numbers li.active {
+    background: #ebebeb;
+    color: #141414;
+    font-weight: 500;
+}
+
+@media (max-width: 767px) {
+    .paging_wrap .page_numbers{ gap: 0rem; padding: 0 1.2rem;}
+    .paging_wrap {margin-top: 5rem;}
+    .paging_wrap button{width: 3rem; height: 3rem;}
+    .paging_wrap .page_numbers li {width: 3.2rem; height: 3.2rem; font-size: 1.4rem;}
+}
+
+/*****************************************************************************
+    @데이터가 없을경우
+****************************************************************************/
+.no_data_wrap {
+    width: 100%;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+.no_data_wrap .no_data_img {
+    width: 30rem;
+    height: 20rem;
+    background: url(/public/images/icon_product_none.png) no-repeat center center / contain;
+}
+.no_data_wrap .no_data_text {
+    font-size: 2.8rem;
+    color: #666;
+    font-weight: 500;
+}
