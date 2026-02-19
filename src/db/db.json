@@ -97,22 +97,29 @@
       "gender": "여",
       "role": "ROLE_MEMBER",
       "remark": ""
-    },
-    {
-      "id": "f007",
-      "userName": "오류테스트",
-      "userEmail": "qwer@naver.com",
-      "userPw": "1234",
-      "phonenum": "01011111111",
-      "age": "12",
-      "address": "12",
-      "gender": "남",
-      "role": "ROLE_MEMBER",
-      "remark": "",
-      "note": "123"
     }
   ],
   "product": [
+    {
+      "id": "1",
+      "category": "hydro",
+      "name": "수딩 토너1",
+      "price": 20000,
+      "img": "hydro1.jpg",
+      "description": "보습라인 1번 상품입니다",
+      "descImg": "상세페이지 이미지 경로",
+      "regDate": "2026-02-1T05:56:49.676Z"
+    },
+    {
+      "id": "2",
+      "category": "hydro",
+      "name": "수딩 토너2",
+      "price": 30000,
+      "img": "hydro2.jpg",
+      "description": "보습라인 2번 상품입니다",
+      "descImg": "상세페이지 이미지 경로",
+      "regDate": "2026-02-1T05:56:49.676Z"
+    },
     {
       "id": "3",
       "category": "hydro",
@@ -244,204 +251,81 @@
       "regDate": "2026-02-12T05:56:49.676Z"
     },
     {
-      "id": "98b8",
-      "name": "Barrier pH 5.5 Soothing Toner(배리어 약산성 수딩 토너)",
+      "id": "dc22",
+      "name": "수딩 토너1",
       "category": "hydro",
-      "price": 20000,
-      "img": "hydro1_배리어 약산성 수딩 토너.png",
-      "description": "피부와 유사한 pH 5.5 약산성 포뮬러가 무너진 피부 밸런스를 바로잡고, 외부 자극으로 예민해진 피부를 순하게 진정시켜 건강한 피부 장벽 환경을 유지하는 데 도움을 줍니다.",
-      "descImg": "",
-      "regDate": "2026-02-19T08:29:56.208Z"
+      "price": 10000,
+      "img": "hydro1.jpg",
+      "description": "상품추가 후 리스트갱신 테스트",
+      "descImg": "hydrodetail1.jpg",
+      "regDate": "2026-02-12T05:56:49.676Z"
     },
     {
-      "id": "a249",
-      "name": "Barrier Hydration Toner(배리어 하이드레이션 토너)",
-      "category": "hydro",
-      "price": 20000,
-      "img": "hydro2_배리어 하이드레이션 토너.png",
-      "description": "고보습 성분이 피부 깊숙이 수분을 공급하고 건조로 인한 당김을 완화하여 촉촉하고 유연한 피부 컨디션을 유지하는 데 도움을 줍니다.",
-      "descImg": "",
-      "regDate": "2026-02-19T08:32:06.551Z"
-    },
-    {
-      "id": "8971",
-      "name": "Ceramide Complex Serum(세라마이드 콤플렉스 세럼)",
+      "id": "da3c",
+      "name": "수딩 토너1",
       "category": "hydro",
       "price": 30000,
-      "img": "hydro3_세라마이드 콤플렉스 세럼.png",
-      "description": "세라마이드 콤플렉스가 피부 장벽을 탄탄하게 케어하고 수분 손실을 방지하여, 건조하고 민감해진 피부를 건강하고 견고하게 가꾸는 데 도움을 줍니다.",
-      "descImg": "",
-      "regDate": "2026-02-19T08:32:38.137Z"
-    },
-    {
-      "id": "d521",
-      "name": "Hyaluronic Multi Serum(히알루론산 멀티 세럼)",
-      "category": "hydro",
-      "price": 30000,
-      "img": "hydro4_히알루론산 멀티 세럼.png",
-      "description": "다중 히알루론산이 피부 층층이 수분을 채워주어 즉각적인 보습감을 선사하며, 오랜 시간 촉촉하고 탱탱한 피부 상태를 유지하는 데 도움을 줍니다.",
-      "descImg": "",
-      "regDate": "2026-02-19T08:33:20.200Z"
-    },
-    {
-      "id": "415f",
-      "name": "Panthenol 10% Ampoule(판테놀 10% 앰플)",
-      "category": "hydro",
-      "price": 40000,
-      "img": "hydro5_판테놀 10% 앰플.png",
-      "description": "프로비타민 B5(판테놀) 10%가 손상된 피부를 진정시키고 수분 장벽을 강화하여 외부 자극으로부터 피부를 보호하는 데 도움을 줍니다.",
-      "descImg": "",
-      "regDate": "2026-02-19T08:33:47.632Z"
-    },
-    {
-      "id": "5ddc",
-      "name": "Ectoin Defense Ampoule(엑토인 디펜스 앰플)",
-      "category": "hydro",
-      "price": 40000,
-      "img": "hydro6_엑토인 디펜스 앰플.png",
-      "description": "엑토인이 외부 환경 스트레스로부터 피부를 보호하고 피부 보습막을 형성하여 건강하고 안정된 피부 컨디션을 유지하는 데 도움을 줍니다.",
-      "descImg": "",
-      "regDate": "2026-02-19T08:34:24.238Z"
-    },
-    {
-      "id": "e292",
-      "name": "Intensive Barrier Cream(인텐시브 배리어 크림)",
-      "category": "hydro",
-      "price": 50000,
-      "img": "hydro7_인텐시브 배리어 크림.png",
-      "description": "고영양 보습 성분이 피부 장벽을 집중 케어하고 건조로 인한 거칠어짐을 완화하여 탄탄하고 촉촉한 피부로 가꾸는 데 도움을 줍니다.",
-      "descImg": "",
-      "regDate": "2026-02-19T08:34:52.256Z"
-    },
-    {
-      "id": "1e64",
-      "name": "Lipid Balance Cream(리피드 밸런스 크림)",
-      "category": "hydro",
-      "price": 50000,
-      "img": "hydro8_리피드 밸런스 크림.png",
-      "description": "피부 지질과 유사한 성분이 유수분 밸런스를 조절하여 번들거림 없이 편안한 보습감을 제공하고 건강한 피부 장벽 유지에 도움을 줍니다.",
-      "descImg": "",
-      "regDate": "2026-02-19T08:35:32.959Z"
-    },
-    {
-      "id": "ee22",
-      "name": "Recovery Moisturizer(리커버리 모이스처라이저)",
-      "category": "hydro",
-      "price": 30000,
-      "img": "hydro9_리커버리 모이스처라이저.png",
-      "description": "손상되고 민감해진 피부에 깊은 보습과 영양을 공급하여 피부 컨디션을 빠르게 회복시키고 부드럽고 편안한 피부 상태로 가꾸는 데 도움을 줍니다.",
-      "descImg": "",
-      "regDate": "2026-02-19T08:36:00.247Z"
-    },
-    {
-      "id": "5b28",
-      "name": "Daily Moisture Emulsion(데일리 모이스처 에멀전)",
-      "category": "hydro",
-      "price": 25000,
-      "img": "hydro10_데일리 모이스처 에멀전.png",
-      "description": "가벼운 밀크 타입 제형이 피부에 산뜻하게 흡수되어 끈적임 없이 수분을 공급하고, 하루 종일 촉촉한 피부를 유지하는 데 도움을 줍니다.",
-      "descImg": "",
-      "regDate": "2026-02-19T08:36:26.455Z"
-    },
-    {
-      "id": "c76a",
-      "name": "Calming Repair Fluid(카밍 리페어 플루이드)",
-      "category": "hydro",
-      "price": 30000,
-      "img": "hydro11_카밍 리페어 플루이드.png",
-      "description": "민감해진 피부를 부드럽게 진정시키고 피부 장벽을 강화하여 외부 자극에 흔들리지 않는 건강한 피부 환경을 조성하는 데 도움을 줍니다.",
-      "descImg": "",
-      "regDate": "2026-02-19T08:36:59.287Z"
-    },
-    {
-      "id": "8edc",
-      "name": "Post-Procedure Recovery Cream(시술 후 리커버리 크림)",
-      "category": "hydro",
-      "price": 50000,
-      "img": "hydro12_시술 후 리커버리 크림.png",
-      "description": "시술 후 예민해진 피부를 진정시키고 보호막을 형성하여 자극 받은 피부의 빠른 회복과 편안한 피부 상태 유지에 도움을 줍니다.",
-      "descImg": "",
-      "regDate": "2026-02-19T08:37:28.183Z"
+      "img": "hydro1.jpg",
+      "description": "상품추가 후 리스트 갱신 테스트 22222",
+      "descImg": "hydrod1_desc.jpg",
+      "regDate": "2026-02-12T05:57:17.107Z"
     }
   ],
   "productReview": [
     {
       "id": "1",
       "category": "hydro",
-      "productId": null,
-      "productName": "수딩토너1",
+      "productId": "1",
       "userEmail": "test1",
       "userName": "test1",
       "date": "2026.02.05",
       "score": 5,
-      "like": 2,
-      "likedUsers": [],
+      "like": 3,
+      "likedUsers": [
+        "test"
+      ],
       "description": "악건성 피부여서 여러 보습제품 사용해 봤지만, 이 제품으로 정착할것 같습니다. 리앤킴 피부과 시술 때 사용하신다더니, 품질 확실하네요. 추천합니다!"
     },
     {
       "id": "3004",
       "category": "hydro",
-      "productId": null,
-      "productName": "수딩토너1",
+      "productId": "1",
       "userEmail": "test",
       "userName": "test",
       "date": "2026. 2. 9. 11:04:38",
       "score": 5,
-      "like": 1,
-      "likedUsers": [
-        "test"
-      ],
+      "like": 0,
+      "likedUsers": [],
       "description": "수딩 토너1 후기 테스트111, 후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다."
     },
     {
       "id": "8a36",
       "category": "hydro",
-      "productId": null,
-      "productName": "수딩토너1",
+      "productId": "1",
       "userEmail": "test",
       "userName": "test",
       "date": "2026-02-10 10:05:04",
       "score": 2,
-      "like": 1,
-      "likedUsers": [
-        "test"
-      ],
+      "like": 0,
+      "likedUsers": [],
       "description": "수딩 토너1 후기테스트2222222 후기 수정을 테스트합니다. 다시 테스트합니다."
     },
     {
-      "id": "fa49",
+      "id": "467d",
       "category": "hydro",
-      "productId": "4",
-      "productName": "수딩토너1",
+      "productId": "1",
       "userEmail": "test",
       "userName": "test",
-      "date": "2026-02-13T02:54:47.384Z",
-      "score": 1,
+      "date": "2026-02-12T04:07:34.240Z",
+      "score": 5,
       "viewrate": 0,
-      "description": "후기 평점을 테스트 합니다111111",
-      "like": 0,
-      "likedUsers": []
-    },
-    {
-      "id": "95fe",
-      "category": "hydro",
-      "productId": "9",
-      "productName": "모이스처 마스크1",
-      "userEmail": "test",
-      "userName": "test",
-      "date": "2026-02-13T08:20:54.282Z",
-      "score": 4,
-      "like": 1,
-      "likedUsers": [
-        "test"
-      ],
-      "description": "후기작성 테스트합니다.후기작성 테스트합니다.후기작성 테스트합니다.후기작성 테스트합니다.후기작성 테스트합니다.후기작성 테스트합니다.후기작성 테스트합니다.후기작성 테스트합니다.후기작성 테스트합니다.후기작성 테스트합니다.후기작성 테스트합니다."
+      "description": "후기등록 date 확인용입니다."
     }
   ],
   "reservation": [
     {
       "id": "1",
-      "category": "lifting",
+      "category": "faceline",
       "name": "인모드",
       "price": 200000,
       "img": "lifting_01.png",
@@ -450,37 +334,14 @@
       "setshop": [
         "노원",
         "신촌",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "강남"
-=======
         "강남",
         "종로"
->>>>>>> faithyg93
-=======
-        "강남",
-        "종로"
->>>>>>> snooze30
       ],
       "settime": [
         "10:00",
         "11:00",
         "14:00",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "15:00",
-        "16:00",
-        "17:00",
-        "18:00"
-      ],
-      "timespan": [
-        1
-=======
         "15:00"
->>>>>>> faithyg93
-=======
-        "15:00"
->>>>>>> snooze30
       ]
     },
     {
@@ -500,22 +361,8 @@
         "10:00",
         "11:00",
         "14:00",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "15:00",
-        "16:00",
-        "18:00",
-        "17:00"
-      ],
-      "timespan": "2"
-=======
         "15:00"
       ]
->>>>>>> faithyg93
-=======
-        "15:00"
-      ]
->>>>>>> snooze30
     },
     {
       "id": "98b5",
@@ -523,23 +370,6 @@
       "category": "regen",
       "price": 123213213,
       "img": "regen_01.png",
-<<<<<<< HEAD
-      "description": "면역력 글루타치온(백옥주사) 진료입니다",
-      "descImg": "E:\\이현성\\풀스택 개발 기초 프로그래밍\\Full_01\\project_L-k\\public\\images\\regen\\regen_01.png",
-      "setshop": [
-        "노원",
-        "신촌",
-        "종로"
-      ],
-      "settime": [
-        "15:00",
-        "11:00",
-        "17:00",
-        "14:00"
-      ],
-      "regDate": "2026-02-13T02:37:45.910Z",
-      "timespan": "3"
-=======
       "description": "피부재생 쥬베룩 진료입니다",
       "descImg": "상세페이지 이미지 경로",
       "setshop": [
@@ -553,10 +383,6 @@
         "14:00",
         "15:00"
       ]
-<<<<<<< HEAD
->>>>>>> faithyg93
-=======
->>>>>>> snooze30
     },
     {
       "id": "277c",
@@ -565,46 +391,6 @@
       "price": 300000,
       "img": "\\immune_01.png",
       "description": "면역력 글루타치온(백옥주사) 진료입니다",
-<<<<<<< HEAD
-      "descImg": "E:\\이현성\\풀스택 개발 기초 프로그래밍\\Full_01\\project_L-k\\public\\images\\immune\\immune_01.png",
-      "setshop": [
-        "노원",
-        "강남",
-        "신촌"
-      ],
-      "settime": [
-        "11:00",
-        "17:00",
-        "14:00",
-        "15:00",
-        "16:00"
-      ],
-      "regDate": "2026-02-13T03:31:16.843Z",
-      "timespan": "2"
-    },
-    {
-      "id": "277e",
-      "name": "글루타치온(백옥주사)",
-      "category": "immune",
-      "price": 300000,
-      "img": "",
-      "description": "면역력 글루타치온(백옥주사) 진료입니다",
-      "descImg": "",
-      "setshop": [
-        "노원",
-        "강남",
-        "신촌"
-      ],
-      "settime": [
-        "11:00",
-        "17:00",
-        "14:00",
-        "15:00",
-        "16:00"
-      ],
-      "regDate": "2026-02-13T03:31:16.843Z",
-      "timespan": "2"
-=======
       "descImg": "상세페이지 이미지 경로",
       "setshop": [
         "신촌",
@@ -617,27 +403,6 @@
         "14:00",
         "15:00"
       ]
-<<<<<<< HEAD
->>>>>>> faithyg93
-=======
-    }
-  ],
-  "reservReview": [
-    {
-      "id": "1",
-      "category": "lifting",
-      "reservId": "1",
-      "reservName": "울쎄라",
-      "userEmail": "test",
-      "userName": "test",
-      "date": "2026-02-13T02:54:47.384Z",
-      "score": 5,
-      "like": 1,
-      "likedUsers": [
-        "test"
-      ],
-      "description": "진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다."
->>>>>>> snooze30
     }
   ],
   "shop": [
@@ -934,8 +699,7 @@
           "descImg": "상세페이지 이미지 경로",
           "shop": "강남",
           "date": "2026-02-18",
-          "time": "11:00",
-          "state": "예약완료"
+          "time": "11:00"
         }
       ],
       "totalAmount": 200000,

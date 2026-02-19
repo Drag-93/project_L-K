@@ -58,10 +58,7 @@ const AdminProduct = () => {
   }
   
   const filtered = useMemo(() => {
-<<<<<<< HEAD
-=======
     
->>>>>>> snooze30
     //검색 및 카테고리 필터링
     const q = searchText.trim().toLowerCase();
     const filteredList = productList.filter((m) => {
@@ -89,26 +86,6 @@ const AdminProduct = () => {
           return a.price - b.price;
         case "priceDesc":
           return b.price - a.price;
-<<<<<<< HEAD
-      }
-    });
-  }, [productList, searchText, categoryFilter, sortType]);
-
-  //상품후기 불러오기
-  const [productReview, setProductReview] = useState([]);
-  useEffect(() => {
-    const productReviewFn = async () => {
-      try {
-        const res = await axios.get(`${productUrl}/productReview`);
-        console.log(res.data);
-        setProductReview(Array.isArray(res.data) ? res.data : [res.data]);
-      } catch (err) {
-        console.log("상품후기 로딩 실패");
-      }
-    };
-    productReviewFn();
-  }, [productUrl]);
-=======
         case "avrScoreAsc":
           return reviewStatus(a.id).avrScore - reviewStatus(b.id).avrScore;
         case "avrScoreDesc":
@@ -120,7 +97,6 @@ const AdminProduct = () => {
         }    
         });          
   }, [productList, searchText, categoryFilter, sortType, productReview]);
->>>>>>> snooze30
 
   //리스트 항목 선택/해제
   const [checkedItems, setCheckedItems] = useState([]);
@@ -199,29 +175,6 @@ const AdminProduct = () => {
           onSuccess={() => productListFn()}
         />
       )}
-<<<<<<< HEAD
-      <div className="admin">
-        <div className="admin-title">
-          <div className="admin-toolbar">
-            <div className="admin-toolbar-searchtext">
-              <input
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-                placeholder="검색어 입력"
-              />
-            </div>
-            <div className="admin-toolbar-selector">
-              <select
-                value={sortType}
-                onChange={(e) => setSortType(e.target.value)}
-              >
-                <option value="regDateDesc">등록순 (최신순)</option>
-                <option value="regDateAsc">등록순 (과거순)</option>
-                <option value="priceDesc">가격순 (높은순)</option>
-                <option value="priceAsc">가격순 (낮은순)</option>
-              </select>
-            </div>
-=======
       <div className="adminProduct">
         <div className="adminProduct-con">
           <div className="title">
@@ -268,7 +221,6 @@ const AdminProduct = () => {
                 </div>
               </li>
             </ul>
->>>>>>> snooze30
           </div>
           <ul>
             <li>
@@ -312,42 +264,10 @@ const AdminProduct = () => {
                 <th>가격</th>
                 <th>평점/후기건수</th>
                 <th>카테고리</th>
-<<<<<<< HEAD
-                {/* <th>상세보기</th> */}
-=======
->>>>>>> snooze30
               </tr>
             </thead>
             <tbody>
               {pagedList.map((el) => {
-<<<<<<< HEAD
-                //상품별 후기 필터링 및 평점 계산
-                const reviews = productReview.filter(
-                  (review) => review.productId === el.id,
-                );
-                const avrScore =
-                  reviews.length > 0
-                    ? (
-                        reviews.reduce(
-                          (acc, cur) => acc + (Number(cur.score) || 0),
-                          0,
-                        ) / reviews.length
-                      ).toFixed(1)
-                    : 0.0;
-
-                return (
-                  <tr key={el.id} onClick={() => adminModalFn(el.id)}>
-                    <td onClick={(e) => e.stopPropagation()}>
-                      <input
-                        type="checkbox"
-                        name="checkSingle"
-                        id="checkSingle"
-                        onChange={(e) => {
-                          handleSingleCheck(e.target.checked, el.id);
-                        }}
-                        checked={checkedItems.includes(el.id)}
-                      />
-=======
                 const {revCount, avrScore} = reviewStatus(el.id);
                 return (
                   <tr
@@ -361,7 +281,6 @@ const AdminProduct = () => {
                       <input type="checkbox" name="checkSingle" id="checkSingle"
                        onChange={(e)=>{handleSingleCheck(e.target.checked, el.id)}}
                         checked={checkedItems.includes(el.id)} />
->>>>>>> snooze30
                     </td>
                     <td>
                       <img
@@ -372,22 +291,9 @@ const AdminProduct = () => {
                     <td>{el.name}</td>
                     <td>{el.price.toLocaleString()}원</td>
                     <td>
-<<<<<<< HEAD
-                      {avrScore}점/{reviews.length}건
-                    </td>
-                    <td>{el.category}</td>
-                    {/* <td
-                      onClick={() => {
-                        adminModalFn(el.id);
-                      }}
-                    >
-                      보기
-                    </td> */}
-=======
                       {avrScore}점/{revCount}건
                     </td>
                     <td>{categoryMap[el.category] || el.category}</td>
->>>>>>> snooze30
                   </tr>
                 );
               })}
