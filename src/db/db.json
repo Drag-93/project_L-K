@@ -6,7 +6,7 @@
       "description": "테스트용 공지입니다",
       "no": 1,
       "date": "Fri Feb 20 2026 11:38:31 GMT+0900 (한국 표준시)",
-      "viewrate": 4
+      "viewrate": 5
     },
     {
       "id": "ff63",
@@ -14,7 +14,7 @@
       "description": "testtesttest",
       "no": 2,
       "date": "Fri Feb 20 2026 14:50:32 GMT+0900 (한국 표준시)",
-      "viewrate": 0
+      "viewrate": 1
     },
     {
       "id": "3ba4",
@@ -22,7 +22,7 @@
       "description": "작성일테스트",
       "no": 3,
       "date": "Fri Feb 20 2026 14:53:10 GMT+0900 (한국 표준시)",
-      "viewrate": 0
+      "viewrate": 2
     }
   ],
   "members": [
@@ -331,7 +331,7 @@
       "img": "lifting_01.png",
       "description": "리프팅라인 울쎄라 진료입니다",
       "descImg": "상세페이지 이미지 경로",
-      "timespan":2,
+      "timespan": 2,
       "setshop": [
         "노원",
         "신촌",
@@ -353,7 +353,7 @@
       "img": "faceline_01.png",
       "description": "페이스라인 인모드 진료입니다",
       "descImg": "상세페이지 이미지 경로",
-      "timespan":2,
+      "timespan": 2,
       "setshop": [
         "노원",
         "신촌",
@@ -363,7 +363,9 @@
         "10:00",
         "11:00",
         "14:00",
-        "15:00"
+        "15:00",
+        "16:00",
+        "17:00"
       ]
     },
     {
@@ -374,7 +376,7 @@
       "img": "regen_01.png",
       "description": "피부재생 쥬베룩 진료입니다",
       "descImg": "상세페이지 이미지 경로",
-      "timespan":3,
+      "timespan": 3,
       "setshop": [
         "노원",
         "강남",
@@ -395,7 +397,7 @@
       "img": "\\immune_01.png",
       "description": "면역력 글루타치온(백옥주사) 진료입니다",
       "descImg": "상세페이지 이미지 경로",
-      "timespan":1,
+      "timespan": 1,
       "setshop": [
         "신촌",
         "강남",
@@ -407,6 +409,25 @@
         "14:00",
         "15:00"
       ]
+    },
+    {
+      "id": "a38d",
+      "name": "쥬베룩",
+      "category": "regen",
+      "price": 12000,
+      "img": "hydro1.jpg",
+      "description": "리프팅라인 울쎄라 진료입니다",
+      "descImg": "상세페이지 이미지 경로",
+      "setshop": [
+        "강남",
+        "노원"
+      ],
+      "settime": [
+        "10:00",
+        "11:00"
+      ],
+      "regDate": "2026-02-20T06:43:01.386Z",
+      "timespan": "3"
     }
   ],
   "shop": [
