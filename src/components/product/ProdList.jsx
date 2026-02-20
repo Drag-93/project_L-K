@@ -110,14 +110,15 @@ const ProdList = () => {
   return (
     <div className='inner'>
         <div className="sell_list_wrap">
-          <img src={`/images/banner_${category || 'all'}.png`} className="sell_banner" />
+          <img src={`/images/banner_${category || 'all2'}.png`} className="sell_banner" />
           <div className="aside_wrap">
             <ul>
               <li><NavLink to={`/product/list`} end>전체</NavLink></li>
-              <li><NavLink to={`/product/list/lifting`}>리프팅</NavLink></li>
-              <li><NavLink to={`/product/list/faceline`}>페이스라인</NavLink></li>
-              <li><NavLink to={`/product/list/regen`}>피부재생</NavLink></li>
-              <li><NavLink to={`/product/list/immune`}>면역력</NavLink></li>
+              <li><NavLink to={`/product/list/hydro`}>보습제품</NavLink></li>
+              <li><NavLink to={`/product/list/trouble`}>트러블</NavLink></li>
+              <li><NavLink to={`/product/list/white`}>화이트</NavLink></li>
+              <li><NavLink to={`/product/list/antiage`}>안티에이징</NavLink></li>
+              <li><NavLink to={`/product/list/uv`}>UV</NavLink></li>
             </ul>
           </div>
           <div className="list_search_wrap">
@@ -172,9 +173,6 @@ const ProdList = () => {
                   <li key={el.id}>
                     <Link to={`/product/detail/${el.category}/${el.id}`}>
                       <div className="top">
-                        <div className="time">
-                          {el.timespan}시간
-                        </div>
                         <img src={el.img ? `/images/${el.category}/${el.img}` : `/images/all_none.png`} alt={el.name} onError={(e) => {e.target.src = "/images/all_none.png";}}/>
                       </div>
                       <div className="bottom">
