@@ -71,29 +71,11 @@ const AdminNotice = () => {
     setPage(1);
   }, [searchText]);
 
-  //한국 날짜 표시
-  const getKoreaDate = () => {
-    const today = new Date();
-    return (
-      today.getFullYear() +
-      "-" +
-      String(today.getMonth() + 1).padStart(2, "0") +
-      "-" +
-      String(today.getDate()).padStart(2, "0")
-    );
-  };
-
   //목록 불러오기
   const openListFn = async () => {
     try {
       const res = await axios.get(`${noticeUrl}/notice`);
-      const listWithNumber = res.data
-        .sort((a, b) => new Date(b.date) - new Date(a.date))
-        .map((item, index, arr) => ({
-          ...item,
-          number: arr.length - index,
-        }));
-      setNoticeList(listWithNumber);
+      setNoticeList(res.data);
     } catch (err) {
       alert(err);
     }
@@ -164,50 +146,34 @@ const AdminNotice = () => {
           onSuccess={openListFn}
         />
       )}
-      <div className="admin">
-        <div className="admin-title">
-          <div className="admin-toolbar">
-            <div className="admin-toolbar-searchtext">
-              <input
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-                placeholder="검색어 입력"
-              />
-            </div>
-            <div className="admin-toolbar-selector">
-              <select
-                value={sortType}
-                onChange={(e) => setSortType(e.target.value)}
-              >
-                <option value="Latest">등록순 (최신순)</option>
-                <option value="Earliest">등록순 (과거순)</option>
-              </select>
-            </div>
+      <div className="adminNotice">
+        <div className="adminNotice-con">
+          <div className="title">
+            <ul>
+              <li>
+                <div className="toolbar">
+                  <input
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    placeholder="검색어 입력"
+                  />
+                </div>
+              </li>
+              <li>
+                <div className="sortSelector">
+                  <select
+                    value={sortType}
+                    onChange={(e) => setSortType(e.target.value)}
+                  >
+                    <option value="Latest">등록순 (최신순)</option>
+                    <option value="Earliest">등록순 (과거순)</option>
+                    <option value="Highest">조회수 (높은순)</option>
+                    <option value="Lowest">조회순 (낮은순)</option>
+                  </select>
+                </div>
+              </li>
+            </ul>
           </div>
-
-          <ul>
-            <li>
-              <div className="admin-selector">
-                <select
-                  value={sortType}
-                  onChange={(e) => setSortType(e.target.value)}
-                >
-                  <option value="">조회수</option>
-                  <option value="Highest">조회수 (높은순)</option>
-                  <option value="Lowest">조회순 (낮은순)</option>
-                </select>
-              </div>
-              <div className="admin-button">
-                {/* <button onClick={() => onSelectAllFn()}>
-              {allVisibleSelected ? "선택해제" : "전체선택"}
-              </button> */}
-                <button onClick={() => adminModalFn(null)}>작성</button>
-                <button onClick={() => onDeleteSelectedFn()}>삭제</button>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div className="admin-con">
           <table>
             <thead>
               <tr>
@@ -238,10 +204,10 @@ const AdminNotice = () => {
                         onChange={() => toggleSelect(el.id)}
                       />
                     </td>
-                    <td>{el.number}</td>
-                    <td>{getKoreaDate(el.date)}</td>
+                    <td>{el.no}</td>
+                    <td>{el.date}</td>
                     <td>{el.title}</td>
-                    <td title={el.description}>
+                    <td>
                       {el.description && el.description.length > 10
                         ? `${el.description.slice(0, 10)}...`
                         : el.description}
@@ -252,49 +218,57 @@ const AdminNotice = () => {
               })}
             </tbody>
           </table>
-        </div>
-        <div className="admin-footer">
-          <div className="admin-paging">
-            <button onClick={() => setPage(1)} disabled={page === 1}>
-              ◀◀
-            </button>
-            <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-              ◀
-            </button>
+          <div className="adminNoticeFooter">
+            <div className="adminNoticePaging">
+              <button onClick={() => setPage(1)} disabled={page === 1}>
+                ◀◀
+              </button>
+              <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+                ◀
+              </button>
 
-            {Array.from({ length: btnRange }, (_, i) => {
-              const pageNum = startPage + i;
-              if (pageNum > lastPage) return null;
-              return (
-                <button
-                  key={pageNum}
-                  onClick={() => {
-                    setPage(pageNum);
-                  }}
-                  className={page === pageNum ? "active" : ""}
-                  disabled={page === pageNum}
-                >
-                  {pageNum}
+              {Array.from({ length: btnRange }, (_, i) => {
+                const pageNum = startPage + i;
+                if (pageNum > lastPage) return null;
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => {
+                      setPage(pageNum);
+                    }}
+                    className={page === pageNum ? "active" : ""}
+                    disabled={page === pageNum}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+              <button
+                onClick={() => {
+                  setPage(page + 1);
+                }}
+                disabled={page === lastPage}
+              >
+                ▶
+              </button>
+              <button
+                onClick={() => {
+                  setPage(lastPage);
+                }}
+                disabled={page === lastPage}
+              >
+                ▶▶
+              </button>
+            </div>
+            <ul>
+              <li>
+                <button onClick={() => onSelectAllFn()}>
+                  {allVisibleSelected ? "선택해제" : "전체선택"}
                 </button>
-              );
-            })}
-            <button
-              onClick={() => {
-                setPage(page + 1);
-              }}
-              disabled={page === lastPage}
-            >
-              ▶
-            </button>
-
-            <button
-              onClick={() => {
-                setPage(lastPage);
-              }}
-              disabled={page === lastPage}
-            >
-              ▶▶
-            </button>
+                <button onClick={() => adminModalFn(null)}>작성</button>
+                <button onClick={() => onDeleteSelectedFn()}>삭제</button>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

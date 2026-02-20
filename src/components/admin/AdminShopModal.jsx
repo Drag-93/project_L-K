@@ -6,7 +6,6 @@ import {
   createKakaoMap,
   createMarker,
   loadKakaoMap,
-  moveMap,
 } from "../../utils/kakaoMapUtil";
 
 const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
@@ -154,14 +153,9 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
 
   if (!detail) {
     return (
-      <div className="adminModal" onClick={closeFn}>
-        <div
-          className="adminModal-con"
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-        >
-          <span className="adminModal-close" onClick={closeFn}>
+      <div className="adminShopModal">
+        <div className="adminShopModal-con">
+          <span className="close" onClick={closeFn}>
             X
           </span>
           <div className="loading">
@@ -183,17 +177,12 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
           onPick={handlePickLocation}
         />
       )}
-      <div className="adminModal" onClick={closeFn}>
-        <div
-          className="adminModal-con"
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-        >
-          <span className="adminModal-close" onClick={closeFn}>
+      <div className="adminShopModal">
+        <div className="adminShopModal-con">
+          <span className="close" onClick={closeFn}>
             X
           </span>
-          <div className="adminModal-title">
+          <div className="title">
             {shopId != null ? detail.name : "새 지점 등록"}
           </div>
           <ul>
@@ -219,23 +208,16 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
             </li>
             <li>
               <label htmlFor="address">주소</label>
-              <div className="admin-shopModal-address">
-                <input
-                  type="text"
-                  name="address"
-                  id="address"
-                  value={detail.address}
-                  onChange={onChangeFn}
-                />
-                <button
-                  className="addressBtn"
-                  onClick={() => setIsMapModalOpen(true)}
-                >
-                  주소입력
-                </button>
-              </div>
+              <input
+                type="text"
+                name="address"
+                id="address"
+                value={detail.address}
+                onChange={onChangeFn}
+              />
+              <button onClick={() => setIsMapModalOpen(true)}>주소입력</button>
             </li>
-            {/* <li>
+            <li>
               <label htmlFor="lat">위도</label>
               <input
                 name="lat"
@@ -252,35 +234,32 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
                 value={detail.lng}
                 onChange={onChangeFn}
               />
-            </li> */}
+            </li>
             <li>
               <label htmlFor="subway">지도</label>
               <div
                 ref={mapRef}
                 style={{
-                  width: `100%`,
+                  width: 300,
                   height: 260,
                   borderRadius: 12,
                   overflow: "hidden",
-                  border: "1px solid #d9deea",
-                  borderRadius: "12px",
                 }}
               />
             </li>
 
             <li>
-              <label htmlFor="subway">오시는길</label>
-              <textarea
+              <label htmlFor="subway">지하철?오시는길</label>
+              <input
+                type="text"
                 name="subway"
                 id="subway"
                 value={detail.subway}
                 onChange={onChangeFn}
               />
             </li>
-          </ul>
 
-          <div className="adminModal-footer">
-            <div className="adminModal-footer-con">
+            <li>
               {shopId != null ? (
                 <>
                   <button onClick={onUpdateFn} disabled={isSaving}>
@@ -298,8 +277,8 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
               <button onClick={closeFn} disabled={isSaving}>
                 닫기
               </button>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       </div>
     </>

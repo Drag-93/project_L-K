@@ -138,14 +138,9 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
 
   if (!detail) {
     return (
-      <div className="adminModal" onClick={closeFn}>
-        <div
-          className="adminModal-con"
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-        >
-          <span className="adminModal-close" onClick={closeFn}>
+      <div className="adminNoticeModal">
+        <div className="adminNoticeModal-con">
+          <span className="close" onClick={closeFn}>
             X
           </span>
           <div className="loading">
@@ -156,18 +151,17 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
     );
   }
   return (
-    <div className="adminModal" onClick={closeFn}>
-      <div
-        className="adminModal-con"
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-      >
-        <span className="adminModal-close" onClick={closeFn}>
+    <div className="adminQnAModal">
+      <div className="adminQnAModal-con">
+        <span className="close" onClick={closeFn}>
           X
         </span>
-        <div className="adminModal-title">
-          {isEditing ? "수정하기" : detail.title}
+        <div className="title">
+          <ul>
+            <li>
+              <h1>{isEditing ? "수정하기" : detail.title}</h1>
+            </li>
+          </ul>
         </div>
         <ul>
           <li>
@@ -213,8 +207,8 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
             />
           </li>
         </ul>
-        <div className="adminModal-footer">
-          <div className="adminModal-footer-con">
+        <div className="adminQnAModalFooter">
+          <div className="adminQnAModalFooter-con">
             {!isEditing ? (
               <>
                 {/* <button onClick={onEditFn}>수정하기</button> */}
@@ -228,10 +222,10 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
             )}
           </div>
         </div>
-
-        <div className="adminModal-answer-con">
-          <ul>
-            {/* <li>
+      </div>
+      <div className="adminQnAModalAnswer-con">
+        <ul>
+          {/* <li>
             <label htmlFor="admin">답변자</label>
             <input
               type="text"
@@ -241,19 +235,19 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
               readOnly
             />
           </li> */}
-            <li>
-              <label htmlFor="answer">답변내용</label>
-              <textarea
-                name="answer"
-                id="answer"
-                value={isAnswering ? editAnswer.answer : (detail.answer ?? "")}
-                placeholder={detail.answer ? "" : "답변 내용 작성."}
-                onChange={onAnswerChangeFn}
-                rows={4}
-                readOnly={!isAnswering}
-              />
-            </li>
-            {/* <li>
+          <li>
+            <label htmlFor="answer">답변내용</label>
+            <textarea
+              name="answer"
+              id="answer"
+              value={isAnswering ? editAnswer.answer : (detail.answer ?? "")}
+              placeholder={detail.answer ? "" : "답변 내용 작성."}
+              onChange={onAnswerChangeFn}
+              rows={4}
+              readOnly={!isAnswering}
+            />
+          </li>
+          {/* <li>
             {!isAnswering && (
               <button onClick={onEditAnswerFn}>
                 {!detail.answer ? "답변하기" : "답변수정하기"}
@@ -270,30 +264,27 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
                   취소하기
                 </button>
               </>
-              )}
-              <button onClick={() => closeFn()}>닫기</button>
-              </li> */}
-          </ul>
-          <div className="adminModal-footer">
-            <div className="adminModal-footer-con">
-              {detail.answer && !isAnswering ? (
-                <button onClick={onEditAnswerFn}> 답변수정하기</button>
-              ) : (
-                <button onClick={onSaveAnswerFn}>답변저장하기</button>
-              )}
-              {isAnswering ? (
-                <button
-                  onClick={() => {
-                    setIsAnswering(false);
-                  }}
-                >
-                  취소하기
-                </button>
-              ) : null}
-              <button onClick={() => closeFn()}>닫기</button>
-            </div>
-          </div>
-        </div>
+            )}
+            <button onClick={() => closeFn()}>닫기</button>
+          </li> */}
+          <li>
+            {detail.answer && !isAnswering ? (
+              <button onClick={onEditAnswerFn}> 답변수정하기</button>
+            ) : (
+              <button onClick={onSaveAnswerFn}>답변저장하기</button>
+            )}
+            {isAnswering ? (
+              <button
+                onClick={() => {
+                  setIsAnswering(false);
+                }}
+              >
+                취소하기
+              </button>
+            ) : null}
+            <button onClick={() => closeFn()}>닫기</button>
+          </li>
+        </ul>
       </div>
     </div>
   );

@@ -76,29 +76,6 @@ const AdminShop = () => {
     openListFn();
   }, []);
 
-  //예약현황(개수)
-
-  const [reserveList, setReserveList] = useState([]);
-
-  const openReservListFn = async () => {
-    const res = await axios.get(`${shopUrl}/reserveOrders`);
-    setReserveList(res.data);
-  };
-  useEffect(() => {
-    openReservListFn();
-  }, []);
-
-  const shopCount = useMemo(() => {
-    if (!reserveList) return;
-    return reserveList
-      ?.flatMap((order) => order.items ?? [])
-      .filter(Boolean)
-      .reduce((acc, it) => {
-        acc[it.shop] = (acc[it.shop] || 0) + 1;
-        return acc;
-      }, {});
-  }, [reserveList]);
-
   const toggleSelect = (id) => {
     const key = String(id);
     setSelectedId((prev) =>
@@ -153,29 +130,21 @@ const AdminShop = () => {
           onSuccess={openListFn}
         />
       )}
-      <div className="admin">
-        <div className="admin-title">
-          <div className="admin-toolbar">
-            <input
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              placeholder="검색어 입력"
-            />
+      <div className="adminShop">
+        <div className="adminShop-con">
+          <div className="title">
+            <ul>
+              <li>
+                <div className="toolbar">
+                  <input
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    placeholder="검색어 입력"
+                  />
+                </div>
+              </li>
+            </ul>
           </div>
-
-          <ul>
-            <li>
-              <div className="admin-button">
-                {/* <button onClick={onSelectAllFn}>
-              {selectedId.length !== pagedList.length ? "전체선택" : "선택해제"}
-            </button> */}
-                <button onClick={() => adminModalFn(null)}>추가</button>
-                <button onClick={() => onDeleteSelectedFn()}>삭제</button>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div className="admin-con">
           <table>
             <thead>
               <tr>
@@ -185,14 +154,16 @@ const AdminShop = () => {
                 <th>지점명</th>
                 <th>연락처</th>
                 <th>주소</th>
+                <th>지도보기</th>
                 <th>예약현황</th>
+                <th>상세보기</th>
               </tr>
             </thead>
             <tbody>
               {pagedList.map((el) => {
                 return (
-                  <tr key={el.id} onClick={() => adminModalFn(el.id)}>
-                    <td onClick={(e) => e.stopPropagation()}>
+                  <tr key={el.id}>
+                    <td>
                       <input
                         type="checkbox"
                         checked={selectedId.includes(String(el.id))}
@@ -206,75 +177,79 @@ const AdminShop = () => {
                         ? `${el.address.slice(0, 15)}...`
                         : el.address}
                     </td>
-                    <td onClick={(e) => e.stopPropagation()}>
-                      <ul>
-                        <li
-                          onClick={() =>
-                            navigate(`/admin/resorder?name=${el.name}`)
-                          }
-                        >
-                          {shopCount[el.name] > 0
-                            ? `${shopCount[el.name]}건`
-                            : "0건"}
-                        </li>
-                        <li>
-                          <button
-                            onClick={() =>
-                              navigate(`/admin/resorder?name=${el.name}`)
-                            }
-                          >
-                            이동하기
-                          </button>
-                        </li>
-                      </ul>
+                    <td>
+                      <button onClick={() => adminModalFn(el.id)}>위치</button>
+                    </td>
+                    <td>
+                      <button
+                        onClick={() =>
+                          navigate(`/admin/resorder?name=${el.name}`)
+                        }
+                      >
+                        보기
+                      </button>
+                    </td>
+                    <td>
+                      <button onClick={() => adminModalFn(el.id)}>보기</button>
                     </td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
-        </div>
-        <div className="admin-footer">
-          <div className="admin-paging">
-            <button onClick={() => setPage(1)} disabled={page === 1}>
-              ◀◀
-            </button>
-            <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-              ◀
-            </button>
+          <div className="adminShopFooter">
+            <div className="adminShopPaging">
+              <button onClick={() => setPage(1)} disabled={page === 1}>
+                ◀◀
+              </button>
+              <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+                ◀
+              </button>
 
-            {Array.from({ length: btnRange }, (_, i) => {
-              const pageNum = startPage + i;
-              if (pageNum > lastPage) return null;
-              return (
-                <button
-                  key={pageNum}
-                  onClick={() => {
-                    setPage(pageNum);
-                  }}
-                  className={page === pageNum ? "active" : ""}
-                  disabled={page === pageNum}
-                >
-                  {pageNum}
+              {Array.from({ length: btnRange }, (_, i) => {
+                const pageNum = startPage + i;
+                if (pageNum > lastPage) return null;
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => {
+                      setPage(pageNum);
+                    }}
+                    className={page === pageNum ? "active" : ""}
+                    disabled={page === pageNum}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+              <button
+                onClick={() => {
+                  setPage(page + 1);
+                }}
+                disabled={page === lastPage}
+              >
+                ▶
+              </button>
+              <button
+                onClick={() => {
+                  setPage(lastPage);
+                }}
+                disabled={page === lastPage}
+              >
+                ▶▶
+              </button>
+            </div>
+            <ul>
+              <li>
+                <button onClick={onSelectAllFn}>
+                  {selectedId.length !== pagedList.length
+                    ? "전체선택"
+                    : "선택해제"}
                 </button>
-              );
-            })}
-            <button
-              onClick={() => {
-                setPage(page + 1);
-              }}
-              disabled={page === lastPage}
-            >
-              ▶
-            </button>
-            <button
-              onClick={() => {
-                setPage(lastPage);
-              }}
-              disabled={page === lastPage}
-            >
-              ▶▶
-            </button>
+                <button onClick={() => adminModalFn(null)}>추가</button>
+                <button onClick={() => onDeleteSelectedFn()}>삭제</button>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

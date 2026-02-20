@@ -9,6 +9,17 @@ const AdminNoticeModal = ({ setAdminAddModal, noticeId, onSuccess }) => {
   const noticeUrl = API_JSON_SERVER_URL;
   const navigate = useNavigate();
 
+  const getKoreaDate = () => {
+    const today = new Date();
+    return (
+      today.getFullYear() +
+      "-" +
+      String(today.getMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(today.getDate()).padStart(2, "0")
+    );
+  };
+
   useEffect(() => {
     const openDetail = async () => {
       try {
@@ -36,16 +47,6 @@ const AdminNoticeModal = ({ setAdminAddModal, noticeId, onSuccess }) => {
     setAdminAddModal(false);
   };
 
-  const getKoreaDate = () => {
-    const today = new Date();
-    return (
-      today.getFullYear() +
-      "-" +
-      String(today.getMonth() + 1).padStart(2, "0") +
-      "-" +
-      String(today.getDate()).padStart(2, "0")
-    );
-  };
   const onUpdateFn = async () => {
     if (isSaving) return;
     try {
@@ -64,12 +65,9 @@ const AdminNoticeModal = ({ setAdminAddModal, noticeId, onSuccess }) => {
 
   const onPostFn = async () => {
     if (isSaving) return;
-    if (!detail.title?.trim() || !detail.description?.trim()) {
-      alert("제목과 내용을 입력해주세요.");
-      return;
-    }
-    setIsSaving(true);
     try {
+      setIsSaving(true);
+
       const res = await axios.get(`${noticeUrl}/notice`);
       const maxNo =
         res.data.length > 0 ? Math.max(...res.data.map((item) => item.no)) : 0;
@@ -77,7 +75,7 @@ const AdminNoticeModal = ({ setAdminAddModal, noticeId, onSuccess }) => {
       const newNotice = {
         ...detail,
         no: maxNo + 1,
-        date: Date(),
+        date: getKoreaDate(),
         viewrate: 0, // 조회수 초기값
       };
       await axios.post(`${noticeUrl}/notice`, newNotice);
@@ -111,14 +109,9 @@ const AdminNoticeModal = ({ setAdminAddModal, noticeId, onSuccess }) => {
 
   if (!detail) {
     return (
-      <div className="adminModal" onClick={closeFn}>
-        <div
-          className="adminModal-con"
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-        >
-          <span className="adminModal-close" onClick={closeFn}>
+      <div className="adminNoticeModal">
+        <div className="adminNoticeModal-con">
+          <span className="close" onClick={closeFn}>
             X
           </span>
           <div className="loading">
@@ -129,17 +122,12 @@ const AdminNoticeModal = ({ setAdminAddModal, noticeId, onSuccess }) => {
     );
   }
   return (
-    <div className="adminModal" onClick={closeFn}>
-      <div
-        className="adminModal-con"
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-      >
-        <span className="adminModal-close" onClick={closeFn}>
+    <div className="adminNoticeModal">
+      <div className="adminNoticeModal-con">
+        <span className="close" onClick={closeFn}>
           X
         </span>
-        <div className="adminModal-title">
+        <div className="title">
           {noticeId != null ? detail.title : "공지 등록"}
         </div>
 
@@ -154,31 +142,17 @@ const AdminNoticeModal = ({ setAdminAddModal, noticeId, onSuccess }) => {
               onChange={onChangeFn}
             />
           </li>
-          <li>
-            <label htmlFor="date">작성일</label>
-            <input
-              type="date"
-              name="date"
-              id="date"
-              value={getKoreaDate(detail.title)}
-              onChange={onChangeFn}
-              readOnly
-            />
-          </li>
-          <li className="adminModal-description-row">
+          <li className="description-row">
             <label htmlFor="description">내용</label>
             <textarea
               name="description"
               id="description"
               value={detail.description || ""}
               onChange={onChangeFn}
-              // className="description-textarea"
+              className="description-textarea"
             />
           </li>
-        </ul>
-
-        <div className="adminModal-footer">
-          <div className="adminModal-footer-con">
+          <li>
             {noticeId != null ? (
               <>
                 <button onClick={onUpdateFn} disabled={isSaving}>
@@ -196,8 +170,8 @@ const AdminNoticeModal = ({ setAdminAddModal, noticeId, onSuccess }) => {
             <button onClick={closeFn} disabled={isSaving}>
               닫기
             </button>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
   );
