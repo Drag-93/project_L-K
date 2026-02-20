@@ -145,6 +145,7 @@ const ProdList = () => {
                 {currentSortLabel}
                 <img src="/images/icon_filter_w.svg" />
               </div>
+              
               {isOpen && (
                 <ul className="select-items">
                   {sortOptions.map((opt) => (
