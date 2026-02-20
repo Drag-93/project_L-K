@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, NavLink, useParams } from 'react-router-dom'
 import { API_JSON_SERVER_URL } from '../../api/commonApi'
 import axios from 'axios'
 
@@ -9,12 +9,9 @@ const ProdList = () => {
   const [list, setList]=useState([]);
   const {category}=useParams();
 
-<<<<<<< HEAD
-=======
-    // 검색툴바의 활성화 상태 관리
-    const [isSearchActive, setIsSearchActive] = useState(false);
+  // 검색툴바의 활성화 상태 관리
+  const [isSearchActive, setIsSearchActive] = useState(false);
 
->>>>>>> gusdn000615
   //검색변수
   const [searchText, setSearchText] = useState("");
 
@@ -111,85 +108,6 @@ const ProdList = () => {
   },[category,url])
 
   return (
-<<<<<<< HEAD
-    <div className='prod-list'>
-      <div className="prod-list-con">
-      <div className="list_search_wrap">
-            <div className="list_search_box">
-              <div className="toolbar">
-              <input
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-                placeholder="검색어 입력"
-              />
-              </div>
-              <div className="custom-select-container">
-                <div 
-                  className={`select-selected ${isOpen ? "select-arrow-active" : ""}`}
-                  onClick={() => setIsOpen(!isOpen)}
-                >
-                  {currentSortLabel}
-                  <img src="/public/images/icon_filter_w.svg" />
-                </div>
-                {isOpen && (
-                  <ul className="select-items">
-                    {sortOptions.map((opt) => (
-                      <li 
-                        key={opt.value}
-                        className={sortType === opt.value ? "same-as-selected" : ""}
-                        onClick={() => {
-                          setSortType(opt.value);
-                          setIsOpen(false);
-                        }}
-                      >
-                        {opt.label}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            </div>
-          </div>
-        <div className="list-con">
-          <ul>
-            {/* 카테고리별 상품 보여주기 */}
-            {pagedList && pagedList.map((el,idx)=>{
-              return (
-                <li key={el.id}>
-                  <Link to={`/product/detail/${el.category}/${el.id}`}>
-                  <div className="top">
-                    <img src={`/images/${el.category}/${el.img}`} alt={el.img} />
-                  </div>
-                  <div className="bottom">
-                    <span>상품명: {el.name}</span>
-                    <span>가격: {el.price.toLocaleString()}원</span>
-                  </div>
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
-        </div>
-        <div className="QnAFooter">
-          <div className="QnAFooter-con">
-            <div className="QnAPaging">
-              <button
-                onClick={() => setPage((p) => Math.max(1, p - 1))}
-                disabled={page === 1}
-              >
-                이전
-              </button>
-              <span>
-                {page}/{totalPages}
-              </span>
-              <button
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                disabled={page === totalPages}
-              >
-                다음
-              </button>
-            </div>
-=======
     <div className='inner'>
         <div className="sell_list_wrap">
           <img src={`/images/banner_${category || 'all2'}.png`} className="sell_banner" />
@@ -313,7 +231,6 @@ const ProdList = () => {
             >
               &gt;&gt; {/* 또는 '맨끝' */}
             </button>
->>>>>>> gusdn000615
           </div>
         </div>
       </div>
