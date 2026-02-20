@@ -73,6 +73,7 @@
 
 /* input/textarea 공통 */
 .QnAWrite-con input,
+.QnAWrite-con span,
 .QnAWrite-con textarea {
   width: 100%;
   border: 0;
@@ -92,8 +93,13 @@
 }
 
 .QnAWrite-con input::placeholder,
+.QnAWrite-con span,
 .QnAWrite-con textarea::placeholder {
   color: #9aa3ad;
+}
+.QnAWrite-con span {
+  display: flex;
+  color: #222;
 }
 
 /* textarea */

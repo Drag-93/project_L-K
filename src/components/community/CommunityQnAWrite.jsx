@@ -48,7 +48,7 @@ const CommunityQnAWrite = () => {
       const newQna = {
         ...write,
         no: maxNo + 1,
-        date: getKoreaDate(),
+        date: Date(),
         writer: user?.userName,
         writerEmail: user?.userEmail,
         viewrate: 0,
@@ -94,13 +94,7 @@ const CommunityQnAWrite = () => {
             </li>
             <li>
               <label htmlFor="date">작성일</label>
-              <input
-                type="date"
-                name="date"
-                id="date"
-                value={getKoreaDate()}
-                readOnly
-              />
+              <span>{getKoreaDate()}</span>
             </li>
             <li>
               <label htmlFor="question">질문내용</label>

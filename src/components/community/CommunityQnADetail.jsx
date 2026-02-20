@@ -231,6 +231,7 @@ const CommunityQnADetail = () => {
         </ul>
         <div className="QnADetailFooter">
           <div className="QnADetailFooter-con">
+            <button onClick={() => navigate(`/community/qna`)}>목록</button>
             {user?.userEmail === detail.writerEmail ||
             user.role === "ROLE_ADMIN" ? (
               <>

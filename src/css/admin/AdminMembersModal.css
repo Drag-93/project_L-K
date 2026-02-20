@@ -1,12 +1,10 @@
-/* ===============================
-   AdminMembersModal
-   =============================== */
+/* AdminModal */
 
 /* overlay */
-.adminMembersModal {
+.adminModal {
   position: fixed;
   inset: 0;
-  z-index: 2000;
+  z-index: 99;
 
   background: rgba(15, 23, 42, 0.55);
   display: flex;
@@ -17,7 +15,7 @@
 }
 
 /* panel */
-.adminMembersModal-con {
+.adminModal-con {
   width: min(720px, 96vw);
   max-height: 88vh;
   overflow: auto;
@@ -32,7 +30,7 @@
 }
 
 /* close */
-.adminMembersModal .close {
+.adminModal .adminModal-close {
   position: absolute;
   top: 12px;
   right: 12px;
@@ -50,14 +48,15 @@
   background: #f3f6ff;
   color: #1f2a44;
   font-weight: 900;
+  z-index: 999;
 }
 
-.adminMembersModal .close:hover {
+.adminModal .adminModal-close:hover {
   background: #e9eeff;
 }
 
 /* title */
-.adminMembersModal .title {
+.adminModal .adminModal-title {
   font-size: 18px;
   font-weight: 900;
   color: #1f2a44;
@@ -65,14 +64,7 @@
   padding-right: 44px; /* close 버튼 겹침 방지 */
 }
 
-/* loading */
-.adminMembersModal .loading {
-  padding: 28px 0;
-  text-align: center;
-}
-
-/* form list */
-.adminMembersModal ul {
+.adminModal ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -82,22 +74,31 @@
   gap: 12px;
 }
 
-.adminMembersModal li {
+.adminModal li:has(table) {
   display: grid;
   grid-template-columns: 120px 1fr;
   gap: 12px;
   align-items: center;
 }
 
-.adminMembersModal label {
+.adminModal label {
+  display: block;
+  padding: 4px;
   font-size: 13px;
   font-weight: 800;
   color: #25304a;
 }
+.adminModal select {
+  appearance: auto;
+}
+.adminModal textarea {
+  appearance: auto;
+  resize: none;
+}
 
-.adminMembersModal input,
-.adminMembersModal select,
-.adminMembersModal textarea {
+.adminModal input,
+.adminModal select,
+.adminModal textarea {
   width: 100%;
   border: 1px solid #d9deea;
   border-radius: 12px;
@@ -107,30 +108,25 @@
   background: #ffffff;
 }
 
-.adminMembersModal input:focus,
-.adminMembersModal select:focus,
-.adminMembersModal textarea:focus {
+.adminModal input:focus,
+.adminModal select:focus,
+.adminModal textarea:focus {
   border-color: #8aa4ff;
   box-shadow: 0 0 0 4px rgba(138, 164, 255, 0.18);
 }
 
-.adminMembersModal input[readOnly] {
+.adminModal input[readOnly],
+.adminModal textarea[readOnly],
+.adminModal select[readOnly] {
   background: #f6f7fb;
   color: #56607a;
 }
 
-/* remark row */
-.adminMembersModal .remark-row {
-  align-items: start;
-}
-
-.adminMembersModal .remark-textarea {
+.adminModal textarea {
   min-height: 110px;
-  resize: vertical;
 }
 
-/* buttons row (마지막 li) */
-.adminMembersModal li:last-child {
+.adminModal-footer {
   grid-template-columns: 1fr;
   display: flex;
   justify-content: flex-end;
@@ -138,7 +134,7 @@
   padding-top: 6px;
 }
 
-.adminMembersModal button {
+.adminModal-footer button {
   height: 40px;
   padding: 0 14px;
   border-radius: 12px;
@@ -149,23 +145,109 @@
   cursor: pointer;
 }
 
-.adminMembersModal button:hover {
+.adminModal-footer button:hover {
   background: #f3f6ff;
 }
 
-.adminMembersModal button:nth-child(1) {
+.adminModal-footer button:nth-child(1) {
   border-color: #8aa4ff;
   color: #2b4bff;
 }
 
-.adminMembersModal button:nth-child(2) {
+.adminModal-footer button:nth-child(2) {
   border-color: #ffd0d0;
   color: #d11b1b;
 }
 
+/* loading */
+.adminModal .loading {
+  padding: 28px 0;
+  text-align: center;
+}
+
+/* members */
+
+/* productOrders */
+
+.adminModal li:has(table) {
+  grid-template-columns: 1fr;
+}
+
+.adminModal .adminModal-poTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+.adminModal .adminModal-poTable table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.adminModal .adminModal-poTable thead th {
+  background: #f3f4f6;
+  color: #111827;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.adminModal .adminModal-poTable tbody td {
+  font-size: 13px;
+  padding: 12px 10px;
+  border-bottom: 1px solid #f1f5f9;
+  text-align: center;
+  color: #111827;
+}
+
+.adminModal .adminModal-poTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.adminModal .adminModal-poTable table select {
+  max-width: 140px;
+  margin: 0 auto;
+}
+
+/* shop */
+.adminModal .admin-shopModal-address {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 0.2vw;
+}
+.adminModal .addressBtn {
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #d8dde6;
+  border-radius: 10px;
+  background: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* qna */
+.adminModal-answer-con {
+  border-top: 1px solid #d9deea;
+
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
 /* responsive */
 @media (max-width: 520px) {
-  .adminMembersModal li {
+  .adminModal li {
     grid-template-columns: 1fr;
   }
 }

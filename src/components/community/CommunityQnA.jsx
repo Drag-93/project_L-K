@@ -55,6 +55,18 @@ const CommunityQnA = () => {
     qnaListFn();
   }, []);
 
+  //한국 날짜 표시
+  const getKoreaDate = () => {
+    const today = new Date();
+    return (
+      today.getFullYear() +
+      "-" +
+      String(today.getMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(today.getDate()).padStart(2, "0")
+    );
+  };
+
   const MyQnaList = useMemo(() => {
     if (!user) return [];
     return qnaList.filter((qna) => qna.writerEmail === user.userEmail);
@@ -94,7 +106,7 @@ const CommunityQnA = () => {
                 <tr key={el.id} onClick={() => navigate(`${el.id}`)}>
                   <td onClick={(e) => e.stopPropagation()}>{el.no}</td>
                   <td>{el.title}</td>
-                  <td>{el.date}</td>
+                  <td>{getKoreaDate(el.date)}</td>
                   <td>{el.writer}</td>
                   <td
                     className={`qnaStateBadge ${el.state === "답변완료" ? "done" : "wait"}`}

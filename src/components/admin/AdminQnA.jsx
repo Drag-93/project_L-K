@@ -95,6 +95,18 @@ const AdminQnA = () => {
     setPage(1);
   }, [searchText, stateFilter]);
 
+  //한국 날짜 표시
+  const getKoreaDate = () => {
+    const today = new Date();
+    return (
+      today.getFullYear() +
+      "-" +
+      String(today.getMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(today.getDate()).padStart(2, "0")
+    );
+  };
+
   const onDeleteSelectedFn = async () => {
     if (selectedId.length === 0) return alert("삭제할 목록을 선택해 주세요");
     if (!window.confirm("정말 삭제 하시겠습니까?")) return;
@@ -213,11 +225,11 @@ const AdminQnA = () => {
                   <input type="checkbox" onChange={onSelectAllFn} />
                 </th>
                 <th>글번호</th>
-                <th>답변상태</th>
                 <th>작성일</th>
                 <th>제목</th>
                 <th>내용</th>
                 <th>조회수</th>
+                <th>답변상태</th>
               </tr>
             </thead>
             <tbody>
@@ -238,14 +250,8 @@ const AdminQnA = () => {
                       />
                     </td>
                     <td>{el.number}</td>
-                    <td>
-                      <span
-                        className={`qnaStateBadge ${el.state === "답변완료" ? "done" : "wait"}`}
-                      >
-                        {el.state}
-                      </span>
-                    </td>
-                    <td>{el.date}</td>
+
+                    <td>{getKoreaDate(el.date)}</td>
                     <td title={el.title}>
                       {el.title && el.title.length > 10
                         ? `${el.title.slice(0, 10)}...`
@@ -257,6 +263,13 @@ const AdminQnA = () => {
                         : el.question}
                     </td>
                     <td>{el.viewrate}</td>
+                    <td>
+                      <span
+                        className={`qnaState ${el.state === "답변완료" ? "done" : "wait"}`}
+                      >
+                        {el.state}
+                      </span>
+                    </td>
                   </tr>
                 );
               })}

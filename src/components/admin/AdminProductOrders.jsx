@@ -136,14 +136,6 @@ const AdminProductOrders = () => {
       alert(err);
     }
   };
-  console.log(
-    "filtered len",
-    filtered.length,
-    "page",
-    page,
-    "startPost",
-    startPost,
-  );
 
   if (!prodList) return;
   return (
@@ -252,7 +244,13 @@ const AdminProductOrders = () => {
                         ? `${el.customer.request.slice(0, 10)}...`
                         : el.customer.request}
                     </td> */}
-                    <td>{allDone ? "배송완료" : "배송준비중"}</td>
+                    <td>
+                      <span
+                        className={`orderState ${allDone ? "done" : "wait"}`}
+                      >
+                        {allDone ? "배송완료" : "배송준비중"}
+                      </span>
+                    </td>
                   </tr>
                 );
               })}
