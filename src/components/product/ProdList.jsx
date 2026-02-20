@@ -9,7 +9,7 @@ const ProdList = () => {
   const [list, setList]=useState([]);
   const {category}=useParams();
 
-  // 검색툴바의 활성화 상태 관리
+    // 검색툴바의 활성화 상태 관리
     const [isSearchActive, setIsSearchActive] = useState(false);
 
   //검색변수
@@ -27,8 +27,8 @@ const ProdList = () => {
   const sortOptions = [
     { value: "dateN", label: "최신순" },
     { value: "dateP", label: "오래된순" },
-    { value: "priceN", label: "높은가격" },
-    { value: "priceP", label: "낮은가격" },
+    { value: "priceN", label: "높은가격순" },
+    { value: "priceP", label: "낮은가격순" },
   ];
 
   const currentSortLabel = sortOptions.find(opt => opt.value === sortType)?.label;
@@ -43,14 +43,15 @@ const ProdList = () => {
     //검색
     if (q) {
       searchList = searchList.filter((m) => {
-        m.name.toLowerCase().includes(q)
+        const searchTarget = [m.name].filter(Boolean).join(" ").toLowerCase();
+        return searchTarget.includes(q);
       });
     }
 
     //정렬
     return searchList.sort((a, b) => {
-      const timeA = a.regDate ? new Date(a.regDate).getTime() : 0;
-      const timeB = b.regDate ? new Date(b.regDate).getTime() : 0;
+      const timeA = a.date ? new Date(a.date).getTime() : 0;
+      const timeB = b.date ? new Date(b.date).getTime() : 0;
       const viewA = Number(a.price || 0);
       const viewB = Number(b.price || 0);
 
@@ -108,89 +109,91 @@ const ProdList = () => {
 
   return (
     <div className='inner'>
-      <div className="sell_list_wrap">
-        <img src={`/images/banner_${category || 'all2'}.png`} className="sell_banner" />
-        <div className="aside_wrap">
-          <ul>
-            <li><NavLink to={`/product/list`} end>전체</NavLink></li>
-            <li><NavLink to={`/product/list/hydro`}>보습제품</NavLink></li>
-            <li><NavLink to={`/product/list/trouble`}>트러블</NavLink></li>
-            <li><NavLink to={`/product/list/white`}>화이트</NavLink></li>
-            <li><NavLink to={`/product/list/antiage`}>안티에이징</NavLink></li>
-            <li><NavLink to={`/product/list/uv`}>UV</NavLink></li>
-          </ul>
-        </div>
-        <div className="list_search_wrap">
-          <span className="list_search_length">상품 <b>{list.length}</b>개</span>
-          <div className="list_search_box">
-            <div className={`toolbar ${isSearchActive ? "active" : ""}`} onClick={() => setIsSearchActive(true)}>
-              <input
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-                placeholder="검색어 입력"
-              />
-              <span className="list_search_btn"onClick={(e) => {
-                  e.stopPropagation();
-                  setIsSearchActive(false);
-                  setSearchText("");
-                }}>
-                <img src="/images/icon_close_w.svg" />
-              </span>
-            </div>
-            <div className="custom-select-container">
-              <div 
-                className={`select-selected ${isOpen ? "select-arrow-active" : ""}`}
-                onClick={() => setIsOpen(!isOpen)}
-              >
-                {currentSortLabel}
-                <img src="/images/icon_filter_w.svg" />
+        <div className="sell_list_wrap">
+          <img src={`/images/banner_${category || 'all'}.png`} className="sell_banner" />
+          <div className="aside_wrap">
+            <ul>
+              <li><NavLink to={`/product/list`} end>전체</NavLink></li>
+              <li><NavLink to={`/product/list/lifting`}>리프팅</NavLink></li>
+              <li><NavLink to={`/product/list/faceline`}>페이스라인</NavLink></li>
+              <li><NavLink to={`/product/list/regen`}>피부재생</NavLink></li>
+              <li><NavLink to={`/product/list/immune`}>면역력</NavLink></li>
+            </ul>
+          </div>
+          <div className="list_search_wrap">
+            <span className="list_search_length">상품 <b>{list.length}</b>개</span>
+            <div className="list_search_box">
+              <div className={`toolbar ${isSearchActive ? "active" : ""}`} onClick={() => setIsSearchActive(true)}>
+                <input
+                  value={searchText}
+                  onChange={(e) => setSearchText(e.target.value)}
+                  placeholder="검색어 입력"
+                />
+                <span className="list_search_btn"onClick={(e) => {
+                    e.stopPropagation();
+                    setIsSearchActive(false);
+                    setSearchText("");
+                  }}>
+                  <img src="/images/icon_close_w.svg" />
+                </span>
               </div>
-              
-              {isOpen && (
-                <ul className="select-items">
-                  {sortOptions.map((opt) => (
-                    <li 
-                      key={opt.value}
-                      className={sortType === opt.value ? "same-as-selected" : ""}
-                      onClick={() => {
-                        setSortType(opt.value);
-                        setIsOpen(false);
-                      }}
-                    >
-                      {opt.label}
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <div className="custom-select-container">
+                <div 
+                  className={`select-selected ${isOpen ? "select-arrow-active" : ""}`}
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  {currentSortLabel}
+                  <img src="/images/icon_filter_w.svg" />
+                </div>
+                {isOpen && (
+                  <ul className="select-items">
+                    {sortOptions.map((opt) => (
+                      <li 
+                        key={opt.value}
+                        className={sortType === opt.value ? "same-as-selected" : ""}
+                        onClick={() => {
+                          setSortType(opt.value);
+                          setIsOpen(false);
+                        }}
+                      >
+                        {opt.label}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-        <div className="sell_list">
-          {pagedList && pagedList.length > 0 ? (
-            <ul>
-              {pagedList.map((el) => (
-                <li key={el.id}>
-                  <Link to={`/product/detail/${el.category}/${el.id}`}>
-                    <div className="top">
-                      <img src={el.img ? `/images/${el.category}/${el.img}` : `/images/all_none.png`} alt={el.name} onError={(e) => {e.target.src = "/images/all_none.png";}}/>
-                    </div>
-                    <div className="bottom">
-                      <span className="name">{el.name}</span>
-                      <span className="price">{el.price.toLocaleString()}<small>원</small></span>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className="no_data_wrap">
-              <div className="no_data_img"></div>
-              <span className="no_data_text">등록된 상품이 없습니다</span>
-            </div>
+          
+          <div className="sell_list">
+           {pagedList && pagedList.length > 0 ? (
+              <ul>
+                {pagedList.map((el) => (
+                  <li key={el.id}>
+                    <Link to={`/product/detail/${el.category}/${el.id}`}>
+                      <div className="top">
+                        <div className="time">
+                          {el.timespan}시간
+                        </div>
+                        <img src={el.img ? `/images/${el.category}/${el.img}` : `/images/all_none.png`} alt={el.name} onError={(e) => {e.target.src = "/images/all_none.png";}}/>
+                      </div>
+                      <div className="bottom">
+                        <span className="name">{el.name}</span>
+                        <span className="price">{el.price.toLocaleString()}<small>원</small></span>
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="no_data_wrap">
+                <div className="no_data_img"></div>
+                <span className="no_data_text">등록된 상품이 없습니다</span>
+              </div>
 
-          )}
-        </div>
-        <div className="paging_wrap">
+            )}
+          </div>
+          <div className="paging_wrap">
             <button
               onClick={() => setPage(1)}
               disabled={page === 1}
@@ -231,9 +234,8 @@ const ProdList = () => {
               &gt;&gt; {/* 또는 '맨끝' */}
             </button>
           </div>
+        </div>
       </div>
-
-    </div>
   )
 
 }
