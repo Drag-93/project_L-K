@@ -172,6 +172,17 @@ return(
         </li>
         <li>
             <label htmlFor="name">상품명</label>
+            <input
+              name="name"
+              id="name"
+              value={detail.name}
+              onChange={onChangeFn}
+              disabled
+            >
+            </input>
+        </li>
+        {/* <li>
+            <label htmlFor="name">상품명</label>
             <select
               name="name"
               id="name"
@@ -184,7 +195,7 @@ return(
               <option value="쥬베룩">쥬베룩</option>
               <option value="글루타치온(백옥주사)">글루타치온(백옥주사)</option>
             </select>
-        </li>
+        </li> */}
         <li>
             <label htmlFor="price">가격</label>
             <span>

@@ -1,0 +1,131 @@
+.InfoIntroduction {
+    width: 100%;
+    background-color: #fff;
+    color: #333;
+    line-height: 1.8;
+}
+
+.InfoIntroduction-con {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 20px;
+}
+
+/* 제목 공통 스타일 */
+.InfoIntroduction h1, 
+.InfoIntroduction h2, 
+.InfoIntroduction h3 {
+    text-align: center;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 50px;
+}
+
+.InfoIntroduction h1 { font-size: 42px; }
+.InfoIntroduction h2 { font-size: 36px; margin-top: 100px; }
+.InfoIntroduction h3 { font-size: 28px; margin-top: 80px; }
+
+/* 1. 인사말 섹션 (이미지 좌 / 텍스트 우) */
+.intro-box ul {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding: 0;
+    list-style: none;
+}
+
+.intro-box img {
+    width: 450px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
+}
+
+.intro-box li {
+    font-size: 18px;
+    word-break: keep-all;
+}
+
+/* 2. 장점 섹션 (그리드 좌우 배치) */
+.advantage ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2열 구조 */
+    gap: 40px;
+    padding: 0;
+    list-style: none;
+    align-items: center;
+}
+
+.advantage li {
+    background: #fff;
+    border-radius: 15px;
+    font-size: 17px;
+    word-break: keep-all;
+}
+
+/* 장점 이미지 스타일 */
+.advantage li img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover; /* 이미지 비율 유지하며 꽉 채움 */
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* 장점 텍스트 스타일 (첫번째, 두번째 강조) */
+.advantage li:not(:has(img)) {
+    padding: 40px;
+    background: #fcfcfc;
+    border: 1px solid #eee;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* "첫 번째", "두 번째" 등 강조 텍스트 */
+.advantage li br:first-of-type + br {
+    display: block;
+    content: "";
+    margin-top: 10px;
+}
+
+.advantage li::first-line {
+    font-weight: 700;
+    color: #007bff;
+    font-size: 20px;
+}
+
+/* 3. 마치며 섹션 */
+.closing-box ul {
+    padding: 0;
+    list-style: none;
+}
+
+.closing-box li {
+    text-align: center;
+    background: #f4f7f9;
+    padding: 40px;
+    border-radius: 20px;
+    font-size: 18px;
+    border-left: 5px solid #007bff;
+}
+
+/* 반응형 모바일 (화면이 작아지면 한 줄로) */
+@media (max-width: 900px) {
+    .intro-box ul {
+        flex-direction: column;
+    }
+    
+    .intro-box img {
+        width: 100%;
+    }
+
+    .advantage ul {
+        grid-template-columns: 1fr; /* 모바일은 무조건 한 줄 */
+    }
+
+    .advantage li img {
+        height: 250px;
+    }
+}

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 
 import ReactFullpage from '@fullpage/react-fullpage';
@@ -44,11 +44,22 @@ const Main = () => (
               <h1>
                 <span className="reveal_text line1">진단에서 치료까지</span>
                 <span className="reveal_text line2">피부과 전문의가 직접 치료합니다</span>
+                <button><NavLink to={"/info/introduction"}>GO</NavLink></button>
               </h1>
             </div>
           </div>
           <div className="section sec2">
-            <h1>지점 소개</h1>
+            <div className="productlink">
+            <ul>
+              <h2>상품판매</h2>
+              <li><NavLink to = {"/product/list"}>전체</NavLink></li>
+              <li><NavLink to = {"/product/list/hydro"}>보습</NavLink></li>
+              <li><NavLink to = {"/product/list/trouble"}>트러블케어</NavLink></li>
+              <li><NavLink to = {"/product/list/white"}>미백</NavLink></li>
+              <li><NavLink to = {"/product/list/antiage"}>안티에이징</NavLink></li>
+              <li><NavLink to = {"/product/list/uv"}>UV</NavLink></li>
+            </ul>
+            </div>
           </div>
           <div className="section sec3">
             <h1>예약 안내</h1>

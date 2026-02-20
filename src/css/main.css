@@ -1,6 +1,8 @@
 /*****************************************************************************
     @main
 ****************************************************************************/
+@import url(./info/InfoIntroduction.css);
+@import url(./info/InfoHistory.css);
 
 
 .section {
@@ -22,6 +24,27 @@
   text-shadow: 7px 7px 8px rgba(0,0,0,0.23);
   color: #fff;
 }
+.section.sec1 button {
+  background-color: #81818171;
+  font-size: 72px;    
+  letter-spacing: 0.02em;
+  text-shadow: 7px 7px 8px rgba(0,0,0,0.23);
+  color: #fff;
+  border-radius: 20%;
+}
+
+.section.sec2 ul{
+  height: 500px;
+}
+
+.section.sec2 .productlink {
+  width: 500px;
+  height: 600px;
+  background: url(/public/images/info/product.png) no-repeat center center / cover;
+  font-size: 72px;
+}
+
+
 .reveal_text{
   opacity: 0;
   animation: fadeInUp 0.8s ease-out forwards;
