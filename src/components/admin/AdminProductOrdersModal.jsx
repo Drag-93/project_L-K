@@ -92,13 +92,8 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
 
   if (!detail) {
     return (
-      <div className="adminModal" onClick={closeFn}>
-        <div
-          className="adminModal-con"
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-        >
+      <div className="adminProductOrdersModal">
+        <div className="adminProductOrdersModal-con">
           <span className="close" onClick={closeFn}>
             X
           </span>
@@ -110,17 +105,18 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
     );
   }
   return (
-    <div className="adminModal" onClick={closeFn}>
-      <div
-        className="adminModal-con"
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-      >
-        <span className="adminModal-close" onClick={closeFn}>
+    <div className="adminProductOrdersModal">
+      <div className="adminProductOrdersModal-con">
+        <span className="close" onClick={closeFn}>
           X
         </span>
-        <div className="adminModal-title">주문 상세내역</div>
+        <div className="title">
+          <ul>
+            <li>
+              <h1>주문 상세내역</h1>
+            </li>
+          </ul>
+        </div>
 
         <ul>
           <li>
@@ -175,7 +171,7 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
               readOnly
             />
           </li>
-          <li className="adminModal-poTable">
+          <li>
             <table>
               <thead>
                 <tr>
@@ -193,7 +189,7 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
                       <td>{m.category}</td>
                       <td>{m.name}</td>
                       <td>{m.count}</td>
-                      <td>{`${m.totalPrice.toLocaleString()}원`}</td>
+                      <td>{m.totalPrice.toLocaleString()}원</td>
                       <td>
                         <select
                           name="state"
@@ -216,9 +212,10 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
               <input
                 name="totalAmount"
                 id="totalAmount"
-                value={`${detail.totalAmount.toLocaleString()}원`}
+                value={detail.totalAmount.toLocaleString()}
                 readOnly
               />
+              원
             </span>
           </li>
           <li>
@@ -231,15 +228,12 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
               <option value="배송완료">배송완료</option>
             </select>
           </li>
-        </ul>
-
-        <div className="adminModal-footer">
-          <div className="adminModal-footer-con">
+          <li>
             <button onClick={() => onUpdateFn()}>수정</button>
             <button onClick={() => onDeleteFn()}>삭제</button>
             <button onClick={() => closeFn()}>닫기</button>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
   );

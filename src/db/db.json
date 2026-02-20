@@ -1,27 +1,41 @@
 {
   "notice": [
     {
-      "id": "acd7",
-      "title": "테스트용 공지",
-      "description": "테스트용 공지입니다",
+      "id": "1",
+      "title": "첫번째테스트공지",
+      "description": "ㅁㄴㅇㄴㅁㅇㅁㄴㅇㅁㄴㅇ",
       "no": 1,
+<<<<<<< HEAD
       "date": "Fri Feb 20 2026 11:38:31 GMT+0900 (한국 표준시)",
       "viewrate": 5
+=======
+      "date": "2024-12-25",
+      "viewrate": 16
+>>>>>>> snooze30
     },
     {
-      "id": "ff63",
-      "title": "test",
-      "description": "testtesttest",
+      "id": "03a4",
+      "title": "테스트입니다",
+      "description": "ㅂㅈㄷㅂㄱㄷㄷㅂㄱㅂ",
       "no": 2,
+<<<<<<< HEAD
       "date": "Fri Feb 20 2026 14:50:32 GMT+0900 (한국 표준시)",
       "viewrate": 1
+=======
+      "date": "2026-02-12",
+      "viewrate": 3
+>>>>>>> snooze30
     },
     {
-      "id": "3ba4",
-      "title": "작성일테스트",
-      "description": "작성일테스트",
+      "id": "5055",
+      "title": "테스트2",
+      "description": "123ㄱㅂㅈㅂㄱㄷㅎ",
       "no": 3,
+<<<<<<< HEAD
       "date": "Fri Feb 20 2026 14:53:10 GMT+0900 (한국 표준시)",
+=======
+      "date": "2026-02-12",
+>>>>>>> snooze30
       "viewrate": 2
     }
   ],
@@ -101,116 +115,6 @@
   ],
   "product": [
     {
-      "id": "1",
-      "category": "hydro",
-      "name": "수딩 토너1",
-      "price": 20000,
-      "img": "hydro1.jpg",
-      "description": "보습라인 1번 상품입니다",
-      "descImg": "상세페이지 이미지 경로",
-      "regDate": "2026-02-1T05:56:49.676Z"
-    },
-    {
-      "id": "2",
-      "category": "hydro",
-      "name": "수딩 토너2",
-      "price": 30000,
-      "img": "hydro2.jpg",
-      "description": "보습라인 2번 상품입니다",
-      "descImg": "상세페이지 이미지 경로",
-      "regDate": "2026-02-1T05:56:49.676Z"
-    },
-    {
-      "id": "3",
-      "category": "hydro",
-      "name": "모이스처 세럼1",
-      "price": 20000,
-      "img": "hydro3.jpg",
-      "description": "보습라인 3번 상품입니다",
-      "descImg": "상세페이지 이미지 경로",
-      "regDate": "2026-02-02T05:56:49.676Z"
-    },
-    {
-      "id": "4",
-      "category": "hydro",
-      "name": "모이스처 세럼2",
-      "price": 20000,
-      "img": "hydro4.jpg",
-      "description": "보습라인 4번 상품입니다",
-      "descImg": "상세페이지 이미지 경로",
-      "regDate": "2026-02-02T05:56:49.676Z"
-    },
-    {
-      "id": "6",
-      "category": "hydro",
-      "name": "모이스처라이저1",
-      "price": 10000,
-      "img": "hydro6.jpg",
-      "description": "보습라인 6번 상품입니다",
-      "descImg": "상세페이지 이미지 경로",
-      "regDate": "2026-02-03T05:56:49.676Z"
-    },
-    {
-      "id": "7",
-      "category": "hydro",
-      "name": "모이스처라이저2",
-      "price": 40000,
-      "img": "hydro7.jpg",
-      "description": "보습라인 7번 상품입니다",
-      "descImg": "상세페이지 이미지 경로",
-      "regDate": "2026-02-03T05:56:49.676Z"
-    },
-    {
-      "id": "9",
-      "category": "hydro",
-      "name": "모이스처 마스크1",
-      "price": 20000,
-      "img": "hydro9.jpg",
-      "description": "보습라인 9번 상품입니다",
-      "descImg": "상세페이지 이미지 경로",
-      "regDate": "2026-02-04T05:56:49.676Z"
-    },
-    {
-      "id": "10",
-      "category": "hydro",
-      "name": "모이스처 마스크2",
-      "price": 50000,
-      "img": "hydro10.jpg",
-      "description": "보습라인 10번 상품입니다",
-      "descImg": "상세페이지 이미지 경로",
-      "regDate": "2026-02-04T05:56:49.676Z"
-    },
-    {
-      "id": "11",
-      "category": "trouble",
-      "name": "트러블 클렌징 폼1",
-      "price": 20000,
-      "img": "trouble1.jpg",
-      "description": "트러블케어라인 1번 상품입니다",
-      "descImg": "상세페이지 이미지 경로",
-      "regDate": "2026-02-05T05:56:49.676Z"
-    },
-    {
-      "id": "12",
-      "category": "trouble",
-      "name": "트러블 클렌징 폼2",
-      "price": 25000,
-      "img": "trouble2.jpg",
-      "description": "트러블케어라인 2번 상품입니다",
-      "descImg": "상세페이지 이미지 경로",
-      "regDate": "2026-02-05T05:56:49.676Z"
-    },
-    {
-      "id": "13",
-      "category": "trouble",
-      "name": "트러블 클렌징 폼3",
-      "price": 20000,
-      "img": "trouble3.jpg",
-      "description": "트러블케어라인 3번 상품입니다",
-      "descImg": "상세페이지 이미지 경로",
-      "regDate": "2026-02-06T05:56:49.676Z"
-    },
-    {
       "id": "31",
       "category": "white",
       "name": "미백1",
@@ -251,87 +155,483 @@
       "regDate": "2026-02-12T05:56:49.676Z"
     },
     {
-      "id": "dc22",
-      "name": "수딩 토너1",
+      "id": "98b8",
+      "name": "Barrier pH 5.5 Soothing Toner(배리어 약산성 수딩 토너)",
       "category": "hydro",
-      "price": 10000,
-      "img": "hydro1.jpg",
-      "description": "상품추가 후 리스트갱신 테스트",
-      "descImg": "hydrodetail1.jpg",
-      "regDate": "2026-02-12T05:56:49.676Z"
+      "price": 20000,
+      "img": "hydro1_Barrier pH 5.5 Soothing Toner.png",
+      "description": "피부와 유사한 pH 5.5 약산성 포뮬러가 무너진 피부 밸런스를 바로잡고, 외부 자극으로 예민해진 피부를 순하게 진정시켜 건강한 피부 장벽 환경을 유지하는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-19T08:29:56.208Z"
     },
     {
-      "id": "da3c",
-      "name": "수딩 토너1",
+      "id": "a249",
+      "name": "Barrier Hydration Toner(배리어 하이드레이션 토너)",
+      "category": "hydro",
+      "price": 20000,
+      "img": "hydro2_Barrier Hydration Toner.png",
+      "description": "고보습 성분이 피부 깊숙이 수분을 공급하고 건조로 인한 당김을 완화하여 촉촉하고 유연한 피부 컨디션을 유지하는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-19T08:32:06.551Z"
+    },
+    {
+      "id": "8971",
+      "name": "Ceramide Complex Serum(세라마이드 콤플렉스 세럼)",
       "category": "hydro",
       "price": 30000,
-      "img": "hydro1.jpg",
-      "description": "상품추가 후 리스트 갱신 테스트 22222",
-      "descImg": "hydrod1_desc.jpg",
-      "regDate": "2026-02-12T05:57:17.107Z"
+      "img": "hydro3_Ceramide Complex Serum.png",
+      "description": "세라마이드 콤플렉스가 피부 장벽을 탄탄하게 케어하고 수분 손실을 방지하여, 건조하고 민감해진 피부를 건강하고 견고하게 가꾸는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-19T08:32:38.137Z"
+    },
+    {
+      "id": "d521",
+      "name": "Hyaluronic Multi Serum(히알루론산 멀티 세럼)",
+      "category": "hydro",
+      "price": 30000,
+      "img": "hydro4_Hyaluronic Multi Serum.png",
+      "description": "다중 히알루론산이 피부 층층이 수분을 채워주어 즉각적인 보습감을 선사하며, 오랜 시간 촉촉하고 탱탱한 피부 상태를 유지하는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-19T08:33:20.200Z"
+    },
+    {
+      "id": "415f",
+      "name": "Panthenol 10% Ampoule(판테놀 10% 앰플)",
+      "category": "hydro",
+      "price": 40000,
+      "img": "hydro5_Panthenol 10-percent Ampoule.png",
+      "description": "프로비타민 B5(판테놀) 10%가 손상된 피부를 진정시키고 수분 장벽을 강화하여 외부 자극으로부터 피부를 보호하는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-19T08:33:47.632Z"
+    },
+    {
+      "id": "5ddc",
+      "name": "Ectoin Defense Ampoule(엑토인 디펜스 앰플)",
+      "category": "hydro",
+      "price": 40000,
+      "img": "hydro6_Ectoin Defense Ampoule.png",
+      "description": "엑토인이 외부 환경 스트레스로부터 피부를 보호하고 피부 보습막을 형성하여 건강하고 안정된 피부 컨디션을 유지하는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-19T08:34:24.238Z"
+    },
+    {
+      "id": "e292",
+      "name": "Intensive Barrier Cream(인텐시브 배리어 크림)",
+      "category": "hydro",
+      "price": 50000,
+      "img": "hydro7_Intensive Barrier Cream.png",
+      "description": "고영양 보습 성분이 피부 장벽을 집중 케어하고 건조로 인한 거칠어짐을 완화하여 탄탄하고 촉촉한 피부로 가꾸는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-19T08:34:52.256Z"
+    },
+    {
+      "id": "1e64",
+      "name": "Lipid Balance Cream(리피드 밸런스 크림)",
+      "category": "hydro",
+      "price": 50000,
+      "img": "hydro8_Lipid Balance Cream.png",
+      "description": "피부 지질과 유사한 성분이 유수분 밸런스를 조절하여 번들거림 없이 편안한 보습감을 제공하고 건강한 피부 장벽 유지에 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-19T08:35:32.959Z"
+    },
+    {
+      "id": "ee22",
+      "name": "Recovery Moisturizer(리커버리 모이스처라이저)",
+      "category": "hydro",
+      "price": 30000,
+      "img": "hydro9_Recovery Moisturizer.png",
+      "description": "손상되고 민감해진 피부에 깊은 보습과 영양을 공급하여 피부 컨디션을 빠르게 회복시키고 부드럽고 편안한 피부 상태로 가꾸는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-19T08:36:00.247Z"
+    },
+    {
+      "id": "5b28",
+      "name": "Daily Moisture Emulsion(데일리 모이스처 에멀전)",
+      "category": "hydro",
+      "price": 25000,
+      "img": "hydro10_Daily Moisture Emulsion.png",
+      "description": "가벼운 밀크 타입 제형이 피부에 산뜻하게 흡수되어 끈적임 없이 수분을 공급하고, 하루 종일 촉촉한 피부를 유지하는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-19T08:36:26.455Z"
+    },
+    {
+      "id": "c76a",
+      "name": "Calming Repair Fluid(카밍 리페어 플루이드)",
+      "category": "hydro",
+      "price": 30000,
+      "img": "hydro11_Calming Repair Fluid.png",
+      "description": "민감해진 피부를 부드럽게 진정시키고 피부 장벽을 강화하여 외부 자극에 흔들리지 않는 건강한 피부 환경을 조성하는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-19T08:36:59.287Z"
+    },
+    {
+      "id": "8edc",
+      "name": "Post-Procedure Recovery Cream(시술 후 리커버리 크림)",
+      "category": "hydro",
+      "price": 50000,
+      "img": "hydro12_Post-Procedure Recovery Cream.png",
+      "description": "시술 후 예민해진 피부를 진정시키고 보호막을 형성하여 자극 받은 피부의 빠른 회복과 편안한 피부 상태 유지에 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-19T08:37:28.183Z"
+    },
+    {
+      "id": "afc9",
+      "name": "Skin Recovery Essence(스킨 리커버리 에센스)",
+      "category": "hydro",
+      "price": 30000,
+      "img": "hydro13_Skin Recovery Essence.png",
+      "description": "고농축 에센스가 피부에 깊은 보습과 영양을 공급하여 손상된 피부를 케어하고 매끄럽고 생기 있는 피부로 가꾸는 데 도움을 줍니다.\n",
+      "descImg": "",
+      "regDate": "2026-02-20T05:32:48.914Z"
+    },
+    {
+      "id": "945a",
+      "name": "Intensive Barrier Balm(인텐시브 배리어 밤)",
+      "category": "hydro",
+      "price": 35000,
+      "img": "hydro14_Intensive Barrier Balm.png",
+      "description": "농축된 밤 제형이 피부에 보호막을 형성하여 수분 증발을 차단하고 극건조 피부를 집중적으로 케어하는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:34:31.649Z"
+    },
+    {
+      "id": "1e0c",
+      "name": "Hydro Gel Mask(하이드로 젤 마스크)",
+      "category": "hydro",
+      "price": 15000,
+      "img": "hydro15_Hydro Gel Mask.png",
+      "description": "수분을 머금은 하이드로겔 시트가 피부에 밀착되어 즉각적인 쿨링과 보습 효과를 선사하며 건조하고 지친 피부를 촉촉하게 가꿔줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:35:01.706Z"
+    },
+    {
+      "id": "67f4",
+      "name": "Barrier Sheet Mask(배리어 시트 마스크)",
+      "category": "hydro",
+      "price": 15000,
+      "img": "hydro16_Barrier Sheet Mask.png",
+      "description": "에센스를 풍부하게 함유한 시트가 피부에 밀착되어 수분과 영양을 집중 공급하고 피부 장벽을 강화하는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:35:46.834Z"
+    },
+    {
+      "id": "6c6a",
+      "name": "Sleeping Repair Mask(슬리핑 리페어 마스크)",
+      "category": "hydro",
+      "price": 25000,
+      "img": "hydro17_Sleeping Repair Mask.png",
+      "description": "수면 동안 피부에 영양과 수분을 공급하여 다음 날 더욱 촉촉하고 생기 있는 피부로 가꾸는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:36:24.440Z"
+    },
+    {
+      "id": "dae3",
+      "name": "Ampoule Therapy Mask(앰플 테라피 마스크)",
+      "category": "hydro",
+      "price": 20000,
+      "img": "hydro18_Ampoule Therapy Mask.png",
+      "description": "고농축 앰플을 그대로 담은 마스크가 피부에 깊은 보습과 집중 영양을 전달하여 단 한 번의 사용으로도 건강한 윤기를 선사합니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:36:51.482Z"
+    },
+    {
+      "id": "4f51",
+      "name": "Moisture Pack(모이스처 팩)",
+      "category": "hydro",
+      "price": 25000,
+      "img": "hydro19_Moisture Pack.png",
+      "description": "풍부한 보습 성분이 피부에 수분을 집중 공급하고 건조로 인한 거칠어짐을 완화하여 촉촉하고 매끄러운 피부로 가꾸는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:37:34.392Z"
+    },
+    {
+      "id": "3229",
+      "name": "Barrier Repair Cream Plus(배리어 리페어 크림 플러스)",
+      "category": "hydro",
+      "price": 35000,
+      "img": "hydro20_Barrier Repair Cream Plus.png",
+      "description": "강화된 보습·장벽 케어 성분이 손상된 피부 장벽을 집중적으로 회복시키고 외부 자극으로부터 피부를 보호하여 더욱 탄탄한 피부로 가꾸는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:37:58.137Z"
+    },
+    {
+      "id": "f14f",
+      "name": "Low pH Cleansing Foam(약산성 클렌징 폼)",
+      "category": "trouble",
+      "price": 15000,
+      "img": "trouble1_Low pH Cleansing Foam.png",
+      "description": "피부와 유사한 약산성 포뮬러가 세안 후에도 피부 장벽을 보호하며, 노폐물과 과잉 피지를 부드럽게 제거해 당김 없이 산뜻한 피부로 가꿔줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:40:09.854Z"
+    },
+    {
+      "id": "5cc7",
+      "name": "Mild Cleansing Gel(마일드 클렌징 젤)",
+      "category": "trouble",
+      "price": 15000,
+      "img": "trouble2_Mild Cleansing Gel.png",
+      "description": "저자극 젤 타입 제형이 피부에 순하게 작용하여 메이크업 잔여물과 노폐물을 깨끗하게 세정하고 세안 후에도 촉촉함을 유지하는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:40:35.623Z"
+    },
+    {
+      "id": "ee17",
+      "name": "BHA Scaling Toner(BHA 스케일링 토너)",
+      "category": "trouble",
+      "price": 20000,
+      "img": "trouble3_BHA Scaling Toner.png",
+      "description": "BHA 성분이 모공 속 노폐물과 각질을 정돈하여 번들거림을 완화하고 매끄럽고 깨끗한 피부결로 가꾸는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:41:03.600Z"
+    },
+    {
+      "id": "e4e0",
+      "name": "AHA/BHA Solution Toner(AHA/BHA 솔루션 토너)",
+      "category": "trouble",
+      "price": 20000,
+      "img": "trouble4_AHA-BHA Solution Toner.png",
+      "description": "AHA와 BHA가 묵은 각질과 모공 속 피지를 동시에 케어하여 피부결을 정돈하고 한층 맑고 균일한 피부 톤으로 가꾸는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:41:54.128Z"
+    },
+    {
+      "id": "91fb",
+      "name": "Pore Refining Serum(포어 리파이닝 세럼)",
+      "category": "trouble",
+      "price": 30000,
+      "img": "trouble5_Pore Refining Serum.png",
+      "description": "모공 케어 성분이 늘어진 모공을 탄탄하게 관리하고 피부결을 매끄럽게 정돈하여 보다 정돈된 인상을 완성하는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:42:17.520Z"
+    },
+    {
+      "id": "d853",
+      "name": "Sebum Control Serum(피지 컨트롤 세럼)",
+      "category": "trouble",
+      "price": 30000,
+      "img": "trouble6_Sebum Control Serum.png",
+      "description": "피지 조절 성분이 과다 분비된 유분을 케어하여 번들거림을 완화하고 보송하고 균형 잡힌 피부 상태를 유지하는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:43:31.344Z"
+    },
+    {
+      "id": "0d1a",
+      "name": "Cica Complex Serum(시카 콤플렉스 세럼)",
+      "category": "trouble",
+      "price": 30000,
+      "img": "trouble7_Cica Complex Serum.png",
+      "description": "시카 콤플렉스가 외부 자극으로 예민해진 피부를 빠르게 진정시키고 피부 장벽을 강화하여 편안한 피부 컨디션 유지에 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:43:53.168Z"
+    },
+    {
+      "id": "b3f3",
+      "name": "Redness Relief Serum(홍조 완화 세럼)",
+      "category": "trouble",
+      "price": 30000,
+      "img": "trouble8_Redness Relief Serum.png",
+      "description": "피부 진정 성분이 붉어진 피부를 부드럽게 케어하고 열감으로 인한 불편함을 완화하여 균일하고 안정된 피부 톤으로 가꾸는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:44:17.583Z"
+    },
+    {
+      "id": "60b7",
+      "name": "Intensive Night Cream(인텐시브 나이트 크림)",
+      "category": "trouble",
+      "price": 45000,
+      "img": "trouble9_Intensive Night Cream.png",
+      "description": "밤 사이 피부에 풍부한 영양과 보습을 공급하여 손상된 피부 컨디션을 집중 케어하고 아침까지 촉촉하고 탄력 있는 피부로 가꿔줍니다.\n",
+      "descImg": "",
+      "regDate": "2026-02-20T05:44:44.920Z"
+    },
+    {
+      "id": "4c3c",
+      "name": "Oil-Free Calming Cream(오일프리 카밍 크림)",
+      "category": "trouble",
+      "price": 40000,
+      "img": "trouble10_Oil-Free Calming Cream.png",
+      "description": "오일 프리 포뮬러가 산뜻하게 흡수되어 유분 부담 없이 피부를 진정시키고 민감해진 피부를 편안하게 케어하는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:45:29.166Z"
+    },
+    {
+      "id": "0541",
+      "name": "Spot Corrector(스팟 코렉터)",
+      "category": "trouble",
+      "price": 25000,
+      "img": "trouble11_Spot Corrector.png",
+      "description": "트러블 부위에 집중적으로 작용하여 붉음과 흔적을 완화하고 깨끗하고 균일한 피부 톤으로 가꾸는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:45:52.568Z"
+    },
+    {
+      "id": "c956",
+      "name": "Hydrocolloid Patch(하이드로콜로이드 패치)",
+      "category": "trouble",
+      "price": 20000,
+      "img": "trouble12_Hydrocolloid Patch.png",
+      "description": "하이드로콜로이드 소재가 삼출물을 흡수하고 외부 오염으로부터 피부를 보호하여 트러블 부위의 빠른 진정과 회복을 돕습니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:46:21.119Z"
+    },
+    {
+      "id": "050a",
+      "name": "Clay Purifying Mask(클레이 퓨리파잉 마스크)",
+      "category": "trouble",
+      "price": 15000,
+      "img": "trouble13_Clay Purifying Mask.png",
+      "description": "미네랄이 풍부한 클레이가 모공 속 노폐물과 피지를 흡착하여 피부를 깨끗하게 정화하고 매끈한 피부결로 가꾸는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:46:46.870Z"
+    },
+    {
+      "id": "9e3a",
+      "name": "Trouble Calming Mask(트러블 카밍 마스크)",
+      "category": "trouble",
+      "price": 15000,
+      "img": "trouble14_Trouble Calming Mask.png",
+      "description": "진정 에센스를 풍부하게 함유한 시트가 자극받은 피부에 밀착되어 붉음과 열감을 완화하고 편안한 피부 상태로 케어합니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:47:11.270Z"
+    },
+    {
+      "id": "a9b1",
+      "name": "Calming Repair Gel(카밍 리페어 젤)",
+      "category": "trouble",
+      "price": 25000,
+      "img": "trouble15_Calming Repair Gel.png",
+      "description": "가벼운 젤 제형이 빠르게 흡수되어 민감해진 피부를 즉각적으로 진정시키고 산뜻한 보습감을 부여하여 편안함을 선사합니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:47:34.182Z"
+    },
+    {
+      "id": "1701",
+      "name": "Deep Cleansing Oil(딥 클렌징 오일)",
+      "category": "trouble",
+      "price": 25000,
+      "img": "trouble16_Deep Cleansing Oil.png",
+      "description": "부드러운 오일 제형이 메이크업과 피지를 녹여 모공 속까지 깨끗하게 세정하며 유화 과정 후에도 산뜻한 마무리감을 제공합니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:48:05.207Z"
+    },
+    {
+      "id": "e4ef",
+      "name": "Pore Tightening Cream(포어 타이트닝 크림)",
+      "category": "trouble",
+      "price": 40000,
+      "img": "trouble17_Pore Tightening Cream.png",
+      "description": "모공 케어 성분이 피부 탄력을 보완하여 늘어진 모공을 탄탄하게 관리하고 매끄럽고 정돈된 피부결로 가꾸는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:48:27.447Z"
+    },
+    {
+      "id": "7d06",
+      "name": "Anti-Inflammatory Ampoule(안티 인플라메이토리 앰플)",
+      "category": "trouble",
+      "price": 35000,
+      "img": "trouble18_Anti-Inflammatory Ampoule.png",
+      "description": "피부 진정 성분이 자극으로 인한 붉음과 불편함을 완화하고 민감해진 피부를 빠르게 안정시키는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:48:53.862Z"
+    },
+    {
+      "id": "6c7b",
+      "name": "Post-Acne Repair Cream(여드름 후 리페어 크림)",
+      "category": "trouble",
+      "price": 35000,
+      "img": "trouble19_Post-Acne Repair Cream.png",
+      "description": "트러블 이후 약해진 피부를 집중적으로 케어하여 피부 장벽을 강화하고 깨끗하고 균일한 피부로 가꾸는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:49:19.502Z"
+    },
+    {
+      "id": "ca9a",
+      "name": "Sebum Balance Toner(피지 밸런스 토너)",
+      "category": "trouble",
+      "price": 20000,
+      "img": "trouble20_Sebum Balance Toner.png",
+      "description": "유수분 밸런스를 조절하여 과잉 피지를 정돈하고 번들거림 없이 산뜻하고 깨끗한 피부 상태를 유지하는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-20T05:49:43.261Z"
     }
   ],
   "productReview": [
     {
-      "id": "1",
+      "id": "f837",
       "category": "hydro",
-      "productId": "1",
-      "userEmail": "test1",
-      "userName": "test1",
-      "date": "2026.02.05",
+      "productId": "98b8",
+      "productName": "Barrier pH 5.5 Soothing Toner(배리어 약산성 수딩 토너)",
+      "userEmail": "test",
+      "userName": "test",
+      "date": "2026-02-20T00:44:23.294Z",
       "score": 5,
-      "like": 3,
+      "like": 2,
       "likedUsers": [
-        "test"
+        "test",
+        "test2@naver.com"
       ],
-      "description": "악건성 피부여서 여러 보습제품 사용해 봤지만, 이 제품으로 정착할것 같습니다. 리앤킴 피부과 시술 때 사용하신다더니, 품질 확실하네요. 추천합니다!"
+      "description": "사용자 후기를 테스트합니다11111"
     },
     {
-      "id": "3004",
+      "id": "4e5c",
       "category": "hydro",
-      "productId": "1",
+      "productId": "a249",
+      "productName": "Barrier Hydration Toner(배리어 하이드레이션 토너)",
       "userEmail": "test",
       "userName": "test",
-      "date": "2026. 2. 9. 11:04:38",
-      "score": 5,
-      "like": 0,
-      "likedUsers": [],
-      "description": "수딩 토너1 후기 테스트111, 후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다.후기화면을 테스트합니다."
+      "date": "2026-02-20T00:44:47.094Z",
+      "score": 3,
+      "like": 2,
+      "likedUsers": [
+        "test",
+        "test2@naver.com"
+      ],
+      "description": "사용자 후기를 테스트합니다 22222"
     },
     {
-      "id": "8a36",
+      "id": "b0d5",
       "category": "hydro",
-      "productId": "1",
-      "userEmail": "test",
-      "userName": "test",
-      "date": "2026-02-10 10:05:04",
-      "score": 2,
-      "like": 0,
-      "likedUsers": [],
-      "description": "수딩 토너1 후기테스트2222222 후기 수정을 테스트합니다. 다시 테스트합니다."
+      "productId": "98b8",
+      "productName": "Barrier pH 5.5 Soothing Toner(배리어 약산성 수딩 토너)",
+      "userEmail": "test2@naver.com",
+      "userName": "테스트",
+      "date": "2026-02-20T00:45:52.285Z",
+      "score": 3,
+      "like": 1,
+      "likedUsers": [
+        "test2@naver.com"
+      ],
+      "description": "사용자후기를 테스트합니다22222"
     },
     {
-      "id": "467d",
+      "id": "f6d4",
       "category": "hydro",
-      "productId": "1",
-      "userEmail": "test",
-      "userName": "test",
-      "date": "2026-02-12T04:07:34.240Z",
-      "score": 5,
-      "viewrate": 0,
-      "description": "후기등록 date 확인용입니다."
+      "productId": "a249",
+      "productName": "Barrier Hydration Toner(배리어 하이드레이션 토너)",
+      "userEmail": "test2@naver.com",
+      "userName": "테스트",
+      "date": "2026-02-20T00:46:18.445Z",
+      "score": 4,
+      "like": 1,
+      "likedUsers": [
+        "test2@naver.com"
+      ],
+      "description": "사용자 후기를 테스트합니다22222"
     }
   ],
   "reservation": [
     {
       "id": "1",
-      "category": "faceline",
-      "name": "인모드",
+      "category": "lifting",
+      "name": "울쎄라",
       "price": 200000,
       "img": "lifting_01.png",
       "description": "리프팅라인 울쎄라 진료입니다",
       "descImg": "상세페이지 이미지 경로",
+<<<<<<< HEAD
       "timespan": 2,
+=======
+>>>>>>> snooze30
       "setshop": [
         "노원",
         "신촌",
@@ -353,7 +653,10 @@
       "img": "faceline_01.png",
       "description": "페이스라인 인모드 진료입니다",
       "descImg": "상세페이지 이미지 경로",
+<<<<<<< HEAD
       "timespan": 2,
+=======
+>>>>>>> snooze30
       "setshop": [
         "노원",
         "신촌",
@@ -369,14 +672,17 @@
       ]
     },
     {
-      "id": "98b5",
-      "name": "쥬베룩",
+      "id": "3",
       "category": "regen",
-      "price": 123213213,
+      "name": "쥬베룩",
+      "price": 400000,
       "img": "regen_01.png",
       "description": "피부재생 쥬베룩 진료입니다",
       "descImg": "상세페이지 이미지 경로",
+<<<<<<< HEAD
       "timespan": 3,
+=======
+>>>>>>> snooze30
       "setshop": [
         "노원",
         "강남",
@@ -390,14 +696,17 @@
       ]
     },
     {
-      "id": "277c",
-      "name": "글루타치온(백옥주사)",
+      "id": "4",
       "category": "immune",
+      "name": "글루타치온(백옥주사)",
       "price": 300000,
-      "img": "\\immune_01.png",
+      "img": "immune_01.png",
       "description": "면역력 글루타치온(백옥주사) 진료입니다",
       "descImg": "상세페이지 이미지 경로",
+<<<<<<< HEAD
       "timespan": 1,
+=======
+>>>>>>> snooze30
       "setshop": [
         "신촌",
         "강남",
@@ -428,6 +737,23 @@
       ],
       "regDate": "2026-02-20T06:43:01.386Z",
       "timespan": "3"
+    }
+  ],
+  "reservReview": [
+    {
+      "id": "1",
+      "category": "lifting",
+      "reservId": "1",
+      "reservName": "울쎄라",
+      "userEmail": "test",
+      "userName": "test",
+      "date": "2026-02-13T02:54:47.384Z",
+      "score": 5,
+      "like": 1,
+      "likedUsers": [
+        "test"
+      ],
+      "description": "진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다."
     }
   ],
   "shop": [
@@ -511,11 +837,11 @@
       "date": "2026-02-05",
       "writer": "작성자이름",
       "writerEmail": "작성자이메일",
-      "viewrate": 26,
+      "viewrate": 21,
       "state": "답변완료",
       "question": "테스트내용테스트내용테스트내용테스트내용테스트내용테3123스트내용테스4내용2테스트내용",
       "admin": "관리자",
-      "answer": "답변답변답변답변답변"
+      "answer": "teatawtaestetㄴㄴㄴ"
     },
     {
       "id": "349c",
@@ -526,9 +852,9 @@
       "date": "2026-02-05",
       "writer": "test",
       "writerEmail": "test",
-      "viewrate": 13,
-      "admin": "",
-      "answer": ""
+      "viewrate": 11,
+      "admin": "관리자",
+      "answer": "답변테스트"
     },
     {
       "id": "ac9e",
@@ -539,19 +865,19 @@
       "date": "2026-02-05",
       "writer": "test",
       "writerEmail": "test",
-      "viewrate": 13,
+      "viewrate": 12,
       "admin": "",
       "answer": ""
     },
     {
       "id": "85af",
       "title": "문의작성 테스트",
-      "question": "문의작성 테스트문의작성 테스트문의작성",
+      "question": "문의작성 테스트문의작성 테스트문의작성 테스트",
       "no": 4,
       "date": "2026-02-10",
       "writer": "test",
       "writerEmail": "test",
-      "viewrate": 16,
+      "viewrate": 10,
       "admin": "",
       "answer": "",
       "state": "답변대기"
