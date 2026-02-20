@@ -5,24 +5,39 @@
       "title": "첫번째테스트공지",
       "description": "ㅁㄴㅇㄴㅁㅇㅁㄴㅇㅁㄴㅇ",
       "no": 1,
+<<<<<<< HEAD
       "date": "2024-12-25",
       "viewrate": 16
+=======
+      "date": "Fri Feb 20 2026 11:38:31 GMT+0900 (한국 표준시)",
+      "viewrate": 5
+>>>>>>> lhstk114
     },
     {
       "id": "03a4",
       "title": "테스트입니다",
       "description": "ㅂㅈㄷㅂㄱㄷㄷㅂㄱㅂ",
       "no": 2,
+<<<<<<< HEAD
       "date": "2026-02-12",
       "viewrate": 3
+=======
+      "date": "Fri Feb 20 2026 14:50:32 GMT+0900 (한국 표준시)",
+      "viewrate": 1
+>>>>>>> lhstk114
     },
     {
       "id": "5055",
       "title": "테스트2",
       "description": "123ㄱㅂㅈㅂㄱㄷㅎ",
       "no": 3,
+<<<<<<< HEAD
       "date": "2026-02-12",
       "viewrate": 2
+=======
+      "date": "Fri Feb 20 2026 14:53:10 GMT+0900 (한국 표준시)",
+      "viewrate": 4
+>>>>>>> lhstk114
     }
   ],
   "members": [
@@ -614,6 +629,10 @@
       "img": "lifting_01.png",
       "description": "리프팅라인 울쎄라 진료입니다",
       "descImg": "상세페이지 이미지 경로",
+<<<<<<< HEAD
+=======
+      "timespan": 2,
+>>>>>>> lhstk114
       "setshop": [
         "노원",
         "신촌",
@@ -635,6 +654,10 @@
       "img": "faceline_01.png",
       "description": "페이스라인 인모드 진료입니다",
       "descImg": "상세페이지 이미지 경로",
+<<<<<<< HEAD
+=======
+      "timespan": 2,
+>>>>>>> lhstk114
       "setshop": [
         "노원",
         "신촌",
@@ -657,6 +680,10 @@
       "img": "regen_01.png",
       "description": "피부재생 쥬베룩 진료입니다",
       "descImg": "상세페이지 이미지 경로",
+<<<<<<< HEAD
+=======
+      "timespan": 3,
+>>>>>>> lhstk114
       "setshop": [
         "노원",
         "강남",
@@ -677,16 +704,21 @@
       "img": "immune_01.png",
       "description": "면역력 글루타치온(백옥주사) 진료입니다",
       "descImg": "상세페이지 이미지 경로",
+<<<<<<< HEAD
+=======
+      "timespan": 1,
+>>>>>>> lhstk114
       "setshop": [
         "신촌",
         "강남",
         "종로"
       ],
       "settime": [
-        "10:00",
         "11:00",
         "14:00",
-        "15:00"
+        "12:00",
+        "17:00",
+        "16:00"
       ]
     },
     {
@@ -707,6 +739,28 @@
       ],
       "regDate": "2026-02-20T06:43:01.386Z",
       "timespan": "3"
+    },
+    {
+      "id": "ee23",
+      "name": "쥬베룩",
+      "category": "regen",
+      "price": 20000000,
+      "img": "hydro1.jpg",
+      "description": "125",
+      "descImg": "123",
+      "setshop": [
+        "노원",
+        "신촌",
+        "종로"
+      ],
+      "settime": [
+        "12:00",
+        "17:00",
+        "16:00",
+        "11:00"
+      ],
+      "regDate": "2026-02-20T08:28:34.638Z",
+      "timespan": "21"
     }
   ],
   "reservReview": [
@@ -835,7 +889,7 @@
       "date": "2026-02-05",
       "writer": "test",
       "writerEmail": "test",
-      "viewrate": 12,
+      "viewrate": 13,
       "admin": "",
       "answer": ""
     },
