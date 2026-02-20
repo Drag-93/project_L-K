@@ -17,9 +17,9 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
             img: "",
             description: "",
             descImg: "",
-            regDate: new Date().toISOString()
-        })
-        return;
+            regDate: new Date().toISOString(),
+          });
+          return;
         }
         const res = await axios.get(`${productUrl}/product/${productId}`);
         setDetail(res.data);
@@ -34,25 +34,27 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
     if (
       !detail.name?.trim() ||
       !detail.category?.trim() ||
-      detail.price === undefined || detail.price === null || detail.price === ""
+      detail.price === undefined ||
+      detail.price === null ||
+      detail.price === ""
     ) {
       alert("제품명, 카테고리, 가격은 필수입력 사항입니다");
       return;
     }
     try {
-      const res=await axios.post(`${productUrl}/product`, detail);
-      console.log(res.data)
+      const res = await axios.post(`${productUrl}/product`, detail);
+      console.log(res.data);
       alert("추가 되었습니다");
       closeFn();
       onSuccess();
-    }catch(err){
-      console.log('상품 추가 실패')
+    } catch (err) {
+      console.log("상품 추가 실패");
     }
-  }
-  
+  };
+
   const onChangeFn = (e) => {
     const { name, value } = e.target;
-    const newValue = name === 'price' ? Number(value) : value;  //가격은 숫자로 저장
+    const newValue = name === "price" ? Number(value) : value; //가격은 숫자로 저장
     setDetail({ ...detail, [name]: newValue });
   };
 
@@ -87,10 +89,16 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
     setAdminAddModal(false);
   };
 
-  if (!detail) {      //데이터 없을 경우 오류 방지
+  if (!detail) {
+    //데이터 없을 경우 오류 방지
     return (
-      <div className="adminProductModal">
-        <div className="adminProductModal-con">
+      <div className="adminModal" onClick={closeFn}>
+        <div
+          className="adminModal-con"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
           <span className="close" onClick={closeFn}>
             X
           </span>
@@ -102,12 +110,17 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
     );
   }
   return (
-    <div className="adminProductModal">
-      <div className="adminProductModal-con">
-        <span className="close" onClick={closeFn}>
+    <div className="adminModal" onClick={closeFn}>
+      <div
+        className="adminModal-con"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <span className="adminModal-close" onClick={closeFn}>
           X
         </span>
-        <div className="title">{detail.name}</div>
+        <div className="adminModal-title">{detail.name}</div>
         <ul>
           <li>
             <label htmlFor="name">제품명</label>
@@ -140,7 +153,10 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
               value={detail.img}
               onChange={onChangeFn}
             />
-            <img src={`/images/${detail.category}/${detail.img}`} alt={detail.img} />
+            <img
+              src={`/images/${detail.category}/${detail.img}`}
+              alt={detail.img}
+            />
           </li>
           <li>
             <label htmlFor="category">카테고리</label>
@@ -179,18 +195,22 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
               onChange={onChangeFn}
             />
           </li>
-          <li>
-            {productId ? (
-              <>
-               <button onClick={onUpdateFn}>상품수정</button>
-               <button onClick={onDeleteFn}>상품삭제</button>
-              </>
-            ):(
-              <button onClick={onPostFn}>상품추가</button>
-            )}
-            <button onClick={closeFn}>닫기</button>
-          </li>
         </ul>
+        <div className="adminModal-footer">
+          <div className="adminModal-footer-con">
+            <li>
+              {productId ? (
+                <>
+                  <button onClick={onUpdateFn}>상품수정</button>
+                  <button onClick={onDeleteFn}>상품삭제</button>
+                </>
+              ) : (
+                <button onClick={onPostFn}>상품추가</button>
+              )}
+              <button onClick={closeFn}>닫기</button>
+            </li>
+          </div>
+        </div>
       </div>
     </div>
   );
