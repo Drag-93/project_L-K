@@ -4,7 +4,7 @@
 .adminModal {
   position: fixed;
   inset: 0;
-  z-index: 99;
+  z-index: 999;
 
   background: rgba(15, 23, 42, 0.55);
   display: flex;
@@ -166,6 +166,15 @@
 }
 
 /* members */
+
+/*product*/
+.adminModal .adminModal-con img {
+  display: block;
+  width: 30rem;
+  height: 30rem;
+  padding: 2rem;
+  margin-left: 16rem;
+}
 
 /* productOrders */
 

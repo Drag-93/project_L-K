@@ -136,14 +136,6 @@ const AdminProductOrders = () => {
       alert(err);
     }
   };
-  console.log(
-    "filtered len",
-    filtered.length,
-    "page",
-    page,
-    "startPost",
-    startPost,
-  );
 
   if (!prodList) return;
   return (
@@ -155,45 +147,54 @@ const AdminProductOrders = () => {
           onSuccess={openListFn}
         />
       )}
-      <div className="adminProductOrders">
-        <div className="adminProductOrders-con">
-          <div className="title">
-            <ul>
-              <li>
-                <div className="toolbar">
-                  <input
-                    value={searchText}
-                    onChange={(e) => setSearchText(e.target.value)}
-                    placeholder="검색어 입력"
-                  />
-                </div>
-              </li>
-              <li>
-                <div className="stateSelector">
-                  <select
-                    value={sortType}
-                    onChange={(e) => setSortType(e.target.value)}
-                  >
-                    <option value="Latest">등록순 (최신순)</option>
-                    <option value="Earliest">등록순 (과거순)</option>
-                  </select>
-                </div>
-              </li>
-              <li>
-                <div className="stateSelector">
-                  <select
-                    value={stateFilter}
-                    onChange={(e) => setStateFilter(e.target.value)}
-                  >
-                    <option value="ALL">전체</option>
-                    <option value="배송준비중">배송준비중</option>
-                    <option value="배송완료">배송완료</option>
-                  </select>
-                </div>
-              </li>
-            </ul>
+      <div className="admin">
+        <div className="admin-title">
+          <div className="admin-toolbar">
+            <div className="admin-toolbar-searchtext">
+              <input
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                placeholder="검색어 입력"
+              />
+            </div>
+            <div className="admin-toolbar-selector">
+              <select
+                value={sortType}
+                onChange={(e) => setSortType(e.target.value)}
+              >
+                <option value="Latest">등록순 (최신순)</option>
+                <option value="Earliest">등록순 (과거순)</option>
+              </select>
+            </div>
           </div>
 
+          <ul>
+            <li>
+              <div className="admin-selector">
+                <select
+                  value={stateFilter}
+                  onChange={(e) => setStateFilter(e.target.value)}
+                >
+                  <option value="ALL">전체</option>
+                  <option value="배송준비중">배송준비중</option>
+                  <option value="배송완료">배송완료</option>
+                </select>
+              </div>
+            </li>
+            <li>
+              <div className="admin-button">
+                {/* <button onClick={onSelectAllFn}>
+                  {selectedId.length !== pagedList.length
+                    ? "전체선택"
+                    : "선택해제"}
+                </button> */}
+                {/* <button onClick={() => adminModalFn(null)}>추가</button> */}
+                <button onClick={() => onDeleteSelectedFn()}>삭제</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div className="admin-con">
           <table>
             <thead>
               <tr>
@@ -205,7 +206,7 @@ const AdminProductOrders = () => {
                 <th>주문 품목</th>
                 <th>총 수량</th>
                 <th>총 금액</th>
-                <th>요청사항</th>
+                {/* <th>요청사항</th> */}
                 <th>배송 상태</th>
               </tr>
             </thead>
@@ -238,71 +239,66 @@ const AdminProductOrders = () => {
                     </td>
                     <td>{itemQty}</td>
                     <td>{el.totalAmount.toLocaleString()}원</td>
-                    <td title={el.customer.request}>
+                    {/* <td title={el.customer.request}>
                       {el.customer.request && el.customer.request.length > 10
                         ? `${el.customer.request.slice(0, 10)}...`
                         : el.customer.request}
+                    </td> */}
+                    <td>
+                      <span
+                        className={`orderState ${allDone ? "done" : "wait"}`}
+                      >
+                        {allDone ? "배송완료" : "배송준비중"}
+                      </span>
                     </td>
-                    <td>{allDone ? "배송완료" : "배송준비중"}</td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
-          <div className="adminProductOrdesFooter">
-            <div className="adminProductOrdersPaging">
-              <button onClick={() => setPage(1)} disabled={page === 1}>
-                ◀◀
-              </button>
-              <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-                ◀
-              </button>
+        </div>
+        <div className="admin-footer">
+          <div className="admin-paging">
+            <button onClick={() => setPage(1)} disabled={page === 1}>
+              ◀◀
+            </button>
+            <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+              ◀
+            </button>
 
-              {Array.from({ length: btnRange }, (_, i) => {
-                const pageNum = startPage + i;
-                if (pageNum > lastPage) return null;
-                return (
-                  <button
-                    key={pageNum}
-                    onClick={() => {
-                      setPage(pageNum);
-                    }}
-                    className={page === pageNum ? "active" : ""}
-                    disabled={page === pageNum}
-                  >
-                    {pageNum}
-                  </button>
-                );
-              })}
-              <button
-                onClick={() => {
-                  setPage(page + 1);
-                }}
-                disabled={page === lastPage}
-              >
-                ▶
-              </button>
+            {Array.from({ length: btnRange }, (_, i) => {
+              const pageNum = startPage + i;
+              if (pageNum > lastPage) return null;
+              return (
+                <button
+                  key={pageNum}
+                  onClick={() => {
+                    setPage(pageNum);
+                  }}
+                  className={page === pageNum ? "active" : ""}
+                  disabled={page === pageNum}
+                >
+                  {pageNum}
+                </button>
+              );
+            })}
+            <button
+              onClick={() => {
+                setPage(page + 1);
+              }}
+              disabled={page === lastPage}
+            >
+              ▶
+            </button>
 
-              <button
-                onClick={() => {
-                  setPage(lastPage);
-                }}
-                disabled={page === lastPage}
-              >
-                ▶▶
-              </button>
-            </div>
-            <ul>
-              <li>
-                {/* <button onClick={onSelectAllFn}>
-                  {selectedId.length !== pagedList.length
-                    ? "전체선택"
-                    : "선택해제"}
-                </button> */}
-                {/* <button onClick={() => adminModalFn(null)}>추가</button> */}
-                <button onClick={() => onDeleteSelectedFn()}>삭제</button>
-              </li>
-            </ul>
+            <button
+              onClick={() => {
+                setPage(lastPage);
+              }}
+              disabled={page === lastPage}
+            >
+              ▶▶
+            </button>
           </div>
         </div>
       </div>

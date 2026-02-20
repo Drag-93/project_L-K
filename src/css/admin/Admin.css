@@ -245,3 +245,17 @@
   border-color: #a7f3d0;
   color: #065f46;
 }
+
+/*product*/
+.admin .admin-con img {
+  display: block;
+  width: 14rem;
+  height: 14rem;
+}
+
+/* .admim .admin-con td:has(img){
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+} */

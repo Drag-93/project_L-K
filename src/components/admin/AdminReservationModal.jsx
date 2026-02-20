@@ -3,18 +3,10 @@ import { API_JSON_SERVER_URL } from '../../api/commonApi'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const AdminReservationModal = ({setReservationAddModal, reservationId}) => {
-  const allShops = ["노원", "신촌", "종로", "강남"]
-  const allTimes = ["10:00", "11:00", "14:00", "15:00"]
-  const [detail, setDetail] = useState({
-    name: "",
-    price: 0,
-    img: "",
-    category: "lifting",
-    description : "",
-    setshop: [],
-    settime: []
-  })  
+const AdminReservationModal = ({setReservationAddModal, reservationId, onSuccess}) => {
+  const [allShops, setAllShops] = useState([])
+  const [detail, setDetail] = useState(null)  
+  const allTimes = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"]  
 
   const reservationUrl=API_JSON_SERVER_URL
   const navigate=useNavigate()
@@ -36,18 +28,40 @@ const AdminReservationModal = ({setReservationAddModal, reservationId}) => {
             });
           };
 
-  useEffect(() => {
-    const openDetail = async () => {
+useEffect(() => {
+    const fetchData = async () => {
       try {
-        if (!reservationId) return;
-        const res = await axios.get(`${reservationUrl}/reservation/${reservationId}`);
-        setDetail(res.data);
+        const allRes = await axios.get(`${reservationUrl}/reservation`);
+        const allData = allRes.data;
+
+        const extractedShops = [...new Set(allData.flatMap(item => item.setshop || []))].sort();
+
+        setAllShops(extractedShops);
+
+        if (reservationId) {
+          const res = await axios.get(`${reservationUrl}/reservation/${reservationId}`);
+          setDetail(res.data);
+        } else {
+          setDetail({
+            name: "",
+            category: "lifting",
+            price: "",
+            img: "",
+            description: "",
+            descImg: "",
+            setshop: [],
+            settime: [],
+            regDate: new Date().toISOString(),
+            timespan:""
+          });
+        }
       } catch (err) {
-        alert(err);
+        console.error("데이터 로딩 중 에러:", err);
       }
     };
-    openDetail();
+    fetchData();
   }, [reservationId, reservationUrl]);
+
 
   const onChangeFn = (e) => {
     const { name, value } = e.target;
@@ -55,10 +69,14 @@ const AdminReservationModal = ({setReservationAddModal, reservationId}) => {
     setDetail({ ...detail, [name]: newValue });
   };
 
+
   const onUpdateFn = async () => {
     try {
       const res = await axios.put(`${reservationUrl}/reservation/${reservationId}`, detail);
       alert("수정 되었습니다");
+      if (onSuccess) {
+      onSuccess(); 
+      }
       closeFn();
     } catch (err) {
       alert(err);
@@ -71,21 +89,27 @@ const AdminReservationModal = ({setReservationAddModal, reservationId}) => {
     try {
           await axios.delete(`${reservationUrl}/reservation/${reservationId}`);
           alert("삭제 되었습니다");
-          closeFn(); // 삭제 후 닫기
-        } catch (err) {
-          alert("삭제 중 에러가 발생했습니다.");
-        }
-      };
-
-  const onPostFn = async () => {
-    try {
-      await axios.post(`${reservationUrl}/reservation`, detail);
-      alert("추가 되었습니다.");
+      if (onSuccess) {
+      onSuccess(); 
+      }
       closeFn();
     } catch (err) {
       alert(err);
     }
   };
+
+const onPostFn = async () => {
+  try {
+    await axios.post(`${reservationUrl}/reservation`, detail);
+    alert("추가 되었습니다.");
+     if (onSuccess) {
+      onSuccess(); 
+    }
+    closeFn();
+  } catch (err) {
+    alert("데이터 저장 중 오류가 발생했습니다: " + err);
+  }
+};
 
 
   const closeFn = () => {
@@ -110,6 +134,10 @@ return(
   <div className="reservationModal">
     <div className="reservationModal-con">
       <h1>예약 상품 등록</h1>
+       <span className="close" onClick={closeFn}>
+       X
+       </span>
+
       <ul>
         <li>
             <label htmlFor="category">카테고리</label>
@@ -126,20 +154,31 @@ return(
             </select>
         </li>
         <li>
+            <label htmlFor="name">상품명</label>
+            <input
+              name="name"
+              id="name"
+              value={detail.name}
+              onChange={onChangeFn}
+            ></input>
+        </li>
+        <li>
             <label htmlFor="price">가격</label>
+            <span>
             <input
               type="text"
               name="price"
               reservationId="price"
               value={detail.price}
               onChange={onChangeFn}
-            />
+            />원
+            </span>
         </li>
         <li>
             <label>예약 지점 선택</label>
               <div className="checkbox-group">
                 {allShops.map((shop) => (
-                  <label key={shop} className="checkbox-item">
+                  <label key={shop.id || shop} className="checkbox-item">
                     <input
                       type="checkbox"
                       checked={detail.setshop?.includes(shop)}
@@ -149,7 +188,7 @@ return(
               </label>
           ))}
         </div> 
-        </li>       
+        </li>
         <li>
             <label>예약 시간 선택</label>
               <div className="checkbox-group">
@@ -164,7 +203,18 @@ return(
               </label>
           ))}
         </div> 
-        </li>       
+        </li>         
+        <li>
+            <label htmlFor="img">상품이미지</label>
+            <input
+              type="text"
+              name="img"
+              id="img"
+              value={detail.img}
+              onChange={onChangeFn}
+              />
+          <img src={`/images/${detail.category}/${detail.img}`} alt={detail.img} />
+        </li>
         <li>
             <label htmlFor="descImg">상품이미지 링크</label>
             <input
@@ -186,9 +236,27 @@ return(
             />
         </li>
         <li>
-          <button onClick={onUpdateFn}>수정</button>
-          <button onClick={onDeleteFn}>삭제</button>
-          <button onClick={closeFn}>목록</button>
+            <label htmlFor="name">시술시간</label>
+            <span>
+            <input
+              type="text"
+              name="timespan"
+              reservationId="timespan"
+              value={detail.timespan}
+              onChange={onChangeFn}
+            />시간 소요예정
+            </span>
+        </li>
+        <li>
+            {reservationId ? (
+              <>
+               <button onClick={onUpdateFn}>상품수정</button>
+               <button onClick={onDeleteFn}>상품삭제</button>
+              </>
+            ):(
+              <button onClick={onPostFn}>상품추가</button>
+            )}
+            <button onClick={closeFn}>닫기</button>
         </li>
       </ul>
     </div>
