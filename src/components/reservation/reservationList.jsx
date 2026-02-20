@@ -120,7 +120,7 @@ const ReservationList = () => {
             </ul>
           </div>
           <div className="list_search_wrap">
-            <span className="list_search_length">상품 <b>{pagedList.length}</b>개</span>
+            <span className="list_search_length">상품 <b>{list.length}</b>개</span>
             <div className="list_search_box">
               <div className={`toolbar ${isSearchActive ? "active" : ""}`} onClick={() => setIsSearchActive(true)}>
                 <input
@@ -133,7 +133,7 @@ const ReservationList = () => {
                     setIsSearchActive(false);
                     setSearchText("");
                   }}>
-                  <img src="/public/images/icon_close_w.svg" />
+                  <img src="/images/icon_close_w.svg" />
                 </span>
               </div>
               <div className="custom-select-container">
@@ -142,7 +142,7 @@ const ReservationList = () => {
                   onClick={() => setIsOpen(!isOpen)}
                 >
                   {currentSortLabel}
-                  <img src="/public/images/icon_filter_w.svg" />
+                  <img src="/images/icon_filter_w.svg" />
                 </div>
                 {isOpen && (
                   <ul className="select-items">
@@ -174,7 +174,7 @@ const ReservationList = () => {
                         <div className="time">
                           {el.timespan}시간
                         </div>
-                        <img src={el.img ? `/images/${el.category}/${el.img}` : `/images/all_none.png`} alt={el.name} />
+                        <img src={el.img ? `/images/${el.category}/${el.img}` : `/images/all_none.png`} alt={el.name} onError={(e) => {e.target.src = "/images/all_none.png";}}/>
                       </div>
                       <div className="bottom">
                         <span className="name">{el.name}</span>

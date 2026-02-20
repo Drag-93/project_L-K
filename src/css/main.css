@@ -463,7 +463,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #e5f7dc;
+  color: #fff;
   background: #ec6c81;
   padding: 1.2rem;
   border-radius: 5px;
@@ -476,6 +476,26 @@
   border-bottom: 1px solid #fff;
   color: #fff;
   font-size: 1.4rem;
+}
+.sell_list ul li a .top .badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.2rem;
+  border-radius: 5px;
+  color: #fff;
+}
+.sell_list ul li a .top .badge.res {
+  background: #333;
+  color: #dafed4;
+}
+.sell_list ul li a .top .badge.pro {
+  background-color: #333;
 }
 .sell_list ul li a .bottom {
   padding: 3rem;
@@ -497,4 +517,25 @@
   font-size: 2.2rem;
   font-weight: 500;
   color: #666;
+}
+
+@media(max-width:1200px){
+  .sell_list ul {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media(max-width:768px){
+  .sell_list ul {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media(max-width:480px){
+  .sell_list ul {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+  }
 }

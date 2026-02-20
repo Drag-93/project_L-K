@@ -12,7 +12,7 @@
 .inner {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 5rem 10px 10rem 10px;
+    padding: 5rem 1.5rem 10rem 1.5rem;
 }
 
 
@@ -287,6 +287,20 @@
     line-height: 32px;
 }
 
+@media(max-width:1080px){
+    .header .header_box .nav {
+        display: none;
+    }
+}
+
+@media(max-width:480px){
+    .header_left {
+        display: none;
+    }
+}
+
+
+
 /*****************************************************************************
     @footer
 ****************************************************************************/
@@ -301,7 +315,7 @@
     @aside
 ****************************************************************************/
 .aside_wrap {
-    padding: 50px 0 0 0;
+    padding: 6.5rem 0 0 0;
 }
 .aside_wrap ul {
     display: flex;
@@ -337,13 +351,25 @@
     position: absolute;
 }
 
+@media(max-width:768px){
+    .aside_wrap ul {gap: 2rem;}
+    .aside_wrap ul li a {font-size: 1.8rem;}
+}
 
+@media(max-width:480px){
+    .aside_wrap ul {display: block;border-top: 1px solid #ccc;}
+    .aside_wrap ul li { border-bottom: 1px solid #ececec;}
+    .aside_wrap ul li:last-child { border-bottom: none;}
+    .aside_wrap ul li a {font-size: 1.8rem; display: flex; justify-content: center; align-items: center; padding: 1rem 0;}
+    .aside_wrap ul li a.active {border-bottom: none;background: #556a4b; color: #fff;}
+    .aside_wrap ul li a.active::before {display: none;}
+}
 
 /*****************************************************************************
     @드롭다운 메뉴 - 검색, 정렬, 필터
 ****************************************************************************/
 .list_search_wrap {
-    padding: 20px 0;
+    padding: 4.5rem 0 3rem 0;
     display: flex;
     justify-content: space-between;
     align-items: end;
@@ -370,12 +396,14 @@
     width: 4rem;
     background: url(/public/images/icon_search_w.svg) no-repeat center center #556a4b;
     background-size: 2.2rem;
+    cursor: pointer;
 }
 .list_search_wrap .list_search_box .toolbar.active{
     width: 42rem;
     background: url(/public/images/icon_search_g.svg) no-repeat #fff;
     background-size: 2.4rem;
     background-position: 0.8rem;
+    cursor: auto;
 }
 
 .list_search_wrap .list_search_box .toolbar input {
@@ -404,6 +432,7 @@
     right: 0;
     display: none;
     background: #556a4b;
+    cursor: pointer;
 }
 .list_search_wrap .list_search_box .toolbar.active .list_search_btn {
     display: flex;

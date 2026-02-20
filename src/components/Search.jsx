@@ -99,86 +99,72 @@ const Search = () => {
     }, [sortType]);
 
   return (
-    <div className="search-result-page">
-      <h2>'{keyword}'에 대한 검색 결과 ({searchResults.length}건)</h2>
-      <div className='prod-list'>
-        <div className="prod-list-con">
-        <div className="custom-select-container">
-            <div 
-              className={`select-selected ${isOpen ? "select-arrow-active" : ""}`}
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {currentSortLabel}
+    <div className="inner">
+      <div className="sell_list_wrap">
+        <div className="list_search_wrap">
+            <span className="list_search_length"><b>'{keyword}'</b>에 대한 검색 결과<b>{searchResults.length}</b>개</span>
+            <div className="list_search_box">
+              <div className="custom-select-container">
+                <div 
+                  className={`select-selected ${isOpen ? "select-arrow-active" : ""}`}
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  {currentSortLabel}
+                  <img src="/images/icon_filter_w.svg" />
+                </div>
+                {isOpen && (
+                  <ul className="select-items">
+                    {sortOptions.map((opt) => (
+                      <li 
+                        key={opt.value}
+                        className={sortType === opt.value ? "same-as-selected" : ""}
+                        onClick={() => {
+                          setSortType(opt.value);
+                          setIsOpen(false);
+                        }}
+                      >
+                        {opt.label}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             </div>
-            {isOpen && (
-              <ul className="select-items">
-                {sortOptions.map((opt) => (
-                  <li 
-                    key={opt.value}
-                    className={sortType === opt.value ? "same-as-selected" : ""}
-                    onClick={() => {
-                      setSortType(opt.value);
-                      setIsOpen(false);
-                    }}
-                  >
-                    {opt.label}
-                  </li>
-                ))}
-              </ul>
-            )}
           </div>
-          <div className="list-con">
-            {pagedList.length > 0 ? (
-            <ul>
-              {pagedList && pagedList.map((el) => (
-                <li key={`${el.type}-${el.id}`}>
-                  {/* 타입에 따라 다른 상세 페이지 경로 설정 */}
-                  <Link to={el.type === 'reservation' 
-                    ? `/reservation/detail/${el.category}/${el.id}` 
-                    : `/product/detail/${el.category}/${el.id}`}>
-                    
-                    <div className="top">
-                      <img src={`/images/${el.category}/${el.img}`} alt={el.name} />
-                      <span className="badge">{el.type === 'reservation' ? '진료' : '상품'}</span>
-                    </div>
-                    
-                    <div className="bottom">
-                      <strong>{el.name}</strong>
-                      {el.type === 'product' && (<></>)}
+        <div className="sell_list">
+          {pagedList.length > 0 ? (
+          <ul>
+            {pagedList && pagedList.map((el) => (
+              <li key={`${el.type}-${el.id}`}>
+                {/* 타입에 따라 다른 상세 페이지 경로 설정 */}
+                <Link to={el.type === 'reservation' 
+                  ? `/reservation/detail/${el.category}/${el.id}` 
+                  : `/product/detail/${el.category}/${el.id}`}>
+                  
+                  <div className="top">
                       {el.type === 'reservation'&& el.timespan &&(
-                        <p>{`소요시간: ${el.timespan}시간`}</p>
+                        <div className="time">
+                          {el.timespan}시간
+                        </div>
                       )}
-                      <span className="price">{el.price.toLocaleString()}원</span>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className="no-result">검색 결과가 없습니다.</div>
-          )}
+                      <span className={`badge ${el.type === 'reservation' ? "res" : "pro"}`}>{el.type === 'reservation' ? '진료' : '상품'}</span>
+                      <img src={el.img ? `/images/${el.category}/${el.img}` : `/images/all_none.png`} alt={el.name} onError={(e) => {e.target.src = "/images/all_none.png";}}/>
+                  </div>
+                  
+                  <div className="bottom">
+                    <span className="name">{el.name}</span>
+                    <span className="price">{el.price.toLocaleString()}원</span>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="no_data_wrap">
+            <div className="no_data_img"></div>
+            <span className="no_data_text">검색결과가 없습니다</span>
           </div>
-          <div className="QnAFooter">
-          <div className="QnAFooter-con">
-            <div className="QnAPaging">
-              <button
-                onClick={() => setPage((p) => Math.max(1, p - 1))}
-                disabled={page === 1}
-              >
-                이전
-              </button>
-              <span>
-                {page}/{totalPages}
-              </span>
-              <button
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                disabled={page === totalPages}
-              >
-                다음
-              </button>
-            </div>
-          </div>
-        </div>
+        )}
         </div>
       </div>
     </div>

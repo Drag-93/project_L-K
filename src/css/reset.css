@@ -24,16 +24,16 @@ button, textarea, input, select, a {
 }
 
 @media (max-width: 359px) {
-    html, body {font-size: 58%;}
+    html, body {font-size: 40%;}
 }
 @media (max-width: 425px) {
-    html, body {font-size: 62.5%;}
+    html, body {font-size: 43%;}
 }
 @media (max-width: 767px) {
-    html, body {font-size: 65%;}
+    html, body {font-size: 46%;}
 }
 @media (max-width: 989px) {
-    html, body {font-size: 50%;}
+    html, body {font-size: 48%;}
 }
 @media (max-width: 1024px) {
     html, body {font-size: 51%;}

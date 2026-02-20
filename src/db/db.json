@@ -331,6 +331,7 @@
       "img": "lifting_01.png",
       "description": "리프팅라인 울쎄라 진료입니다",
       "descImg": "상세페이지 이미지 경로",
+      "timespan":2,
       "setshop": [
         "노원",
         "신촌",
@@ -352,6 +353,7 @@
       "img": "faceline_01.png",
       "description": "페이스라인 인모드 진료입니다",
       "descImg": "상세페이지 이미지 경로",
+      "timespan":2,
       "setshop": [
         "노원",
         "신촌",
@@ -372,6 +374,7 @@
       "img": "regen_01.png",
       "description": "피부재생 쥬베룩 진료입니다",
       "descImg": "상세페이지 이미지 경로",
+      "timespan":3,
       "setshop": [
         "노원",
         "강남",
@@ -392,6 +395,7 @@
       "img": "\\immune_01.png",
       "description": "면역력 글루타치온(백옥주사) 진료입니다",
       "descImg": "상세페이지 이미지 경로",
+      "timespan":1,
       "setshop": [
         "신촌",
         "강남",
