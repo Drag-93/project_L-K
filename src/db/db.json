@@ -6,12 +6,17 @@
       "description": "ㅁㄴㅇㄴㅁㅇㅁㄴㅇㅁㄴㅇ",
       "no": 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
       "date": "2024-12-25",
       "viewrate": 16
 =======
       "date": "Fri Feb 20 2026 11:38:31 GMT+0900 (한국 표준시)",
       "viewrate": 5
 >>>>>>> lhstk114
+=======
+      "date": "Fri Feb 20 2026 11:38:31 GMT+0900 (한국 표준시)",
+      "viewrate": 6
+>>>>>>> faithyg93
     },
     {
       "id": "03a4",
@@ -19,12 +24,17 @@
       "description": "ㅂㅈㄷㅂㄱㄷㄷㅂㄱㅂ",
       "no": 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
       "date": "2026-02-12",
       "viewrate": 3
 =======
       "date": "Fri Feb 20 2026 14:50:32 GMT+0900 (한국 표준시)",
       "viewrate": 1
 >>>>>>> lhstk114
+=======
+      "date": "Fri Feb 20 2026 14:50:32 GMT+0900 (한국 표준시)",
+      "viewrate": 2
+>>>>>>> faithyg93
     },
     {
       "id": "5055",
@@ -32,7 +42,11 @@
       "description": "123ㄱㅂㅈㅂㄱㄷㅎ",
       "no": 3,
 <<<<<<< HEAD
+<<<<<<< HEAD
       "date": "2026-02-12",
+=======
+      "date": "Fri Feb 20 2026 14:53:10 GMT+0900 (한국 표준시)",
+>>>>>>> faithyg93
       "viewrate": 2
 =======
       "date": "Fri Feb 20 2026 14:53:10 GMT+0900 (한국 표준시)",
@@ -630,9 +644,13 @@
       "description": "리프팅라인 울쎄라 진료입니다",
       "descImg": "상세페이지 이미지 경로",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       "timespan": 2,
 >>>>>>> lhstk114
+=======
+      "timespan": 2,
+>>>>>>> faithyg93
       "setshop": [
         "노원",
         "신촌",
@@ -655,9 +673,13 @@
       "description": "페이스라인 인모드 진료입니다",
       "descImg": "상세페이지 이미지 경로",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       "timespan": 2,
 >>>>>>> lhstk114
+=======
+      "timespan": 2,
+>>>>>>> faithyg93
       "setshop": [
         "노원",
         "신촌",
@@ -681,9 +703,13 @@
       "description": "피부재생 쥬베룩 진료입니다",
       "descImg": "상세페이지 이미지 경로",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       "timespan": 3,
 >>>>>>> lhstk114
+=======
+      "timespan": 3,
+>>>>>>> faithyg93
       "setshop": [
         "노원",
         "강남",
@@ -705,9 +731,13 @@
       "description": "면역력 글루타치온(백옥주사) 진료입니다",
       "descImg": "상세페이지 이미지 경로",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       "timespan": 1,
 >>>>>>> lhstk114
+=======
+      "timespan": 1,
+>>>>>>> faithyg93
       "setshop": [
         "신촌",
         "강남",
@@ -901,7 +931,7 @@
       "date": "2026-02-10",
       "writer": "test",
       "writerEmail": "test",
-      "viewrate": 10,
+      "viewrate": 11,
       "admin": "",
       "answer": "",
       "state": "답변대기"

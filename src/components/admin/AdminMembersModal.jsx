@@ -109,9 +109,14 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
   };
   if (!detail) {
     return (
-      <div className="adminMembersModal">
-        <div className="adminMembersModal-con">
-          <span className="close" onClick={closeFn}>
+      <div className="adminModal" onClick={closeFn}>
+        <div
+          className="adminModal-con"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          <span className="adminModal-close" onClick={closeFn}>
             X
           </span>
           <div className="loading">
@@ -121,13 +126,19 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
       </div>
     );
   }
+
   return (
-    <div className="adminMembersModal">
-      <div className="adminMembersModal-con">
-        <span className="close" onClick={closeFn}>
+    <div className="adminModal" onClick={closeFn}>
+      <div
+        className="adminModal-con"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <span className="adminModal-close" onClick={closeFn}>
           X
         </span>
-        <div className="title">{detail.userName}님</div>
+        <div className="adminModal-title">{detail.userName}님</div>
 
         <ul>
           <li>
@@ -210,7 +221,7 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
               id="remark"
               value={detail.remark || ""}
               onChange={onChangeFn}
-              className="remark-textarea"
+              // className="remark-textarea"
             />
           </li>
           <li>
@@ -225,7 +236,9 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
               <option value="ROLE_ADMIN">관리자</option>
             </select>
           </li>
-          <li>
+        </ul>
+        <div className="adminModal-footer">
+          <div className="adminModal-footer-con">
             {memberId ? (
               <>
                 <button onClick={onUpdateFn}>회원수정</button>
@@ -235,8 +248,8 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
               <button onClick={onPostFn}>회원추가</button>
             )}
             <button onClick={closeFn}>닫기</button>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -202,8 +202,12 @@ export default function AdminIsMapModal({
   };
 
   return (
-    <div className="AdminIsMapModal" style={backdropStyle}>
-      <div style={modalStyle}>
+    <div
+      className="AdminIsMapModal"
+      style={backdropStyle}
+      onClick={() => onClose()}
+    >
+      <div style={modalStyle} onClick={(e) => e.stopPropagation()}>
         <div style={headerStyle}>
           <strong>지도에서 위치 선택</strong>
           <button type="button" onClick={onClose} style={xBtnStyle}>
