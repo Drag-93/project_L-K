@@ -152,26 +152,28 @@ const AdminMembers = () => {
       <div className="admin">
         <div className="admin-title">
           <div className="admin-toolbar">
-            <input
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              placeholder="검색어 입력"
-            />
+            <div className="admin-toolbar-searchtext">
+              <input
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                placeholder="검색어 입력"
+              />
+            </div>
+            <div className="admin-toolbar-selector">
+              <select
+                value={genderFilter}
+                onChange={(e) => setGenderFilter(e.target.value)}
+              >
+                <option value="ALL">전체</option>
+                <option value="남">남</option>
+                <option value="여">여</option>
+              </select>
+            </div>
           </div>
           <ul>
             <li>
               <div className="admin-selector">
                 <ul>
-                  <li>
-                    <select
-                      value={genderFilter}
-                      onChange={(e) => setGenderFilter(e.target.value)}
-                    >
-                      <option value="ALL">전체</option>
-                      <option value="남">남</option>
-                      <option value="여">여</option>
-                    </select>
-                  </li>
                   <li>
                     <select
                       value={roleFilter}
@@ -206,7 +208,7 @@ const AdminMembers = () => {
                 <th>연락처</th>
                 <th>나이</th>
                 <th>성별</th>
-                <th>주소?지역</th>
+                <th>주소</th>
                 <th>특이사항</th>
                 <th>권한</th>
               </tr>
@@ -233,7 +235,11 @@ const AdminMembers = () => {
                     <td>{el.phonenum}</td>
                     <td>{el.age}</td>
                     <td>{el.gender}</td>
-                    <td>{el.address}</td>
+                    <td title={el.address}>
+                      {el.address && el.address.length > 10
+                        ? `${el.address.slice(0, 10)}...`
+                        : el.address}
+                    </td>
                     <td>
                       {el.remark && el.remark.length > 10
                         ? `${el.remark.slice(0, 10)}...`

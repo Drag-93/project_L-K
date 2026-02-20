@@ -1,15 +1,18 @@
 /* Admin */
 .admin {
-  border: 1px solid;
+  /* border: 1px solid; */
+  box-shadow: 1px 1px 10px 1px #3137471c;
   box-sizing: border-box;
+  border-radius: 20px;
   width: 1400px;
-
-  justify-content: center;
+  padding: 0.3vw;
 }
+
+/*title*/
 .admin .admin-title {
   padding: 5px;
   border: 1px blue;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 
   display: flex;
   justify-content: space-between;
@@ -38,9 +41,9 @@
   padding: 3px;
 }
 .admin .admin-title .admin-toolbar input {
-  flex: 1;
+  flex: 7 1 0;
 
-  min-width: 20vw;
+  width: 20vw;
   height: 30px;
   border: none;
   outline: none;
@@ -52,24 +55,24 @@
 }
 
 .admin .admin-title .admin-toolbar-selector select {
-  flex: 1;
+  flex: 3 1 0;
 
-  max-width: 20vw;
+  width: 6vw;
   height: 30px;
   border: none;
   outline: none;
 
-  padding: 0 10px;
+  /* padding: 0 10px; */
   font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: transparent;
   border-left: 1px solid #e5e7eb;
+
+  appearance: auto;
 }
-.admin .admin-title ul {
-  /* min-width: 20vw; */
-}
+
 .admin .admin-title ul li {
   width: 100%;
   gap: 0.2vh;
@@ -95,17 +98,19 @@
 .admin .admin-title ul > li .admin-selector select {
   flex: 1;
 
-  max-width: 20vw;
+  width: 6vw;
   height: 40px;
   border: none;
   outline: none;
 
-  padding: 0 10px;
+  /* padding: 0 10px; */
   font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: transparent;
+
+  appearance: auto;
 }
 
 .admin .admin-title ul > li .admin-button {
@@ -113,7 +118,7 @@
   justify-content: end;
 }
 .admin .admin-title ul > li .admin-button button {
-  width: 80px;
+  width: 90px;
   height: 40px;
   padding: 1px 20px;
   border-radius: 6px;
@@ -130,10 +135,12 @@
   color: #fff;
 }
 
+/*table*/
 .admin .admin-con {
   width: 100%;
-  min-height: 60vh;
+  min-height: 70vh;
   background: #fff;
+  margin-top: 2vh;
 
   border: 1px solid #1f2a44;
   border-radius: 12px;
@@ -143,6 +150,23 @@
 .admin .admin-con table {
   width: 100%;
   border-collapse: collapse;
+}
+.admin .admin-con table input[type="checkbox"] {
+  appearance: auto;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.admin .admin-con table button {
+  flex: 1;
+  border: 1px solid #ffffff00;
+  padding: 2px 5px;
+  border-radius: 6px;
+  background-color: #f6b4fc1e;
+}
+.admin .admin-con table button:hover {
+  cursor: pointer;
 }
 
 .admin .admin-con thead {
@@ -156,6 +180,9 @@
   text-align: center;
   border-bottom: 1px solid #dbdbdb;
 }
+.admin .admin-con td {
+  height: 6vh;
+}
 
 .admin .admin-con th {
   font-weight: 600;
@@ -164,13 +191,57 @@
 
 .admin .admin-con tbody tr:hover {
   background: #f9fafb;
+  /* cursor: pointer; */
 }
 
+/*footer*/
 .admin .admin-footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 1vh;
 }
 
-.admin .admin-footer .admin-footer-paging {
+/*paging*/
+.admin .admin-footer .admin-paging {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin .admin-footer .admin-paging button {
+  display: flex;
+  width: 3.2rem;
+  height: 3.2rem;
+  align-items: center;
+  justify-content: center;
+  /* font-size: 0; */
+  cursor: pointer;
+}
+
+/*badge*/
+.qnaState,
+.orderState {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+.qnaState.wait,
+.orderState.wait {
+  background: #fff7ed;
+  border-color: #fed7aa;
+  color: #9a3412;
+}
+
+.qnaState.done,
+.orderState.done {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #065f46;
 }

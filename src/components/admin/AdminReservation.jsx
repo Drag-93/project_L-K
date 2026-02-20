@@ -18,7 +18,6 @@ const AdminReservation = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const name = params.get("name");
-  
 
   // 1. 데이터 불러오기
   const getReservationList = async () => {
@@ -31,8 +30,12 @@ const AdminReservation = () => {
     }
   };
 
-  useEffect(() => { getReservationList(); }, []);
-  useEffect(() => { if (name) setSearchText(name); }, [name]);
+  useEffect(() => {
+    getReservationList();
+  }, []);
+  useEffect(() => {
+    if (name) setSearchText(name);
+  }, [name]);
 
   // 2. 필터링 및 정렬 로직
   const filtered = useMemo(() => {
@@ -46,8 +49,16 @@ const AdminReservation = () => {
       }
       if (!q) return true;
 
-      const searchTarget = [m.category, m.name, m.price, m.description, m.setshop?.join(" ")]
-        .filter(Boolean).join(" ").toLowerCase();
+      const searchTarget = [
+        m.category,
+        m.name,
+        m.price,
+        m.description,
+        m.setshop?.join(" "),
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
       return searchTarget.includes(q);
     });
 
@@ -76,27 +87,38 @@ const AdminReservation = () => {
 
   // 4. 체크박스 핸들러
   const handleSingleCheck = (checked, id) => {
-    if (checked) setCheckedItems(prev => [...prev, id]);
-    else setCheckedItems(prev => prev.filter(el => el !== id));
+    if (checked) setCheckedItems((prev) => [...prev, id]);
+    else setCheckedItems((prev) => prev.filter((el) => el !== id));
   };
 
   const handleAllCheck = (checked) => {
     // 현재 페이지에 있는 항목들만 전체 선택/해제
-    if (checked) setCheckedItems(pagedList.map(el => el.id));
+    if (checked) setCheckedItems(pagedList.map((el) => el.id));
     else setCheckedItems([]);
   };
 
   // 5. 삭제 로직
   const onDeleteFn = async () => {
     if (checkedItems.length === 0) return alert("삭제할 항목을 선택해주세요.");
-    if (!window.confirm(`선택한 ${checkedItems.length}개의 항목을 삭제하시겠습니까?`)) return;
+    if (
+      !window.confirm(
+        `선택한 ${checkedItems.length}개의 항목을 삭제하시겠습니까?`,
+      )
+    )
+      return;
 
     try {
-      await Promise.all(checkedItems.map(id => axios.delete(`${reservationUrl}/reservation/${id}`)));
+      await Promise.all(
+        checkedItems.map((id) =>
+          axios.delete(`${reservationUrl}/reservation/${id}`),
+        ),
+      );
       alert("삭제되었습니다.");
       getReservationList();
       setPage(1);
-    } catch (err) { alert("삭제 실패: " + err); }
+    } catch (err) {
+      alert("삭제 실패: " + err);
+    }
   };
 
   const ReservationModalFn = (id) => {
@@ -118,10 +140,17 @@ const AdminReservation = () => {
           <div className="title">
             <ul>
               <li>
-                <input value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="검색어 입력" />
+                <input
+                  value={searchText}
+                  onChange={(e) => setSearchText(e.target.value)}
+                  placeholder="검색어 입력"
+                />
               </li>
               <li>
-                <select value={sortType} onChange={(e)=>setSortType(e.target.value)}>
+                <select
+                  value={sortType}
+                  onChange={(e) => setSortType(e.target.value)}
+                >
                   <option value="latest">최신순</option>
                   <option value="oldest">과거순</option>
                   <option value="expensive">가격높은순</option>
@@ -129,7 +158,10 @@ const AdminReservation = () => {
                 </select>
               </li>
               <li>
-                <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
+                <select
+                  value={categoryFilter}
+                  onChange={(e) => setCategoryFilter(e.target.value)}
+                >
                   <option value="ALL">전체 지점</option>
                   <option value="노원">노원</option>
                   <option value="신촌">신촌</option>
@@ -138,16 +170,19 @@ const AdminReservation = () => {
                 </select>
               </li>
               <li>
-                <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
+                <select
+                  value={categoryFilter}
+                  onChange={(e) => setCategoryFilter(e.target.value)}
+                >
                   <option value="ALL">전체 카테고리</option>
                   <option value="lifting">울쎄라</option>
                   <option value="faceline">인모드</option>
                   <option value="regen">쥬베룩</option>
                   <option value="immune">백옥주사</option>
                 </select>
-              </li>           
-              <li>     
-              <button onClick={() => ReservationModalFn(null)}>추가</button>
+              </li>
+              <li>
+                <button onClick={() => ReservationModalFn(null)}>추가</button>
                 <button onClick={onDeleteFn}>삭제</button>
               </li>
             </ul>
@@ -157,8 +192,14 @@ const AdminReservation = () => {
             <thead>
               <tr>
                 <th>
-                  <input type="checkbox" onChange={(e)=> handleAllCheck(e.target.checked)} 
-                         checked={pagedList.length > 0 && checkedItems.length === pagedList.length} />
+                  <input
+                    type="checkbox"
+                    onChange={(e) => handleAllCheck(e.target.checked)}
+                    checked={
+                      pagedList.length > 0 &&
+                      checkedItems.length === pagedList.length
+                    }
+                  />
                 </th>
                 <th>이미지</th>
                 <th>카테고리</th>
@@ -171,20 +212,53 @@ const AdminReservation = () => {
               {pagedList.map((el) => (
                 <tr key={el.id}>
                   <td>
-                    <input type="checkbox" onChange={(e)=>handleSingleCheck(e.target.checked, el.id)} 
-                           checked={checkedItems.includes(el.id)} />
+                    <input
+                      type="checkbox"
+                      onChange={(e) =>
+                        handleSingleCheck(e.target.checked, el.id)
+                      }
+                      checked={checkedItems.includes(el.id)}
+                    />
                   </td>
-                  <td onClick={() => ReservationModalFn(el.id)} style={{ cursor: 'pointer' }}>
-                    <img src={`/images/${el.category}/${el.img}`} alt={el.name} style={{width:'50px'}} />
+                  <td
+                    onClick={() => ReservationModalFn(el.id)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <img
+                      src={`/images/${el.category}/${el.img}`}
+                      alt={el.name}
+                      style={{ width: "50px" }}
+                    />
                   </td>
-                  <td onClick={() => ReservationModalFn(el.id)} style={{ cursor: 'pointer' }}>{el.name}</td>
-                  <td onClick={() => ReservationModalFn(el.id)} style={{ cursor: 'pointer' }}>{el.price.toLocaleString()}원</td>
-                  <td onClick={() => ReservationModalFn(el.id)} className="description" style={{ cursor: 'pointer' }}>
+                  <td
+                    onClick={() => ReservationModalFn(el.id)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {el.name}
+                  </td>
+                  <td
+                    onClick={() => ReservationModalFn(el.id)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {el.price.toLocaleString()}원
+                  </td>
+                  <td
+                    onClick={() => ReservationModalFn(el.id)}
+                    className="description"
+                    style={{ cursor: "pointer" }}
+                  >
                     {el.description?.slice(0, 15)}...
                   </td>
-                  <td onClick={() => ReservationModalFn(el.id)} style={{ cursor: 'pointer' }}>
+                  <td
+                    onClick={() => ReservationModalFn(el.id)}
+                    style={{ cursor: "pointer" }}
+                  >
                     <div className="array-wrapper">
-                      {el.setshop?.map((shop, idx) => (<span key={idx} className="badge shop-badge">{shop}</span>))}
+                      {el.setshop?.map((shop, idx) => (
+                        <span key={idx} className="badge shop-badge">
+                          {shop}
+                        </span>
+                      ))}
                     </div>
                   </td>
                 </tr>
@@ -195,23 +269,62 @@ const AdminReservation = () => {
           {/* 페이지네이션 UI */}
           <div className="adminReservationFooter">
             <div className="adminReservationPaging">
-              <button onClick={() => setPage(1)} disabled={page === 1} style={{ cursor: 'pointer' }}>◀◀</button>
-              <button onClick={() => setPage(startPage - 1)} disabled={currentSet === 1} style={{ cursor: 'pointer' }}>◀</button>
-              <button onClick={() => setPage(page - 1)} disabled={page === 1} style={{ cursor: 'pointer' }}>이전</button>
-              
+              <button
+                onClick={() => setPage(1)}
+                disabled={page === 1}
+                style={{ cursor: "pointer" }}
+              >
+                ◀◀
+              </button>
+              <button
+                onClick={() => setPage(startPage - 1)}
+                disabled={currentSet === 1}
+                style={{ cursor: "pointer" }}
+              >
+                ◀
+              </button>
+              <button
+                onClick={() => setPage(page - 1)}
+                disabled={page === 1}
+                style={{ cursor: "pointer" }}
+              >
+                이전
+              </button>
+
               {Array.from({ length: endPage - startPage + 1 }, (_, i) => {
                 const pageNum = startPage + i;
                 return (
-                  <button key={pageNum} onClick={() => setPage(pageNum)} 
-                          className={page === pageNum ? "active" : ""}>
+                  <button
+                    key={pageNum}
+                    onClick={() => setPage(pageNum)}
+                    className={page === pageNum ? "active" : ""}
+                  >
                     {pageNum}
                   </button>
                 );
               })}
 
-              <button onClick={() => setPage(page + 1)} disabled={page === totalPages} style={{ cursor: 'pointer' }}>다음</button>
-              <button onClick={() => setPage(endPage + 1)} disabled={currentSet === totalSet} style={{ cursor: 'pointer' }}>▶</button>
-              <button onClick={() => setPage(totalPages)} disabled={page === totalPages} style={{ cursor: 'pointer' }}>▶▶</button>
+              <button
+                onClick={() => setPage(page + 1)}
+                disabled={page === totalPages}
+                style={{ cursor: "pointer" }}
+              >
+                다음
+              </button>
+              <button
+                onClick={() => setPage(endPage + 1)}
+                disabled={currentSet === totalSet}
+                style={{ cursor: "pointer" }}
+              >
+                ▶
+              </button>
+              <button
+                onClick={() => setPage(totalPages)}
+                disabled={page === totalPages}
+                style={{ cursor: "pointer" }}
+              >
+                ▶▶
+              </button>
             </div>
           </div>
         </div>

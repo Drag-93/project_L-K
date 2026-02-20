@@ -71,6 +71,18 @@ const AdminNotice = () => {
     setPage(1);
   }, [searchText]);
 
+  //한국 날짜 표시
+  const getKoreaDate = () => {
+    const today = new Date();
+    return (
+      today.getFullYear() +
+      "-" +
+      String(today.getMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(today.getDate()).padStart(2, "0")
+    );
+  };
+
   //목록 불러오기
   const openListFn = async () => {
     try {
@@ -227,7 +239,7 @@ const AdminNotice = () => {
                       />
                     </td>
                     <td>{el.number}</td>
-                    <td>{el.date}</td>
+                    <td>{getKoreaDate(el.date)}</td>
                     <td>{el.title}</td>
                     <td title={el.description}>
                       {el.description && el.description.length > 10
@@ -274,6 +286,7 @@ const AdminNotice = () => {
             >
               ▶
             </button>
+
             <button
               onClick={() => {
                 setPage(lastPage);

@@ -109,8 +109,13 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
   };
   if (!detail) {
     return (
-      <div className="adminModal">
-        <div className="adminModal-con">
+      <div className="adminModal" onClick={closeFn}>
+        <div
+          className="adminModal-con"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
           <span className="close" onClick={closeFn}>
             X
           </span>
@@ -121,10 +126,16 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
       </div>
     );
   }
+
   return (
-    <div className="adminModal">
-      <div className="adminModal-con">
-        <span className="close" onClick={closeFn}>
+    <div className="adminModal" onClick={closeFn}>
+      <div
+        className="adminModal-con"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <span className="adminModal-close" onClick={closeFn}>
           X
         </span>
         <div className="adminModal-title">{detail.userName}님</div>
@@ -210,7 +221,7 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
               id="remark"
               value={detail.remark || ""}
               onChange={onChangeFn}
-              className="remark-textarea"
+              // className="remark-textarea"
             />
           </li>
           <li>
@@ -226,18 +237,18 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
             </select>
           </li>
         </ul>
-      </div>
-      <div className="adminModal-footer">
-        <div className="adminModal-footer-con">
-          {memberId ? (
-            <>
-              <button onClick={onUpdateFn}>회원수정</button>
-              <button onClick={onDeleteFn}>회원삭제</button>
-            </>
-          ) : (
-            <button onClick={onPostFn}>회원추가</button>
-          )}
-          <button onClick={closeFn}>닫기</button>
+        <div className="adminModal-footer">
+          <div className="adminModal-footer-con">
+            {memberId ? (
+              <>
+                <button onClick={onUpdateFn}>회원수정</button>
+                <button onClick={onDeleteFn}>회원삭제</button>
+              </>
+            ) : (
+              <button onClick={onPostFn}>회원추가</button>
+            )}
+            <button onClick={closeFn}>닫기</button>
+          </div>
         </div>
       </div>
     </div>

@@ -8,8 +8,8 @@ const categoryMap = {
   trouble: "트러블케어",
   white: "미백",
   antiage: "안티에이징",
-  uv: "UV"
-}
+  uv: "UV",
+};
 
 const AdminProduct = () => {
   const [productList, setProductList] = useState([]);
@@ -20,7 +20,7 @@ const AdminProduct = () => {
   const [categoryFilter, setCategoryFilter] = useState("ALL");
   const [sortType, setSortType] = useState("regDateDesc");
   const [page, setPage] = useState(1);
-  
+
   const productListFn = async (e) => {
     try {
       const res = await axios.get(`${productUrl}/product`);
@@ -32,33 +32,38 @@ const AdminProduct = () => {
   useEffect(() => {
     productListFn();
   }, [productUrl]);
-            
+
   //상품후기 불러오기
-  const [productReview, setProductReview]=useState([]);
+  const [productReview, setProductReview] = useState([]);
   useEffect(() => {
-  const productReviewFn = async () => {
-    try{
-      const res=await axios.get(`${productUrl}/productReview`);
-      console.log(res.data)
-      setProductReview(Array.isArray(res.data) ? res.data : [res.data]);
-    }catch(err){
-        console.log('상품후기 로딩 실패');
-    }
-    }
+    const productReviewFn = async () => {
+      try {
+        const res = await axios.get(`${productUrl}/productReview`);
+        console.log(res.data);
+        setProductReview(Array.isArray(res.data) ? res.data : [res.data]);
+      } catch (err) {
+        console.log("상품후기 로딩 실패");
+      }
+    };
     productReviewFn();
-  },[productUrl])
+  }, [productUrl]);
   //상품후기 평점 계산
   const reviewStatus = (productId) => {
-     const reviews = productReview.filter((review) => review.productId === productId)
-     const revCount = reviews.length
-     const avrScore = revCount > 0
-           ? (reviews.reduce((acc, cur) => acc + (Number(cur.score) || 0), 0)/revCount).toFixed(1)
-           : 0.0;      
-     return {revCount, avrScore: Number(avrScore)}
-  }
-  
+    const reviews = productReview.filter(
+      (review) => review.productId === productId,
+    );
+    const revCount = reviews.length;
+    const avrScore =
+      revCount > 0
+        ? (
+            reviews.reduce((acc, cur) => acc + (Number(cur.score) || 0), 0) /
+            revCount
+          ).toFixed(1)
+        : 0.0;
+    return { revCount, avrScore: Number(avrScore) };
+  };
+
   const filtered = useMemo(() => {
-    
     //검색 및 카테고리 필터링
     const q = searchText.trim().toLowerCase();
     const filteredList = productList.filter((m) => {
@@ -72,7 +77,7 @@ const AdminProduct = () => {
         .toLowerCase();
       return searchTarget.includes(q);
     });
-    
+
     //정렬
     return filteredList.sort((a, b) => {
       const parseRegDate = (str) => (str ? new Date(str).getTime() : 0);
@@ -94,8 +99,8 @@ const AdminProduct = () => {
           return reviewStatus(a.id).revCount - reviewStatus(b.id).revCount;
         case "revCountDesc":
           return reviewStatus(b.id).revCount - reviewStatus(a.id).revCount;
-        }    
-        });          
+      }
+    });
   }, [productList, searchText, categoryFilter, sortType, productReview]);
 
   //리스트 항목 선택/해제
@@ -253,6 +258,7 @@ const AdminProduct = () => {
                 <th>
                   <input
                     type="checkbox"
+                    className="admin-checkbox"
                     name="checkAll"
                     id="checkAll"
                     onChange={(e) => handleAllCheck(e.target.checked)}
@@ -268,19 +274,26 @@ const AdminProduct = () => {
             </thead>
             <tbody>
               {pagedList.map((el) => {
-                const {revCount, avrScore} = reviewStatus(el.id);
+                const { revCount, avrScore } = reviewStatus(el.id);
                 return (
                   <tr
-                   key={el.id}
-                   onClick={(e)=>{
-                    e.stopPropagation();
-                    adminModalFn(el.id);
-                   }}                   
+                    key={el.id}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      adminModalFn(el.id);
+                    }}
                   >
                     <td>
-                      <input type="checkbox" name="checkSingle" id="checkSingle"
-                       onChange={(e)=>{handleSingleCheck(e.target.checked, el.id)}}
-                        checked={checkedItems.includes(el.id)} />
+                      <input
+                        type="checkbox"
+                        className="admin-checkbox"
+                        name="checkSingle"
+                        id="checkSingle"
+                        onChange={(e) => {
+                          handleSingleCheck(e.target.checked, el.id);
+                        }}
+                        checked={checkedItems.includes(el.id)}
+                      />
                     </td>
                     <td>
                       <img

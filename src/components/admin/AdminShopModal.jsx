@@ -6,6 +6,7 @@ import {
   createKakaoMap,
   createMarker,
   loadKakaoMap,
+  moveMap,
 } from "../../utils/kakaoMapUtil";
 
 const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
@@ -153,9 +154,14 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
 
   if (!detail) {
     return (
-      <div className="adminModal">
-        <div className="adminModal-con">
-          <span className="close" onClick={closeFn}>
+      <div className="adminModal" onClick={closeFn}>
+        <div
+          className="adminModal-con"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          <span className="adminModal-close" onClick={closeFn}>
             X
           </span>
           <div className="loading">
@@ -177,12 +183,17 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
           onPick={handlePickLocation}
         />
       )}
-      <div className="adminModal">
-        <div className="adminModal-con">
-          <span className="close" onClick={closeFn}>
+      <div className="adminModal" onClick={closeFn}>
+        <div
+          className="adminModal-con"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          <span className="adminModal-close" onClick={closeFn}>
             X
           </span>
-          <div className="title">
+          <div className="adminModal-title">
             {shopId != null ? detail.name : "새 지점 등록"}
           </div>
           <ul>
@@ -208,16 +219,23 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
             </li>
             <li>
               <label htmlFor="address">주소</label>
-              <input
-                type="text"
-                name="address"
-                id="address"
-                value={detail.address}
-                onChange={onChangeFn}
-              />
-              <button onClick={() => setIsMapModalOpen(true)}>주소입력</button>
+              <div className="admin-shopModal-address">
+                <input
+                  type="text"
+                  name="address"
+                  id="address"
+                  value={detail.address}
+                  onChange={onChangeFn}
+                />
+                <button
+                  className="addressBtn"
+                  onClick={() => setIsMapModalOpen(true)}
+                >
+                  주소입력
+                </button>
+              </div>
             </li>
-            <li>
+            {/* <li>
               <label htmlFor="lat">위도</label>
               <input
                 name="lat"
@@ -234,24 +252,25 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
                 value={detail.lng}
                 onChange={onChangeFn}
               />
-            </li>
+            </li> */}
             <li>
               <label htmlFor="subway">지도</label>
               <div
                 ref={mapRef}
                 style={{
-                  width: 300,
+                  width: `100%`,
                   height: 260,
                   borderRadius: 12,
                   overflow: "hidden",
+                  border: "1px solid #d9deea",
+                  borderRadius: "12px",
                 }}
               />
             </li>
 
             <li>
-              <label htmlFor="subway">지하철?오시는길</label>
-              <input
-                type="text"
+              <label htmlFor="subway">오시는길</label>
+              <textarea
                 name="subway"
                 id="subway"
                 value={detail.subway}
@@ -259,26 +278,27 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
               />
             </li>
           </ul>
-        </div>
-        <div className="adminModal-footer">
-          <div className="adminModal-footer-con">
-            {shopId != null ? (
-              <>
-                <button onClick={onUpdateFn} disabled={isSaving}>
-                  수정
+
+          <div className="adminModal-footer">
+            <div className="adminModal-footer-con">
+              {shopId != null ? (
+                <>
+                  <button onClick={onUpdateFn} disabled={isSaving}>
+                    수정
+                  </button>
+                  <button onClick={onDeleteFn} disabled={isSaving}>
+                    삭제
+                  </button>
+                </>
+              ) : (
+                <button onClick={onPostFn} disabled={isSaving}>
+                  추가하기
                 </button>
-                <button onClick={onDeleteFn} disabled={isSaving}>
-                  삭제
-                </button>
-              </>
-            ) : (
-              <button onClick={onPostFn} disabled={isSaving}>
-                추가하기
+              )}
+              <button onClick={closeFn} disabled={isSaving}>
+                닫기
               </button>
-            )}
-            <button onClick={closeFn} disabled={isSaving}>
-              닫기
-            </button>
+            </div>
           </div>
         </div>
       </div>
