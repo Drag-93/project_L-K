@@ -13,13 +13,8 @@
       "title": "test",
       "description": "testtesttest",
       "no": 2,
-<<<<<<< HEAD
       "date": "Fri Feb 20 2026 14:50:32 GMT+0900 (한국 표준시)",
       "viewrate": 0
-=======
-      "date": "2026-02-12",
-      "viewrate": 9
->>>>>>> lhstk114
     },
     {
       "id": "3ba4",
@@ -523,11 +518,7 @@
       "date": "2026-02-05",
       "writer": "test",
       "writerEmail": "test",
-<<<<<<< HEAD
-      "viewrate": 20,
-=======
       "viewrate": 13,
->>>>>>> lhstk114
       "admin": "",
       "answer": ""
     },
