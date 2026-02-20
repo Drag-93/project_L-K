@@ -1,29 +1,6 @@
 {
   "notice": [
-    {
-      "id": "1",
-      "title": "첫번째테스트공지",
-      "description": "ㅁㄴㅇㄴㅁㅇㅁㄴㅇㅁㄴㅇ",
-      "no": 1,
-      "date": "Fri Feb 20 2026 11:38:31 GMT+0900 (한국 표준시)",
-      "viewrate": 5
-    },
-    {
-      "id": "03a4",
-      "title": "테스트입니다",
-      "description": "ㅂㅈㄷㅂㄱㄷㄷㅂㄱㅂ",
-      "no": 2,
-      "date": "Fri Feb 20 2026 14:50:32 GMT+0900 (한국 표준시)",
-      "viewrate": 1
-    },
-    {
-      "id": "5055",
-      "title": "테스트2",
-      "description": "123ㄱㅂㅈㅂㄱㄷㅎ",
-      "no": 3,
-      "date": "Fri Feb 20 2026 14:53:10 GMT+0900 (한국 표준시)",
-      "viewrate": 2
-    }
+    
   ],
   "members": [
     {
@@ -614,7 +591,18 @@
       "img": "lifting_01.png",
       "description": "리프팅라인 울쎄라 진료입니다",
       "descImg": "상세페이지 이미지 경로",
+<<<<<<< HEAD
       "timespan": 2,
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      "timespan": 2,
+>>>>>>> lhstk114
+=======
+      "timespan": 2,
+>>>>>>> faithyg93
+>>>>>>> 82a47cb673ed32f28c585088fe7edf8309ef599c
       "setshop": [
         "노원",
         "신촌",
@@ -636,7 +624,18 @@
       "img": "faceline_01.png",
       "description": "페이스라인 인모드 진료입니다",
       "descImg": "상세페이지 이미지 경로",
+<<<<<<< HEAD
       "timespan": 2,
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      "timespan": 2,
+>>>>>>> lhstk114
+=======
+      "timespan": 2,
+>>>>>>> faithyg93
+>>>>>>> 82a47cb673ed32f28c585088fe7edf8309ef599c
       "setshop": [
         "노원",
         "신촌",
@@ -659,7 +658,18 @@
       "img": "regen_01.png",
       "description": "피부재생 쥬베룩 진료입니다",
       "descImg": "상세페이지 이미지 경로",
+<<<<<<< HEAD
       "timespan": 3,
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      "timespan": 3,
+>>>>>>> lhstk114
+=======
+      "timespan": 3,
+>>>>>>> faithyg93
+>>>>>>> 82a47cb673ed32f28c585088fe7edf8309ef599c
       "setshop": [
         "노원",
         "강남",
@@ -680,17 +690,29 @@
       "img": "immune_01.png",
       "description": "면역력 글루타치온(백옥주사) 진료입니다",
       "descImg": "상세페이지 이미지 경로",
+<<<<<<< HEAD
       "timespan": 1,
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      "timespan": 1,
+>>>>>>> lhstk114
+=======
+      "timespan": 1,
+>>>>>>> faithyg93
+>>>>>>> 82a47cb673ed32f28c585088fe7edf8309ef599c
       "setshop": [
         "신촌",
         "강남",
         "종로"
       ],
       "settime": [
-        "10:00",
         "11:00",
         "14:00",
-        "15:00"
+        "12:00",
+        "17:00",
+        "16:00"
       ]
     },
     {
@@ -711,6 +733,28 @@
       ],
       "regDate": "2026-02-20T06:43:01.386Z",
       "timespan": "3"
+    },
+    {
+      "id": "ee23",
+      "name": "쥬베룩",
+      "category": "regen",
+      "price": 20000000,
+      "img": "hydro1.jpg",
+      "description": "125",
+      "descImg": "123",
+      "setshop": [
+        "노원",
+        "신촌",
+        "종로"
+      ],
+      "settime": [
+        "12:00",
+        "17:00",
+        "16:00",
+        "11:00"
+      ],
+      "regDate": "2026-02-20T08:28:34.638Z",
+      "timespan": "21"
     }
   ],
   "reservReview": [
@@ -839,7 +883,7 @@
       "date": "2026-02-05",
       "writer": "test",
       "writerEmail": "test",
-      "viewrate": 12,
+      "viewrate": 13,
       "admin": "",
       "answer": ""
     },
@@ -851,7 +895,7 @@
       "date": "2026-02-10",
       "writer": "test",
       "writerEmail": "test",
-      "viewrate": 10,
+      "viewrate": 11,
       "admin": "",
       "answer": "",
       "state": "답변대기"

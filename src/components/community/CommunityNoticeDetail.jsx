@@ -12,20 +12,20 @@ const CommunityNoticeDetail = () => {
   const url = API_JSON_SERVER_URL;
 
   const user = useSelector((state) => state.input.user);
-  const isadmin = user?.role === 'ROLE_ADMIN';
+  const isadmin = user?.role === "ROLE_ADMIN";
 
   const noticeUpdateFn = () => {
     navigate(`/community/notice/update/${id}`);
   };
 
   const noticeDeleteFn = async () => {
-    if (window.confirm('정말 삭제하시겠습니까?')) {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
       try {
         await axios.delete(`${API_JSON_SERVER_URL}/notice/${id}`);
-        alert('공지삭제 성공');
+        alert("공지삭제 성공");
         navigate(`/community/notice`);
       } catch (err) {
-        alert('삭제실패: ' + err);
+        alert("삭제실패: " + err);
       }
     }
   };
@@ -47,19 +47,20 @@ const CommunityNoticeDetail = () => {
       <div className="detail-con">
         <h1>{noticeDetail.title}</h1>
         <ul>
-          <li><strong>작성일:</strong> {noticeDetail.date}</li>
+          <li>
+            <strong>작성일:</strong> {noticeDetail.date}
+          </li>
           <h2>상세내용</h2>
           <li>{noticeDetail.description}</li>
+
+          <button onClick={() => navigate("/community/notice")}>목록</button>
+          {isadmin && (
+            <div className="admin-control">
+              <button onClick={noticeUpdateFn}>수정</button>
+              <button onClick={noticeDeleteFn}>삭제</button>
+            </div>
+          )}
         </ul>
-        <div className="btn-group">
-          {isadmin && (
-            <button onClick={noticeUpdateFn}>수정</button>
-          )}
-          <button onClick={() => navigate('/community/notice')}>목록</button>
-          {isadmin && (
-            <button onClick={noticeDeleteFn}>삭제</button>
-          )}
-        </div>
       </div>
     </div>
   );
