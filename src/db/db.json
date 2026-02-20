@@ -5,37 +5,23 @@
       "title": "첫번째테스트공지",
       "description": "ㅁㄴㅇㄴㅁㅇㅁㄴㅇㅁㄴㅇ",
       "no": 1,
-<<<<<<< HEAD
       "date": "Fri Feb 20 2026 11:38:31 GMT+0900 (한국 표준시)",
       "viewrate": 5
-=======
-      "date": "2024-12-25",
-      "viewrate": 16
->>>>>>> snooze30
     },
     {
       "id": "03a4",
       "title": "테스트입니다",
       "description": "ㅂㅈㄷㅂㄱㄷㄷㅂㄱㅂ",
       "no": 2,
-<<<<<<< HEAD
       "date": "Fri Feb 20 2026 14:50:32 GMT+0900 (한국 표준시)",
       "viewrate": 1
-=======
-      "date": "2026-02-12",
-      "viewrate": 3
->>>>>>> snooze30
     },
     {
       "id": "5055",
       "title": "테스트2",
       "description": "123ㄱㅂㅈㅂㄱㄷㅎ",
       "no": 3,
-<<<<<<< HEAD
       "date": "Fri Feb 20 2026 14:53:10 GMT+0900 (한국 표준시)",
-=======
-      "date": "2026-02-12",
->>>>>>> snooze30
       "viewrate": 2
     }
   ],
@@ -628,10 +614,7 @@
       "img": "lifting_01.png",
       "description": "리프팅라인 울쎄라 진료입니다",
       "descImg": "상세페이지 이미지 경로",
-<<<<<<< HEAD
       "timespan": 2,
-=======
->>>>>>> snooze30
       "setshop": [
         "노원",
         "신촌",
@@ -653,10 +636,7 @@
       "img": "faceline_01.png",
       "description": "페이스라인 인모드 진료입니다",
       "descImg": "상세페이지 이미지 경로",
-<<<<<<< HEAD
       "timespan": 2,
-=======
->>>>>>> snooze30
       "setshop": [
         "노원",
         "신촌",
@@ -679,10 +659,7 @@
       "img": "regen_01.png",
       "description": "피부재생 쥬베룩 진료입니다",
       "descImg": "상세페이지 이미지 경로",
-<<<<<<< HEAD
       "timespan": 3,
-=======
->>>>>>> snooze30
       "setshop": [
         "노원",
         "강남",
@@ -703,10 +680,7 @@
       "img": "immune_01.png",
       "description": "면역력 글루타치온(백옥주사) 진료입니다",
       "descImg": "상세페이지 이미지 경로",
-<<<<<<< HEAD
       "timespan": 1,
-=======
->>>>>>> snooze30
       "setshop": [
         "신촌",
         "강남",
@@ -798,7 +772,20 @@
       "directions": "지하철 : 1호선 / 종로3가역 15번 출구\n간선 : 101, 103, 140, 143, 150, 160, 201, 260, 262, 270, 271, 273, 370, 720, 721\n지선 : 7212\n순환 : 04\n직행 : 9301"
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "id": "98b8",
+      "name": "Barrier pH 5.5 Soothing Toner(배리어 약산성 수딩 토너)",
+      "category": "hydro",
+      "price": 20000,
+      "img": "hydro1_Barrier pH 5.5 Soothing Toner.png",
+      "description": "피부와 유사한 pH 5.5 약산성 포뮬러가 무너진 피부 밸런스를 바로잡고, 외부 자극으로 예민해진 피부를 순하게 진정시켜 건강한 피부 장벽 환경을 유지하는 데 도움을 줍니다.",
+      "descImg": "",
+      "regDate": "2026-02-19T08:29:56.208Z",
+      "count": 1,
+      "totalPrice": 20000
+    }
+  ],
   "faq": [
     {
       "id": "1",
