@@ -119,7 +119,7 @@ const ProdDetail = () => {
   return (
     <div className='prod-detail'>
       <div className="prod-detail-con">
-        <h1>제품 상세페이지</h1>
+        {/* <h1>제품 상세페이지</h1> */}
         <div className="detail-top">
           <div className="detail-top-left">
             <img src={`/images/${detail.category}/${detail.img}`} alt={detail.img} />
