@@ -175,6 +175,7 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
               onChange={onChangeFn}
             />
             <img
+              className="adminModal-productImg"
               src={`/images/${detail.category}/${detail.img}`}
               alt={detail.img}
             />
