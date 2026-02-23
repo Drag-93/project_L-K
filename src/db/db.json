@@ -22,7 +22,7 @@
       "description": "123ㄱㅂㅈㅂㄱㄷㅎ",
       "no": 3,
       "date": "Fri Feb 20 2026 14:53:10 GMT+0900 (한국 표준시)",
-      "viewrate": 2
+      "viewrate": 3
     }
   ],
   "members": [
@@ -675,6 +675,28 @@
       ],
       "regDate": "2026-02-20T06:43:01.386Z",
       "timespan": "3"
+    },
+    {
+      "id": "052f",
+      "name": "쥬베룩12",
+      "category": "regen",
+      "price": 2050000,
+      "img": "ㅁㄴㅇ",
+      "description": "ㅁㄴㅇ",
+      "descImg": "ㄴㅁㅇ",
+      "setshop": [
+        "노원",
+        "신촌",
+        "종로"
+      ],
+      "settime": [
+        "12:00",
+        "11:00",
+        "14:00",
+        "15:00"
+      ],
+      "regDate": "2026-02-23T07:53:17.212Z",
+      "timespan": "2"
     }
   ],
   "reservReview": [

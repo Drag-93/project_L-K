@@ -33,16 +33,266 @@
   border-radius: 20%;
 }
 
-.section.sec2 ul{
-  height: 500px;
+/* sec2, sec3 공통 적용 */
+.section.sec2 .productlink ul,
+.section.sec3 .reservationlink ul {
+    width: 1400px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    /* 폰트나 이미지 간격 때문에 생기는 하단 공백 제거 */
+    line-height: 0; 
+    font-size: 0;
+}
+
+.section.sec2{
+  background: url(/public/images/info/product.png) no-repeat center center / cover;
 }
 
 .section.sec2 .productlink {
-  width: 500px;
-  height: 600px;
-  background: url(/public/images/info/product.png) no-repeat center center / cover;
-  font-size: 72px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+/* .section.sec2 .productlink h2{
+  font-size: 60px;    
+  letter-spacing: 0.02em;
+  text-shadow: 7px 7px 8px rgba(0,0,0,0.23);
+  color: #fff;
+} */
+
+/* .section.sec2 .productlink ul{
+  width: 1400px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  align-items: center;
+} */
+
+.section.sec2 .productlink ul li{
+  width: 700px;
+  height: 200px;
+  color: inherit;
+}
+
+/* .section.sec2 .productlink ul li:nth-child(1){
+  background: url(/public/images/sec2/sec2\ 1.png) no-repeat center center
+}
+.section.sec2 .productlink ul li:nth-child(2){
+  background: url(/public/images/sec2/sec2\ 2.png) no-repeat center center
+}
+.section.sec2 .productlink ul li:nth-child(3){
+  background: url(/public/images/sec2/sec2\ 3.png) no-repeat center center
+}
+.section.sec2 .productlink ul li:nth-child(4){
+  background: url(/public/images/sec2/sec2\ 4.png) no-repeat center center
+}
+.section.sec2 .productlink ul li:nth-child(5){
+  background: url(/public/images/sec2/sec2\ 5.png) no-repeat center center
+}
+.section.sec2 .productlink ul li:nth-child(6){
+  background: url(/public/images/sec2/sec2\ 6.png) no-repeat center center
+} */
+
+
+.section.sec3{
+  background: url(/public/images/info/reservation.png) no-repeat center center / cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.section.sec3 .reservationlink {
+  width: 1400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
+}
+
+
+
+/* .section.sec3 .reservationlink ul{
+  width: 1400px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: repeat(2,1fr);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+} */
+
+.section.sec3 .reservationlink ul li{
+  display: block;
+  width: 700px;
+  height: 200px;
+}
+.section.sec3 .reservationlink ul li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.section.sec3 .reservationlink ul li:first-child{
+  grid-column: 1 / span 2;
+  width: 1400px;
+  height: 400px;
+}
+
+
+
+
+.section.sec4{
+  background: url(/public/images/sec4/sec4\ 1.webp) no-repeat center center / cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section.sec4 .sec4-con{
+  width: 1400px;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  border: 1px solid;
+}
+
+/* .section.sec4 .sec4-con .shoplist ul{
+  width: 300px;
+  height: 300px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: repeat(2,1fr);
+  background: url(/public/images/sec4/map.png) no-repeat center center / 250px;
+}  */
+
+
+
+ .section.sec4 .sec4-con .shoplist{
+  background-color: #dddddd60;
+ }
+ .section.sec4 .sec4-con .shoplist ul {
+  width: 300px;
+  height: 300px;
+  /* 중요: 자식 요소들의 기준점이 됩니다 */
+  position: relative; 
+  background: url(/public/images/sec4/map.png) no-repeat center center / 250px;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.section.sec4 .sec4-con .shoplist ul li {
+  position: absolute;
+  /* 글자가 핀 정중앙에 오도록 정렬 */
+  transform: translate(-50%, -50%); 
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.shoplist h2{
+  height: 50px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 📍 각 지점별 좌표 설정 (이미지 보면서 미세 조정하세요) */
+/* 왼쪽 상단 핀 */
+.section.sec4 .sec4-con .shoplist ul li:nth-child(2) {
+  top: 34%; 
+  left: 30%;
+}
+
+/* 오른쪽 상단 핀 */
+.section.sec4 .sec4-con .shoplist ul li:nth-child(3) {
+  top: 38%;
+  left: 63%;
+}
+
+/* 왼쪽 하단 핀 */
+.section.sec4 .sec4-con .shoplist ul li:nth-child(4) {
+  top: 64%;
+  left: 39%;
+}
+
+/* 오른쪽 하단 핀 */
+.section.sec4 .sec4-con .shoplist ul li:nth-child(5) {
+  top: 66%;
+  left: 70%;
+}
+
+.section.sec4 .sec4-con .notice{
+  background-color: #dddddd60;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  /* background: url(/public/images/sec4/notice.png) no-repeat center center / cover; */
+  margin: 0;
+}
+.section.sec4 .sec4-con .notice img{
+  max-width: 250px;
+  height: 250px;
+  object-fit: cover;
+}
+.notice h3{
+  font-size: 20px;
+}
+
+
+.section.sec4 .sec4-con .faq{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  background-color: #dddddd60;
+  width: 300px;
+  height: 300px;
+  /* background: url(/public/images/sec4/faq.png) no-repeat center center / cover; */
+  margin: 0;
+}
+.section.sec4 .sec4-con .faq img{
+  max-width: 250px;
+  height: 250px;
+  object-fit: cover;
+}
+.faq h4{
+  font-size: 20px;
+}
+
+
+.section.sec4 .sec4-con .qna{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  background-color: #dddddd60;
+  width: 300px;
+  height: 300px;
+  /* background: url(/public/images/sec4/qna.png) no-repeat center center / cover; */
+  margin: 0;
+}
+.section.sec4 .sec4-con .qna img{
+  max-width: 250px;
+  height: 250px;
+  object-fit: cover;
+}
+.qna h5{
+  font-size: 20px;
+}
+
+
 
 
 .reveal_text{
@@ -70,8 +320,8 @@
 
 .fp-watermark {display: none;}
 
-.section.sec2 {background: #f190d9;}
-.section.sec3 {background: #ecad5a;}
+/* .section.sec2 {background: #f190d9;} */
+/* .section.sec3 {background: #ecad5a;} */
 
 
 
