@@ -241,11 +241,17 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
           <div className="adminModal-footer-con">
             {memberId ? (
               <>
-                <button onClick={onUpdateFn}>회원수정</button>
-                <button onClick={onDeleteFn}>회원삭제</button>
+                <button onClick={onUpdateFn} className="editBtn">
+                  회원수정
+                </button>
+                <button onClick={onDeleteFn} className="deleteBtn">
+                  회원삭제
+                </button>
               </>
             ) : (
-              <button onClick={onPostFn}>회원추가</button>
+              <button onClick={onPostFn} className="editBtn">
+                회원추가
+              </button>
             )}
             <button onClick={closeFn}>닫기</button>
           </div>

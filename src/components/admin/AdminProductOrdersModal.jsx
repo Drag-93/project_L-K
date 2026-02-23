@@ -235,8 +235,12 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
 
         <div className="adminModal-footer">
           <div className="adminModal-footer-con">
-            <button onClick={() => onUpdateFn()}>수정</button>
-            <button onClick={() => onDeleteFn()}>삭제</button>
+            <button onClick={() => onUpdateFn()} className="editBtn">
+              수정
+            </button>
+            <button onClick={() => onDeleteFn()} className="deleteBtn">
+              삭제
+            </button>
             <button onClick={() => closeFn()}>닫기</button>
           </div>
         </div>
