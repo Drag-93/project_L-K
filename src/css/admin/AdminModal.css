@@ -186,7 +186,7 @@
   flex-direction: column;
   align-items: center;
 }
-.adminModal .adminModal-con img {
+.adminModal .adminModal-con .adminModal-productImg {
   display: block;
   width: 30rem;
   height: 30rem;
