@@ -181,15 +181,27 @@ const AdminNoticeModal = ({ setAdminAddModal, noticeId, onSuccess }) => {
           <div className="adminModal-footer-con">
             {noticeId != null ? (
               <>
-                <button onClick={onUpdateFn} disabled={isSaving}>
+                <button
+                  onClick={onUpdateFn}
+                  disabled={isSaving}
+                  className="editBtn"
+                >
                   수정
                 </button>
-                <button onClick={onDeleteFn} disabled={isSaving}>
+                <button
+                  onClick={onDeleteFn}
+                  disabled={isSaving}
+                  className="deleteBtn"
+                >
                   삭제
                 </button>
               </>
             ) : (
-              <button onClick={onPostFn} disabled={isSaving}>
+              <button
+                onClick={onPostFn}
+                disabled={isSaving}
+                className="editBtn"
+              >
                 글쓰기
               </button>
             )}

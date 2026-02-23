@@ -212,6 +212,7 @@ const AdminShop = () => {
                           onClick={() =>
                             navigate(`/admin/resorder?name=${el.name}`)
                           }
+                          style={{ cursor: "pointer" }}
                         >
                           {shopCount[el.name] > 0
                             ? `${shopCount[el.name]}건`

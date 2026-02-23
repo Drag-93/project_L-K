@@ -54,8 +54,27 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
 
   const onChangeFn = (e) => {
     const { name, value } = e.target;
-    const newValue = name === "price" ? Number(value) : value; //가격은 숫자로 저장
-    setDetail({ ...detail, [name]: newValue });
+    if (name !== "price") {
+      setDetail({ ...detail, [name]: value });
+    }
+    return;
+    // {
+    //   // const newValue = name === "price" ? Number(value) : value; //가격은 숫자로 저장
+    //   const newValue = Number(value);
+    //   setDetail({ ...detail, [name]: newValue });
+    // }
+  };
+
+  const onChangeNumFn = (e) => {
+    const { name, value } = e.target;
+    if (name !== "price") return;
+    if (isNaN(value)) {
+      alert("숫자만 입력해주세요");
+      return;
+    }
+    {
+      setDetail({ ...detail, [name]: value });
+    }
   };
 
   const onUpdateFn = async (e) => {
@@ -139,8 +158,10 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
               name="price"
               id="price"
               placeholder="금액만 입력하세요(예: 20000)"
+              // value={detail.price}
               value={detail.price}
-              onChange={onChangeFn}
+              onChange={onChangeNumFn}
+              className="adminModal-priceinput"
             />
           </li>
           <li>
@@ -154,6 +175,7 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
               onChange={onChangeFn}
             />
             <img
+              className="adminModal-productImg"
               src={`/images/${detail.category}/${detail.img}`}
               alt={detail.img}
             />
@@ -201,11 +223,17 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
             <li>
               {productId ? (
                 <>
-                  <button onClick={onUpdateFn}>상품수정</button>
-                  <button onClick={onDeleteFn}>상품삭제</button>
+                  <button onClick={onUpdateFn} className="editBtn">
+                    상품수정
+                  </button>
+                  <button onClick={onDeleteFn} className="deleteBtn">
+                    상품삭제
+                  </button>
                 </>
               ) : (
-                <button onClick={onPostFn}>상품추가</button>
+                <button onClick={onPostFn} className="editBtn">
+                  상품추가
+                </button>
               )}
               <button onClick={closeFn}>닫기</button>
             </li>

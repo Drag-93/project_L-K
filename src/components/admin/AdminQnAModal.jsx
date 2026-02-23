@@ -218,12 +218,21 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
             {!isEditing ? (
               <>
                 {/* <button onClick={onEditFn}>수정하기</button> */}
-                <button onClick={onDeleteFn}>삭제하기</button>
+                <button onClick={onDeleteFn} className="deleteBtn">
+                  삭제하기
+                </button>
               </>
             ) : (
               <>
-                <button onClick={onUpdateFn}>저장하기</button>
-                <button onClick={() => setIsEditing(false)}>취소하기</button>
+                <button onClick={onUpdateFn} className="editBtn">
+                  저장하기
+                </button>
+                <button
+                  onClick={() => setIsEditing(false)}
+                  className="deleteBtn"
+                >
+                  취소하기
+                </button>
               </>
             )}
           </div>
@@ -277,12 +286,18 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
           <div className="adminModal-footer">
             <div className="adminModal-footer-con">
               {detail.answer && !isAnswering ? (
-                <button onClick={onEditAnswerFn}> 답변수정하기</button>
+                <button onClick={onEditAnswerFn} className="editBtn">
+                  {" "}
+                  답변수정하기
+                </button>
               ) : (
-                <button onClick={onSaveAnswerFn}>답변저장하기</button>
+                <button onClick={onSaveAnswerFn} className="editBtn">
+                  답변저장하기
+                </button>
               )}
               {isAnswering ? (
                 <button
+                  className="deleteBtn"
                   onClick={() => {
                     setIsAnswering(false);
                   }}

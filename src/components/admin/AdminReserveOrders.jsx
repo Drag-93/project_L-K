@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import AdminReserveOrdersModal from "./AdminReserveOrdersModal";
 
@@ -238,36 +238,70 @@ const AdminReserveOrders = () => {
     setIsModalOpen(true);
   };
 
+  //페이지 이동시 shopName 자동필터
+  const [searchParam] = useSearchParams();
+  useEffect(() => {
+    const incomingShopName = searchParam.get("name");
+    if (!incomingShopName) return;
+    setFilterShop(incomingShopName);
+    setPage(1);
+  }, [searchParam]);
+
   return (
     <>
-      <div className="reserveorderlist">
-        <div className="reserveorderlist-con">
-          <div className="title">
-            <ul>
-              <li className="reserveorderlist-flex">
-                <div className="toolbar">
-                  <input
-                    value={searchText}
-                    onChange={(e) => setSearchText(e.target.value)}
-                    placeholder="검색어 입력"
-                  />
-                </div>
-                <div className="roleSelector">
-                  <select
-                    value={filterShop}
-                    onChange={(e) => setFilterShop(e.target.value)}
-                  >
-                    <option value="all">병원</option>
-                    <option value="노원">노원</option>
-                    <option value="신촌">신촌</option>
-                    <option value="강남">강남</option>
-                    <option value="종로">종로</option>
-                  </select>
-                </div>
+      <div className="admin">
+        <div className="admin-title">
+          <div className="admin-toolbar">
+            <div className="admin-toolbar-searchtext">
+              <input
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                placeholder="검색어 입력"
+              />
+            </div>
+            <div className="admin-toolbar-selector">
+              <select
+                value={sortType}
+                onChange={(e) => setSortType(e.target.value)}
+              >
+                <option value="reserveDateDesc">등록순 (최신순)</option>
+                <option value="reserveDateAsc">등록순 (과거순)</option>
+                <option value="visitDateAsc">예약시간순 (가까운일정)</option>
+                <option value="visitDateDesc">예약시간순 (먼일정)</option>
+              </select>
+            </div>
+          </div>
+          <ul>
+            <li>
+              <div className="admin-selector">
+                <ul>
+                  <li>
+                    <select
+                      value={filterShop}
+                      onChange={(e) => setFilterShop(e.target.value)}
+                    >
+                      <option value="all">병원</option>
+                      <option value="노원">노원</option>
+                      <option value="신촌">신촌</option>
+                      <option value="강남">강남</option>
+                      <option value="종로">종로</option>
+                    </select>
+                  </li>
+                  <li>
+                    <select
+                      value={filterStatus}
+                      onChange={(e) => setFilterStatus(e.target.value)}
+                    >
+                      <option value="all">상태</option>
+                      <option value="예약대기">예약대기</option>
+                      <option value="예약완료">예약완료</option>
+                    </select>
+                  </li>
+                </ul>
+              </div>
+              {/* 내용이 길어서 카테고리는 제외함 */}
 
-                {/* 내용이 길어서 카테고리는 제외함 */}
-
-                {/* <div className="roleSelector">
+              {/* <div className="roleSelector">
                   <select value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)}>
                     <option value="all">카테고리</option>
                     <option value="lifting">리프팅</option>
@@ -277,35 +311,13 @@ const AdminReserveOrders = () => {
                   </select>
                 </div>   */}
 
-                <div className="roleSelector">
-                  <select
-                    value={filterStatus}
-                    onChange={(e) => setFilterStatus(e.target.value)}
-                  >
-                    <option value="all">상태</option>
-                    <option value="예약대기">예약대기</option>
-                    <option value="예약완료">예약완료</option>
-                  </select>
-                </div>
-              </li>
-              <li>
-                <div className="roleSelector">
-                  <select
-                    value={sortType}
-                    onChange={(e) => setSortType(e.target.value)}
-                  >
-                    <option value="reserveDateDesc">등록순 (최신순)</option>
-                    <option value="reserveDateAsc">등록순 (과거순)</option>
-                    <option value="visitDateAsc">
-                      예약시간순 (가까운일정)
-                    </option>
-                    <option value="visitDateDesc">예약시간순 (먼일정)</option>
-                  </select>
-                </div>
-              </li>
-            </ul>
-          </div>
-
+              <div className="admin-button">
+                <button onClick={() => onDeleteSelectedFn()}>삭제</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div className="admin-con">
           <table>
             <thead>
               <tr>
@@ -351,8 +363,11 @@ const AdminReserveOrders = () => {
                     {item.date} / {item.time}
                   </td>
                   <td>{item.reserveUserDate}</td>
-                  <td className="res_order_state">
-                    <span className={item.state === "예약완료" ? "ok" : ""}>
+                  <td>
+                    {/* <td className="res_order_state"> */}
+                    <span
+                      className={`reservstate ${item.state === "예약완료" ? "done" : "wait"}`}
+                    >
                       {item.state}
                     </span>
                   </td>
@@ -360,53 +375,48 @@ const AdminReserveOrders = () => {
               ))}
             </tbody>
           </table>
-          <div className="adminMembersFooter">
-            <div className="adminMembersPaging">
-              <button onClick={() => setPage(1)} disabled={page === 1}>
-                ◀◀
-              </button>
-              <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-                ◀
-              </button>
+        </div>
+        <div className="admin-footer">
+          <div className="admin-paging">
+            <button onClick={() => setPage(1)} disabled={page === 1}>
+              ◀◀
+            </button>
+            <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+              ◀
+            </button>
 
-              {Array.from({ length: btnRange }, (_, i) => {
-                const pageNum = startPage + i;
-                if (pageNum > lastPage) return null;
-                return (
-                  <button
-                    key={pageNum}
-                    onClick={() => {
-                      setPage(pageNum);
-                    }}
-                    className={page === pageNum ? "active" : ""}
-                    disabled={page === pageNum}
-                  >
-                    {pageNum}
-                  </button>
-                );
-              })}
-              <button
-                onClick={() => {
-                  setPage(page + 1);
-                }}
-                disabled={page === lastPage}
-              >
-                ▶
-              </button>
-              <button
-                onClick={() => {
-                  setPage(lastPage);
-                }}
-                disabled={page === lastPage}
-              >
-                ▶▶
-              </button>
-            </div>
-            <ul>
-              <li>
-                <button onClick={() => onDeleteSelectedFn()}>삭제</button>
-              </li>
-            </ul>
+            {Array.from({ length: btnRange }, (_, i) => {
+              const pageNum = startPage + i;
+              if (pageNum > lastPage) return null;
+              return (
+                <button
+                  key={pageNum}
+                  onClick={() => {
+                    setPage(pageNum);
+                  }}
+                  className={page === pageNum ? "active" : ""}
+                  disabled={page === pageNum}
+                >
+                  {pageNum}
+                </button>
+              );
+            })}
+            <button
+              onClick={() => {
+                setPage(page + 1);
+              }}
+              disabled={page === lastPage}
+            >
+              ▶
+            </button>
+            <button
+              onClick={() => {
+                setPage(lastPage);
+              }}
+              disabled={page === lastPage}
+            >
+              ▶▶
+            </button>
           </div>
         </div>
       </div>
