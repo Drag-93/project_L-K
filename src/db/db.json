@@ -955,30 +955,6 @@
         }
       ],
       "totalAmount": 180000
-    },
-    {
-      "id": "91bb",
-      "productDate": "2026. 2. 11. 오후 5:35:26",
-      "customer": {
-        "userEmail": "test",
-        "userName": "test",
-        "phonenum": "01012222641",
-        "address": "서울",
-        "request": "안전한 배송 부탁드립니다."
-      },
-      "items": [
-        {
-          "id": "1",
-          "category": "hydro",
-          "name": "수딩 토너1",
-          "price": 20000,
-          "img": "hydro1.jpg",
-          "count": 1,
-          "totalPrice": 20000,
-          "state": "배송준비중"
-        }
-      ],
-      "totalAmount": 20000
     }
   ],
   "reserveOrders": [
