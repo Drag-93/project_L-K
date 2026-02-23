@@ -124,13 +124,12 @@ return (
         {/* 후기 현황 요약 보이기 */}
         <div className="current-status">
           <div className='totalscore'>
-            <p className='avrscore'>평균: {averageScore}점</p>
+            <p className='avrscore'><img src="/images/star_filled.svg" /> {averageScore}점</p>
             <p className='totalno'>전체후기: {userReview.length}건</p>
           </div>
         </div>
         {/* 후기 리스트 */}
         <div className="reviews">
-          <h1>사용자 후기</h1>
           {!isState && !userReview.some(r => r.userEmail === user.userEmail) &&                          //로그인 된 경우에만 작성버튼 활성화
             <button onClick={()=> setReviewAddModal(true)}>
               후기 작성하기 
@@ -150,20 +149,28 @@ return (
             {userReview &&
              userReview.filter((el)=> el.userEmail === user?.userEmail).map((el)=>(
                 <li key={el.id}>
-                  <strong>[내가 작성한 후기]</strong>
+                  <div className="myreview">
+                  <h1>[내가 작성한 후기]</h1>
                       {editId===el.id ? (
                         <>
                         <li className='score-selector'>
-                        <label htmlFor="score">평점:</label>
-                        {[1,2,3,4,5].map((num)=>(
-                        <span key={num}>
-                          <input type="radio" name="score" id="score"
-                          value={num}
-                          checked={score === num}
-                          onChange={(e) => setScore(Number(e.target.value))} />
-                          {num}점
-                        </span>
-                        ))}
+                         <label htmlFor="score">점수:</label>
+                         <div className="star-rating">
+                          {[1,2,3,4,5].map((num)=>(
+                           <label key={num} className='star-label'>
+                            <input type="radio" name="score" id="score"
+                                   value={num}
+                                   checked={score === num}
+                                   onChange={(e) => setScore(Number(e.target.value))}
+                            />
+                            <img src={num <= score
+                            ? "/images/star_filled.svg"
+                            : "/images/star_empty.svg"}
+                            alt="star"
+                            className="star-img"/>
+                           </label>
+                          ))}
+                         </div>
                         </li>
                         <li>
                         <label htmlFor="textarea">상세후기:</label>
@@ -173,22 +180,35 @@ return (
                           maxLength="500" />
                         <p>{text.length}/500자</p>
                         </li>
+                        <div className="editBtn">
                         <button onClick={()=>handleUpdateFn()}>수정 완료</button>
                         <button onClick={()=>setEditId(null)}>수정 취소</button>
+                        </div>
                         </>
                       ) : (
                         <>
+                        <div className="star-rating">
+                        {[1,2,3,4,5].map((num)=>(
+                         <label key={num} className='star-label'>
+                           <img src={num <= el.score
+                            ? "/images/star_filled.svg"
+                            : "/images/star_empty.svg"}
+                            alt="star"
+                            className="star-img"/>
+                           </label>
+                        ))}
                         <p>작성일자: {new Date(el.date).toLocaleDateString()}</p>
-                        <p>점수: {el.score}점</p>
-                        <p>좋아요: {el.like}회</p>
+                        </div>
                         <p>{el.description}</p>
-                        <div className="edit-buttons">
+                        <p>추천: {el.like}회</p>
+                        <div className="editBtn">
                         <button onClick={()=> updateFn(el)}>수정하기</button>
                         <button onClick={()=> deleteFn(el.id)}>삭제하기</button>
                         </div>
                         </>
                       )
                       }
+                  </div>
                 </li>
               )
             )}
@@ -198,8 +218,18 @@ return (
               return (
                 <li key={el.id} onClick={()=>{toggleReview(el.id)}} style={{cursor: 'pointer'}}>
                   <p>작성자: {el.userName}</p>
+                  <div className="star-rating">
+                        {[1,2,3,4,5].map((num)=>(
+                         <label key={num} className='star-label'>
+                           <img src={num <= el.score
+                            ? "/images/star_filled.svg"
+                            : "/images/star_empty.svg"}
+                            alt="star"
+                            className="star-img"/>
+                           </label>
+                        ))}
                   <p>작성일자: {new Date(el.date).toLocaleDateString()}</p>
-                  <p>점수: {el.score}점</p>
+                  </div>
                   <p style={{
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
@@ -211,7 +241,7 @@ return (
                       {el.isOpen ? '[접기]' : '...더보기'}
                     </small>
                   }
-                  <button 
+                  <button className='likeBtn'
                   onClick={(e)=>{
                     e.stopPropagation();
                     handleLikeFn(el);

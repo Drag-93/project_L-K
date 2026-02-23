@@ -591,18 +591,7 @@
       "img": "lifting_01.png",
       "description": "리프팅라인 울쎄라 진료입니다",
       "descImg": "상세페이지 이미지 경로",
-<<<<<<< HEAD
       "timespan": 2,
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "timespan": 2,
->>>>>>> lhstk114
-=======
-      "timespan": 2,
->>>>>>> faithyg93
->>>>>>> 82a47cb673ed32f28c585088fe7edf8309ef599c
       "setshop": [
         "노원",
         "신촌",
@@ -624,18 +613,7 @@
       "img": "faceline_01.png",
       "description": "페이스라인 인모드 진료입니다",
       "descImg": "상세페이지 이미지 경로",
-<<<<<<< HEAD
       "timespan": 2,
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "timespan": 2,
->>>>>>> lhstk114
-=======
-      "timespan": 2,
->>>>>>> faithyg93
->>>>>>> 82a47cb673ed32f28c585088fe7edf8309ef599c
       "setshop": [
         "노원",
         "신촌",
@@ -658,18 +636,7 @@
       "img": "regen_01.png",
       "description": "피부재생 쥬베룩 진료입니다",
       "descImg": "상세페이지 이미지 경로",
-<<<<<<< HEAD
       "timespan": 3,
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "timespan": 3,
->>>>>>> lhstk114
-=======
-      "timespan": 3,
->>>>>>> faithyg93
->>>>>>> 82a47cb673ed32f28c585088fe7edf8309ef599c
       "setshop": [
         "노원",
         "강남",
@@ -690,18 +657,7 @@
       "img": "immune_01.png",
       "description": "면역력 글루타치온(백옥주사) 진료입니다",
       "descImg": "상세페이지 이미지 경로",
-<<<<<<< HEAD
       "timespan": 1,
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "timespan": 1,
->>>>>>> lhstk114
-=======
-      "timespan": 1,
->>>>>>> faithyg93
->>>>>>> 82a47cb673ed32f28c585088fe7edf8309ef599c
       "setshop": [
         "신촌",
         "강남",
