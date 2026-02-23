@@ -11,43 +11,56 @@
   justify-content: center;
   align-items: center;
 
-  padding: 18px;
-}
+  padding: 1.8rem;
 
+  overflow: hidden;
+}
+.adminModal-con::-webkit-scrollbar {
+  width: 8px;
+}
+.adminModal-con::-webkit-scrollbar-track {
+  margin: 15px 0;
+}
+.adminModal-con::-webkit-scrollbar-thumb {
+  background: #1f2a442c;
+  border-radius: 8px;
+}
 /* panel */
 .adminModal-con {
   width: min(720px, 96vw);
   max-height: 88vh;
-  overflow: auto;
+  /* overflow: auto; */
+  overflow-y: auto;
 
   background: #ffffff;
   border-radius: 16px;
   border: 1px solid #e6eaf2;
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.18);
 
-  padding: 18px 18px 20px;
+  padding: 1.8rem 1.3rem 1.8rem 1.8rem;
   position: relative;
 }
 
 /* close */
 .adminModal .adminModal-close {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 1.2rem;
+  right: 1.2rem;
 
-  width: 34px;
-  height: 34px;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 10px;
 
   display: grid;
   place-items: center;
+  font-size: 1.5rem;
 
   cursor: pointer;
   user-select: none;
 
   background: #f3f6ff;
   color: #1f2a44;
-  font-weight: 900;
+  font-weight: 600;
   z-index: 999;
 }
 
@@ -57,11 +70,11 @@
 
 /* title */
 .adminModal .adminModal-title {
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 900;
   color: #1f2a44;
-  margin: 6px 0 14px;
-  padding-right: 44px; /* close 버튼 겹침 방지 */
+  margin: 0.6rem 0 1.4rem;
+  padding-right: 4.5rem; /* close 버튼 겹침 방지 */
 }
 
 .adminModal ul {
@@ -71,20 +84,20 @@
 
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 1.2rem;
 }
 
 .adminModal li:has(table) {
   display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 12px;
+  grid-template-columns: 12rem 1fr;
+  gap: 1.2rem;
   align-items: center;
 }
 
 .adminModal label {
   display: block;
-  padding: 4px;
-  font-size: 13px;
+  padding: 0.4rem;
+  font-size: 1.3rem;
   font-weight: 800;
   color: #25304a;
 }
@@ -102,8 +115,8 @@
   width: 100%;
   border: 1px solid #d9deea;
   border-radius: 12px;
-  padding: 10px 12px;
-  font-size: 14px;
+  padding: 1rem 1.2rem;
+  font-size: 1.4rem;
   outline: none;
   background: #ffffff;
 }
@@ -123,24 +136,24 @@
 }
 
 .adminModal textarea {
-  min-height: 110px;
+  min-height: 100px;
 }
 
 .adminModal-footer {
   grid-template-columns: 1fr;
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
-  padding-top: 6px;
+  gap: 1rem;
+  padding-top: 0.6rem;
 }
 
 .adminModal-footer button {
-  height: 40px;
-  padding: 0 14px;
+  height: 4rem;
+  padding: 0 1.4rem;
   border-radius: 12px;
   border: 1px solid #d9deea;
   background: #ffffff;
-  font-size: 14px;
+  font-size: 1.4rem;
   font-weight: 800;
   cursor: pointer;
 }
@@ -149,33 +162,72 @@
   background: #f3f6ff;
 }
 
-.adminModal-footer button:nth-child(1) {
+.adminModal-footer .editBtn {
   border-color: #8aa4ff;
   color: #2b4bff;
 }
 
-.adminModal-footer button:nth-child(2) {
+.adminModal-footer .deleteBtn {
   border-color: #ffd0d0;
   color: #d11b1b;
 }
 
 /* loading */
 .adminModal .loading {
-  padding: 28px 0;
+  padding: 2.8rem 0;
   text-align: center;
 }
 
 /* members */
 
 /*product*/
-.adminModal .adminModal-con img {
+.adminModal .adminModal-con li:has(img) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.adminModal .adminModal-con .adminModal-productImg {
   display: block;
   width: 30rem;
   height: 30rem;
   padding: 2rem;
-  margin-left: 16rem;
+}
+.adminModal li:has(.adminModal-priceinput) {
+  position: relative; /* preview absolute 기준 */
 }
 
+/* input: 오른쪽 텍스트(미리보기) 자리 확보 */
+.adminModal .adminModal-priceinput {
+  width: 100%;
+  padding-right: 88px; /* "20,000원" 들어갈 공간 */
+  box-sizing: border-box;
+}
+
+/* preview: input 위에 겹쳐서 우측에 표시 */
+.adminModal .adminModal-pricepreview {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  font-size: 14px;
+  font-weight: 800;
+  color: #374151;
+
+  background: transparent; /* input처럼 보이게 */
+  border: none;
+  padding: 0;
+
+  pointer-events: none; /* 클릭하면 input에 포커스가 가게 */
+  user-select: none;
+
+  transition: opacity 0.12s ease;
+}
+
+/* ✅ input 클릭(포커스)하면 preview 숨김 */
+.adminModal li:has(.adminModal-priceinput:focus) .adminModal-pricepreview {
+  opacity: 0;
+}
 /* productOrders */
 
 .adminModal li:has(table) {
@@ -202,16 +254,16 @@
 .adminModal .adminModal-poTable thead th {
   background: #f3f4f6;
   color: #111827;
-  font-size: 13px;
+  font-size: 1.3rem;
   font-weight: 800;
-  padding: 12px 10px;
+  padding: 1.2rem 1rem;
   text-align: center;
   border-bottom: 1px solid #e5e7eb;
 }
 
 .adminModal .adminModal-poTable tbody td {
-  font-size: 13px;
-  padding: 12px 10px;
+  font-size: 1.3rem;
+  padding: 1.2rem 1rem;
   border-bottom: 1px solid #f1f5f9;
   text-align: center;
   color: #111827;
@@ -235,15 +287,25 @@
   gap: 0.2vw;
 }
 .adminModal .addressBtn {
-  height: 40px;
-  padding: 0 12px;
+  height: 4rem;
+  padding: 0 1.2rem;
   border: 1px solid #d8dde6;
   border-radius: 10px;
   background: #ffffff;
-  font-size: 13px;
+  font-size: 1.3rem;
   font-weight: 800;
   cursor: pointer;
   white-space: nowrap;
+}
+.adminModal .adminModal-map label {
+  justify-content: start;
+  width: 100%;
+}
+.adminModal .adminModal-map .adminModal-kakaomap {
+  width: 600px;
+  height: 320px;
+  display: block;
+  overflow: hidden;
 }
 
 /* qna */
@@ -259,4 +321,120 @@
   .adminModal li {
     grid-template-columns: 1fr;
   }
+}
+
+/*============reservorder===========*/
+.adminModal .modal-body {
+  display: grid;
+  gap: 1rem;
+}
+
+/* section card */
+.adminModal .info-group {
+  border: 1px solid #e6eaf2;
+  border-radius: 14px;
+  background: #ffffff;
+  padding: 1.5rem 1.5rem 1.2rem;
+}
+
+/* 예약상태/등록일 */
+.adminModal .info-group2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1.2rem 1.4rem;
+  background: #f7f9ff;
+  border-color: #dde6ff;
+}
+.adminModal .info-group2 p {
+  width: 21rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+/*섹션타이틀*/
+.adminModal .info-group h3 {
+  margin: 0 0 1rem;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: #1f2a44;
+}
+
+/*list */
+.adminModal .info-group ul {
+  gap: 1rem;
+}
+
+.adminModal .info-row {
+  display: grid;
+  grid-template-columns: 14rem 1fr;
+  gap: 1rem;
+  align-items: center;
+
+  padding: 1rem;
+  border-radius: 12px;
+  background: #f9fafb;
+  border: 1px solid #eef2f7;
+}
+
+.adminModal .info-row span {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #25304a;
+}
+
+.adminModal .info-row strong {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #111827;
+}
+
+/* state badge */
+.adminModal .reservstate.wait {
+  display: inline-flex;
+  align-items: center;
+  height: 2.5rem;
+  padding: 0 1.1rem;
+  border-radius: 999px;
+
+  font-size: 1.3rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+
+  background: #fff7ed;
+  border-color: #fed7aa;
+  color: #9a3412;
+}
+
+.adminModal .reservstate.done {
+  display: inline-flex;
+  align-items: center;
+  height: 2.5rem;
+  padding: 0 1.1rem;
+  border-radius: 999px;
+
+  font-size: 1.3rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+
+  background: #f4ffed;
+  border-color: #aafec3;
+  color: #065f46;
+}
+
+/* 요청사항 박스 */
+.adminModal .request-box p {
+  margin: 0;
+  padding: 1.2rem;
+  border-radius: 1.2rem;
+
+  background: #f9fafb;
+  border: 1px solid #eef2f7;
+
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #111827;
+
+  white-space: pre-wrap;
 }

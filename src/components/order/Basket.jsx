@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { clearBasket, removeBasket, updateCount } from '../../store/slice/basketSlice';
 import { API_JSON_SERVER_URL } from '../../api/commonApi';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Basket = () => {
   const basketItems = useSelector((state) => state.basket.basketItems);
@@ -88,6 +88,10 @@ const Basket = () => {
       navigate(`/auth/login`);
       return
     }
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
     navigate(`/order/Payment`)
   }
 
@@ -97,73 +101,75 @@ const Basket = () => {
   // 2. 장바구니 아이템 중 "count" 값이 있는 것만 필터링
   const productItems = basketItems.filter(item => item.count && Number(item.count) > 0);
 
+  const productTotalPrice = productItems.reduce((acc, cur) => acc + (Number(cur.price) * Number(cur.count)), 0);
+  const reserveTotalPrice = reserveItems.reduce((acc, cur) => acc + Number(cur.price), 0);
+
+
 
   return (
-    <div className="cart-container">
-      <h2 className="cart-title">장바구니</h2>
-      
-      {basketItems.length === 0 ? (
-        <div className="empty-cart">
-          <p>장바구니가 비어 있습니다.</p>
-        </div>
-      ) : (
-        <div className="cart-content">
-          <ul className="cart-list">
-            {productItems.map((item, index) => (
-              <li key={index} className="cart-item">
-                <div className="item-img">
-                  <img src={`/images/${item.img}`} alt={item.name} />
-                </div>
-                <div className="item-info">
-                  <h3 className="item-name">{item.name}</h3>
-                  
-                  <div className="count-control">
-                    <p className="item-time">개수:</p>
-                    <button onClick={() => handleCountChange(item.id, item.count, item.price, 'minus')}>-</button>
-                    <span className="count-num">{item.count}</span>
-                    <button onClick={() => handleCountChange(item.id, item.count, item.price, 'plus')}>+</button>
-                </div>
-                  <span className="item-price">{Number(item.count*item.price).toLocaleString()}원</span>
-                </div>
-                <button className="delete-btn" onClick={() => handleRemove(item.id, index)}>
-                  삭제
-                </button>
-              </li>
-            ))}
-
-              {reserveItems.map((item, index) => (
-              <li key={index} className="cart-item">
-                <div className="item-img">
-                  <img src={`/images/${item.category}/${item.img}`} alt={item.name} />
-                </div>
-                <div className="item-info">
-                  <h3 className="item-name">{item.name}<span>예약상품</span></h3>
-                  <p className="item-date">날짜: {item.date}</p>
-                  <p className="item-time">시간: {item.time}</p>
-                  <span className="item-price">{Number(item.price).toLocaleString()}원</span>
-                </div>
-                <button className="delete-btn" onClick={() => handleRemove(item.id, index)}>
-                  삭제
-                </button>
-              </li>
-            ))}
-          </ul>
-
-          <div className="cart-summary">
-            <div className="summary-row">
-              <span>총 아이템 수</span>
-              <span>{basketItems.length}개</span>
-            </div>
-            <div className="summary-row total">
-              <span>최종 결제 금액</span>
-              <span className="total-amount">{totalPrice.toLocaleString()}원</span>
-            </div>
-            <button className="order-btn" onClick={() => deleteAllCart()}>장바구니 비우기</button>
-            <button className="order-btn" onClick={paymentGoFn}>결제하기</button>
+      <div className="order_wrap">
+        <h2 className="order_title">장바구니</h2>
+        
+        {basketItems.length === 0 ? (
+          <div className="empty_cart">
+            <p>장바구니가 비어 있습니다.</p>
           </div>
-        </div>
-      )}
-    </div>
+        ) : (
+          <div className="order_box">
+            <ul className="basket_list">
+            {reserveItems.map((item, index) => (
+                <li key={index} className="basket_item">
+                  <div className="basket_img">
+                    <img src={`/images/${item.category}/${item.img}`} alt={item.name} />
+                  </div>
+                  <div className="basket_info">
+                    <h3 className="basket_name">{item.name}<span>예약상품</span></h3>
+                    <p>날짜: {item.date} / 시간: {item.time}</p>
+                    <span className="basket_price">{Number(item.price).toLocaleString()}원</span>
+                  </div>
+                  <button className="basket_delete_btn" onClick={() => handleRemove(item.id, index)}></button>
+                </li>
+              ))}
+              {productItems.map((item, index) => (
+                <li key={index} className="basket_item">
+                  <div className="basket_img">
+                    <img src={`/images/${item.category}/${item.img}`} alt={item.name} />
+                  </div>
+                  <div className="basket_info">
+                    <h3 className="basket_name">{item.name}</h3>
+                    <p>{item.count}개</p>
+                    <span className="basket_price">{Number(item.count*item.price).toLocaleString()}원</span> 
+                  </div>
+                  <div className="basket_count">
+                      <button onClick={() => handleCountChange(item.id, item.count, item.price, 'minus')}>-</button>
+                      <span className="basket_num">{item.count}</span>
+                      <button onClick={() => handleCountChange(item.id, item.count, item.price, 'plus')}>+</button>
+                    </div>
+                  <button className="basket_delete_btn" onClick={() => handleRemove(item.id, index)}></button>
+                </li>
+              ))}
+            </ul>
+
+            <div className="order_summary">
+            <h4>결제 예상금액</h4>
+              <div className="order_summary_row">
+                <span>주문상품<small>{productItems.length}개</small></span>
+                <span>{productTotalPrice.toLocaleString()}원</span>
+              </div>
+              <div className="order_summary_row">
+                <span>진료예약<small>{reserveItems.length}건</small></span>
+                <span>{reserveTotalPrice.toLocaleString()}원</span>
+              </div>
+              <div className="order_summary_row total">
+                <span>최종 결제 금액</span>
+                <span className="total-amount">{totalPrice.toLocaleString()}원</span>
+              </div>
+              <button className="order_btn" onClick={() => deleteAllCart()}>장바구니 비우기</button>
+              <button className="order_btn" onClick={paymentGoFn}>결제하기</button>
+            </div>
+          </div>
+        )}
+      </div>
   );
 };
 

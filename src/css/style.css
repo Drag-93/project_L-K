@@ -1,33 +1,29 @@
 @import url(reset.css);
 
-
 /* common */
 @import url(common.css);
-
+@import url(footer.css);
 
 /* main & mypage */
 @import url(main.css);
 
-
 /* product */
 @import url(product.css);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 57ef5a219f581e29979a29ece8ca94967d7bd9e5
 
 /*reservation */
 @import url(reservation.css);
 
-
 /* shop */
 @import url(shop.css);
-
-
 
 /* admin */
 @import url(admin/AdminTest.css);
 
-
 /* community */
 @import url(community/Community.css);
 
-/* order */
-@import url(order.css);
+
