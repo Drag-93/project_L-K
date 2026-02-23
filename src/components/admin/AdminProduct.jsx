@@ -291,49 +291,48 @@ const AdminProduct = () => {
               })}
             </tbody>
           </table>
+        </div>
+        <div className="admin-footer">
+          <div className="admin-paging">
+            <button onClick={() => setPage(1)} disabled={page === 1}>
+              ◀◀
+            </button>
+            <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+              ◀
+            </button>
 
-          <div className="admin-footer">
-            <div className="admin-paging">
-              <button onClick={() => setPage(1)} disabled={page === 1}>
-                ◀◀
-              </button>
-              <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-                ◀
-              </button>
-
-              {Array.from({ length: btnRange }, (_, i) => {
-                const pageNum = startPage + i;
-                if (pageNum > lastPage) return null;
-                return (
-                  <button
-                    key={pageNum}
-                    onClick={() => {
-                      setPage(pageNum);
-                    }}
-                    className={page === pageNum ? "active" : ""}
-                    disabled={page === pageNum}
-                  >
-                    {pageNum}
-                  </button>
-                );
-              })}
-              <button
-                onClick={() => {
-                  setPage(page + 1);
-                }}
-                disabled={page === lastPage}
-              >
-                ▶
-              </button>
-              <button
-                onClick={() => {
-                  setPage(lastPage);
-                }}
-                disabled={page === lastPage}
-              >
-                ▶▶
-              </button>
-            </div>
+            {Array.from({ length: btnRange }, (_, i) => {
+              const pageNum = startPage + i;
+              if (pageNum > lastPage) return null;
+              return (
+                <button
+                  key={pageNum}
+                  onClick={() => {
+                    setPage(pageNum);
+                  }}
+                  className={page === pageNum ? "active" : ""}
+                  disabled={page === pageNum}
+                >
+                  {pageNum}
+                </button>
+              );
+            })}
+            <button
+              onClick={() => {
+                setPage(page + 1);
+              }}
+              disabled={page === lastPage}
+            >
+              ▶
+            </button>
+            <button
+              onClick={() => {
+                setPage(lastPage);
+              }}
+              disabled={page === lastPage}
+            >
+              ▶▶
+            </button>
           </div>
         </div>
       </div>

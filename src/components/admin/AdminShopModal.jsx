@@ -56,7 +56,6 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
   useEffect(() => {
     if (!detail) return;
     if (!mapRef.current) return;
-    if (mapInstanceRef.current) return; // 이미 생성됐으면 스킵
 
     const initMap = async () => {
       await loadKakaoMap();
@@ -64,8 +63,19 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
       const lat = Number(detail.lat) || 37.5665;
       const lng = Number(detail.lng) || 126.978;
 
-      mapInstanceRef.current = createKakaoMap(mapRef.current, lat, lng);
-      markerRef.current = createMarker(mapInstanceRef.current, lat, lng);
+      // 기존 map 제거
+      mapInstanceRef.current = null;
+      markerRef.current = null;
+
+      const map = createKakaoMap(mapRef.current, lat, lng);
+      const marker = createMarker(map, lat, lng);
+
+      mapInstanceRef.current = map;
+      markerRef.current = marker;
+
+      setTimeout(() => {
+        map.relayout();
+      }, 200);
     };
 
     initMap();
@@ -253,17 +263,16 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
                 onChange={onChangeFn}
               />
             </li> */}
-            <li>
+            <li className="adminModal-map">
               <label htmlFor="subway">지도</label>
               <div
+                className="adminModal-kakaomap"
                 ref={mapRef}
                 style={{
-                  width: `100%`,
-                  height: 260,
+                  width: "100%",
+                  height: 320,
                   borderRadius: 12,
-                  overflow: "hidden",
-                  border: "1px solid #d9deea",
-                  borderRadius: "12px",
+                  background: "#eee",
                 }}
               />
             </li>
@@ -283,15 +292,27 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
             <div className="adminModal-footer-con">
               {shopId != null ? (
                 <>
-                  <button onClick={onUpdateFn} disabled={isSaving}>
+                  <button
+                    onClick={onUpdateFn}
+                    disabled={isSaving}
+                    className="editBtn"
+                  >
                     수정
                   </button>
-                  <button onClick={onDeleteFn} disabled={isSaving}>
+                  <button
+                    onClick={onDeleteFn}
+                    disabled={isSaving}
+                    className="deleteBtn"
+                  >
                     삭제
                   </button>
                 </>
               ) : (
-                <button onClick={onPostFn} disabled={isSaving}>
+                <button
+                  onClick={onPostFn}
+                  disabled={isSaving}
+                  className="editBtn"
+                >
                   추가하기
                 </button>
               )}

@@ -117,88 +117,105 @@ ex)
 
 ===============================================================
 */
+// kakaoMapUtil.js
+// - 지도 생성 1회(createKakaoMap)
+// - 마커 생성(createMarker)
+// - 이동(moveMap)
+// - 반응형/모달/스크롤바 대응(attachAutoRelayout)
 
-export const loadKakaoMap = () => {
-  return new Promise((resolve, reject) => {
-    if (window.kakao?.maps) {
-      resolve(window.kakao);
-      return;
-    }
+export function createKakaoMap(containerEl, lat, lng, level = 3) {
+  const { kakao } = window;
+  if (!kakao?.maps) throw new Error("Kakao maps SDK not loaded");
+  if (!containerEl) throw new Error("Map container element not found");
 
-    const key = "616c83d358b56fc7a54d64894331e300";
-    if (!key) {
-      reject(new Error("REACT_APP_KAKAO_KEY가 .env에 없습니다."));
-      return;
-    }
+  const center = new kakao.maps.LatLng(lat, lng);
 
-    // ✅ 중복 로드 방지
-    const existing = document.querySelector('script[data-kakao-sdk="true"]');
-    if (existing) {
-      existing.addEventListener("load", () =>
-        window.kakao.maps.load(() => resolve(window.kakao)),
-      );
-      existing.addEventListener("error", reject);
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.dataset.kakaoSdk = "true";
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${key}&autoload=false&libraries=services`;
-    script.async = true;
-
-    script.onload = () => window.kakao.maps.load(() => resolve(window.kakao));
-    script.onerror = reject;
-
-    document.head.appendChild(script);
+  const map = new kakao.maps.Map(containerEl, {
+    center,
+    level,
   });
-};
 
-export const createKakaoMap = (container, lat, lng) => {
-  const kakao = window.kakao;
-  const nLat = Number(lat);
-  const nLng = Number(lng);
+  return map;
+}
 
-  const options = {
-    center: new kakao.maps.LatLng(nLat, nLng),
-    level: 3,
-  };
+export function createMarker(map, lat, lng) {
+  const { kakao } = window;
+  if (!kakao?.maps) throw new Error("Kakao maps SDK not loaded");
+  if (!map) throw new Error("Map instance not found");
 
-  return new kakao.maps.Map(container, options);
-};
-
-export const createMarker = (map, lat, lng) => {
-  const kakao = window.kakao;
-  const nLat = Number(lat);
-  const nLng = Number(lng);
-
-  return new kakao.maps.Marker({
-    position: new kakao.maps.LatLng(nLat, nLng),
-    map,
+  const marker = new kakao.maps.Marker({
+    position: new kakao.maps.LatLng(lat, lng),
   });
-};
 
-export const moveMap = (map, lat, lng) => {
-  const kakao = window.kakao;
-  const nLat = Number(lat);
-  const nLng = Number(lng);
+  marker.setMap(map);
+  return marker;
+}
 
-  map.setCenter(new kakao.maps.LatLng(nLat, nLng));
-};
+export function moveMap(map, lat, lng, level) {
+  const { kakao } = window;
+  if (!kakao?.maps) throw new Error("Kakao maps SDK not loaded");
+  if (!map) return;
 
-export const addressToCoord = (address) => {
-  return new Promise((resolve, reject) => {
-    const kakao = window.kakao;
-    const geocoder = new kakao.maps.services.Geocoder();
+  const pos = new kakao.maps.LatLng(lat, lng);
+  map.setCenter(pos);
+  if (typeof level === "number") map.setLevel(level);
+}
 
-    geocoder.addressSearch(address, (result, status) => {
-      if (status === kakao.maps.services.Status.OK && result?.[0]) {
-        resolve({
-          lat: Number(result[0].y),
-          lng: Number(result[0].x),
-        });
-      } else {
-        reject(new Error("주소 변환 실패"));
+export function setMarkerPosition(marker, lat, lng) {
+  const { kakao } = window;
+  if (!kakao?.maps) throw new Error("Kakao maps SDK not loaded");
+  if (!marker) return;
+
+  marker.setPosition(new kakao.maps.LatLng(lat, lng));
+}
+
+/**
+ * 컨테이너 사이즈가 바뀌는 모든 상황(반응형, 모달, 스크롤바 등)에서 타일 깨짐 방지.
+ * - map.relayout()를 rAF로 디바운스
+ * - 필요시 center/marker를 같이 재고정
+ *
+ * @param {kakao.maps.Map} map
+ * @param {HTMLElement} containerEl (보통 map div)
+ * @param {() => ({lat:number, lng:number} | null)} [getCenter]
+ * @param {kakao.maps.Marker|null} [marker]
+ * @returns {() => void} cleanup
+ */
+export function attachAutoRelayout(map, containerEl, getCenter, marker = null) {
+  if (!map || !containerEl) return () => {};
+
+  let raf = 0;
+
+  const relayout = () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      map.relayout();
+
+      if (typeof getCenter === "function") {
+        const c = getCenter();
+        if (c && Number.isFinite(c.lat) && Number.isFinite(c.lng)) {
+          const pos = new window.kakao.maps.LatLng(c.lat, c.lng);
+          map.setCenter(pos);
+          if (marker) marker.setPosition(pos);
+        }
       }
     });
+  };
+
+  // 최초 2프레임 보강(모달 레이아웃 확정 타이밍)
+  requestAnimationFrame(() => {
+    relayout();
+    requestAnimationFrame(relayout);
   });
-};
+
+  const ro = new ResizeObserver(relayout);
+  ro.observe(containerEl);
+  if (containerEl.parentElement) ro.observe(containerEl.parentElement);
+
+  window.addEventListener("resize", relayout);
+
+  return () => {
+    ro.disconnect();
+    window.removeEventListener("resize", relayout);
+    cancelAnimationFrame(raf);
+  };
+}
