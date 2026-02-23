@@ -3,6 +3,7 @@
 
 /* common */
 @import url(common.css);
+@import url(footer.css);
 
 
 /* main & mypage */
@@ -13,8 +14,8 @@
 /*@import url(product.css);*/
 
 
-/*reservation */
-/* @import url(reservation.css); */
+/* reservation */
+@import url(reservation.css);
 
 
 /* shop */
