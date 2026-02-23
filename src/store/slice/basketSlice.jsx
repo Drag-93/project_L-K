@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  basketItems: [], // 장바구니에 담긴 예약 목록
+  basketItems: JSON.parse(localStorage.getItem('basket')) || [],
 };
 
 const basketSlice = createSlice({

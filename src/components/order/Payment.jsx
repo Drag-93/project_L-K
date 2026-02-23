@@ -174,56 +174,55 @@ const Payment = () => {
 
   return (
     <>
-      <div className="payment-wrapper">
-    <div className="payment-container">
-      <h2 className="payment-title">주문 / 결제</h2>
+    <div className="order_wrap">
+      <h2 className="order_title">주문 / 결제</h2>
       
-      <div className="payment-content">
+      <div className="order_box">
         {/* 왼쪽: 입력 폼 */}
-        <div className="payment-left">
+        <div className="payment_list">
         {reserveItems.length > 0 && (
-          <section className="info-section">
-            <h3 className="section-subtitle">예약 정보</h3>
-            <div className="form-row">
-              <div className="form-group">
+          <div className="payment_sec">
+            <h3 className="payment_title">예약 정보</h3>
+            <div className="payment_row">
+              <div className="payment_group">
                 <label>예약인</label>
                 <input type="text" name="userName" placeholder="이름" value={paymentProInfo.userName} onChange={paymentProChangeFn} />
               </div>
-              <div className="form-group">
+              <div className="payment_group">
                 <label>연락처</label>
                 <input type="text" name="phonenum" placeholder="010-0000-0000" value={paymentProInfo.phonenum} onChange={paymentProChangeFn} />
               </div>
               </div>
-              <div className="form-row">
+              <div className="payment_row">
 
-              <div className="form-group">
+              <div className="payment_group">
                 <label>진료 요청사항</label>
                 <textarea name="request" rows="3" placeholder="예: 안전한 시술 부탁드립니다." value={paymentProInfo.request} onChange={paymentProChangeFn}></textarea>
               </div>              
               </div>
            
-          </section>
+          </div>
         )}
 
         {productItems.length > 0 && (
           
-          <section className="info-section">
-            <h3 className="section-subtitle">배송 정보</h3>
-            <div className="form-row">
-              <div className="form-group">
+          <section className="payment_sec">
+            <h3 className="payment_title">배송 정보</h3>
+            <div className="payment_row">
+              <div className="payment_group">
                 <label>수령인</label>
                 <input type="text" name="userName" placeholder="이름" value={paymentInfo.userName} onChange={paymentChangeFn} />
               </div>
-              <div className="form-group">
+              <div className="payment_group">
                 <label>연락처</label>
                 <input type="text" name="phonenum" placeholder="010-0000-0000" value={paymentInfo.phonenum} onChange={paymentChangeFn} />
               </div>
             </div>
-            <div className="form-group">
+            <div className="payment_group">
               <label>주소</label>
               <input type="text" name="address" placeholder="배송지 주소를 입력하세요" value={paymentInfo.address} onChange={paymentChangeFn}/>
             </div>
-            <div className="form-group">
+            <div className="payment_group">
               <label>배송 요청사항</label>
               <textarea name="request" rows="3" placeholder="예: 문 앞에 놓아주세요." value={paymentInfo.request} onChange={paymentChangeFn}></textarea>
             </div>
@@ -232,52 +231,26 @@ const Payment = () => {
         )}
         </div>
         
-        
-
-        {/* 오른쪽: 요약 카드 */}
-        <div className="payment-right">
-          <div className="sticky-summary">
-            <div className="summary-card">
-              <h3 className="section-subtitle">결제 요약</h3>
-              
-              <div className="summary-details">
-                {productItems.length > 0 && (
-                  <div className="summary-item">
-                    <div className="item-label">
-                      <span>일반 상품</span>
-                      <span className="count-badge">{productTotalCount}개</span>
-                    </div>
-                    <span className="price-val">{productPrice.toLocaleString()}원</span>
-                  </div>
-                )}
-
-                {reserveItems.length > 0 && (
-                  <div className="summary-item">
-                    <div className="item-label">
-                      <span>예약 상품</span>
-                      <span className="count-badge">{reserveItems.length}건</span>
-                    </div>
-                    <span className="price-val">{reservePrice.toLocaleString()}원</span>
-                  </div>
-                )}
+        <div className="order_summary">
+              <h4>결제 예상금액</h4>
+              <div className="order_summary_row">
+                <span>주문상품<small>{productItems.length}개</small></span>
+                <span>{productPrice.toLocaleString()}원</span>
               </div>
-
-              <div className="total-divider"></div>
-              
-              <div className="summary-total">
+              <div className="order_summary_row">
+                <span>진료예약<small>{reserveItems.length}건</small></span>
+                <span>{reservePrice.toLocaleString()}원</span>
+              </div>
+              <div className="order_summary_row total">
                 <span>최종 결제 금액</span>
-                <span className="total-price-text">{totalPrice.toLocaleString()}원</span>
+                <span className="total-amount">{totalPrice.toLocaleString()}원</span>
               </div>
-
-              <button className="btn-pay-submit" onClick={paymentFn}>
+              <button className="order_btn" onClick={paymentFn}>
                 {totalPrice.toLocaleString()}원 결제하기
               </button>
             </div>
-          </div>
-        </div>
       </div>
     </div>
-  </div>
 
     </>
   )
