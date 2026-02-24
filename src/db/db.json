@@ -1,6 +1,13 @@
 {
   "notice": [
-    
+    {
+      "id": "79bf",
+      "title": "공지 테스트",
+      "description": "테스트 내용 1234",
+      "no": 1,
+      "date": "Tue Feb 24 2026 09:28:01 GMT+0900 (한국 표준시)",
+      "viewrate": 2
+    }
   ],
   "members": [
     {
@@ -654,18 +661,7 @@
       "img": "immune_01.png",
       "description": "면역력 글루타치온(백옥주사) 진료입니다",
       "descImg": "상세페이지 이미지 경로",
-<<<<<<< HEAD
       "timespan": 1,
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "timespan": 1,
->>>>>>> lhstk114
-=======
-      "timespan": 1,
->>>>>>> faithyg93
->>>>>>> 82a47cb673ed32f28c585088fe7edf8309ef599c
       "setshop": [
         "신촌",
         "강남",
@@ -822,6 +818,22 @@
       "category": "울쎄라",
       "title": "울쎄라 시술기간은 얼마나 걸리나요?",
       "description": "울쎄라 리프팅은 실시간으로 초음파 화면을 통해 \n 피부 속을 모니터링 하면서 정확한 타겟층에 샷을 분배하고 있으며 \n 1:1 맞춤 상담 및 디자인 시술까지 1시간~1시간 30분 정도 소요됩니다."
+    },
+    {
+      "id": "12d9",
+      "no": "",
+      "titlecategory": "product",
+      "category": "white",
+      "title": "ㅁㄴㅇㄴㅁㅇ",
+      "description": "ㅁㄴㅇㄴㅁㅇ"
+    },
+    {
+      "id": "2bbc",
+      "no": "",
+      "titlecategory": "reserve",
+      "category": "lifting",
+      "title": "울쎄라 faq 1",
+      "description": "울쎄라 faq 답변 1"
     }
   ],
   "qna": [
@@ -832,7 +844,7 @@
       "date": "2026-02-05",
       "writer": "작성자이름",
       "writerEmail": "작성자이메일",
-      "viewrate": 21,
+      "viewrate": 25,
       "state": "답변완료",
       "question": "테스트내용테스트내용테스트내용테스트내용테스트내용테3123스트내용테스4내용2테스트내용",
       "admin": "관리자",
@@ -860,7 +872,7 @@
       "date": "2026-02-05",
       "writer": "test",
       "writerEmail": "test",
-      "viewrate": 13,
+      "viewrate": 25,
       "admin": "",
       "answer": ""
     },
@@ -872,7 +884,7 @@
       "date": "2026-02-10",
       "writer": "test",
       "writerEmail": "test",
-      "viewrate": 11,
+      "viewrate": 17,
       "admin": "",
       "answer": "",
       "state": "답변대기"

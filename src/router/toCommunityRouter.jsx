@@ -14,6 +14,9 @@ const CommunityNoticeDetailPage = lazy(
 const CommunityFaqPage = lazy(
   () => import("../page/Community/CommunityFaqPage"),
 );
+const CommunityFaqWritePage = lazy(
+  () => import("../page/Community/CommunityFaqWritePage"),
+);
 const CommunityQnAPage = lazy(
   () => import("../page/community/CommunityQnAPage"),
 );
@@ -59,6 +62,14 @@ const toCommunityRouter = () => {
       element: (
         <Suspense fallback={Loading}>
           <CommunityFaqPage />
+        </Suspense>
+      ),
+    },
+    {
+      path: "faq/write",
+      element: (
+        <Suspense fallback={Loading}>
+          <CommunityFaqWritePage />
         </Suspense>
       ),
     },
