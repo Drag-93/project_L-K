@@ -3,15 +3,16 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { API_JSON_SERVER_URL } from '../../api/commonApi';
+import ReservDetailReviewModal from './ReservDetailReviewModal';
 
-const ReservDetailReview = () => {
+const ReservDetailReview = ( ) => {
   const {id}=useParams();
   const [userReview, setUserReview]=useState([])
   const url=API_JSON_SERVER_URL
   const isState=useSelector(state=>state.input.isState)
   const user=useSelector(state=>state.input.user)
   const navigate=useNavigate();
-  
+
   //전체 리뷰 평균점수 계산
   const averageScore = userReview.length > 0 
    ? (userReview.reduce((acc, cur) => acc + (Number(cur.score) || 0), 0)/userReview.length).toFixed(1)
@@ -20,14 +21,15 @@ const ReservDetailReview = () => {
   //사용자후기 불러오기
   const getReviewFn=async () =>{
     try{
-      const res=await axios.get(`${url}/reservReview?reservId=${id}`);
-      console.log(res.data);
-      setUserReview(Array.isArray(res.data) ? res.data : [res.data]); //review가 하나 밖에 없을 때 map의 오류 방지
+      const res=await axios.get(`${url}/reservReview`);
+      const filtered = res.data.filter(el => el.reservId === id);
+      console.log('필터링 결과:', filtered);
+      setUserReview(Array.isArray(filtered) ? filtered : [filtered]);
     }catch(err){
       console.log('사용자후기 로딩 실패');
     }
   }
-  useEffect(()=>{ getReviewFn() },[id, url])  
+  useEffect(()=>{ getReviewFn(); },[id, url])  
   
   //후기 한줄만 보이기, 클릭시 전체내용 보이기
   const toggleReview=(reviewId)=>{
@@ -122,8 +124,8 @@ return (
         {/* 후기 현황 요약 보이기 */}
         <div className="current-status">
           <div className='totalscore'>
-            <p className='avrscore'>평균: {averageScore}점</p>
-            <p className='totalno'>전체후기: {userReview.length}건</p>
+            <p className='avrscore'><img src="/images/star_filled.svg" /> {averageScore}점</p>
+            <p className='totalno'>후기 {userReview.length}건</p>
           </div>
         </div>
         {/* 후기 리스트 */}
@@ -147,21 +149,29 @@ return (
           <ul>
             {userReview &&
              userReview.filter((el)=> el.userEmail === user?.userEmail).map((el)=>(
-                <li key={el.id}>
+                <li key={el.id}>                  
+                  <div className="myreview">
                   <strong>[내가 작성한 후기]</strong>
                       {editId===el.id ? (
                         <>
                         <li className='score-selector'>
-                        <label htmlFor="score">평점:</label>
-                        {[1,2,3,4,5].map((num)=>(
-                        <span key={num}>
-                          <input type="radio" name="score" id="score"
-                          value={num}
-                          checked={score === num}
-                          onChange={(e) => setScore(Number(e.target.value))} />
-                          {num}점
-                        </span>
-                        ))}
+                        <label htmlFor="score">점수:</label>                        
+                        <div className="star-rating">
+                          {[1,2,3,4,5].map((num)=>(
+                            <label key={num} className='star-label'>
+                            <input type="radio" name="score" id="score"
+                                   value={num}
+                                   checked={score === num}
+                                   onChange={(e) => setScore(Number(e.target.value))}
+                            />
+                            <img src={num <= score
+                            ? "/images/star_filled.svg"
+                            : "/images/star_empty.svg"}
+                            alt="star"
+                            className="star-img"/>
+                           </label>
+                          ))}
+                        </div>
                         </li>
                         <li>
                         <label htmlFor="textarea">상세후기:</label>
@@ -176,17 +186,28 @@ return (
                         </>
                       ) : (
                         <>
+                        <div className="star-rating">
+                        {[1,2,3,4,5].map((num)=>(
+                         <label key={num} className='star-label'>
+                           <img src={num <= el.score
+                            ? "/images/star_filled.svg"
+                            : "/images/star_empty.svg"}
+                            alt="star"
+                            className="star-img"/>
+                           </label>
+                        ))}                        
                         <p>작성일자: {new Date(el.date).toLocaleDateString()}</p>
-                        <p>점수: {el.score}점</p>
-                        <p>좋아요: {el.like}회</p>
+                        </div>                      
                         <p>{el.description}</p>
-                        <div className="edit-buttons">
+                        <p>추천: {el.like}회</p>
+                        <div className="editBtn">
                         <button onClick={()=> updateFn(el)}>수정하기</button>
                         <button onClick={()=> deleteFn(el.id)}>삭제하기</button>
                         </div>
                         </>
                       )
                       }
+                  </div>
                 </li>
               )
             )}
@@ -196,8 +217,18 @@ return (
               return (
                 <li key={el.id} onClick={()=>{toggleReview(el.id)}} style={{cursor: 'pointer'}}>
                   <p>작성자: {el.userName}</p>
+                  <div className="star-rating">
+                        {[1,2,3,4,5].map((num)=>(
+                         <label key={num} className='star-label'>
+                           <img src={num <= el.score
+                            ? "/images/star_filled.svg"
+                            : "/images/star_empty.svg"}
+                            alt="star"
+                            className="star-img"/>
+                           </label>
+                        ))}
                   <p>작성일자: {new Date(el.date).toLocaleDateString()}</p>
-                  <p>점수: {el.score}점</p>
+                  </div>
                   <p style={{
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
@@ -209,7 +240,7 @@ return (
                       {el.isOpen ? '[접기]' : '...더보기'}
                     </small>
                   }
-                  <button 
+                  <button className='likeBtn'
                   onClick={(e)=>{
                     e.stopPropagation();
                     handleLikeFn(el);

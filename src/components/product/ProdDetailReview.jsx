@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 import ProdDetailReviewModal from './ProdDetailReviewModal'
 import axios from 'axios'
 
-
 const ProdDetailReview = () => {
   const {id}=useParams();
   const [userReview, setUserReview]=useState([])
@@ -22,14 +21,15 @@ const ProdDetailReview = () => {
   //사용자후기 불러오기
   const getReviewFn=async () =>{
     try{
-      const res=await axios.get(`${url}/productReview?productId=${id}`);
-      console.log(res.data);
-      setUserReview(Array.isArray(res.data) ? res.data : [res.data]); //review가 하나 밖에 없을 때 map의 오류 방지
+      const res = await axios.get(`${url}/productReview`);
+      const filtered = res.data.filter(el => el.productId === id);
+      console.log('필터링 결과:', filtered);
+      setUserReview(Array.isArray(filtered) ? filtered : [filtered]);
     }catch(err){
       console.log('사용자후기 로딩 실패');
     }
   }
-  useEffect(()=>{ getReviewFn() },[id, url])  
+  useEffect(()=>{ getReviewFn(); },[id, url])  
   
   //후기 한줄만 보이기, 클릭시 전체내용 보이기
   const toggleReview=(reviewId)=>{
@@ -125,7 +125,7 @@ return (
         <div className="current-status">
           <div className='totalscore'>
             <p className='avrscore'><img src="/images/star_filled.svg" /> {averageScore}점</p>
-            <p className='totalno'>전체후기: {userReview.length}건</p>
+            <p className='totalno'>후기 {userReview.length}건</p>
           </div>
         </div>
         {/* 후기 리스트 */}

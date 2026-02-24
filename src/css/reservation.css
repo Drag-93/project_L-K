@@ -1,82 +1,109 @@
-/* =========== RevervLiftingDetail ==============*/
+/*****************************************************************************
+    @ReservDetail
+****************************************************************************/
 
-
-.reservlfting-detail {
-  max-width: 1200px;
-  margin: 60px auto;
-  padding: 0 20px;
-  font-family: 'Noto Sans KR', sans-serif;
-  color: #444;
-}
-
-/* 제목 영역 */
-.reservlifting-detail-con h1 {
-  font-size: 32px;
-  font-weight: 700;
-  color: #222;
-  margin-bottom: 50px;
-  text-align: center;
-  letter-spacing: -1px;
-}
-
-/* 상단 배치 */
-.detail-top {
+.reserv-detail {
   display: flex;
-  gap: 60px;
-  align-items: flex-start;
-  background: #fff;
-  padding: 40px;
-  border-radius: 30px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.05);
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-color: #f9f9f9;
 }
 
-.detail-top-left {
-  flex: 1;
-  position: sticky;
-  top: 20px;
-}
-
-.detail-top-left img {
+.reserv-detail .reserv-detail-con {
   width: 100%;
-  border-radius: 20px;
+  max-width: 1200px;
+  min-height: 100vh;  
+}
+
+.reserv-detail-con h1 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #2d3748;
+  padding-bottom: 15px;
+}
+
+.reserv-detail-con .detail-top {
+  display: flex;
+  height: auto;
+  gap: 40px;
+  padding: 40px;
+  align-items: flex-start;
+  background: #f9fafb;
+  border-radius: 16px;
+}
+
+.detail-top .detail-top-left {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 12px;
   object-fit: cover;
-  transition: transform 0.3s ease;
 }
 
-.detail-top-right {
-  flex: 1.2;
+.detail-top .detail-top-left img {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 12px;
+  object-fit: cover;
 }
 
-.detail-top-right ul {
+.detail-top .detail-top-right {
+  flex: 1;
+  height: auto;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.detail-top .detail-top-right ul {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.detail-top-right li {
-  margin-bottom: 30px;
-  border-bottom: 1px solid #f0f0f0;
+.detail-top .detail-top-right ul li:first-child {
+  font-size: 25px;
+  font-weight: 600;
+  color: black;
+  text-align: start;
+  display: flex;
   padding-bottom: 20px;
 }
 
-.detail-top-right li:last-child {
-  border-bottom: none;
-}
-
-.detail-top-right li p {
-  font-size: 15px;
+.detail-top .detail-top-right ul li:nth-child(2) {
+  font-size: 20px;
   font-weight: 600;
-  color: #888;
-  margin-bottom: 12px;
+  color: black;
+  text-align: start;
+  display: flex;
+}
+.detail-top .detail-top-right ul li:nth-child(3) {
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 20px 50px 50px 0;
+  font-size: 15px;
+  color: #2d3748;
+  text-align: start;
+  line-height: 1.6;
 }
 
-/* 지점 및 시간 버튼 */
-.shop-btns, .time-btns {
+/* 진료 예약 선택 */
+.detail-top .detail-top-right p {
+  font-size: 14px;
+  color: #2d3748;
+  padding-bottom: 10px;
+}
+
+.detail-top .detail-top-right .shop-btns, .time-btns {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-.shop-btn, .time-btn {
+.detail-top .detail-top-right .shop-btn, .time-btn {
   min-width: 90px;
   padding: 12px 15px;
   border: 1px solid #e2e8f0;
@@ -89,13 +116,13 @@
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.shop-btn:hover:not(:disabled), .time-btn:hover:not(:disabled) {
+.detail-top .detail-top-right .shop-btn:hover:not(:disabled):not(.active), .time-btn:hover:not(:disabled):not(.active) {
   border-color: #5aa933;
   background: #f4faf0;
   color: #5aa933;
 }
 
-.shop-btn.active, .time-btn.active {
+.detail-top .detail-top-right .shop-btn.active, .time-btn.active {
   background: #5aa933;
   color: #fff;
   border-color: #5aa933;
@@ -103,7 +130,7 @@
 }
 
 /* 시간 버튼 마감(disabled) 스타일 */
-.time-btn.disabled {
+.detail-top .detail-top-right .time-btn.disabled {
   background: #f7fafc;
   color: #cbd5e0;
   cursor: not-allowed;
@@ -111,22 +138,19 @@
   text-decoration: line-through;
 }
 
-/* -----------------------------------------------------
-   🧩 React-Calendar 커스텀 스타일 (세밀한 수정)
------------------------------------------------------ */
+/*--- React-Calendar ---*/
 .react-calendar {
   width: 100% !important;
   border: none !important;
-  background: #fff;
-  font-family: 'Noto Sans KR', sans-serif;
-  padding: 10px;
+  background: #fff !important;
+  padding: 10px !important;
 }
 
 /* 네비게이션 (월 이동 버튼) */
 .react-calendar__navigation {
   display: flex;
   height: 50px;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 .react-calendar__navigation button {
@@ -134,7 +158,8 @@
   background: none;
   font-size: 18px;
   font-weight: 700;
-  color: #333;
+  color: #333;  
+  cursor: pointer;
 }
 
 .react-calendar__navigation button:enabled:hover,
@@ -148,7 +173,7 @@
   text-align: center;
   text-transform: uppercase;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 15px;
   color: #999;
   padding-bottom: 10px;
 }
@@ -159,18 +184,18 @@
 
 /* 개별 날짜 칸 */
 .react-calendar__tile {
-  height: 50px;
+  height: 40px;
   background: none;
   text-align: center;
   font-size: 14px;
   font-weight: 500;
   border-radius: 12px;
-  margin: 2px 0;
   transition: all 0.1s;
 }
 
 /* 오늘 날짜 표시 */
-.react-calendar__tile--now {
+.react-calendar__tile--now abbr,
+.react-calendar__tile--now.react-calendar__tile--active abbr {
   background: #e6f3e0 !important;
   color: #5aa933 !important;
 }
@@ -179,6 +204,7 @@
 .react-calendar__tile:enabled:hover,
 .react-calendar__tile:enabled:focus {
   background-color: #f0f0f0;
+  cursor: pointer;
 }
 
 /* 선택된 날짜 */
@@ -189,10 +215,11 @@
 }
 
 /* 비활성화된 날짜 (과거 날짜, 주말 등) */
-.react-calendar__tile:disabled {
+.react-calendar__tile:disabled abbr {
   background-color: transparent !important;
-  color: #ccc !important;
+  color: #918f8f !important;
 }
+
 
 /* ----------------------------------------------------- */
 
@@ -204,71 +231,42 @@
   border: 1px dashed #5aa933;
 }
 
-.detail-top-right li span {
+.detail-top-right li .selection-summary p {
+  font-size: 15px;
+  font-weight: 500;
+  color: #555;
+}
+
+.detail-top-right li .selection-summary span {
   font-size: 18px;
   font-weight: 700;
   color: #5aa933;
-  margin-left: 10px;
+  padding-left: 5px;
 }
 
 /* 장바구니 버튼 */
-button[onClick*="onPaymentFn"] {
+.detail-top-right button.payment-btn {
   width: 100%;
-  padding: 20px;
+  padding: 15px;
   background: #5aa933;
   color: #fff;
   border: none;
-  border-radius: 15px;
-  font-size: 18px;
+  border-radius: 12px;
+  font-size: 16px;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 10px 20px rgba(90, 169, 51, 0.2);
   transition: all 0.3s ease;
 }
 
-button[onClick*="onPaymentFn"]:hover {
+.detail-top-right button.payment-btn:hover {
   background: #4d912a;
   transform: translateY(-2px);
   box-shadow: 0 15px 30px rgba(90, 169, 51, 0.3);
 }
 
-/* 상세 하단 탭 */
-.detail-bottom {
-  margin-top: 40px;
-}
-
-.detail-bottom ul {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  border-bottom: 2px solid #f0f0f0;
-}
-
-.detail-bottom li {
-  padding: 20px 10px;
-  font-size: 18px;
-  font-weight: 600;
-  color: #bbb;
-  cursor: pointer;
-  position: relative;
-}
-
-/* .detail-bottom li:first-child {
-  color: #5aa933;
-} */
-
-.detail-bottom li:first-child::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  /* background: #5aa933; */
-}
-
 /* 부드럽게 나타나는 효과 */
-.fade-in {
+.detail-top-right .fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
 
@@ -278,7 +276,7 @@ button[onClick*="onPaymentFn"]:hover {
 }
 
 /* 안내 문구 스타일 */
-.guide-text {
+.detail-top-right .guide-text {
   padding: 20px;
   background: #f8f9fa;
   border-radius: 12px;
@@ -290,7 +288,7 @@ button[onClick*="onPaymentFn"]:hover {
 }
 
 /* 최종 요약 박스 */
-.final-selection {
+.detail-top-right .final-selection {
   margin-top: 30px;
   padding: 20px;
   background: #f4faf0;
@@ -298,13 +296,172 @@ button[onClick*="onPaymentFn"]:hover {
   border: 1px solid #5aa933;
 }
 
-.selection-summary p {
+.detail-top-right .selection-summary p {
   margin: 5px 0;
   font-weight: 500;
 }
 
-.selection-summary span {
+.detail-top-right .selection-summary span {
   color: #5aa933;
   font-weight: 700;
   margin-left: 10px;
+}
+
+/*****************************************************************************
+    @ReservDetailDesc
+****************************************************************************/
+.reserv-detail-desc-con{
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.reserv-detail-desc-con img{
+  width: 100%;
+}
+
+
+/* -------------------------------------------------------------------------
+   @ReservDetail - 반응형
+------------------------------------------------------------------------- */
+
+/* ------------------------------------------------
+   화면 1200px 이하
+------------------------------------------------ */
+@media (max-width: 1200px) {
+
+  /* 상단 상세 영역 gap / padding 축소 */
+  .reserv-detail-con .detail-top {
+    gap: 30px;
+    padding: 30px;
+  }
+
+  /* 이미지 최대 폭 */
+  .detail-top .detail-top-left img {
+    max-width: 700px;
+  }
+
+  /* 선택 내역, 장바구니 버튼 padding 조정 */
+  .detail-top-right li:nth-last-child(2),
+  .detail-top-right button.payment-btn {
+    padding: 18px;
+    font-size: 15px;
+  }
+
+  /* React Calendar 네비게이션 버튼 폰트 축소 */
+  .react-calendar__navigation button {
+    font-size: 16px;
+    min-width: 40px;
+  }
+}
+
+/* ------------------------------------------------
+   화면 768px 이하 (태블릿)
+------------------------------------------------ */
+@media (max-width: 768px) {
+
+  /* 상단 상세 영역 세로 배치 */
+  .reserv-detail-con .detail-top {
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .detail-top .detail-top-left,
+  .detail-top .detail-top-right {
+    width: 100%;
+  }
+
+  .detail-top .detail-top-left img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 버튼 그룹 flex 조정 */
+  .detail-top .detail-top-right .shop-btns,
+  .detail-top .detail-top-right .time-btns {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .detail-top .detail-top-right .shop-btn,
+  .detail-top .detail-top-right .time-btn {
+    font-size: 13px;
+    padding: 10px 12px;
+    min-width: 80px;
+  }
+
+  /* 선택 내역 / 장바구니 버튼 폭 조정 */
+  .detail-top-right li:nth-last-child(2),
+  .detail-top-right button.payment-btn {
+    font-size: 14px;
+    padding: 15px;
+  }
+
+  /* React Calendar 날짜 칸 및 요일 글자 조정 */
+  .react-calendar__month-view__weekdays {
+    font-size: 14px;
+  }
+  .react-calendar__tile {
+    font-size: 13px;
+    height: 36px;
+  }
+}
+
+/* ------------------------------------------------
+   화면 480px 이하 (모바일)
+------------------------------------------------ */
+@media (max-width: 480px) {
+
+  /* 상단 상세 영역 padding 최소화 */
+  .reserv-detail-con .detail-top {
+    padding: 15px;
+    gap: 15px;
+  }
+
+  /* 상세 이미지 */
+  .detail-top .detail-top-left img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* 버튼 그룹 최소폭, 폰트 축소 */
+  .detail-top .detail-top-right .shop-btn,
+  .detail-top .detail-top-right .time-btn {
+    min-width: 70px;
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  /* 선택 내역 및 장바구니 버튼 */
+  .detail-top-right li:nth-last-child(2),
+  .detail-top-right button.payment-btn {
+    font-size: 13px;
+    padding: 12px;
+  }
+
+  /* React Calendar */
+  .react-calendar__navigation button {
+    font-size: 14px;
+    min-width: 36px;
+  }
+  .react-calendar__month-view__weekdays {
+    font-size: 12px;
+  }
+  .react-calendar__tile {
+    font-size: 12px;
+    height: 32px;
+  }
+
+  /* 안내 문구, 최종 요약 박스 */
+  .detail-top-right .guide-text,
+  .detail-top-right .final-selection {
+    font-size: 13px;
+    padding: 15px;
+  }
+
+  /* 최종 선택 요약 내 span 폰트 축소 */
+  .detail-top-right .selection-summary span {
+    font-size: 16px;
+  }
 }

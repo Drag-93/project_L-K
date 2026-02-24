@@ -16,6 +16,14 @@ const initDetail={
   description:""
 }
 
+const categoryMap = {
+  hydro: "보습",
+  trouble: "트러블케어",
+  white: "미백",
+  antiage: "안티에이징",
+  uv: "UV",
+};
+
 const ProdDetail = () => {
 
   const {category, id}=useParams();
@@ -119,7 +127,7 @@ const ProdDetail = () => {
   return (
     <div className='prod-detail'>
       <div className="prod-detail-con">
-        {/* <h1>제품 상세페이지</h1> */}
+        <h1>상품판매 &gt; {categoryMap[detail.category] || detail.category}</h1>
         <div className="detail-top">
           <div className="detail-top-left">
             <img src={`/images/${detail.category}/${detail.img}`} alt={detail.img} />
@@ -128,9 +136,9 @@ const ProdDetail = () => {
             {/* 상품정보(개요) */}
             <div className="detail-top-right1">
              <ul>
-              <li><span>상품명:</span><span>{detail.name}</span></li>
-              <li><span>가격:</span><span>{detail.price.toLocaleString()}원</span></li>
-              <li><span>상품정보:</span><span>{detail.description}</span></li>
+              <li>{detail.name}</li>
+              <li>{detail.price.toLocaleString()}원</li>
+              <li>{detail.description}</li>
              </ul>              
             </div>
             {/* 상품선택 및 장바구니 담기 */}
