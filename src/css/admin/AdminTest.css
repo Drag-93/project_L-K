@@ -23,8 +23,8 @@
    Admin Layout Base (Header placeholder)
    =============================== */
 :root {
-  --admin-header-h: 64px; /* 나중에 header 디자인 바꾸면 여기만 수정 */
-  --admin-left-w: 240px; /* 사이드바 너비도 변수로 */
+  --admin-header-h: 6.5rem; /* 나중에 header 디자인 바꾸면 여기만 수정 */
+  --admin-left-w: 24rem; /* 사이드바 너비도 변수로 */
 }
 
 /* reset */
@@ -59,7 +59,10 @@
   margin-top: var(--admin-header-h);
   margin-left: var(--admin-left-w);
   min-height: calc(100vh - var(--admin-header-h));
-  padding: 24px;
+  padding: 2.4rem;
   display: flex;
   justify-content: center;
+}
+
+@media (max-width: 500) {
 }

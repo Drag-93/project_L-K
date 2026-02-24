@@ -24,6 +24,7 @@ const AdminReservationModal = ({
 
   const reservationUrl = API_JSON_SERVER_URL;
   const navigate = useNavigate();
+  const [imgError, setImgError] = useState(false);
 
   const onShopChange = (shopName) => {
     setDetail((prev) => {
@@ -80,10 +81,39 @@ const AdminReservationModal = ({
     fetchData();
   }, [reservationId, reservationUrl]);
 
+  // const onChangeFn = (e) => {
+  //   const { name, value } = e.target;
+  //   const newValue = name === "price" ? Number(value) : value;
+  //   setDetail({ ...detail, [name]: newValue });
+  // };
   const onChangeFn = (e) => {
     const { name, value } = e.target;
-    const newValue = name === "price" ? Number(value) : value;
-    setDetail({ ...detail, [name]: newValue });
+    if (name !== "price") {
+      setDetail({ ...detail, [name]: value });
+    }
+  };
+  const onChangeNumFn = (e) => {
+    const { name, value } = e.target;
+    if (name !== "price") return;
+    if (isNaN(value)) {
+      alert("숫자만 입력해주세요");
+      return;
+    }
+    {
+      setDetail({ ...detail, [name]: value });
+    }
+  };
+  const onChangImgFn = (e) => {
+    const imgFile = e.target.files?.[0];
+    if (!imgFile) return;
+    setDetail((prev) => ({ ...prev, img: imgFile.name }));
+    e.target.value = "";
+  };
+  const onChangeDescImgFn = (e) => {
+    const descImgFile = e.target.files?.[0];
+    if (!descImgFile) return;
+    setDetail((prev) => ({ ...prev, descImg: descImgFile.name }));
+    e.target.value = "";
   };
 
   const onUpdateFn = async () => {
@@ -129,15 +159,25 @@ const AdminReservationModal = ({
     }
   };
 
+  useEffect(() => {
+    if (!detail) return;
+    setImgError(false);
+  }, [detail?.category, detail?.img]);
+
   const closeFn = () => {
     setReservationAddModal(false);
   };
 
   if (!detail) {
     return (
-      <div className="reservationModal">
-        <div className="reservationModal-con">
-          <span className="close" onClick={closeFn}>
+      <div className="adminModal" onClick={closeFn}>
+        <div
+          className="adminModal-con"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          <span className="adminModal-close" onClick={closeFn}>
             X
           </span>
           <div className="loading">
@@ -148,15 +188,22 @@ const AdminReservationModal = ({
     );
   }
   return (
-    <div className="reservationModal">
-      <div className="reservationModal-con">
-        <h1>예약 상품 등록</h1>
-        <span className="close" onClick={closeFn}>
+    <div className="adminModal" onClick={closeFn}>
+      <div
+        className="adminModal-con"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <div className="adminModal-title">
+          {detail.id ? detail.name : "예약 상품 등록"}
+        </div>
+        <span className="adminModal-close" onClick={closeFn}>
           X
         </span>
 
         <ul>
-          <li>
+          <li className="adminModal-reserv-selector">
             <label htmlFor="category">카테고리</label>
             <select
               name="category"
@@ -187,16 +234,19 @@ const AdminReservationModal = ({
                 name="price"
                 reservationId="price"
                 value={detail.price}
-                onChange={onChangeFn}
+                onChange={onChangeNumFn}
+                placeholder="금액만 입력하세요(예: 20000)"
               />
-              원
             </span>
           </li>
           <li>
             <label>예약 지점 선택</label>
-            <div className="checkbox-group">
+            <div className="adminModal-reserv-checkbox-group">
               {allShops.map((shop) => (
-                <label key={shop.id || shop} className="checkbox-item">
+                <label
+                  key={shop.id || shop}
+                  className="adminModal-reserv-checkbox-item"
+                >
                   <input
                     type="checkbox"
                     checked={detail.setshop?.includes(shop)}
@@ -209,9 +259,9 @@ const AdminReservationModal = ({
           </li>
           <li>
             <label>예약 시간 선택</label>
-            <div className="checkbox-group">
+            <div className="adminModal-reserv-checkbox-group">
               {allTimes.map((time) => (
-                <label key={time} className="checkbox-item">
+                <label key={time} className="adminModal-reserv-checkbox-item">
                   <input
                     type="checkbox"
                     checked={detail.settime?.includes(time)}
@@ -222,65 +272,117 @@ const AdminReservationModal = ({
               ))}
             </div>
           </li>
-          <li>
+          <li className="adminModal-img">
             <label htmlFor="img">상품이미지</label>
-            <input
-              type="text"
-              name="img"
-              id="img"
-              value={detail.img}
-              onChange={onChangeFn}
-            />
-            <img
-              src={`/images/${detail.category}/${detail.img}`}
-              alt={detail.img}
-            />
+            <div className="adminModal-fileRow">
+              <input
+                type="text"
+                name="img"
+                id="img"
+                placeholder="특수문자(%#?&=+;)를 제외한 파일명(예: hydro1.jpg) "
+                value={detail.img}
+                onChange={onChangeFn}
+                className="adminModal-fileName"
+                readOnly
+              />
+              <label className="adminModal-fileBtn" htmlFor="imgFile">
+                파일 선택
+              </label>
+              <input
+                id="imgFile"
+                type="file"
+                accept="image/*"
+                onChange={onChangImgFn}
+                className="adminModal-hidden"
+              />
+            </div>
+            {imgError ? (
+              <textarea className="errorBox">
+                이미지가 올바르지 않습니다. 카테고리/파일명을 확인해주세요.
+              </textarea>
+            ) : (
+              <img
+                src={`/images/${detail.category}/${detail.img}`}
+                alt={detail.img}
+                onError={() => setImgError(true)}
+              />
+            )}
           </li>
           <li>
-            <label htmlFor="descImg">상품이미지 링크</label>
-            <input
-              type="text"
-              name="descImg"
-              id="descImg"
-              value={detail.descImg}
-              onChange={onChangeFn}
-            />
-          </li>
-          <li>
-            <label htmlFor="name">상세설명</label>
-            <input
+            <label htmlFor="description">상품 설명</label>
+            <textarea
               type="text"
               name="description"
               reservationId="description"
               value={detail.description}
               onChange={onChangeFn}
+              className="adminModal-textarea"
             />
           </li>
           <li>
-            <label htmlFor="name">시술시간</label>
-            <span>
+            <label htmlFor="descImg">상세정보 이미지</label>
+            <div className="adminModal-fileRow">
+              <input
+                type="text"
+                name="descImg"
+                id="descImg"
+                placeholder="특수문자(%#?&=+;)를 제외한 파일명(예: hydro1_desc.jpg)"
+                value={detail.descImg}
+                onChange={onChangeDescImgFn}
+                readOnly
+              />
+              <label className="adminModal-fileBtn" htmlFor="descImgFile">
+                파일 선택
+              </label>
+              <input
+                id="descImgFile"
+                type="file"
+                accept="image/*"
+                onChange={onChangImgFn}
+                className="adminModal-hidden"
+              />
+            </div>
+          </li>
+
+          <li>
+            <label htmlFor="timespan">시술시간</label>
+            <div className="adminModal-reserv-timespan-suffix">
               <input
                 type="text"
                 name="timespan"
                 reservationId="timespan"
                 value={detail.timespan}
                 onChange={onChangeFn}
+                placeholder="숫자만 입력하세요(예: 2)"
+                className="adminModal-reserv-timespan-sffixInput"
               />
-              시간 소요예정
-            </span>
-          </li>
-          <li>
-            {reservationId ? (
-              <>
-                <button onClick={onUpdateFn}>상품수정</button>
-                <button onClick={onDeleteFn}>상품삭제</button>
-              </>
-            ) : (
-              <button onClick={onPostFn}>상품추가</button>
-            )}
-            <button onClick={closeFn}>닫기</button>
+              <span className="adminModal-reserv-timespan-suffixText">
+                시간 소요예정
+              </span>
+            </div>
           </li>
         </ul>
+        <div className="adminModal-footer">
+          <div className="adminModal-footer-con">
+            <li>
+              {reservationId ? (
+                <>
+                  <button onClick={onUpdateFn} className="editBtn">
+                    상품수정
+                  </button>
+                  <button onClick={onDeleteFn} className="deleteBtn">
+                    상품삭제
+                  </button>
+                </>
+              ) : (
+                <button onClick={onPostFn} className="editBtn">
+                  상품추가
+                </button>
+              )}
+              <button onClick={closeFn}>닫기</button>
+            </li>
+          </div>
+        </div>
       </div>
     </div>
   );

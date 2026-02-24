@@ -17,9 +17,18 @@ const AdminHeader = () => {
       <div className="adminHeader-con">
         <ul>
           <li>
+            <img
+              src="/images/icon_filter.svg"
+              alt="adminHeader-hidden"
+              className="adminHeader-hidden"
+            />
+          </li>
+          <li>
             <h1>{user?.userName}님</h1>
           </li>
-          <button onClick={logoutFn}>로그아웃</button>
+          <li>
+            <button onClick={logoutFn}>로그아웃</button>
+          </li>
         </ul>
       </div>
     </div>

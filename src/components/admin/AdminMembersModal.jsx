@@ -160,6 +160,7 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
               id="userPw"
               value={detail.userPw}
               onChange={onChangeFn}
+              readOnly
             />
           </li>
           <li>

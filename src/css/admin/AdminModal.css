@@ -136,7 +136,7 @@
 }
 
 .adminModal textarea {
-  min-height: 100px;
+  max-height: 16rem;
 }
 
 .adminModal-footer {
@@ -178,56 +178,50 @@
   text-align: center;
 }
 
+/*img*/
+.adminModal .adminModal-con .adminModal-img img {
+  display: block;
+  width: 100%;
+  height: clac(100vw - 30rem);
+  padding: 1rem 16rem 0 15rem;
+}
 /* members */
 
 /*product*/
-.adminModal .adminModal-con li:has(img) {
+.adminModal-fileRow {
   display: flex;
-  flex-direction: column;
   align-items: center;
-}
-.adminModal .adminModal-con .adminModal-productImg {
-  display: block;
-  width: 30rem;
-  height: 30rem;
-  padding: 2rem;
-}
-.adminModal li:has(.adminModal-priceinput) {
-  position: relative; /* preview absolute 기준 */
+  gap: 10px;
 }
 
-/* input: 오른쪽 텍스트(미리보기) 자리 확보 */
-.adminModal .adminModal-priceinput {
-  width: 100%;
-  padding-right: 88px; /* "20,000원" 들어갈 공간 */
-  box-sizing: border-box;
+.adminModal .adminModal-fileRow .adminModal-fileBtn {
+  width: 10rem;
+  height: 4rem;
+  padding: 0 1.4rem;
+  border-radius: 12px;
+  border: 1px solid #dddcf1;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 500;
+  cursor: pointer;
 }
 
-/* preview: input 위에 겹쳐서 우측에 표시 */
-.adminModal .adminModal-pricepreview {
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-
-  font-size: 14px;
-  font-weight: 800;
-  color: #374151;
-
-  background: transparent; /* input처럼 보이게 */
-  border: none;
-  padding: 0;
-
-  pointer-events: none; /* 클릭하면 input에 포커스가 가게 */
-  user-select: none;
-
-  transition: opacity 0.12s ease;
+.adminModal .adminModal-img .errorBox {
+  text-align: center;
+  height: 5rem;
 }
 
-/* ✅ input 클릭(포커스)하면 preview 숨김 */
-.adminModal li:has(.adminModal-priceinput:focus) .adminModal-pricepreview {
-  opacity: 0;
+.adminModal .adminModal-fileRow .adminModal-fileBtn:hover {
+  background: #f3f6ff;
 }
+
+.adminModal-hidden {
+  display: none;
+}
+
 /* productOrders */
 
 .adminModal li:has(table) {
@@ -278,6 +272,61 @@
   margin: 0 auto;
 }
 
+/*reserv*/
+
+.adminModal-reserv-checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 15px;
+}
+.adminModal-reserv-checkbox-group label {
+  width: 5rem;
+  height: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid #0000002f;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.adminModal-reserv-checkbox-group label span {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.adminModal-reserv-checkbox-group label input[type="checkbox"] {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+.adminModal-reserv-checkbox-group label:hover {
+  background: #e9eeff;
+}
+.adminModal-reserv-timespan-suffix {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.adminModal-reserv-timespan-suffixInput {
+  flex: 1;
+}
+
+.adminModal-reserv-timespan-suffixText {
+  width: 10rem;
+  white-space: nowrap;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #25304a;
+}
+
 /* shop */
 .adminModal .admin-shopModal-address {
   display: flex;
@@ -297,6 +346,9 @@
   cursor: pointer;
   white-space: nowrap;
 }
+.adminModal .addressBtn:hover {
+  background-color: #e9eeff;
+}
 .adminModal .adminModal-map label {
   justify-content: start;
   width: 100%;
@@ -306,6 +358,7 @@
   height: 320px;
   display: block;
   overflow: hidden;
+  padding: none;
 }
 
 /* qna */

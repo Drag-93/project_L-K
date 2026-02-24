@@ -20,7 +20,6 @@ const AdminProduct = () => {
   const [categoryFilter, setCategoryFilter] = useState("ALL");
   const [sortType, setSortType] = useState("regDateDesc");
   const [page, setPage] = useState(1);
-
   const productListFn = async (e) => {
     try {
       const res = await axios.get(`${productUrl}/product`);
@@ -278,6 +277,9 @@ const AdminProduct = () => {
                       <img
                         src={`/images/${el.category}/${el.img}`}
                         alt={el.img}
+                        onError={(e) =>
+                          (e.currentTarget.src = `/images/all_none.png`)
+                        }
                       />
                     </td>
                     <td>{el.name}</td>
