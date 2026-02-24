@@ -143,7 +143,8 @@ const Payment = () => {
         }));
 
         const productData = {
-          productDate: new Date().toLocaleString(),
+          productDate: new Date().toISOString(),
+          productUserDate: new Date().toLocaleString(),
           customer: paymentInfo,
           items: cleanedProducteItems,
           totalAmount: productPrice,

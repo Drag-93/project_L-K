@@ -128,7 +128,7 @@ const PaymentList = () => {
                 <div key={order.id} className="paylist_card product">
                   <div className="paylist_header">
                   {order.type === 'product' ? (
-                            <span className="paylist_date">{order.productDate}</span>
+                            <span className="paylist_date">{order.productUserDate}</span>
                           ) : (
                             <span className="paylist_date">{order.reserveUserDate}</span>
                           )}

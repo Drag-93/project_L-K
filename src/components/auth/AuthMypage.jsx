@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { logoutF } from "../../store/slice/inputSlice";
-import PaymentList from "../order/PaymentList";
 
 const myDataFrom = {
   id: "",
@@ -30,6 +29,7 @@ const AuthMemberList = () => {
   console.log(param);
 
   const [myData, setMyData] = useState(myDataFrom);
+  
 
   const navigate = useNavigate();
 
@@ -83,51 +83,6 @@ const AuthMemberList = () => {
     }
   };
 
-  // myReview(product&reservation)  -->  통합시키기
-  const [myProdReviewList, setMyProdReviewList] = useState([]);
-  const myProdReviewListFn = async () => {
-    try {
-      const res = await axios.get(`${url}/productReview?userEmail=${myData.userEmail}`);
-      setMyProdReviewList(res.data)
-      console.log(res.data)
-    } catch (err) {
-      alert(err);
-    }
-  }
-  useEffect(() => {
-    if (!myData?.userEmail) return;
-    myProdReviewListFn();
-  }, [myData?.userEmail])
-  
-  const [myReservReviewList, setMyReservReviewList] = useState([]);
-  const myReservReviewListFn = async () => {
-    try {
-      const res = await axios.get(`${url}/reservReview?userEmail=${myData.userEmail}`);
-      setMyReservReviewList(res.data)
-      console.log(res.data)
-    } catch (err) {
-      alert(err);
-    }
-  }
-  useEffect(() => {
-    if (!myData?.userEmail) return;
-    myReservReviewListFn();
-  }, [myData?.userEmail])
-
-  // myQna
-  const [myQnaList, setMyQnaList] = useState([]);
-  const myQnaListFn = async () => {
-    try {
-      const res = await axios.get(`${url}/qna?writerEmail=${myData.userEmail}`);
-      setMyQnaList(res.data);
-    } catch (err) {
-      alert(err);
-    }
-  };
-  useEffect(() => {
-    if (!myData?.userEmail) return;
-    myQnaListFn();
-  }, [myData?.userEmail]);
 
   return (
     <>
@@ -235,113 +190,6 @@ const AuthMemberList = () => {
             <li>
               <button onClick={myUpdateFn}>수정</button>
               <button onClick={myDeleteFn}>삭제</button>
-            </li>
-          </ul>
-        </div>
-        <div className="mypage_wrap">
-          <h2>내 활동내역</h2>
-          <ul>
-            <li>
-              <button onClick={() => navigate(`/order/paymentList`)}>
-                결제내역
-              </button>
-            </li>
-          </ul>
-          <h2>내 리뷰</h2>
-          <ul>
-            <li>
-            {myProdReviewList.length > 0 || myReservReviewList.length > 0 ? (
-                <table> 
-                  <thead>
-                    <tr>
-                      <td>작성일</td>
-                      <td>상품/진료명</td>
-                      <td>내용</td>
-                      <td>추천수</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {myProdReviewList.length > 0 && myProdReviewList.map((el)=>{
-                      return (
-                     <tr
-                      key={el.id}
-                      onClick={(e)=> {
-                       e.stopPropagation();
-                       navigate(`/product/detail/${el.category}/${el.productId}`, 
-                                 {state: { scrollTo: 'review' } })}
-                      }
-                     >
-                      <td>{new Date(el.date).toLocaleDateString()}</td>
-                      <td>{el.productName}</td>
-                      <td>{el.description && el.description.length > 15 
-                           ? `${el.description.slice(0, 15)}...`
-                           : el.description}
-                      </td>
-                      <td>{el.like}회</td>
-                    </tr>
-                      )
-                    })}
-                    {myReservReviewList.length > 0 && myReservReviewList.map((el)=>{
-                      return (
-                     <tr
-                      key={el.id}
-                      onClick={(e)=> {
-                       e.stopPropagation();
-                       navigate(`/reservation/detail/${el.category}/${el.reservId}`, 
-                                 {state: { scrollTo: 'review' } })}
-                      }
-                     >
-                      <td>{new Date(el.date).toLocaleDateString()}</td>
-                      <td>{el.reservName}</td>
-                      <td>{el.description && el.description.length > 15 
-                           ? `${el.description.slice(0, 15)}...`
-                           : el.description}
-                      </td>
-                      <td>{el.like}회</td>
-                    </tr>
-                      )
-                    })}
-                  </tbody>
-                </table>                                
-              ) : null}
-            </li>
-          </ul>
-          <h2>내 Q&A</h2>
-          <ul>
-            {/* myQna */}
-            <li>
-              {myQnaList.length > 0 ? (
-                <table>
-                  <thead>
-                    <tr>
-                      <td>작성일</td>
-                      <td>제목</td>
-                      <td>답변상태</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {myQnaList.map((el) => {
-                      return (
-                        <tr
-                          key={el.id}
-                          onClick={() => navigate(`/community/qna/${el.id}`)}
-                        >
-                          <td onClick={(e) => e.stopPropagation()}>
-                            {el.date}
-                          </td>
-                          <td>{el.title}</td>
-                          <td
-                            onClick={(e) => e.stopPropagation()}
-                            className={`qnaStateBadge ${el.state === "답변완료" ? "done" : "wait"}`}
-                          >
-                            {el.state}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              ) : null}
             </li>
           </ul>
         </div>
