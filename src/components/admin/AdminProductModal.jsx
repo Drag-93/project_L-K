@@ -5,7 +5,7 @@ import axios from "axios";
 const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
   const [detail, setDetail] = useState(null);
   const productUrl = API_JSON_SERVER_URL;
-
+  const [imgError, setImgError] = useState(false);
   useEffect(() => {
     const openDetail = async () => {
       try {
@@ -52,17 +52,17 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
     }
   };
 
+  //  const onChangeFn = (e) => {
+  //   const newValue = name === "price" ? Number(value) : value; //가격은 숫자로 저장
+  //   const newValue = Number(value);
+  //   setDetail({ ...detail, [name]: newValue });
+  // }
   const onChangeFn = (e) => {
     const { name, value } = e.target;
     if (name !== "price") {
       setDetail({ ...detail, [name]: value });
     }
     return;
-    // {
-    //   // const newValue = name === "price" ? Number(value) : value; //가격은 숫자로 저장
-    //   const newValue = Number(value);
-    //   setDetail({ ...detail, [name]: newValue });
-    // }
   };
 
   const onChangeNumFn = (e) => {
@@ -75,6 +75,19 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
     {
       setDetail({ ...detail, [name]: value });
     }
+  };
+
+  const onChangImgFn = (e) => {
+    const imgFile = e.target.files?.[0];
+    if (!imgFile) return;
+    setDetail((prev) => ({ ...prev, img: imgFile.name }));
+    e.target.value = "";
+  };
+  const onChangeDescImgFn = (e) => {
+    const descImgFile = e.target.files?.[0];
+    if (!descImgFile) return;
+    setDetail((prev) => ({ ...prev, descImg: descImgFile.name }));
+    e.target.value = "";
   };
 
   const onUpdateFn = async (e) => {
@@ -103,6 +116,11 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
       }
     }
   };
+
+  useEffect(() => {
+    if (!detail) return;
+    setImgError(false);
+  }, [detail?.category, detail?.img]);
 
   const closeFn = (e) => {
     setAdminAddModal(false);
@@ -139,7 +157,9 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
         <span className="adminModal-close" onClick={closeFn}>
           X
         </span>
-        <div className="adminModal-title">{detail.name}</div>
+        <div className="adminModal-title">
+          {detail.id ? detail.name : "상품 등록"}
+        </div>
         <ul>
           <li>
             <label htmlFor="name">제품명</label>
@@ -165,22 +185,6 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
             />
           </li>
           <li>
-            <label htmlFor="img">상품이미지</label>
-            <input
-              type="text"
-              name="img"
-              id="img"
-              placeholder="특수문자(%#?&=+;)를 제외한 파일명(예: hydro1.jpg) "
-              value={detail.img}
-              onChange={onChangeFn}
-            />
-            <img
-              className="adminModal-productImg"
-              src={`/images/${detail.category}/${detail.img}`}
-              alt={detail.img}
-            />
-          </li>
-          <li>
             <label htmlFor="category">카테고리</label>
             <select
               name="category"
@@ -196,26 +200,76 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
               <option value="uv">UV</option>
             </select>
           </li>
-          <li className="description-row">
+          <li className="adminModal-img">
+            <label htmlFor="img">상품이미지</label>
+            <div className="adminModal-fileRow">
+              <input
+                type="text"
+                name="img"
+                id="img"
+                placeholder="특수문자(%#?&=+;)를 제외한 파일명(예: hydro1.jpg) "
+                value={detail.img}
+                onChange={onChangeFn}
+                className="adminModal-fileName"
+                // readOnly
+              />
+              <label className="adminModal-fileBtn" htmlFor="imgFile">
+                파일 선택
+              </label>
+              <input
+                id="imgFile"
+                type="file"
+                accept="image/*"
+                onChange={onChangImgFn}
+                className="adminModal-hidden"
+              />
+            </div>
+            {imgError ? (
+              <textarea className="errorBox">
+                이미지가 없습니다. 카테고리/파일명을 확인해주세요.
+              </textarea>
+            ) : (
+              <img
+                src={`/images/${detail.category}/${detail.img}`}
+                alt={detail.img}
+                onError={() => setImgError(true)}
+              />
+            )}
+          </li>
+
+          <li className="adminModal-description-row">
             <label htmlFor="description">상품설명</label>
             <textarea
               name="description"
               id="description"
               value={detail.description || ""}
               onChange={onChangeFn}
-              className="description-textarea"
+              className="adminModal-description-textarea"
             />
           </li>
           <li>
             <label htmlFor="descImg">상세정보 이미지</label>
-            <input
-              type="text"
-              name="descImg"
-              id="descImg"
-              placeholder="특수문자(%#?&=+;)를 제외한 파일명(예: hydro1_desc.jpg)"
-              value={detail.descImg}
-              onChange={onChangeFn}
-            />
+            <div className="adminModal-fileRow">
+              <input
+                type="text"
+                name="descImg"
+                id="descImg"
+                placeholder="특수문자(%#?&=+;)를 제외한 파일명(예: hydro1_desc.jpg)"
+                value={detail.descImg}
+                onChange={onChangeDescImgFn}
+                readOnly
+              />
+              <label className="adminModal-fileBtn" htmlFor="descImgFile">
+                파일 선택
+              </label>
+              <input
+                id="descImgFile"
+                type="file"
+                accept="image/*"
+                onChange={onChangImgFn}
+                className="adminModal-hidden"
+              />
+            </div>
           </li>
         </ul>
         <div className="adminModal-footer">

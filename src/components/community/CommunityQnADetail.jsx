@@ -233,7 +233,7 @@ const CommunityQnADetail = () => {
           <div className="QnADetailFooter-con">
             <button onClick={() => navigate(`/community/qna`)}>목록</button>
             {user?.userEmail === detail.writerEmail ||
-            user.role === "ROLE_ADMIN" ? (
+            user?.role === "ROLE_ADMIN" ? (
               <>
                 {!isEditing ? (
                   <>

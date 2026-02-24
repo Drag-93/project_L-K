@@ -23,8 +23,11 @@
 .adminHeader-con ul {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
+  gap: 5rem;
+}
+.adminHeader-con ul li {
 }
 
 /* 관리자 이름 */
@@ -56,4 +59,18 @@
 /* 클릭 효과 */
 .adminHeader-con button:active {
   transform: scale(0.96);
+}
+
+.adminHeader .adminHeader-con ul li img {
+  display: none;
+  width: 40px;
+  height: 60px;
+  color: #1f2a44;
+  margin: auto;
+}
+
+@media (max-width: 500px) {
+  .adminHeader .adminHeader-con ul li img {
+    display: block;
+  }
 }
