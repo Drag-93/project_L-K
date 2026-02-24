@@ -524,7 +524,7 @@
         "test",
         "test2@naver.com"
       ],
-      "description": "사용자 후기를 테스트합니다11111 수정을 테스트합니다.수정을 테스트합니다.수정을 테스트합니다."
+      "description": "사용자 후기를 테스트합니다11111"
     },
     {
       "id": "4e5c",
@@ -551,10 +551,9 @@
       "userName": "테스트",
       "date": "2026-02-20T00:45:52.285Z",
       "score": 3,
-      "like": 2,
+      "like": 1,
       "likedUsers": [
-        "test2@naver.com",
-        "test"
+        "test2@naver.com"
       ],
       "description": "사용자후기를 테스트합니다22222"
     },
@@ -572,58 +571,6 @@
         "test2@naver.com"
       ],
       "description": "사용자 후기를 테스트합니다22222"
-    },
-    {
-      "id": "922b",
-      "category": "hydro",
-      "productId": "89a71",
-      "productName": "Ceramide Complex Serum(세라마이드 콤플렉스 세럼)",
-      "userEmail": "test",
-      "userName": "test",
-      "date": "2026-02-24T02:16:48.556Z",
-      "score": 5,
-      "like": 0,
-      "likedUsers": [],
-      "description": "후기를 테스트 합니다 test 후기를 테스트 합니다 test 후기를 테스트 합니다 test 후기를 테스트 합니다 test 후기를 테스트 합니다 test 후기를 테스트 합니다 test 후기를 테스트 합니다 test 후기를 테스트 합니다 test 후기를 테스트 합니다 test 후기를 테스트 합니다 test 후기를 테스트 합니다 test 후기를 테스트 합니다 test 후기를 테스트 합니다 test "
-    },
-    {
-      "id": "15e3",
-      "category": "hydro",
-      "productId": "8971",
-      "productName": "Ceramide Complex Serum(세라마이드 콤플렉스 세럼)",
-      "userEmail": "admin",
-      "userName": "관리자",
-      "date": "2026-02-24T03:25:44.069Z",
-      "score": 5,
-      "like": 0,
-      "likedUsers": [],
-      "description": "ㅁㄴㅇㅎㅁㄷㅇ롣ㅁㄱㄹ호 3됴 243 ㅅ"
-    },
-    {
-      "id": "441a",
-      "category": "hydro",
-      "productId": "8971",
-      "productName": "Ceramide Complex Serum(세라마이드 콤플렉스 세럼)",
-      "userEmail": "admin",
-      "userName": "관리자",
-      "date": "2026-02-24T03:26:24.693Z",
-      "score": 5,
-      "like": 0,
-      "likedUsers": [],
-      "description": "ㅁㄴㅇ홉ㄷㅁ교ㅜ ㄷ5ㅑ7Iㅅㅎ7ㅕ;ㅑ;ㅅ7효ㅔ7ㅛ"
-    },
-    {
-      "id": "91b8",
-      "category": "hydro",
-      "productId": "5b94",
-      "productName": "리뷰테스트",
-      "userEmail": "test",
-      "userName": "test",
-      "date": "2026-02-24T03:28:08.157Z",
-      "score": 5,
-      "like": 0,
-      "likedUsers": [],
-      "description": "asdgaedrhfkt57ykdek"
     }
   ],
   "reservation": [
@@ -646,8 +593,7 @@
         "11:00",
         "14:00",
         "15:00"
-      ],
-      "timespan": "2"
+      ]
     },
     {
       "id": "2",
@@ -669,8 +615,7 @@
         "15:00",
         "16:00",
         "17:00"
-      ],
-      "timespan": "2"
+      ]
     },
     {
       "id": "3",
@@ -690,8 +635,7 @@
         "11:00",
         "14:00",
         "15:00"
-      ],
-      "timespan": "2"
+      ]
     },
     {
       "id": "4",
@@ -701,6 +645,7 @@
       "img": "immune_01.png",
       "description": "면역력 글루타치온(백옥주사) 진료입니다",
       "descImg": "상세페이지 이미지 경로",
+      "timespan": 1,
       "setshop": [
         "신촌",
         "강남",
@@ -712,8 +657,7 @@
         "12:00",
         "17:00",
         "16:00"
-      ],
-      "timespan": "1"
+      ]
     },
     {
       "id": "a38d",
@@ -772,32 +716,6 @@
         "test"
       ],
       "description": "진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다."
-    },
-    {
-      "id": "3f2e",
-      "category": "lifting",
-      "reservId": "1",
-      "reservName": "울쎄라",
-      "userEmail": "test",
-      "userName": "test",
-      "date": "2026-02-24T02:45:22.013Z",
-      "score": 5,
-      "like": 0,
-      "likedUsers": [],
-      "description": "후기등록을 테스트 합니다.후기등록을 테스트 합니다.후기등록을 테스트 합니다.후기등록을 테스트 합니다.후기등록을 테스트 합니다."
-    },
-    {
-      "id": "cf2e",
-      "category": "lifting",
-      "reservId": "1",
-      "reservName": "울쎄라",
-      "userEmail": "test2@naver.com",
-      "userName": "테스트",
-      "date": "2026-02-24T03:33:05.524Z",
-      "score": 5,
-      "like": 0,
-      "likedUsers": [],
-      "description": "후기를 테스트합니다. 후기를 테스트합니다. 후기를 테스트합니다. 후기를 테스트합니다. 후기를 테스트합니다. 후기를 테스트합니다. 후기를 테스트합니다. 후기를 테스트합니다. 후기를 테스트합니다. 후기를 테스트합니다. 후기를 테스트합니다. "
     }
   ],
   "shop": [
