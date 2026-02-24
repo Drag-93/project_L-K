@@ -405,7 +405,7 @@
   
   /* 로그인 버튼 (강조) */
   .auth-login-con button:nth-child(2) {
-    background-color: #007bff;
+    background-color: #5aa933;
     color: white;
     order: -1; /* 로그인을 가장 위로 올림 */
   }
@@ -485,7 +485,7 @@
   .auth-join-con select:focus,
   .auth-join-con textarea:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: #5aa933;
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
   }
   
@@ -517,7 +517,7 @@
   
   /* 회원가입 버튼 (메인 포인트 컬러) */
   .auth-join-con button:nth-child(1) {
-    background-color: #007bff;
+    background-color: #5aa933;
     color: white;
   }
   
@@ -542,31 +542,53 @@
 
 
 
+/*****************************************************************************
+    @AuthLayout
+****************************************************************************/
+.auth_list_wrap {
+  display: flex;
+  gap: 3rem;
+}
+.auth_aside_wrap {
+  width: 240px;
+}
+.auth_aside_wrap li {
 
-
+}
+.auth_aside_wrap li a {
+  font-size: 2.6rem;
+  display: flex;
+  height: 70px;
+  justify-content: center;
+  align-items: center;
+  color: #454545;
+  background: #eaf5ea;
+  font-weight: 500;
+  border-bottom: 1px solid #ccc;
+}
+.auth_aside_wrap li a.active {
+  background: #556a4b;
+  color: #fff;
+  font-weight: 600;
+}
 
 /*****************************************************************************
     @AuthMypage
 ****************************************************************************/
 /* 전체 컨테이너 */
 .mypage_inner {
+  flex: 1;
   display: flex;
   justify-content: center;
   min-height: calc(100vh - 100px); /* 헤더 높이를 제외한 중앙 배치 */
   padding: 40px 20px;
-  background-color: #f4f7f9;
   align-items: flex-start;
   gap: 25px;
 }
 
 /* 마이페이지 화이트 박스 */
 .mypage_wrap {
-  width: 100%;
-  max-width: 500px;
-  background: #ffffff;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  flex: 1;
 }
 
 .mypage_wrap h2 {
@@ -582,116 +604,6 @@
   left: 50%;
   transform: translateX(-50%);
 }
-
-.mypage_wrap ul {
-  list-style: none;
-  padding: 0;
-}
-
-.mypage_wrap li {
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.mypage_wrap li b {
-  font-size: 14px;
-  color: #666;
-  margin-left: 2px;
-}
-
-/* 입력 필드 공통 */
-.mypage_wrap input,
-.mypage_wrap select,
-.mypage_wrap textarea {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #e1e1e1;
-  border-radius: 8px;
-  font-size: 16px;
-  background-color: #fafafa;
-  transition: all 0.3s ease;
-  box-sizing: border-box;
-}
-
-/* 포커스 효과 */
-.mypage_wrap input:focus,
-.mypage_wrap select:focus,
-.mypage_wrap textarea:focus {
-  outline: none;
-  border-color: #007bff;
-  background-color: #fff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-}
-
-/* 이메일 등 읽기전용(readonly) 스타일 */
-.mypage_wrap input[readonly] {
-  background-color: #eee;
-  color: #888;
-  cursor: not-allowed;
-}
-
-/* 특이사항(textarea) */
-.mypage_wrap textarea {
-  height: 120px;
-  resize: none;
-}
-
-/* 버튼 그룹 */
-.mypage_wrap li:last-child {
-  flex-direction: row;
-  gap: 12px;
-  margin-top: 30px;
-}
-
-.mypage_wrap button {
-  flex: 1;
-  padding: 15px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.2s, background-color 0.2s;
-}
-
-/* 수정 버튼 (Main) */
-.mypage_wrap button:first-child {
-  background-color: #007bff;
-  color: #fff;
-}
-
-.mypage_wrap button:first-child:hover {
-  background-color: #0056b3;
-}
-
-/* 삭제 버튼 (Danger) */
-.mypage_wrap button:last-child {
-  background-color: #f8f9fa;
-  color: #dc3545;
-  border: 1px solid #dc3545;
-}
-
-.mypage_wrap button:last-child:hover {
-  background-color: #dc3545;
-  color: #fff;
-}
-
-.mypage_wrap button:active {
-  transform: scale(0.98);
-}
-
-/* 반응형 */
-@media (max-width: 480px) {
-  .mypage_wrap {
-    padding: 25px 20px;
-  }
-  .mypage_wrap li:last-child {
-    flex-direction: column;
-  }
-}
-
 
 
 /*****************************************************************************
@@ -1499,3 +1411,86 @@
   .paylist_info {padding-right: 0;}
   .paylist_state_badge {top: 17px; font-size: 12px; padding: 4px 5px;}
 }
+
+
+
+/*****************************************************************************
+    @community
+****************************************************************************/
+.community_wrap .aside_wrap {padding: 0;}
+.community_wrap .list_search_wrap {padding-top: 2rem;}
+.community_title {text-align: center; color: #5aa933; font-size: 4.2rem; font-weight: 700; padding: 4.5rem 0 0 0;}
+
+.notice_list {
+  width: 100%;
+  overflow-x: auto;
+  min-height: 320px;
+}
+
+.notice_list table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 2px solid #556a4b; 
+  font-size: 15px;
+  
+}
+
+/* 헤더 영역 */
+.notice_list thead tr {
+  background-color: #ebf7ed;
+  border-top: 2px solid #556a4b;
+  border-bottom: 1px solid #aaa;
+}
+
+.notice_list thead td {
+  padding: 15px 10px;
+  color: #556a4b;
+  font-weight: 700;
+  text-align: center;
+}
+
+.notice_list tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.notice_list tbody tr:hover {
+  background-color: #fafafa;
+}
+
+.notice_list tbody td {
+  padding: 16px 10px;
+  color: #444;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  line-height: 1.5;
+}
+
+.notice_list tbody td:nth-child(2) {
+  text-align: left;
+  padding-left: 20px;
+  color: #333;
+  font-weight: 500;
+  max-width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notice_list tbody td:last-child {
+  color: #888;
+}
+
+
+@media (max-width: 768px) {
+  .notice_list thead td:nth-child(1), 
+  .notice_list tbody td:nth-child(1),
+  .notice_list thead td:nth-child(4),
+  .notice_list tbody td:nth-child(4) {
+    display: none;
+  }
+  
+  .notice_list table {
+    font-size: 14px;
+  }
+}
+

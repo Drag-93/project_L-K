@@ -1,11 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
 
 const CommunityNotice = () => {
   const [noticeList, setNoticeList] = useState([]);
   const url = API_JSON_SERVER_URL;
+
+  // 검색툴바의 활성화 상태 관리
+  const [isSearchActive, setIsSearchActive] = useState(false);
 
   //검색변수
   const [searchText, setSearchText] = useState("");
@@ -16,6 +19,17 @@ const CommunityNotice = () => {
 
   //정렬기능변수
   const [sortType, setSortType] = useState("dateN");
+  const [isOpen, setIsOpen] = useState(false); // 드롭다운 열림 상태
+      
+  // 정렬 옵션 데이터 배열화
+  const sortOptions = [
+    { value: "dateN", label: "최신순" },
+    { value: "dateP", label: "오래된순" },
+    { value: "viewN", label: "조회수순" },
+    { value: "viewP", label: "조회수역순" },
+  ];
+
+  const currentSortLabel = sortOptions.find(opt => opt.value === sortType)?.label;
 
   //검색, 정렬 기능
   const filtered = useMemo(() => {
@@ -117,75 +131,132 @@ const CommunityNotice = () => {
 
   return (
     <>
-      <div className="notice">
-        <div className="notice-con">
-          <h1>공지사항</h1>
-          <div className="toolbar">
-            <input
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              placeholder="검색어 입력"
-            />
+      <div className="inner2">
+        <div className="community_wrap">
+          <div className="aside_wrap">
+            <ul>
+              <li><NavLink to={`/community/notice`}>공지사항</NavLink></li>
+              <li><NavLink to={`/community/faq`}>자주묻는질문</NavLink></li>
+              <li><NavLink to={`/community/qna`}>Q&A</NavLink></li>
+            </ul>
           </div>
-          <div className="roleSelector">
-            <select
-              value={sortType}
-              onChange={(e) => setSortType(e.target.value)}
-            >
-              <option value="dateN">최신순</option>
-              <option value="dateP">오래된순</option>
-              <option value="viewN">조회수순</option>
-              <option value="viewP">적은조회수순</option>
-            </select>
-          </div>
-          <table>
-            <thead>
-              <tr>
-                <td>글번호</td>
-                <td>제목</td>
-                <td>작성일</td>
-                <td>조회수</td>
-              </tr>
-            </thead>
-            <tbody>
-              {pagedList &&
-                pagedList.map((el) => {
-                  return (
-                    <tr key={el.id}>
-                      <td>{el.no}</td>
-                      <td
-                        style={{ cursor: "pointer" }}
-                        onClick={() => handleTitleClick(el)}
-                      >
-                        {el.title}
-                      </td>
-                      <td>{getKoreaDate(el.date)}</td>
-                      <td>{el.viewrate || 0}</td>
-                    </tr>
-                  );
-                })}
-            </tbody>
-          </table>
-          <div className="QnAFooter">
-            <div className="QnAFooter-con">
-              <div className="QnAPaging">
-                <button
-                  onClick={() => setPage((p) => Math.max(1, p - 1))}
-                  disabled={page === 1}
-                >
-                  이전
-                </button>
-                <span>
-                  {page}/{totalPages}
+          <h3 className="community_title">
+            공지사항
+          </h3>
+          <div className="list_search_wrap">
+            <span className="list_search_length">게시물 <b>{noticeList.length}</b>개</span>
+            <div className="list_search_box">
+              <div className={`toolbar ${isSearchActive ? "active" : ""}`} onClick={() => setIsSearchActive(true)}>
+                <input
+                  value={searchText}
+                  onChange={(e) => setSearchText(e.target.value)}
+                  placeholder="검색어 입력"
+                />
+                <span className="list_search_btn"onClick={(e) => {
+                    e.stopPropagation();
+                    setIsSearchActive(false);
+                    setSearchText("");
+                  }}>
+                  <img src="/images/icon_close_w.svg" />
                 </span>
-                <button
-                  onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                  disabled={page === totalPages}
+              </div>
+              <div className="custom-select-container">
+                <div 
+                  className={`select-selected ${isOpen ? "select-arrow-active" : ""}`}
+                  onClick={() => setIsOpen(!isOpen)}
                 >
-                  다음
-                </button>
+                  {currentSortLabel}
+                  <img src="/images/icon_filter_w.svg" />
+                </div>
+                {isOpen && (
+                  <ul className="select-items">
+                    {sortOptions.map((opt) => (
+                      <li 
+                        key={opt.value}
+                        className={sortType === opt.value ? "same-as-selected" : ""}
+                        onClick={() => {
+                          setSortType(opt.value);
+                          setIsOpen(false);
+                        }}
+                      >
+                        {opt.label}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </div>
+          </div>
+          <div className="notice_list">
+            <table>
+              <thead>
+                <tr>
+                  <td>글번호</td>
+                  <td>제목</td>
+                  <td>작성일</td>
+                  <td>조회수</td>
+                </tr>
+              </thead>
+              <tbody>
+                {pagedList &&
+                  pagedList.map((el) => {
+                    return (
+                      <tr key={el.id}>
+                        <td>{el.no}</td>
+                        <td
+                          style={{ cursor: "pointer" }}
+                          onClick={() => handleTitleClick(el)}
+                        >
+                          {el.title}
+                        </td>
+                        <td>{getKoreaDate(el.date)}</td>
+                        <td>{el.viewrate || 0}</td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
+          </div>
+          <div className="paging_wrap">
+            <button
+              onClick={() => setPage(1)}
+              disabled={page === 1}
+              className="paging_double first"
+            >
+              &lt;&lt; {/* 또는 '맨처음' */}
+            </button>
+            <button
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={page === 1}
+              className="paging_one prev"
+            >
+              이전
+            </button>
+            <ul className="page_numbers">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+                <li
+                  key={num}
+                  onClick={() => setPage(num)}
+                  className={page === num ? "active" : ""}
+                >
+                  {num}
+                </li>
+              ))}
+            </ul>
+            <button
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={page === totalPages}
+              className="paging_one next"
+            >
+              다음
+            </button>
+            <button
+              onClick={() => setPage(totalPages)}
+              disabled={page === totalPages}
+              className="paging_double last"
+            >
+              &gt;&gt; {/* 또는 '맨끝' */}
+            </button>
           </div>
         </div>
       </div>
