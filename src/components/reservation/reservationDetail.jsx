@@ -20,6 +20,13 @@ const reserveData={
   settime:[]
 }
 
+const categoryMap = {
+  lifting: "리프팅",
+  faceline: "페이스라인",
+  regen: "피부재생",
+  immune: "면역증강"
+};
+
 const ReservationDetail = () => {
   
   const isState=useSelector(state=>state.input.isState)
@@ -129,7 +136,7 @@ const ReservationDetail = () => {
   const handleTimeSelect = async (selectedTime) => {
 
     if (!reserve.shop) {
-      alert("진료받으실 병원을 먼저 선택해주세요.");
+      alert("진료받으실 지점을 먼저 선택해주세요.");
       return;
     }
 
@@ -176,11 +183,11 @@ const ReservationDetail = () => {
 
   const onPaymentFn = async () => {
     if (!reserve.shop || !reserve.date || !reserve.time) {
-      alert('병원, 예약 날짜와 시간을 모두 선택해주세요.');
+      alert('지점, 예약 날짜와 시간을 모두 선택해주세요.');
       return;
     }
     
-    if (!window.confirm(`${reserve.shop}점 병원에서 ${reserve.date} ${reserve.time}에 예약하시겠습니까?`)) return;
+    if (!window.confirm(`${reserve.shop}점에서 ${reserve.date} ${reserve.time}에 예약하시겠습니까?`)) return;
 
     // if (isState) {
     //   alert('로그인해주세요.');
@@ -215,21 +222,19 @@ const ReservationDetail = () => {
     <>
     <div className="reserv-detail">
       <div className="reserv-detail-con">
-        <h1>진료 상세페이지</h1>
+        <h1>진료예약 &gt; {categoryMap[reserve.category] || reserve.category}</h1>
         <div className="detail-top">
           <div className="detail-top-left">
             <img src={`/images/${reserve.category}/${reserve.img}`} alt={reserve.img} />
           </div>
           <div className="detail-top-right">
             <ul>
-              <li>진료명: {reserve.name}</li>
-              <li>소요시간: {reserve.timespan}시간</li>
-              <li>가격: {reserve.price.toLocaleString()}원</li>
-              <li>진료정보: {reserve.description}</li>
-
-              {/* 1. 병원 선택 (항상 표시) */}
+              <li>{reserve.name}</li>
+              <li>최대 {reserve.timespan}시간 소요 / 1회 {reserve.price.toLocaleString()}원</li>
+              <li>{reserve.description}</li>
+              {/* 1. 지점 선택 (항상 표시) */}
               <li>
-                <p>진료병원 선택</p>
+                <p>지점 선택</p>
                 <div className="shop-btns">
                   {availableShops.map(s => (
                     <button 
@@ -243,7 +248,7 @@ const ReservationDetail = () => {
                 </div>
               </li>
 
-              {/* 2. 날짜 선택 (병원을 선택해야 나타남) */}
+              {/* 2. 날짜 선택 (지점을 선택해야 나타남) */}
               {reserve.shop ? (
                 <li className="fade-in">
                   <p>날짜 선택</p>
@@ -266,7 +271,7 @@ const ReservationDetail = () => {
               {/* 3. 시간 선택 (날짜를 선택해야 나타남) */}
               {reserve.shop && reserve.date ? (
                 <li className="time-selection fade-in">
-                  <p>예약 시간 선택:</p>
+                  <p>예약 시간 선택</p>
                   <div className="time-btns">
                     {availableTimes.map(t => {
                       const isBooked = bookedTimes.includes(t);

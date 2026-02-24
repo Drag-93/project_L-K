@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { API_JSON_SERVER_URL } from '../../api/commonApi'
-import { useEffect } from 'react'
 import axios from 'axios'
 
 const ProdDetailReviewModal = ({setReviewAddModal, user, productId, onSuccess}) => {
@@ -9,8 +8,6 @@ const ProdDetailReviewModal = ({setReviewAddModal, user, productId, onSuccess}) 
     setReviewAddModal(false)
   }
   
-  // const state=useSelector(state=>state)
-  // console.log("전체스토어 구조", state)
   const url=API_JSON_SERVER_URL
   const [product, setProduct]=useState([])
   useEffect(()=>{

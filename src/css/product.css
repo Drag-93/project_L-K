@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-/* =========== ProdDetail ==============*/
-=======
 /*****************************************************************************
     @ProdDetail
 ****************************************************************************/
->>>>>>> 57ef5a219f581e29979a29ece8ca94967d7bd9e5
 
 .prod-detail {
   display: flex;
@@ -15,22 +11,17 @@
   background-color: #f9f9f9;
 }
 
-<<<<<<< HEAD
-.prod-detail .prod-detail-con h1 {
-=======
 .prod-detail .prod-detail-con {
   width: 100%;
   max-width: 1200px;
 }
 
-/* .prod-detail .prod-detail-con h1 {
->>>>>>> 57ef5a219f581e29979a29ece8ca94967d7bd9e5
-  font-size: 32px;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 50px;
-  color: #1a1a1a;
-} */
+.prod-detail-con h1 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #2d3748;
+  padding-bottom: 15px;
+}
 
 .prod-detail-con .detail-top {
   display: flex;
@@ -41,80 +32,76 @@
   align-items: stretch;
 }
 
-<<<<<<< HEAD
-.prod-detail-con .detail-top .detail-top-left {
-=======
 .detail-top .detail-top-left {
->>>>>>> 57ef5a219f581e29979a29ece8ca94967d7bd9e5
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-<<<<<<< HEAD
-.prod-detail-con .detail-top .detail-top-left img {
-=======
 .detail-top .detail-top-left img {
->>>>>>> 57ef5a219f581e29979a29ece8ca94967d7bd9e5
   width: 100%;
-  max-width: 400px;
+  max-width: 800px;
   height: auto;
   border-radius: 12px;
   object-fit: cover;
 }
 
-.prod-detail-con .detail-top .right {
+.detail-top .right {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-<<<<<<< HEAD
-.prod-detail-con .detail-top .right .detail-top-right1 ul {
-=======
 .detail-top .right .detail-top-right1 ul {
->>>>>>> 57ef5a219f581e29979a29ece8ca94967d7bd9e5
   list-style: none;
   padding: 0;
-  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
-<<<<<<< HEAD
-.prod-detail-con .detail-top .right .detail-top-right1 ul li {
-=======
-.detail-top .right .detail-top-right1 ul li {
->>>>>>> 57ef5a219f581e29979a29ece8ca94967d7bd9e5
-  font-size: 16px;
-  color: #4a5568;
+.detail-top .right .detail-top-right1 ul li:first-child {
+  font-size: 25px;
+  font-weight: 600;
+  color: black;
+  text-align: start;
+  display: flex;
+  padding-bottom: 20px;
+}
+
+.detail-top .right .detail-top-right1 ul li:nth-child(2) {
+  font-size: 22px;
+  font-weight: 600;
+  color: black;
   text-align: start;
   display: flex;
 }
 
-<<<<<<< HEAD
-.prod-detail-con .detail-top .right .detail-top-right2 .select {
-=======
-.detail-top .right .detail-top-right1 ul li span:first-child {
-  flex: 0 0 80px;
+.detail-top .right .detail-top-right1 ul li:nth-child(3) {
+  border-top: 1px solid #e2e8f0;
+  padding: 20px 50px 80px 0;
+  font-size: 15px;
+  color: #2d3748;
+  text-align: start;
+  line-height: 1.6;
 }
 
-.detail-top .right .detail-top-right1 ul li span:last-child {
-  line-height: 1.5;
-}
-
-.detail-top .right .detail-top-right2,
-.detail-top .right .detail-top-right2 ul {
+.detail-top .right .detail-top-right2 {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
+.detail-top .right .detail-top-right2 ul {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: flex-end;
+}
+
 .detail-top .right .detail-top-right2 .select {
->>>>>>> 57ef5a219f581e29979a29ece8ca94967d7bd9e5
   display: flex;
   align-items: center;
   border-top: 1px solid #e2e8f0;
@@ -122,12 +109,6 @@
   gap: 20px;
 }
 
-<<<<<<< HEAD
-.prod-detail-con .detail-top .right .detail-top-right2 .select > span:first-child {
-  flex: 1;
-  min-width: 0;
-  font-weight: 500;
-=======
 .detail-top .right .detail-top-right2 .select span:first-child {
   flex: 1;
   text-align: left;
@@ -136,30 +117,29 @@
   min-width: 0;
   font-size: 15px;
   font-weight: 500;
-  text-align: left;
->>>>>>> 57ef5a219f581e29979a29ece8ca94967d7bd9e5
   color: #2d3748;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-<<<<<<< HEAD
-.prod-detail-con .detail-top .right .detail-top-right2 .select .counter-wrapper {
-=======
+.detail-top .right .detail-top-right2 .select span:nth-child(3) {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: right;
+  color: #2d3748;
+}
+
 .detail-top .right .detail-top-right2 .select .counter-wrapper {
->>>>>>> 57ef5a219f581e29979a29ece8ca94967d7bd9e5
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-<<<<<<< HEAD
-.prod-detail-con .detail-top .right .detail-top-right2 .select .counter-wrapper .counter-display {
-=======
 .detail-top .right .detail-top-right2 .select .counter-wrapper span.counter-display {
   display: inline-block;
->>>>>>> 57ef5a219f581e29979a29ece8ca94967d7bd9e5
   min-width: 40px;
   text-align: center;
   font-size: 14px;
@@ -171,25 +151,15 @@
   background: #fff;
 }
 
-<<<<<<< HEAD
-.prod-detail-con .detail-top .right .detail-top-right2 .select .counter-wrapper .counter-button {
-=======
 .detail-top .right .detail-top-right2 .select .counter-wrapper .counter-button {
->>>>>>> 57ef5a219f581e29979a29ece8ca94967d7bd9e5
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-<<<<<<< HEAD
-.prod-detail-con .detail-top .right .detail-top-right2 .select .counter-wrapper .counter-button .counter-btn {
-  width: 28px;
-  height: 22px;
-=======
 .detail-top .right .detail-top-right2 .select .counter-wrapper .counter-button .counter-btn {
   width: 22px;
   height: 17px;
->>>>>>> 57ef5a219f581e29979a29ece8ca94967d7bd9e5
   border: 1px solid #cbd5e0;
   background: #fff;
   color: #718096;
@@ -202,60 +172,17 @@
   border-radius: 3px;
 }
 
-<<<<<<< HEAD
-.prod-detail-con .detail-top .right .detail-top-right2 .select .counter-wrapper .counter-button .counter-btn:hover {
-=======
 .detail-top .right .detail-top-right2 ul li:first-child{
   box-sizing: border-box;
   margin-bottom: auto;
 }
 
 .detail-top .right .detail-top-right2 ul li .select .counter-wrapper .counter-button .counter-btn:hover {
->>>>>>> 57ef5a219f581e29979a29ece8ca94967d7bd9e5
   background: #f7fafc;
   border-color: #a0aec0;
   color: #2d3748;
 }
 
-<<<<<<< HEAD
-.prod-detail-con .detail-top .right .detail-top-right2 .select .counter-wrapper .counter-button .counter-btn:active {
-  background: #edf2f7;
-}
-
-.prod-detail-con .detail-top .right .detail-top-right2 li:nth-child(2) {
-  min-width: 100px;
-  text-align: right;
-  font-weight: 600;
-  color: #1a202c;
-}
-
-.prod-detail-con .detail-top .right .detail-top-right2 .select > span:last-child {
-  min-width: 100px;
-  text-align: right;
-  font-weight: 600;
-  color: #1a202c;
-}
-
-.prod-detail-con .detail-top .right .detail-top-right2 li:last-child button {
-  width: 100%;
-  padding: 14px;
-  background: #2d3748;
-  color: #fff;
-  font-weight: 600;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.prod-detail-con .detail-top .right .detail-top-right2 li:last-child button:hover {
-  background: #1a202c;
-}
-
-
-.prod-detail-con .detail-bottom ul {
-  display: flex;
-=======
 .detail-top .right .detail-top-right2 ul li .select .counter-wrapper .counter-button .counter-btn:active {
   background: #edf2f7;
 }
@@ -305,24 +232,19 @@
   background: #448027;
 }
 
+/* 하단 상세정보&후기 */
 .detail-bottom ul {
   display: flex;
   justify-content: center;
->>>>>>> 57ef5a219f581e29979a29ece8ca94967d7bd9e5
   list-style: none;
   padding: 0;
   margin-top: 30px;
-  gap: 30px; /* 상세정보와 후기 사이의 간격 */
-  border-bottom: 1px solid #e2e8f0; /* 하단 구분선 */
+  gap: 30px;
+  border-bottom: 1px solid #e2e8f0;
 }
 
-<<<<<<< HEAD
-.prod-detail-con .detail-bottom .bottom-menu {
-  font-size: 15px;
-=======
 .detail-bottom li.bottom-menu {
   font-size: 17px;
->>>>>>> 57ef5a219f581e29979a29ece8ca94967d7bd9e5
   font-weight: 600;
   color: #53584e;
   cursor: pointer;
@@ -330,55 +252,16 @@
   padding-bottom: 10px;
 }
 
-<<<<<<< HEAD
-.prod-detail-con .detail-bottom ul .bottom-menu span:hover {
-  color: #2d3748;
-}
-
-.prod-detail-con .detail-bottom ul .bottom-menu.active {
-  color: black;
-=======
 .detail-bottom ul li.bottom-menu:hover {
   color: #0b1406;
 }
 
 .detail-bottom ul li.bottom-menu.active {
   color: #0b1406;
->>>>>>> 57ef5a219f581e29979a29ece8ca94967d7bd9e5
   font-weight: bold;
   border-bottom: 2px solid #5aa933;
 }
 
-
-@media (max-width: 768px) {
-  .prod-detail-con .detail-top {
-    flex-direction: column;
-    padding: 20px;
-  }
-
-<<<<<<< HEAD
-  .prod-detail-con .detail-top .detail-top-left img {
-=======
-  .detail-top .detail-top-left img {
->>>>>>> 57ef5a219f581e29979a29ece8ca94967d7bd9e5
-    max-width: 100%;
-  }
- 
-  .detail-top .right {
-    flex-direction: column;
-  }
-
-  .detail-top .detail-top-right2,
-  .prod-detail-con .detail-top .detail-top-right2 ul {
-    flex-direction: column;
-    flex: 1;
-  }
-
-  .prod-detail-con .detail-bottom ul {
-    flex-direction: column;
-    gap: 15px;
-  }
-}
 
 /*****************************************************************************
     @ProdDetailReview
@@ -410,15 +293,6 @@
   font-weight: 700;
   color: #0b1406;
   list-style: none;
-<<<<<<< HEAD
-}
-
-.totalscore p.totalno {
-  font-size: 20px;
-  color: black;
-  list-style: none;
-  margin-top: 5px;
-=======
   margin-bottom: 15px;
   display: flex;
   align-items: center;
@@ -435,7 +309,6 @@
   font-weight: 500;
   color: #0b1406;
   list-style: none;
->>>>>>> 57ef5a219f581e29979a29ece8ca94967d7bd9e5
 }
 
 /* 리뷰 리스트 헤더 */
@@ -652,7 +525,7 @@
 }
 
 /* 모달 박스 */
-.review-modal-con {
+.review-modal .review-modal-con {
   background: #fff;
   width: 100%;
   max-width: 800px;
@@ -663,14 +536,14 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-.review-modal-con h1 {
+.review-modal .review-modal-con h1 {
   box-sizing: border-box;
   padding-bottom: 20px;
   font-size: 20px;
   text-align: center;
 }
 
-.review-modal-con span.close {
+.review-modal .review-modal-con span.close {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -680,49 +553,38 @@
 }
 
 /* 작성자 정보 */
-.review-modal-con .reviewer p{
+.review-modal .review-modal-con .reviewer p{
   font-weight: 600;
-  font-size: 15px;
+  font-size: 16px;
   color: #4a5568;
   padding-bottom: 10px;
 }
 
 /* 입력 리스트 스타일 */
-.review-modal-con ul {
+.review-modal .review-modal-con ul {
   list-style: none;
   padding: 0;
   display: flex;
   flex-direction: column;
 }
 
-.review-modal-con ul li {
-  margin-bottom: 20px;
-}
-
-.review-modal-con label {
+.review-modal-con label[for="score"],
+.review-modal-con label[for="textarea"] {
   display: block;
-  margin-bottom: 8px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 15px;
+  padding-bottom: 7px;
 }
 
 /* 평점 라디오 버튼 */
-.score-selector {
+.review-modal-con ul li.score-selector {
   display: flex;
   align-items: center;
-  gap: 15px;
-}
-
-.score-selector label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-  margin: 0;
+  gap: 10px;
 }
 
 /* 상세후기 텍스트 영역 */
-textarea {
+.review-modal-con ul li textarea {
   width: 100%;
   height: 300px;
   padding: 12px;
@@ -732,19 +594,29 @@ textarea {
   font-family: inherit;
 }
 
-textarea:focus {
+.review-modal-con ul li textarea:focus {
   outline: none;
   border-color: #2d3748;
 }
 
 /* 글자수 표시 */
-.review-modal-con li p {
+.review-modal-con ul li p {
   text-align: right;
   font-size: 12px;
   color: #a0aec0;
-  margin-top: 5px;
 }
 
+/* 후기등록 버튼 */
+.review-modal-con button{
+  display: block;
+  margin-left: auto;
+  background: #1e7ce0;
+  color: white;
+  padding: 7px 14px;
+  border-radius: 12px;
+  font-size: 13px;  
+  cursor: pointer;
+}
 
 /*****************************************************************************
     @ProdDetailDesc
@@ -757,4 +629,137 @@ textarea:focus {
 
 .prod-detail-desc-con img{
   width: 100%;
+}
+
+
+/* -------------------------------------------------------------------------
+   @반응형 레이아웃
+------------------------------------------------------------------------- */
+
+/* ------------------------------------------------
+   화면 1200px 이하
+------------------------------------------------ */
+@media (max-width: 1200px) {
+
+  /* 상단 상세 영역 padding/간격 축소 */
+  .prod-detail-con .detail-top {
+    gap: 30px;
+    padding: 30px;
+  }
+
+  /* 상세 이미지 최대 폭 조정 */
+  .detail-top .detail-top-left img {
+    max-width: 700px;
+  }
+
+  /* 리뷰 컨테이너 padding 조정 */
+  .detail-review {
+    padding: 0 15px;
+    margin: 30px auto;
+  }
+}
+
+/* ------------------------------------------------
+   화면 768px 이하
+------------------------------------------------ */
+@media (max-width: 768px) {
+
+  /* 상세 영역 세로 배치 */
+  .prod-detail-con .detail-top {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .detail-top .detail-top-left,
+  .detail-top .right {
+    width: 100%;
+  }
+
+  .detail-top .detail-top-left img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 리뷰 영역 padding 축소 */
+  .detail-review {
+    padding: 0 10px;
+    margin: 20px auto;
+  }
+
+  /* 하단 상세정보 & 후기 메뉴 세로 배치 */
+  .detail-bottom ul {
+    flex-direction: column;
+    gap: 15px;
+    border-bottom: none;
+  }
+
+  /* 예약 선택 버튼 및 counter flex 조정 */
+  .detail-top-right2 ul li:last-child button,
+  .detail-top-right2 .select .counter-wrapper span.counter-display {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  /* 후기 작성 버튼 폭 조정 */
+  .detail-review-con .reviews > button {
+    width: 100%;
+    font-size: 15px;
+  }
+}
+
+/* ------------------------------------------------
+   화면 480px 이하 (모바일)
+------------------------------------------------ */
+@media (max-width: 480px) {
+
+  /* 상세 영역 padding 최소화 */
+  .prod-detail-con .detail-top {
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .detail-top .right ul li:nth-child(2),
+  .detail-top-right2 .select span:last-child {
+    font-size: 13px;
+  }
+
+  /* counter 버튼 축소 */
+  .detail-top-right2 .select .counter-wrapper span.counter-display {
+    min-width: 30px;
+    font-size: 12px;
+    padding: 8px 0;
+  }
+
+  .detail-top-right2 .select .counter-wrapper .counter-button .counter-btn {
+    width: 18px;
+    height: 14px;
+    font-size: 10px;
+  }
+
+  /* 후기 영역 축소 */
+  .detail-review-con .reviews ul li {
+    padding: 12px 15px;
+    font-size: 14px;
+  }
+
+  .detail-review-con .reviews > button {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+
+  /* 하단 메뉴 글자 축소 */
+  .detail-bottom ul li.bottom-menu {
+    font-size: 15px;
+  }
+
+  /* 모달 영역 축소 */
+  .review-modal .review-modal-con {
+    width: 95%;
+    padding: 20px;
+    min-height: auto;
+  }
+
+  .review-modal .review-modal-con ul li textarea {
+    height: 200px;
+  }
 }

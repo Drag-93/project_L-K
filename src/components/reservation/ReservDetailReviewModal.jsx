@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { API_JSON_SERVER_URL } from '../../api/commonApi'
 
 const ReservDetailReviewModal = ({setReviewAddModal, user, reservId, onSuccess}) => {
@@ -7,9 +7,7 @@ const ReservDetailReviewModal = ({setReviewAddModal, user, reservId, onSuccess})
   const closeFn=()=>{
     setReviewAddModal(false)
   }
-  
-  // const state=useSelector(state=>state)
-  // console.log("전체스토어 구조", state)
+
   const url=API_JSON_SERVER_URL
   const [reservation, setReservation]=useState([])
   useEffect(()=>{
@@ -65,16 +63,23 @@ const ReservDetailReviewModal = ({setReviewAddModal, user, reservId, onSuccess})
         </div>
         <ul>
           <li className='score-selector'>
-            <label htmlFor="score">평점:</label>
-            {[1,2,3,4,5].map((num)=>(
-            <span key={num}>
-              <input type="radio" name="score" id="score"
-              value={num}
-              checked={score === num}
-              onChange={(e) => setScore(Number(e.target.value))} />
-              {num}점
-            </span>
-            ))}
+            <label htmlFor="score">점수:</label>
+            <div className="star-rating">
+              {[1,2,3,4,5].map((num)=>(
+                <label key={num} className='star-label'>
+                  <input type="radio" name="score" id="score"
+                                    value={num}
+                                    checked={score === num}
+                         onChange={(e) => setScore(Number(e.target.value))}
+                  />
+                  <img src={num <= score
+                  ? "/images/star_filled.svg"
+                  : "/images/star_empty.svg"}
+                  alt="star"
+                  className="star-img"/>
+                </label>
+              ))}
+            </div>
           </li>
           <li>
             <label htmlFor="textarea">상세후기:</label>
