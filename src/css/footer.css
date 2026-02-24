@@ -1,69 +1,115 @@
 .footer {
   width: 100%;
-  height: 240px;
-  padding: 60px 0;
+  height: auto;
+  padding: 10px 0;
   background-color: #645d5d; /* 배경색 유지 */
   color: #fff; /* 전체 텍스트를 흰색 계열로 변경하여 대비 상승 */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid #444;
+  border-left: 1px solid #444;
 }
 
 .footer-con {
-  width: 1400px;
+  width: 1600px;
   height: auto;
   display: flex;
-  flex-direction: column;
-  gap: 30px; /* 각 구역(top, bottom, last) 사이의 간격 */
+  flex-direction: row;
+  gap: 30px; /* 각 구역(left, right, last) 사이의 간격 */
 }
 
-/* 1. 상단: 사업자 정보 영역 */
-.footer-top ul {
-  text-align: center;
-  list-style: none;
-  padding: 0;
-}
-
-.footer-top ul li {
-  font-size: 14px;
-  line-height: 1.8;
-  color: #ddd; /* 약간 연한 회색으로 정보 텍스트 처리 */
-}
-
-/* 2. 중간: 메인 링크 메뉴 */
-.footer-bottom {
+.footer-left{
+  width: 500px;
+  height: 200px;
   display: flex;
-  justify-content: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.1); /* 얇은 구분선 */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  justify-content: start;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
   padding: 15px 0;
 }
 
-.footer-bottom ul {
+/* 1. 상단: 사업자 정보 영역 */
+.footer-left ul {
+  text-align: start;
   list-style: none;
-  display: flex;
-  gap: 40px;
   padding: 0;
 }
 
-.footer-bottom ul li a {
+.footer-left ul li {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #ddd; /* 약간 연한 회색으로 정보 텍스트 처리 */
+}
+.footer-left ul li img {
+  width: 200px;
+  height: 43px;
+}
+
+/* 2. 중간: 메인 링크 메뉴 */
+.footer-right {
+  width: 1100px;
+  display: flex;
+  justify-content: start;
+}
+
+.footer-right ul {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 30px;
+  padding: 0;
+}
+
+
+.footer-right ul li img{
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+.footer-right .footer-info{
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-right .footer-notice{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.footer-right ul li{
+  width: 400px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.footer-right ul li a {
   color: #fff; /* 링크는 선명하게 */
   text-decoration: none;
-  font-size: 15px;
+  font-size: 30px;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
-.footer-bottom ul li a:hover {
+.footer-right ul li a:hover {
   color: #9cd4ac; /* 포인트 컬러 */
 }
 
 /* 3. 하단: 카피라이트 및 정책 */
 .footer-last {
+  width: 1600px;
   list-style: none;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   gap: 20px;
   padding: 0;
@@ -96,7 +142,7 @@
   .footer-con {
     width: 90%;
   }
-  .footer-bottom ul {
+  .footer-right ul {
     gap: 20px;
     flex-wrap: wrap;
     justify-content: center;
