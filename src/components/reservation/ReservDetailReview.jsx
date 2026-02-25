@@ -235,7 +235,7 @@ return (
                     whiteSpace: el.isOpen ? 'normal' : 'nowrap'
                   }}
                   >{el.description}</p>
-                  {el.description && el.description.length > 80 &&   //<==화면에 보여지는 넓이에 따라 값 조정
+                  {el.description && el.description.length > 20 &&   //<==화면에 보여지는 넓이에 따라 값 조정
                     <small style={{ color: 'gray' }}>
                       {el.isOpen ? '[접기]' : '...더보기'}
                     </small>

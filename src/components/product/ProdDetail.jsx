@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { API_JSON_SERVER_URL } from '../../api/commonApi';
 import axios from 'axios';
 import ProdDetailDesc from './ProdDetailDesc';
@@ -127,17 +127,24 @@ const ProdDetail = () => {
   return (
     <div className='prod-detail'>
       <div className="prod-detail-con">
-        <h1>상품판매 &gt; {categoryMap[detail.category] || detail.category}</h1>
+        <h1>
+          <Link to={`/product/list`}>상품판매 </Link> 
+          &gt; 
+          <Link to={`/product/list/${detail.category}`}> {categoryMap[detail.category] || detail.category}</Link>
+        </h1>
         <div className="detail-top">
           <div className="detail-top-left">
-            <img src={`/images/${detail.category}/${detail.img}`} alt={detail.img} />
+            <img src={detail?.img 
+              ? `/images/${detail.category}/${detail.img}` 
+              : `/images/all_none.png`} 
+              alt={detail.img} />
           </div>
           <div className="right">
             {/* 상품정보(개요) */}
             <div className="detail-top-right1">
              <ul>
               <li>{detail.name}</li>
-              <li>{detail.price.toLocaleString()}원</li>
+              <li>{detail.price.toLocaleString()}원 <p className='price-vat'>VAT 포함</p></li>
               <li>{detail.description}</li>
              </ul>              
             </div>
