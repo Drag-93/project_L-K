@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -30,6 +30,17 @@ const CommunityNoticeDetail = () => {
     }
   };
 
+  //한국 날짜 표시
+  const getKoreaDate = (date) => {
+    const today = new Date(date);
+    return (
+      today.getFullYear() +
+      "-" +
+      String(today.getMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(today.getDate()).padStart(2, "0")
+    );
+  };
   useEffect(() => {
     const noticeDetailFn = async () => {
       try {
@@ -45,10 +56,17 @@ const CommunityNoticeDetail = () => {
   return (
     <div className="detail">
       <div className="detail-con">
+        <div className="aside_wrap">
+          <ul>
+            <li><NavLink to={`/community/notice`}>공지사항</NavLink></li>
+            <li><NavLink to={`/community/faq`}>자주묻는질문</NavLink></li>
+            <li><NavLink to={`/community/qna`}>Q&A</NavLink></li>
+          </ul>
+        </div>        
         <h1>{noticeDetail.title}</h1>
         <ul>
           <li>
-            <strong>작성일:</strong> {noticeDetail.date}
+            <strong>작성일:</strong> {getKoreaDate(noticeDetail.date)}
           </li>
           <h2>상세내용</h2>
           <li>{noticeDetail.description}</li>

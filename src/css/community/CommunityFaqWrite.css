@@ -1,121 +1,136 @@
 /* 전체 컨테이너 */
 .faqwrite {
   width: 100%;
-  max-width: 800px;
+  max-width: 800px; /* 입력 폼이므로 가독성을 위해 폭을 조금 줄임 */
   margin: 60px auto;
-  padding: 0 25px;
+  padding: 40px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   font-family: 'Pretendard', sans-serif;
 }
 
-/* 내부 박스 */
-.write-con {
-  background: #fff;
-  border-top: 2px solid #111;
-  padding: 40px 30px;
+/* 제목 섹션 */
+.faqwrite h1, .faqwrite h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 30px;
+  text-align: center;
+  border-bottom: 2px solid #111;
+  padding-bottom: 20px;
 }
 
-/* 리스트 기본 제거 */
+/* 리스트/폼 영역 */
 .write-con ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.write-con li {
+.write-con ul li {
   display: flex;
-  flex-direction: column;
-  margin-bottom: 25px;
+  flex-direction: column; /* 라벨을 위로, 입력을 아래로 */
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
-/* 라벨 */
+/* 라벨 스타일 */
 .write-con label {
-  font-weight: 700;
   font-size: 0.95rem;
-  margin-bottom: 8px;
+  font-weight: 600;
   color: #333;
 }
 
-/* 공통 input, select 스타일 */
-.write-con input,
-.write-con select {
-  height: 45px;
-  padding: 0 15px;
-  font-size: 0.95rem;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-  outline: none;
-  background-color: #fafafa;
-}
-
-/* textarea 스타일 (나중에 바꿀 경우 대비) */
+/* 입력 필드 공통 스타일 (input, select, textarea) */
+.write-con input[type="text"],
+.write-con select,
 .write-con textarea {
-  min-height: 120px;
-  padding: 15px;
-  font-size: 0.95rem;
+  width: 100%;
+  padding: 12px 15px;
   border: 1px solid #ddd;
-  border-radius: 6px;
-  resize: vertical;
-  background-color: #fafafa;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #444;
+  outline: none;
   transition: all 0.2s ease;
 }
 
-/* 포커스 효과 */
 .write-con input:focus,
 .write-con select:focus,
 .write-con textarea:focus {
   border-color: #007aff;
-  background-color: #fff;
-  box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+/* 작성일 고정 텍스트 */
+.write-con span {
+  padding: 12px 0;
+  color: #888;
+  font-size: 0.95rem;
+}
+
+/* 답변 입력창 (Textarea) */
+.write-con textarea {
+  min-height: 200px;
+  resize: vertical; /* 세로 조절만 허용 */
+  line-height: 1.6;
 }
 
 /* 버튼 영역 */
-.faqwrite > button {
+.adminbutton {
   margin-top: 30px;
-  height: 45px;
-  padding: 0 25px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  margin-right: 10px;
+  display: flex;
+  gap: 10px;
 }
 
-/* 등록 버튼 */
-.faqwrite > button:first-of-type {
-  background-color: #007aff;
-  color: #fff;
+/* 버튼 공통 스타일 */
+.faqwrite button {
+  flex: 1; /* 버튼이 동일한 너비를 가짐 */
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
   border: none;
 }
 
-.faqwrite > button:first-of-type:hover {
-  background-color: #005fcc;
+/* 등록/수정 버튼 */
+.adminbutton button {
+  background-color: #111;
+  color: #fff;
+}
+
+.adminbutton button:hover {
+  background-color: #333;
 }
 
 /* 취소 버튼 */
-.faqwrite > button:last-of-type {
-  background-color: #f2f2f2;
-  color: #333;
-  border: 1px solid #ddd;
+.faqwrite > button:last-child {
+  width: 100%;
+  margin-top: 10px;
+  background-color: #eee;
+  color: #666;
 }
 
-.faqwrite > button:last-of-type:hover {
-  background-color: #e6e6e6;
+.faqwrite > button:last-child:hover {
+  background-color: #e0e0e0;
 }
 
-/* 반응형 */
+/* 반응형 모바일 대응 */
 @media (max-width: 768px) {
   .faqwrite {
-    margin: 30px auto;
+    margin: 20px;
+    padding: 20px;
   }
 
-  .write-con {
-    padding: 25px 20px;
+  .faqwrite h1, .faqwrite h2 {
+    font-size: 1.5rem;
   }
 
-  .write-con input,
-  .write-con select {
-    font-size: 0.9rem;
+  .adminbutton {
+    flex-direction: column; /* 모바일에서는 버튼을 세로로 배치 */
   }
 }

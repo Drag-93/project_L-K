@@ -74,6 +74,14 @@ const toCommunityRouter = () => {
       ),
     },
     {
+      path: "faq/write/:id",
+      element: (
+        <Suspense fallback={Loading}>
+          <CommunityFaqWritePage />
+        </Suspense>
+      ),
+    },
+    {
       path: "qna",
       element: (
         <Suspense fallback={Loading}>

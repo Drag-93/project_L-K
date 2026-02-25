@@ -225,7 +225,7 @@ const ReservationDetail = () => {
         <h1>진료예약 &gt; {categoryMap[reserve.category] || reserve.category}</h1>
         <div className="detail-top">
           <div className="detail-top-left">
-            <img src={`/images/${reserve.category}/${reserve.img}`} alt={reserve.img} />
+            <img src={reserve.img ? `/images/${reserve.category}/${reserve.img}` : `/images/all_none.png`} alt={reserve.name} onError={(e) => {e.target.src = "/images/all_none.png";}}/>
           </div>
           <div className="detail-top-right">
             <ul>
