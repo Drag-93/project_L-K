@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutF } from "../../store/slice/inputSlice";
 import { useNavigate } from "react-router-dom";
-const AdminHeader = () => {
+const AdminHeader = ({ isMobile, onToggle }) => {
   const user = useSelector((state) => state.input.user);
 
   const dispatch = useDispatch();
@@ -16,13 +16,16 @@ const AdminHeader = () => {
     <div className="adminHeader">
       <div className="adminHeader-con">
         <ul>
-          <li>
-            <img
-              src="/images/icon_filter.svg"
-              alt="adminHeader-hidden"
-              className="adminHeader-hidden"
-            />
-          </li>
+          {isMobile && (
+            <li>
+              <img
+                src="/images/icon_menu_w.svg"
+                alt="adminHeader-hidden"
+                className="adminHeader-hidden"
+                onClick={onToggle}
+              />
+            </li>
+          )}
           <li>
             <h1>{user?.userName}님</h1>
           </li>

@@ -28,7 +28,7 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
           address: "",
           lat: "",
           lng: "",
-          subway: "",
+          directions: "",
         });
         return;
       }
@@ -278,12 +278,13 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
             </li>
 
             <li>
-              <label htmlFor="subway">오시는길</label>
+              <label htmlFor="directions">오시는길</label>
               <textarea
-                name="subway"
-                id="subway"
-                value={detail.subway}
+                name="directions"
+                id="directions"
+                value={detail.directions}
                 onChange={onChangeFn}
+                rows={6}
               />
             </li>
           </ul>

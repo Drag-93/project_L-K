@@ -17,9 +17,7 @@
 @import url(shop.css);
 
 /* admin */
-@import url(admin/AdminTest.css);
+@import url(admin/Admin.css);
 
 /* community */
 @import url(community/Community.css);
-
-
