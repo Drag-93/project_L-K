@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { logoutF } from "../../store/slice/inputSlice";
@@ -55,10 +55,20 @@ const AuthMyPayment = () => {
 
   return (
     <>
-      <div className="mypage_inner">
-        <div className="mypage_wrap">
-          <h2>내 결재내역</h2>
-          <PaymentList/>
+      <div className="inner3">
+        <div className="auth_wrap">
+          <div className="auth_aside_wrap">
+            <ul>
+              <li><NavLink to={`/auth/mypage/${state.input.user?.id}`}>내정보</NavLink></li>
+              <li><NavLink to={`/auth/mypayment/${state.input.user?.id}`}>결재내역</NavLink></li>
+              <li><NavLink to={`/auth/myqna/${state.input.user?.id}`}>내 Q&A</NavLink></li>
+              <li><NavLink to={`/auth/myreview/${state.input.user?.id}`}>내 리뷰</NavLink></li>
+            </ul>
+          </div>
+          <div className="auth_list_wrap">
+            <h2 className="auth_payment_title">내 결재내역</h2>
+            <PaymentList/>
+          </div>
         </div>
       </div>
     </>

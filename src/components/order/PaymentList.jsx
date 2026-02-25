@@ -75,16 +75,76 @@ const PaymentList = () => {
   }, [userInfo]);
 
 
-    // 2. 필터링된 리스트 계산
-    const filteredList = useMemo(() => {
-      if (filter === 'all') return allOrders;
-      return allOrders.filter(order => order.type === filter);
-    }, [allOrders, filter]);
-
+    // 검색툴바의 활성화 상태 관리
+    const [isSearchActive, setIsSearchActive] = useState(false);
+  
+    //검색변수
+    const [searchText, setSearchText] = useState("");
 
     //페이징변수
     const pageSize = 4;
     const [page, setPage] = useState(1);
+
+    //정렬기능변수
+    const [sortType, setSortType] = useState("dateN");
+    const [isOpen, setIsOpen] = useState(false); // 드롭다운 열림 상태
+        
+    // 정렬 옵션 데이터 배열화
+    const sortOptions = [
+      { value: "dateN", label: "최신순" },
+      { value: "dateP", label: "오래된순" },
+      { value: "priceN", label: "높은가격" },
+      { value: "priceP", label: "낮은가격" },
+    ];
+
+
+
+    const currentSortLabel = sortOptions.find(opt => opt.value === sortType)?.label;
+  
+  //검색, 정렬 기능
+  const filteredList = useMemo(() => {
+    const q = searchText.trim().toLowerCase();
+
+    let searchList = [...allOrders];
+
+    if (filter !== 'all') {
+      searchList = searchList.filter(order => order.type === filter);
+    }
+    
+    //검색
+    if (q) {
+      searchList = searchList.filter((order) => {
+        const itemNames = order.items.map(i => i.name).join(" ");
+        const searchTarget = `${itemNames} ${order.dateForSort}`.toLowerCase();
+        return searchTarget.includes(q);
+      });
+    }
+
+    //정렬
+    return searchList.sort((a, b) => {
+      const timeA = new Date(a.dateForSort).getTime();
+      const timeB = new Date(b.dateForSort).getTime();
+      const priceA = Number(a.totalAmount || 0);
+      const priceB = Number(b.totalAmount || 0);
+
+      switch (sortType) {
+        case "dateN":
+          return timeB - timeA;
+        case "dateP":
+          return timeA - timeB; 
+        case "priceN":
+          return priceB - priceA; 
+        case "priceP":
+          return priceA - priceB; 
+        default:
+          return 0;
+      }
+    });
+  }, [allOrders, searchText, sortType, filter]);
+
+
+    //페이징
+
 
     const totalPages = useMemo(() => {
       return Math.max(1, Math.ceil(filteredList.length / pageSize));
@@ -98,7 +158,7 @@ const PaymentList = () => {
     // 필터 변경 시 페이지를 1페이지로 리셋
     useEffect(() => {
       setPage(1);
-    }, [filter]);
+    }, [filter, searchText]);
 
 
   if (loading) return <div className="loading">내역을 불러오는 중...</div>;
@@ -112,9 +172,52 @@ const PaymentList = () => {
           <li className={filter === 'reserve' ? 'active' : ''} onClick={() => setFilter('reserve')}>진료예약</li>
         </ul>
       </div>
+      <div className="list_search_wrap">
+        <span className="list_search_length">결제내역 <b>{filteredList.length}</b>건</span>
+        <div className="list_search_box">
+          <div className={`toolbar ${isSearchActive ? "active" : ""}`} onClick={() => setIsSearchActive(true)}>
+            <input
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              placeholder="검색어 입력"
+            />
+            <span className="list_search_btn"onClick={(e) => {
+                e.stopPropagation();
+                setIsSearchActive(false);
+                setSearchText("");
+              }}>
+              <img src="/images/icon_close_w.svg" />
+            </span>
+          </div>
+          <div className="custom-select-container">
+            <div 
+              className={`select-selected ${isOpen ? "select-arrow-active" : ""}`}
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {currentSortLabel}
+              <img src="/images/icon_filter_w.svg" />
+            </div>
+            {isOpen && (
+              <ul className="select-items">
+                {sortOptions.map((opt) => (
+                  <li 
+                    key={opt.value}
+                    className={sortType === opt.value ? "same-as-selected" : ""}
+                    onClick={() => {
+                      setSortType(opt.value);
+                      setIsOpen(false);
+                    }}
+                  >
+                    {opt.label}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      </div>
       {pagedList.length === 0 ? (
           <>
-            <h3 className="paylist_title">결제내역 ({filteredList.length}건)</h3>
             <div className="empty_cart">
               <p>결재내역이 없습니다.</p>
             </div>
@@ -123,7 +226,6 @@ const PaymentList = () => {
           <div className="paylist_wrap">
             {/* 일반 상품 주문 섹션 */}
             <div className="paylist">
-              <h3 className="paylist_title">결제내역 ({filteredList.length}건)</h3>
               {pagedList.map((order) => (
                 <div key={order.id} className="paylist_card product">
                   <div className="paylist_header">

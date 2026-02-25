@@ -2,7 +2,7 @@
 
 /* common */
 @import url(common.css);
-@import url(footer.css);
+/*@import url(footer.css);*/
 
 /* main & mypage */
 @import url(main.css);
