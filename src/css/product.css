@@ -17,10 +17,9 @@
 }
 
 .prod-detail-con h1 {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   color: #2d3748;
-  padding-bottom: 15px;
 }
 
 .prod-detail-con .detail-top {
@@ -77,6 +76,17 @@
   color: black;
   text-align: start;
   display: flex;
+  align-items: baseline;
+}
+
+.detail-top .right .detail-top-right1 ul li:nth-child(2) p.price-vat {
+  font-size: 15px;
+  font-weight: 500;
+  color: #5e6358;
+  text-align: start;
+  display: flex;
+  align-items: baseline;
+  padding-left: 5px;
 }
 
 .detail-top .right .detail-top-right1 ul li:nth-child(3) {
@@ -218,7 +228,7 @@
 .detail-top .right .detail-top-right2 li:last-child button {
   width: 100%;
   padding: 14px;
-  background: #14250b;
+  background: #15290bd5;
   color: #fff;
   font-size: 14px;
   font-weight: 600;
@@ -235,7 +245,7 @@
 /* 하단 상세정보&후기 */
 .detail-bottom ul {
   display: flex;
-  justify-content: center;
+  letter-spacing: 0.1rem;
   list-style: none;
   padding: 0;
   margin-top: 30px;
@@ -244,12 +254,15 @@
 }
 
 .detail-bottom li.bottom-menu {
+  flex: 1;
   font-size: 17px;
   font-weight: 600;
   color: #53584e;
+  text-align: center;
   cursor: pointer;
   transition: color 0.3s;
-  padding-bottom: 10px;
+  padding: 15px 0 10px 0;
+  position: relative;
 }
 
 .detail-bottom ul li.bottom-menu:hover {
@@ -327,7 +340,7 @@
 
 /* 후기 작성 버튼 */
 .detail-review-con .reviews > button {
-  background-color: #14250b;
+  background-color: #15290bd5;
   color: white;
   border: none;
   padding: 12px 24px;
@@ -357,7 +370,7 @@
 .detail-review-con .reviews ul li .myreview h1{
   font-size: 16px;
   font-weight: 600;
-  margin: 10px 0;
+  padding-bottom: 10px;
 }
 
 .detail-review-con .reviews ul li .myreview label[for="score"],
@@ -379,14 +392,15 @@
   gap: 3px;
 }
 
-.detail-review-con .reviews ul li .star-label {
-  cursor: pointer;
+.detail-review-con .reviews ul li .star-label input{
+  display: none;
 }
 
-.detail-review-con .reviews ul li .star-img {
+.detail-review-con .reviews ul li .star-label .star-img {
   width: 20px;
   height: 20px;
-  transition: transform 0.15s ease;
+  transition: transform 0.15s ease;  
+  cursor: pointer;
 }
 
 .detail-review-con .reviews ul li .editBtn {
@@ -410,6 +424,7 @@
   text-align: right;
   font-size: 14px;
   color: #888;
+  padding: 5px;
 }
 
 /*--- 후기 리스트 ---*/
@@ -427,7 +442,7 @@
   background: #ffffff;
   border: 1px solid #e5e5e5;
   border-radius: 12px;
-  padding: 15px 20px 15px 20px;
+  padding: 20px;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.04);
   font-size: 16px;
   margin-bottom: 15px;
@@ -443,6 +458,7 @@
   font-weight: 600;
   color: #007bff;
   font-size: 16px;
+  padding-bottom: 5px;
 }
 
 /* 점수(별점) & 작성일자 */
@@ -450,12 +466,12 @@
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  padding: 5px 0 15px 0;
+  /* padding: 5px 0 15px 0; */
 }
 
 .detail-review-con .reviews ul li .star-rating p {
   display: block;
-  padding-right: 8px;
+  padding-left: 5px;
   font-size: 14px;
   color: #888;
 }
@@ -465,6 +481,7 @@
   color: #555;
   line-height: 1.5;
   font-size: 15px;
+  padding-top: 15px;
 }
 
 /* 후기 좋아요 버튼 */
@@ -557,7 +574,7 @@
   font-weight: 600;
   font-size: 16px;
   color: #4a5568;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
 }
 
 /* 입력 리스트 스타일 */
@@ -573,7 +590,11 @@
   display: block;
   font-weight: 600;
   font-size: 15px;
-  padding-bottom: 7px;
+}
+
+.review-modal .review-modal-con ul li .review-textarea {
+  appearance: auto;
+  resize: none;
 }
 
 /* 평점 라디오 버튼 */
@@ -588,6 +609,7 @@
   width: 100%;
   height: 300px;
   padding: 12px;
+  margin-top: 10px;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   resize: none;

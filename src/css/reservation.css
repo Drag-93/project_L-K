@@ -18,10 +18,9 @@
 }
 
 .reserv-detail-con h1 {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   color: #2d3748;
-  padding-bottom: 15px;
 }
 
 .reserv-detail-con .detail-top {
@@ -73,14 +72,37 @@
   padding-bottom: 20px;
 }
 
-.detail-top .detail-top-right ul li:nth-child(2) {
-  font-size: 20px;
+.detail-top .detail-top-right ul li:nth-child(2),
+.detail-top .detail-top-right ul li:nth-child(3) {
+  font-size: 16px;
   font-weight: 600;
   color: black;
   text-align: start;
   display: flex;
+  align-items: baseline;
 }
-.detail-top .detail-top-right ul li:nth-child(3) {
+
+.detail-top .detail-top-right ul li:nth-child(2) p.main-txt,
+.detail-top .detail-top-right ul li:nth-child(3) p.main-txt {
+  font-size: 22px;
+  font-weight: 600;
+  color: black;
+  text-align: start;
+  display: flex;
+  align-items: baseline;
+  padding: 0 5px 0 5px;
+}
+
+.detail-top .detail-top-right ul li:nth-child(3) p.price-vat {
+  font-size: 15px;
+  font-weight: 500;
+  color: #5e6358;
+  text-align: start;
+  display: flex;
+  align-items: baseline;
+}
+
+.detail-top .detail-top-right ul li:nth-child(4) {
   border-top: 1px solid #e2e8f0;
   border-bottom: 1px solid #e2e8f0;
   padding: 20px 50px 50px 0;
@@ -194,9 +216,14 @@
 }
 
 /* 오늘 날짜 표시 */
+.react-calendar__tile--now,
+.react-calendar__tile--now.react-calendar__tile--active,
+.react-calendar__tile--now.react-calendar__tile:disabled {
+  background: #eff7eb !important;
+}
 .react-calendar__tile--now abbr,
-.react-calendar__tile--now.react-calendar__tile--active abbr {
-  background: #e6f3e0 !important;
+.react-calendar__tile--now.react-calendar__tile--active abbr,
+.react-calendar__tile--now.react-calendar__tile:disabled abbr {
   color: #5aa933 !important;
 }
 
@@ -210,34 +237,36 @@
 /* 선택된 날짜 */
 .react-calendar__tile--active {
   background: #5aa933 !important;
-  color: white !important;
   box-shadow: 0 4px 10px rgba(90, 169, 51, 0.3);
+}
+.react-calendar__tile--active abbr {
+  color: #f0f0f0 !important;
 }
 
 /* 비활성화된 날짜 (과거 날짜, 주말 등) */
 .react-calendar__tile:disabled abbr {
   background-color: transparent !important;
-  color: #918f8f !important;
+  color: #9b9a9a !important;
 }
 
 
 /* ----------------------------------------------------- */
 
 /* 선택 내역 요약 */
-.detail-top-right li:nth-last-child(2) {
+.detail-top-right li.final-selection {
   background: #f9fbf7;
   padding: 20px;
   border-radius: 15px;
   border: 1px dashed #5aa933;
 }
 
-.detail-top-right li .selection-summary p {
+.detail-top-right li.final-selection .selection-summary p {
   font-size: 15px;
   font-weight: 500;
   color: #555;
 }
 
-.detail-top-right li .selection-summary span {
+.detail-top-right li.final-selection .selection-summary span {
   font-size: 18px;
   font-weight: 700;
   color: #5aa933;

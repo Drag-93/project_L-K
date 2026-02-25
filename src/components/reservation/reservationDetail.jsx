@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { API_JSON_SERVER_URL } from '../../api/commonApi';
 import Calendar from 'react-calendar';
 import { useDispatch, useSelector } from 'react-redux';
@@ -222,15 +222,28 @@ const ReservationDetail = () => {
     <>
     <div className="reserv-detail">
       <div className="reserv-detail-con">
-        <h1>진료예약 &gt; {categoryMap[reserve.category] || reserve.category}</h1>
+        <h1>
+          <Link to={`/reservation/list`}>진료예약 </Link>
+          &gt; 
+          <Link to={`/reservation/list/${reserve.category}`}> {categoryMap[reserve.category] || reserve.category}</Link>
+        </h1>
         <div className="detail-top">
           <div className="detail-top-left">
-            <img src={reserve.img ? `/images/${reserve.category}/${reserve.img}` : `/images/all_none.png`} alt={reserve.name} onError={(e) => {e.target.src = "/images/all_none.png";}}/>
+            <img src={reserve?.img 
+            ? `/images/${reserve.category}/${reserve.img}`
+            : `/images/all_none.png`}  
+            alt={reserve.img} />
           </div>
           <div className="detail-top-right">
             <ul>
               <li>{reserve.name}</li>
-              <li>최대 {reserve.timespan}시간 소요 / 1회 {reserve.price.toLocaleString()}원</li>
+              <li>
+               최대 <p className='main-txt'>{reserve.timespan}시간</p> 소요
+              </li>
+              <li>
+               1회 <p className='main-txt'>{reserve.price.toLocaleString()}원</p>
+               <p className='price-vat'>VAT 포함</p>
+               </li>
               <li>{reserve.description}</li>
               {/* 1. 지점 선택 (항상 표시) */}
               <li>
