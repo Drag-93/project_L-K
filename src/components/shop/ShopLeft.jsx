@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { API_JSON_SERVER_URL } from '../../api/commonApi'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -24,19 +24,15 @@ const ShopLeft = () => {
 
   return (
   <>
-  <div className="Shop-left">
-    <div className="Shop-left-con">
-          {shop.map(el=>{
-            return(
-              <ul key={el.id}>
-                <li onClick={()=>navigate(`/shop/${el.id}`)}>
-                  {el.name}
-                  </li>
-              </ul>
-            )
-          })}
-    </div>
-  </div>
+    <ul>
+      {shop.map(el=>{
+        return(
+          <li key={el.id}>
+            <NavLink to={`/shop/${el.id}`}>{el.name}</NavLink>
+          </li>
+        )
+      })}
+    </ul>
   </>
   )
 }
