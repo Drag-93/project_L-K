@@ -150,8 +150,8 @@ const AdminReservation = () => {
                 value={sortType}
                 onChange={(e) => setSortType(e.target.value)}
               >
-                <option value="latest">최신순</option>
-                <option value="oldest">과거순</option>
+                <option value="latest">등록순(최신순)</option>
+                <option value="oldest">등록순(과거순)</option>
                 <option value="expensive">가격높은순</option>
                 <option value="cheapest">가격낮은순</option>
               </select>

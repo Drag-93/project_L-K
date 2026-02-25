@@ -6,7 +6,7 @@
       "description": "공지사항 테스트 01",
       "no": 1,
       "date": "Tue Feb 24 2026 14:27:23 GMT+0900 (한국 표준시)",
-      "viewrate": 0
+      "viewrate": 1
     },
     {
       "id": "0c86",
@@ -30,15 +30,15 @@
       "description": "공지사항 테스트 04",
       "no": 4,
       "date": "Tue Feb 24 2026 14:27:45 GMT+0900 (한국 표준시)",
-      "viewrate": 0
+      "viewrate": 1
     },
     {
       "id": "9587",
       "title": "공지사항 테스트 05",
       "description": "공지사항 테스트 05",
       "no": 5,
-      "date": "Tue Feb 24 2026 14:27:50 GMT+0900 (한국 표준시)",
-      "viewrate": 3
+      "date": "Mon Feb 21 2026 14:27:50 GMT+0900 (한국 표준시)",
+      "viewrate": 7
     }
   ],
   "members": [
@@ -520,10 +520,7 @@
       "date": "2026-02-20T00:44:23.294Z",
       "score": 5,
       "like": 2,
-      "likedUsers": [
-        "test",
-        "test2@naver.com"
-      ],
+      "likedUsers": ["test", "test2@naver.com"],
       "description": "사용자 후기를 테스트합니다11111"
     },
     {
@@ -536,10 +533,7 @@
       "date": "2026-02-20T00:44:47.094Z",
       "score": 3,
       "like": 2,
-      "likedUsers": [
-        "test",
-        "test2@naver.com"
-      ],
+      "likedUsers": ["test", "test2@naver.com"],
       "description": "사용자 후기를 테스트합니다 22222"
     },
     {
@@ -552,9 +546,7 @@
       "date": "2026-02-20T00:45:52.285Z",
       "score": 3,
       "like": 1,
-      "likedUsers": [
-        "test2@naver.com"
-      ],
+      "likedUsers": ["test2@naver.com"],
       "description": "사용자후기를 테스트합니다22222"
     },
     {
@@ -567,9 +559,7 @@
       "date": "2026-02-20T00:46:18.445Z",
       "score": 4,
       "like": 1,
-      "likedUsers": [
-        "test2@naver.com"
-      ],
+      "likedUsers": ["test2@naver.com"],
       "description": "사용자 후기를 테스트합니다22222"
     }
   ],
@@ -582,18 +572,8 @@
       "img": "lifting_01.png",
       "description": "리프팅라인 울쎄라 진료입니다",
       "descImg": "상세페이지 이미지 경로",
-      "setshop": [
-        "노원",
-        "신촌",
-        "강남",
-        "종로"
-      ],
-      "settime": [
-        "10:00",
-        "11:00",
-        "14:00",
-        "15:00"
-      ]
+      "setshop": ["노원", "신촌", "강남", "종로"],
+      "settime": ["10:00", "11:00", "14:00", "15:00"]
     },
     {
       "id": "2",
@@ -603,19 +583,8 @@
       "img": "faceline_01.png",
       "description": "페이스라인 인모드 진료입니다",
       "descImg": "상세페이지 이미지 경로",
-      "setshop": [
-        "노원",
-        "신촌",
-        "강남"
-      ],
-      "settime": [
-        "10:00",
-        "11:00",
-        "14:00",
-        "15:00",
-        "16:00",
-        "17:00"
-      ]
+      "setshop": ["노원", "신촌", "강남"],
+      "settime": ["10:00", "11:00", "14:00", "15:00", "16:00", "17:00"]
     },
     {
       "id": "3",
@@ -625,17 +594,8 @@
       "img": "regen_01.png",
       "description": "피부재생 쥬베룩 진료입니다",
       "descImg": "상세페이지 이미지 경로",
-      "setshop": [
-        "노원",
-        "강남",
-        "종로"
-      ],
-      "settime": [
-        "10:00",
-        "11:00",
-        "14:00",
-        "15:00"
-      ]
+      "setshop": ["노원", "강남", "종로"],
+      "settime": ["10:00", "11:00", "14:00", "15:00"]
     },
     {
       "id": "4",
@@ -646,18 +606,8 @@
       "description": "면역력 글루타치온(백옥주사) 진료입니다",
       "descImg": "상세페이지 이미지 경로",
       "timespan": 1,
-      "setshop": [
-        "신촌",
-        "강남",
-        "종로"
-      ],
-      "settime": [
-        "11:00",
-        "14:00",
-        "12:00",
-        "17:00",
-        "16:00"
-      ]
+      "setshop": ["신촌", "강남", "종로"],
+      "settime": ["11:00", "14:00", "12:00", "17:00", "16:00"]
     },
     {
       "id": "a38d",
@@ -667,14 +617,8 @@
       "img": "hydro1.jpg",
       "description": "리프팅라인 울쎄라 진료입니다",
       "descImg": "상세페이지 이미지 경로",
-      "setshop": [
-        "강남",
-        "노원"
-      ],
-      "settime": [
-        "10:00",
-        "11:00"
-      ],
+      "setshop": ["강남", "노원"],
+      "settime": ["10:00", "11:00"],
       "regDate": "2026-02-20T06:43:01.386Z",
       "timespan": "3"
     },
@@ -686,17 +630,8 @@
       "img": "hydro1.jpg",
       "description": "125",
       "descImg": "123",
-      "setshop": [
-        "노원",
-        "신촌",
-        "종로"
-      ],
-      "settime": [
-        "12:00",
-        "17:00",
-        "16:00",
-        "11:00"
-      ],
+      "setshop": ["노원", "신촌", "종로"],
+      "settime": ["12:00", "17:00", "16:00", "11:00"],
       "regDate": "2026-02-20T08:28:34.638Z",
       "timespan": "21"
     }
@@ -712,9 +647,7 @@
       "date": "2026-02-13T02:54:47.384Z",
       "score": 5,
       "like": 1,
-      "likedUsers": [
-        "test"
-      ],
+      "likedUsers": ["test"],
       "description": "진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다.진료후기를 테스트합니다."
     }
   ],
@@ -868,7 +801,7 @@
       "date": "Tue Feb 24 2026 16:13:42 GMT+0900 (한국 표준시)",
       "writer": "유저테스트계정",
       "writerEmail": "test@test",
-      "viewrate": 3,
+      "viewrate": 4,
       "admin": "",
       "answer": "",
       "state": "답변대기"

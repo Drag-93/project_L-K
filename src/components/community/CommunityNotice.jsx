@@ -20,7 +20,7 @@ const CommunityNotice = () => {
   //정렬기능변수
   const [sortType, setSortType] = useState("dateN");
   const [isOpen, setIsOpen] = useState(false); // 드롭다운 열림 상태
-      
+
   // 정렬 옵션 데이터 배열화
   const sortOptions = [
     { value: "dateN", label: "최신순" },
@@ -29,7 +29,9 @@ const CommunityNotice = () => {
     { value: "viewP", label: "조회수역순" },
   ];
 
-  const currentSortLabel = sortOptions.find(opt => opt.value === sortType)?.label;
+  const currentSortLabel = sortOptions.find(
+    (opt) => opt.value === sortType,
+  )?.label;
 
   //검색, 정렬 기능
   const filtered = useMemo(() => {
@@ -90,8 +92,8 @@ const CommunityNotice = () => {
   }, [searchText]);
 
   //한국 날짜 표시
-  const getKoreaDate = () => {
-    const today = new Date();
+  const getKoreaDate = (date) => {
+    const today = new Date(date);
     return (
       today.getFullYear() +
       "-" +
@@ -135,33 +137,45 @@ const CommunityNotice = () => {
         <div className="community_wrap">
           <div className="aside_wrap">
             <ul>
-              <li><NavLink to={`/community/notice`}>공지사항</NavLink></li>
-              <li><NavLink to={`/community/faq`}>자주묻는질문</NavLink></li>
-              <li><NavLink to={`/community/qna`}>Q&A</NavLink></li>
+              <li>
+                <NavLink to={`/community/notice`}>공지사항</NavLink>
+              </li>
+              <li>
+                <NavLink to={`/community/faq`}>자주묻는질문</NavLink>
+              </li>
+              <li>
+                <NavLink to={`/community/qna`}>Q&A</NavLink>
+              </li>
             </ul>
           </div>
-          <h3 className="community_title">
-            공지사항
-          </h3>
+          <h3 className="community_title">공지사항</h3>
           <div className="list_search_wrap">
-            <span className="list_search_length">게시물 <b>{noticeList.length}</b>개</span>
+            <span className="list_search_length">
+              게시물 <b>{noticeList.length}</b>개
+            </span>
             <div className="list_search_box">
-              <div className={`toolbar ${isSearchActive ? "active" : ""}`} onClick={() => setIsSearchActive(true)}>
+              <div
+                className={`toolbar ${isSearchActive ? "active" : ""}`}
+                onClick={() => setIsSearchActive(true)}
+              >
                 <input
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
                   placeholder="검색어 입력"
                 />
-                <span className="list_search_btn"onClick={(e) => {
+                <span
+                  className="list_search_btn"
+                  onClick={(e) => {
                     e.stopPropagation();
                     setIsSearchActive(false);
                     setSearchText("");
-                  }}>
+                  }}
+                >
                   <img src="/images/icon_close_w.svg" />
                 </span>
               </div>
               <div className="custom-select-container">
-                <div 
+                <div
                   className={`select-selected ${isOpen ? "select-arrow-active" : ""}`}
                   onClick={() => setIsOpen(!isOpen)}
                 >
@@ -171,9 +185,11 @@ const CommunityNotice = () => {
                 {isOpen && (
                   <ul className="select-items">
                     {sortOptions.map((opt) => (
-                      <li 
+                      <li
                         key={opt.value}
-                        className={sortType === opt.value ? "same-as-selected" : ""}
+                        className={
+                          sortType === opt.value ? "same-as-selected" : ""
+                        }
                         onClick={() => {
                           setSortType(opt.value);
                           setIsOpen(false);
@@ -233,15 +249,17 @@ const CommunityNotice = () => {
               이전
             </button>
             <ul className="page_numbers">
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
-                <li
-                  key={num}
-                  onClick={() => setPage(num)}
-                  className={page === num ? "active" : ""}
-                >
-                  {num}
-                </li>
-              ))}
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (num) => (
+                  <li
+                    key={num}
+                    onClick={() => setPage(num)}
+                    className={page === num ? "active" : ""}
+                  >
+                    {num}
+                  </li>
+                ),
+              )}
             </ul>
             <button
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}

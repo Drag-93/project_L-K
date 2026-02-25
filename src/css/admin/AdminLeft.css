@@ -1,25 +1,15 @@
-/* ===============================
-   AdminLeft Sidebar
-   =============================== */
-
-/* 전체 사이드바 */
 .adminLeft {
-  width: var(--admin-left-w, 2.5rem);
-  height: 100vh;
   background: #1f2a44;
   color: #ffffff;
-  overflow-y: auto;
 }
 
-/* 내부 컨테이너 */
-.adminLeft-con {
+.adminLeft .adminLeft-con {
   display: flex;
   flex-direction: column;
   height: 100%;
   padding: 2rem 1.5rem;
 }
 
-/* 로고 영역 */
 .adminLeft .logo {
   margin: 0 0 2.5rem;
   padding: 0.8rem 0.6rem;
@@ -38,7 +28,6 @@
   object-fit: contain;
 }
 
-/* 메뉴 리스트 */
 .adminLeft ul {
   list-style: none;
   padding: 0;
@@ -49,12 +38,10 @@
   gap: 0.5rem;
 }
 
-/* 메뉴 아이템 */
 .adminLeft li {
   width: 100%;
 }
 
-/* 링크 기본 */
 .adminLeft li a {
   display: flex;
   align-items: center;
@@ -65,13 +52,9 @@
 
   border-radius: 12px;
   color: #dbe2ff;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
   text-decoration: none;
-
-  /* transition:
-    background 0.2s ease,
-    color 0.2s ease; */
 }
 
 /* hover */
@@ -80,7 +63,7 @@
   color: #ffffff;
 }
 
-/* active (수동 or NavLink로 확장 가능) */
+/* active */
 .adminLeft li a.active {
   background: #3f63ff;
   color: #ffffff;
@@ -92,13 +75,31 @@
   flex: 1;
 }
 
-/* /* 반응형 */
-@media (max-width: 500px) {
-  .adminLeft {
-    display: none;
-  }
+.adminLeftCloseBtn {
+  position: absolute;
+  right: 0;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  z-index: 410;
+}
 
-  .adminLeft .adminLeft-con ul {
-    display: flex;
+@media (max-width: 1080px) {
+  .adminLeft.close {
+    transform: translateX(-100%);
+    z-index: 400;
+  }
+  .adminLeft {
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 1081px) {
+  .adminLeft.close {
+    transform: translateX(0);
   }
 }

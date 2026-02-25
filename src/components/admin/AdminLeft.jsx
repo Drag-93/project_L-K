@@ -1,16 +1,22 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
-const AdminLeft = () => {
+const AdminLeft = ({ isMobile, show, onClose }) => {
   const linkClass = ({ isActive }) => (isActive ? "active" : "");
   return (
-    <div className="adminLeft">
+    <div className={`adminLeft ${show ? "" : "close"}`}>
       <div className="adminLeft-con">
         <h1 className="logo">
           <Link to={"/"}>
             <img src={`/images/logo_w.png`} alt="logo" />
           </Link>
         </h1>
+        {/* {isMobile && show && (
+          <span className="adminLeftCloseBtn" onClick={onClose}>
+            X
+          </span>
+        )} */}
+
         <ul>
           <li>
             <NavLink to={"/admin/members"} className={linkClass}>

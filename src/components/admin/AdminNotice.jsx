@@ -72,8 +72,8 @@ const AdminNotice = () => {
   }, [searchText]);
 
   //한국 날짜 표시
-  const getKoreaDate = () => {
-    const today = new Date();
+  const getKoreaDate = (date) => {
+    const today = new Date(date);
     return (
       today.getFullYear() +
       "-" +
