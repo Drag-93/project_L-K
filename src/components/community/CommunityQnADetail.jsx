@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const CommunityQnADetail = () => {
@@ -178,6 +178,13 @@ const CommunityQnADetail = () => {
   return (
     <div className="QnADetail">
       <div className="QnADetail-con">
+        <div className="aside_wrap">
+          <ul>
+            <li><NavLink to={`/community/notice`}>공지사항</NavLink></li>
+            <li><NavLink to={`/community/faq`}>자주묻는질문</NavLink></li>
+            <li><NavLink to={`/community/qna`}>Q&A</NavLink></li>
+          </ul>
+        </div>           
         <div className="title">
           <ul>
             <li>

@@ -130,7 +130,7 @@ const ProdDetail = () => {
         <h1>상품판매 &gt; {categoryMap[detail.category] || detail.category}</h1>
         <div className="detail-top">
           <div className="detail-top-left">
-            <img src={`/images/${detail.category}/${detail.img}`} alt={detail.img} />
+            <img src={detail.img ? `/images/${detail.category}/${detail.img}` : `/images/all_none.png`} alt={detail.name} onError={(e) => {e.target.src = "/images/all_none.png";}}/>
           </div>
           <div className="right">
             {/* 상품정보(개요) */}

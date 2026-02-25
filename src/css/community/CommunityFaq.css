@@ -4,7 +4,35 @@
   max-width: 1100px;
   margin: 60px auto;
   padding: 0 25px;
-  font-family: 'Pretendard', sans-serif;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+}
+
+/* 상단 사이드바/메뉴 (공지사항, FAQ, Q&A) */
+.aside_wrap {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.aside_wrap ul {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.aside_wrap ul li a {
+  text-decoration: none;
+  color: #999;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  transition: color 0.3s;
+}
+
+.aside_wrap ul li a.active {
+  color: #111;
+  border-bottom: 2px solid #111;
 }
 
 /* 제목 섹션 */
@@ -17,17 +45,44 @@
   letter-spacing: -0.02em;
 }
 
+/* 툴바 및 필터 박스 */
+.faqtop{
+  display: flex;
+  justify-content: end;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: start;
+}
+.filter-box {
+  display: flex;
+  justify-content: center;
+}
+
+.toolbar input, .filter-box select {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.95rem;
+  transition: border-color 0.3s;
+}
+
+.toolbar input:focus, .filter-box select:focus {
+  border-color: #007aff;
+}
+
+.toolbar input {
+  width: 300px;
+}
+
 /* 테이블 스타일 */
 .faq-con table {
   width: 100%;
-  border-collapse: separate; /* 둥근 모서리를 위해 separate 사용 */
-  border-spacing: 0;
+  border-collapse: collapse;
   border-top: 2px solid #111;
-}
-
-/* 헤더 영역 */
-.faq-con thead {
-  background-color: #fcfcfc;
+  margin-top: 20px;
 }
 
 .faq-con thead td {
@@ -36,75 +91,134 @@
   padding: 18px;
   text-align: center;
   border-bottom: 1px solid #eee;
+  background-color: #fcfcfc;
   font-size: 0.9rem;
-  text-transform: uppercase;
 }
 
 /* 본문 영역 */
-.faq-con tbody tr {
-  transition: all 0.2s ease-in-out;
-}
-
 .faq-con tbody td {
   padding: 20px 15px;
   text-align: center;
   border-bottom: 1px solid #f4f4f4;
-  color: #777;
+  color: #444;
   font-size: 1rem;
 }
 
-/* 제목 열(컬럼) 스타일 - 가장 중요 */
-.faq-con tbody td:nth-child(2) {
+/* 제목 행 스타일 */
+.faq-con tbody td:nth-child(3) {
   text-align: left;
+  padding-left: 30px;
   color: #333;
-  font-weight: 600;
-  padding-left: 50px;
-  cursor: pointer;
+  font-weight: 500;
 }
 
-
-/* 마우스 호버 효과 */
 .faq-con tbody tr:hover {
-  background-color: #f8faff; /* 아주 연한 푸른빛 배경 */
+  background-color: #f8faff;
 }
 
-.faq-con tbody tr:hover td:nth-child(2) {
-  color: #007aff; /* 전체 행 호버 시 제목 색상 변경 */
+/* FAQ 상세 내용 (Q&A 답변 영역) */
+.faq-detail td {
+  background-color: #fafafa;
+  border-bottom: 1px solid #eee;
 }
 
-/* 버튼 스타일 (만약 버튼을 쓰신다면) */
-.faq-con button {
-  background: none;
-  border: none;
-  font: inherit;
-  color: inherit;
+.faq-detail .box {
+  padding: 10px 40px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.faq-detail strong {
+  color: #007aff;
+  margin-right: 10px;
+}
+
+/* 관리자 버튼 영역 */
+.admin-control {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 10px 20px;
+}
+
+.admin-control button {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background: #fff;
   cursor: pointer;
-  padding: 0;
-  text-align: left;
-  width: 100%;
+  width: auto; /* 기존 100% 해제 */
+}
+
+.admin-control button:hover {
+  background: #f0f0f0;
+}
+
+/* 페이징 및 하단 작성 버튼 */
+.QnAFooter {
+  margin-top: 40px;
+  position: relative;
+}
+
+.QnAFooter-con {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.QnAPaging {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.QnAPaging button {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  width: auto;
+}
+
+.QnAPaging button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+/* 작성 버튼 (우측 정렬 느낌) */
+.QnAFooter-con > button {
+  align-self: flex-end;
+  padding: 10px 25px;
+  background-color: #111;
+  color: #fff;
+  border-radius: 5px;
+  font-weight: 600;
+  width: auto;
+  transition: opacity 0.3s;
+}
+
+.QnAFooter-con > button:hover {
+  opacity: 0.8;
 }
 
 /* 반응형 모바일 대응 */
 @media (max-width: 768px) {
-  .faq-con h1 {
-    font-size: 1.7rem;
-    margin-bottom: 25px;
-  }
+  .faq-con h1 { font-size: 1.7rem; }
   
-  .faq {
-    margin: 30px auto;
-  }
-
-  /* 모바일에서는 글번호와 날짜를 숨겨서 제목에 집중 */
+  /* 모바일에서는 번호 제외, 카테고리와 제목만 표시 */
   .faq-con thead td:nth-child(1),
-  .faq-con thead td:nth-child(3),
-  .faq-con tbody td:nth-child(1),
-  .faq-con tbody td:nth-child(3) {
+  .faq-con tbody td:nth-child(1) {
     display: none;
   }
 
-  .faq-con tbody td:nth-child(2) {
-    padding-left: 20px;
+  .toolbar input { width: 100%; }
+  
+  .faq-con tbody td:nth-child(3) {
+    padding-left: 15px;
     font-size: 0.95rem;
   }
 }

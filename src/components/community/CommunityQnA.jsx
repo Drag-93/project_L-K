@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { API_JSON_SERVER_URL } from "../../api/commonApi";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const CommunityQnA = () => {
@@ -56,8 +56,8 @@ const CommunityQnA = () => {
   }, []);
 
   //한국 날짜 표시
-  const getKoreaDate = () => {
-    const today = new Date();
+  const getKoreaDate = (date) => {
+    const today = new Date(date);
     return (
       today.getFullYear() +
       "-" +
@@ -75,10 +75,17 @@ const CommunityQnA = () => {
   return (
     <div className="QnA">
       <div className="QnA-con">
+        <div className="aside_wrap">
+          <ul>
+            <li><NavLink to={`/community/notice`}>공지사항</NavLink></li>
+            <li><NavLink to={`/community/faq`}>자주묻는질문</NavLink></li>
+            <li><NavLink to={`/community/qna`}>Q&A</NavLink></li>
+          </ul>
+        </div>           
         <div className="title">
           <ul>
             <li>
-              <h1>QnA</h1>
+              <h1>Q&A</h1>
             </li>
             <div className="toolbar">
               <input

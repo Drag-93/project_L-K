@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { API_JSON_SERVER_URL } from '../../api/commonApi'
 import axios from 'axios'
 
@@ -7,9 +7,11 @@ const CommunityFaqWrite = () => {
 
   const navigate=useNavigate()
   const faqUrl=API_JSON_SERVER_URL
+  const {id} = useParams()
   const [detail, setDetail] = useState(
     {
       no : "",
+      date:Date(),
       titlecategory : "",
       category : "",
       title : "",
@@ -17,36 +19,103 @@ const CommunityFaqWrite = () => {
     }
   )
 
+
+  const getKoreaDate = () => {
+    const today = new Date();
+    return (
+      today.getFullYear() +
+      "-" +
+      String(today.getMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(today.getDate()).padStart(2, "0")
+    );
+  };
 const onChangeFn = (e) => {
   const { name, value } = e.target;
 
-  if (name === "titlecategory") {
-    setDetail({
+    if (name === "titlecategory") {
+        let defaultCategory = "";
+        if (value === "titlecategoryall") defaultCategory = "categoryall";
+        else if (value === "product") defaultCategory = "productall";
+        else if (value === "reserve") defaultCategory = "reserveall";
+
+        setDetail({
+          ...detail,
+          titlecategory: value,
+          category: defaultCategory,
+        });
+      } else {
+        setDetail({ ...detail, [name]: value });
+      }
+    };
+
+
+const onPostFn = async () => {
+  try {
+    const res = await axios.get(`${faqUrl}/faq`);
+
+  const lastNo =
+  res.data.length > 0
+    ? Math.max(...res.data.map((item) => Number(item.no)))
+    : 0;
+
+    const newFaq = {
       ...detail,
-      titlecategory: value,
-      category: "",   // 초기화
-    });
-  } else {
-    setDetail({ ...detail, [name]: value });
+      no: lastNo + 1,
+      date: getKoreaDate(),
+    };
+
+    await axios.post(`${faqUrl}/faq`, newFaq);
+
+    alert("등록 되었습니다");
+    navigate(-1);
+
+  } catch (err) {
+    alert("등록 실패: " + err);
   }
 };
-
-  const onPostFn = async () => {
+  
+  const onUpdateFn = async () => {
     try {
-      const res = await axios.post(
-        `${faqUrl}/faq`,
-        detail,
+      const res = await axios.put(
+        `${faqUrl}/faq/${id}`, detail,
       );
-      alert("등록 되었습니다");
+      alert("수정 되었습니다");
       navigate(-1)
     } catch (err) {
       alert(err);
     }
   };
+
+useEffect(() => {
+  if (!id) return;
+
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`${faqUrl}/faq/${id}`);
+      setDetail(res.data);
+    } catch (err) {
+      console.error("데이터 로딩 중 에러:", err);
+    }
+  };
+
+  fetchData();
+}, [id, faqUrl]);
+
+
+
   return (
     <div className="faqwrite">
-      <div className="write-con">
+      <div className="write-con">       
+        {id ? (
+          <h1>자주 묻는 질문 수정</h1>):
+          (<h2>자주 묻는 질문 등록</h2>)
+        }        
         <ul>
+          <li>
+            <label htmlFor="date">작성일</label>
+            <span>{getKoreaDate()}</span>
+          </li>          
           <li>
             <label htmlFor="titlecategory">카테고리</label>
             <select 
@@ -54,21 +123,31 @@ const onChangeFn = (e) => {
             id="titlecategory"
             value={detail.titlecategory}
             onChange={onChangeFn}>
-              <option value="">---선택---</option>
+              <option value="titlecategoryall">전체</option>
               <option value="product">상품</option>
               <option value="reserve">예약</option>
             </select>
           </li>
           <li>
             <label htmlFor="category">세부카테고리</label>
-            {detail.titlecategory === "product"?(
+            {detail.titlecategory === "titlecategoryall"?(
+            <select 
+            name="category" 
+            id="category"
+            value={detail.category}
+            onChange={onChangeFn}
+            disabled
+            >
+            <option value="categoryall">전체</option>
+            </select>):
+            detail.titlecategory === "product"?(
             <select 
             name="category" 
             id="category"
             value={detail.category}
             onChange={onChangeFn}
             >
-              <option value="">---선택---</option>
+              <option value="productall">전체</option>
               <option value="hydro">보습</option>
               <option value="trouble">트러블케어</option>
               <option value="white">미백</option>
@@ -82,7 +161,7 @@ const onChangeFn = (e) => {
             value={detail.category}
             onChange={onChangeFn}
             >
-              <option value="">---선택---</option>
+              <option value="reserveall">전체</option>
               <option value="lifting">울쎄라</option>
               <option value="faceline">인모드</option>
               <option value="regen">쥬베룩</option>
@@ -111,8 +190,13 @@ const onChangeFn = (e) => {
           </li>
         </ul>
       </div>
-      <button onClick={onPostFn}>등록</button>
-      <button onClick={()=>{navigate(-1)}}>취소</button>
+      <div className='adminbutton'>
+    {id ? (
+      <button onClick={onUpdateFn}>수정</button>):
+      (<button onClick={onPostFn}>등록</button>)
+    }
+    </div>
+<button onClick={()=>{navigate(-1)}}>취소</button>
     </div>
   )
 }

@@ -66,7 +66,7 @@ const AuthLogin = () => {
             <li>비밀번호 : <input type="password" name='userPw' placeholder='비밀번호를 입력해주세요' value={login.userPw} onChange={onChangeLoginFn}/></li>
         <li>
           <button type="button" onClick={() => { navigate('/auth/join') }}>회원가입</button>
-          <button type="button" onClick={onLoginFn}>로그인</button>
+          <button type="submit" onClick={onLoginFn}>로그인</button>
           <button type="button" onClick={() => { navigate('/') }}>메인화면</button>
         </li>
         </ul>

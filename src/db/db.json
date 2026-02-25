@@ -14,7 +14,7 @@
       "description": "공지사항 테스트 02",
       "no": 2,
       "date": "Tue Feb 24 2026 14:27:32 GMT+0900 (한국 표준시)",
-      "viewrate": 1
+      "viewrate": 3
     },
     {
       "id": "5246",
@@ -30,7 +30,7 @@
       "description": "공지사항 테스트 04",
       "no": 4,
       "date": "Tue Feb 24 2026 14:27:45 GMT+0900 (한국 표준시)",
-      "viewrate": 0
+      "viewrate": 1
     },
     {
       "id": "9587",
@@ -38,7 +38,7 @@
       "description": "공지사항 테스트 05",
       "no": 5,
       "date": "Tue Feb 24 2026 14:27:50 GMT+0900 (한국 표준시)",
-      "viewrate": 3
+      "viewrate": 5
     }
   ],
   "members": [
@@ -765,46 +765,63 @@
     {
       "id": "1",
       "no": 1,
-      "category": "울쎄라",
+      "titlecategory": "reserve",
+      "category": "lifting",
       "title": "울쎄라 볼패임 부작용 생기나요?",
       "description": "얼굴의 볼 부위에는 해부학적으로 지방이 쉽게 꺼질 수 있는 구조를 가지고 있으며 \n 무리한 시술이 적용된다면 지방 손실을 유발하고 볼꺼짐을 초래할 위험이 있습니다. \n L&K클리닉에서는 시술 전 1:1 맞춤 상담과 디자인을 통해 \n 개인별 피부 상태와 노화정도 적절한 샷수, 강도를 설정하고 있어 볼패임 걱정을 줄였습니다."
     },
     {
-      "id": "2",
-      "no": 2,
-      "category": "텐써마",
-      "title": "텐써마와 써마지의 차이점은 무엇인가요?",
-      "description": "텐써마와 써마지는 모두 고주파 기술을 이용한 피부 탄력 개선 의료기기이지만, \n 텐써마는 통증이 적고 가격이 합리적이며, 써마지는 강력한 효과와 오랜 유지력이 특징입니다. \n 시술 전 의료진과의 충분한 상담을 통해 본인에게 적합한 장비를 선택하는 것이 좋습니다."
-    },
-    {
-      "id": "3",
-      "no": 3,
-      "category": "텐써마",
-      "title": "텐써마의 통증은 어정도인가요?",
-      "description": "텐써마는 쿨링시스템이 탑재되어 있어 시술 중의 통증은 적은 편이지만, \n 개인에 따라 다를 수 있어 통증이 염려되는 경우 다양한 마취 시스템을 통해 편안한 시술을 진행할 수 있습니다."
-    },
-    {
       "id": "4",
       "no": 4,
-      "category": "울쎄라",
+      "titlecategory": "reserve",
+      "category": "lifting",
       "title": "울쎄라 시술기간은 얼마나 걸리나요?",
       "description": "울쎄라 리프팅은 실시간으로 초음파 화면을 통해 \n 피부 속을 모니터링 하면서 정확한 타겟층에 샷을 분배하고 있으며 \n 1:1 맞춤 상담 및 디자인 시술까지 1시간~1시간 30분 정도 소요됩니다."
     },
     {
-      "id": "12d9",
-      "no": "",
+      "id": "c8f2",
+      "no": 6,
+      "date": "2026-02-25",
       "titlecategory": "product",
       "category": "white",
-      "title": "ㅁㄴㅇㄴㅁㅇ",
-      "description": "ㅁㄴㅇㄴㅁㅇ"
+      "title": "미백 제품을 사용하면 따갑던데, 얼마나 사용햐야 하나요?",
+      "description": "피부 민감도에 따라 비타민 다량 함유된 제품의 경우 드물게 피부 따가움을 동반할 수 있습니다.\n보통 하루 1회 정도를 추천드리나 따가움이 심해질 경우 사용 횟수를 줄여주시기 바랍니다."
     },
     {
-      "id": "2bbc",
-      "no": "",
+      "id": "e1a1",
+      "no": 7,
+      "date": "2026-02-25",
       "titlecategory": "reserve",
       "category": "lifting",
-      "title": "울쎄라 faq 1",
-      "description": "울쎄라 faq 답변 1"
+      "title": "울쎄라 시술 시 통증은 어떤가요?",
+      "description": "통증의 정도는 개인의 피부 상태와 민감도에 따라\n\n차이가 있을 수 있으나, L&K의 울쎄라 시술은\n\n업그레이드된 에너지 제어 시스템으로\n\n통증 부담을 줄인 시술이 가능합니다."
+    },
+    {
+      "id": "26c9",
+      "no": 8,
+      "date": "2026-02-25",
+      "titlecategory": "reserve",
+      "category": "lifting",
+      "title": "시술 후 바로 일상생활이 가능한가요?",
+      "description": "시술 직후 바로 일상생활이 가능하며,\n별도의 회복 기간 없이 일상으로 복귀할 수 있습니다.\n(개인에 따라 일시적인 붉어짐이나\n열감이 나타날 수 있습니다.)"
+    },
+    {
+      "id": "f1fb",
+      "no": 9,
+      "date": "2026-02-25",
+      "titlecategory": "product",
+      "category": "productall",
+      "title": "제품들의 유통기한은 어떻게 되나요?",
+      "description": "제품의 유통기한은 각 제품에 별도로 표기되어 있습니다.\n제품 개봉 후 1년 이내 사용을 권장드립니다."
+    },
+    {
+      "id": "4d40",
+      "no": 10,
+      "date": "2026-02-25",
+      "titlecategory": "reserve",
+      "category": "reserveall",
+      "title": "예약 확정까지 얼마나 걸리나요?",
+      "description": "예약 주문 시  2시간 이내에 확정으로 변경됩니다."
     }
   ],
   "qna": [
@@ -815,7 +832,7 @@
       "date": "2026-02-05",
       "writer": "작성자이름",
       "writerEmail": "작성자이메일",
-      "viewrate": 22,
+      "viewrate": 25,
       "state": "답변완료",
       "question": "테스트내용테스트내용테스트내용테스트내용테스트내용테3123스트내용테스4내용2테스트내용",
       "admin": "관리자",
@@ -830,7 +847,7 @@
       "date": "2026-02-05",
       "writer": "test",
       "writerEmail": "test",
-      "viewrate": 12,
+      "viewrate": 14,
       "admin": "관리자",
       "answer": "답변테스트"
     },
@@ -868,7 +885,7 @@
       "date": "Tue Feb 24 2026 16:13:42 GMT+0900 (한국 표준시)",
       "writer": "유저테스트계정",
       "writerEmail": "test@test",
-      "viewrate": 3,
+      "viewrate": 4,
       "admin": "",
       "answer": "",
       "state": "답변대기"
@@ -926,6 +943,32 @@
         }
       ],
       "totalAmount": 75000
+    },
+    {
+      "id": "ee7c",
+      "productDate": "2026-02-25T03:40:23.526Z",
+      "productUserDate": "2026. 2. 25. 오후 12:40:23",
+      "customer": {
+        "userEmail": "test@test",
+        "userName": "유저테스트계정",
+        "phonenum": "01012341234",
+        "address": "22",
+        "request": "안전한 배송 부탁드립니다."
+      },
+      "items": [
+        {
+          "id": "41",
+          "category": "antiage",
+          "name": "안티에이징1",
+          "price": 20000,
+          "img": "antiage1.jpg",
+          "regDate": "2026-02-12T05:56:49.676Z",
+          "count": 1,
+          "totalPrice": 20000,
+          "state": "배송준비중"
+        }
+      ],
+      "totalAmount": 20000
     }
   ],
   "reserveOrders": [

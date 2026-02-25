@@ -57,7 +57,7 @@ const AuthMyPayment = () => {
     <>
       <div className="mypage_inner">
         <div className="mypage_wrap">
-          <h2>내 결재내역</h2>
+          <h2>내 결제내역</h2>
           <PaymentList/>
         </div>
       </div>
