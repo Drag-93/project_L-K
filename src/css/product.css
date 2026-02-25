@@ -380,6 +380,15 @@
   padding-bottom: 10px;
 }
 
+.detail-review-con .reviews ul li .myreview .review-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
 .detail-review-con .reviews ul li .myreview .score-selector {
   display: flex;
   align-items: center;
@@ -590,11 +599,6 @@
   display: block;
   font-weight: 600;
   font-size: 15px;
-}
-
-.review-modal .review-modal-con ul li .review-textarea {
-  appearance: auto;
-  resize: none;
 }
 
 /* 평점 라디오 버튼 */
