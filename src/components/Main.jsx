@@ -104,39 +104,43 @@ const Main = () => {
         </div>
       </div>
       <div className="section sec2">
-        <div className="main_sec_title">
-          <div className="main_sec_title_cat">
-            <strong>PRODUCT</strong>
+        <div className="main_inner">
+          <div className="main_sec_title">
+            <div className="main_sec_title_cat">
+              <strong>PRODUCT</strong>
+            </div>
+            <h2>
+              내일의 당신을 완성하는
+              <b>오늘의 선택</b>
+            </h2>
+            <p>단순한 관리를 넘어, 당신의 <span>본연의 아름다움</span>이 깨어나는 순간을 <span>경험</span>해 보세요.</p>
           </div>
-          <h2>
-            내일의 당신을 완성하는
-            <b>오늘의 선택</b>
-          </h2>
-          <p>단순한 관리를 넘어, 당신의 <span>본연의 아름다움</span>이 깨어나는 순간을 <span>경험</span>해 보세요.</p>
-        </div>
-        <div className="main_sec2_con">
-          <Link to={`product`} className="main_view_btn">View More</Link>
-          <div className="main_sec2_wrap">
-            <img src="" alt="" />
-            <img src="" alt="" />
+          <div className="main_sec2_con">
+            <Link to={`product`} className="main_view_btn">View More</Link>
+            <div className="main_sec2_wrap">
+              <img src="" alt="" />
+              <img src="" alt="" />
+            </div>
           </div>
         </div>
       </div>
       <div className="section sec3">
-        <div className="main_sec_title">
-          <div className="main_sec_title_cat">
-            <strong>RESERVATION</strong>
+        <div className="main_inner">
+          <div className="main_sec_title">
+            <div className="main_sec_title_cat">
+              <strong>RESERVATION</strong>
+            </div>
+            <h2>
+            일상의 공백을 채우는
+              <b>프리미엄 케어</b>
+            </h2>
+            <p>많은 분이 직접 경험하고 증명한,가장 <span>프라이빗한 공간</span>에서 누리는 <span>전문가의 손길</span></p>
           </div>
-          <h2>
-          일상의 공백을 채우는
-            <b>프리미엄 케어</b>
-          </h2>
-          <p>많은 분이 직접 경험하고 증명한,가장 <span>프라이빗한 공간</span>에서 누리는 <span>전문가의 손길</span></p>
-        </div>
-        <div className="main_sec3_con">
-          <Link to={`reservation`} className="main_view_btn">View More</Link>
-          <div className="main_sec2_wrap">
-            <img src="" alt="" />
+          <div className="main_sec3_con">
+            <Link to={`reservation`} className="main_view_btn">View More</Link>
+            <div className="main_sec2_wrap">
+              <img src="" alt="" />
+            </div>
           </div>
         </div>
       </div>
