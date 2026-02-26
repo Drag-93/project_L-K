@@ -1,3 +1,7 @@
+/*****************************************************************************
+    @CommunityFaq
+****************************************************************************/
+
 /* 전체 컨테이너 */
 .faq {
   width: 100%;
@@ -7,55 +11,69 @@
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
 }
 
-
 /* 제목 섹션 */
 .faq-con h1 {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: #111;
-  margin-bottom: 40px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 30px;
   text-align: center;
-  letter-spacing: -0.02em;
 }
-
 
 /* 테이블 스타일 */
 .faq-con table {
   width: 100%;
   border-collapse: collapse;
   border-top: 2px solid #111;
-  margin-top: 20px;
+}
+
+/* 헤더 영역 */
+.faq-con thead {
+ background-color: #f8f9fa;
 }
 
 .faq-con thead td {
-  font-weight: 700;
-  color: #555;
-  padding: 18px;
+  font-weight: 600;
+  color: #444;
+  padding: 15px;
   text-align: center;
-  border-bottom: 1px solid #eee;
-  background-color: #fcfcfc;
-  font-size: 0.9rem;
+  border-bottom: 1px solid #ddd;
 }
 
 /* 본문 영역 */
 .faq-con tbody td {
-  padding: 20px 15px;
+  padding: 15px;
   text-align: center;
-  border-bottom: 1px solid #f4f4f4;
-  color: #444;
-  font-size: 1rem;
+  border-bottom: 1px solid #eee;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* 제목 열(컬럼) 스타일 - 왼쪽 정렬 및 강조 */
+.faq-con tbody td:nth-child(2) {
+  text-align: left;
+  color: #222;
+  font-weight: 500;
+  padding-left: 30px;
+  transition: color 0.2s ease;
 }
 
 /* 제목 행 스타일 */
-.faq-con tbody td:nth-child(3) {
+/* .faq-con tbody td:nth-child(3) {
   text-align: left;
   padding-left: 30px;
   color: #333;
   font-weight: 500;
+} */
+
+/* 마우스 호버 효과 */
+.faq-con tbody tr:hover {
+  background-color: #fcfcfc;
 }
 
-.faq-con tbody tr:hover {
-  background-color: #f8faff;
+.faq-con tbody td:nth-child(2):hover {
+  color: #007bff; /* 제목 호버 시 파란색 강조 */
+  text-decoration: underline;
 }
 
 /* FAQ 상세 내용 (Q&A 답변 영역) */

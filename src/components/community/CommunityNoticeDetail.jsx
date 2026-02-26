@@ -64,14 +64,14 @@ const CommunityNoticeDetail = () => {
           </ul>
         </div>        
         <h1>{noticeDetail.title}</h1>
-        <ul>
-          <li>
+        <ul className="detail-info">
+          <li className="info-date">
             <strong>작성일:</strong> {getKoreaDate(noticeDetail.date)}
           </li>
           <h2>상세내용</h2>
-          <li>{noticeDetail.description}</li>
+          <li className="info-content">{noticeDetail.description}</li>
 
-          <button onClick={() => navigate("/community/notice")}>목록</button>
+          <button className="btn-list" onClick={() => navigate("/community/notice")}>목록</button>
           {isadmin && (
             <div className="admin-control">
               <button onClick={noticeUpdateFn}>수정</button>
