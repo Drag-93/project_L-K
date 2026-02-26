@@ -20,6 +20,20 @@ const AuthJoin = () => {
   const navigate = useNavigate();
   const [join, setJoin] = useState(joinData);
 
+  const [pwType, setPwType] = useState({
+    type : "password",
+    visible : false
+  })
+  
+  const handlepassvisibleFn = (e) =>{
+    setPwType(() => {
+      if (!pwType.visible) {
+        return { type: "text", visible: true };
+      } else {
+        return { type: "password", visible: false };
+      }
+    });
+  }
   const onChangeFn = (e) => {
     const { name, value } = e.target;
     setJoin({ ...join, [name]: value });
@@ -84,16 +98,24 @@ const AuthJoin = () => {
               onChange={onChangeFn}
             />
           </li>
-          <li>
-            비밀번호 :{" "}
-            <input
-              type="pw"
-              name="userPw"
-              placeholder="비밀번호를 입력해주세요"
-              value={join.userPw}
-              onChange={onChangeFn}
-            />
-          </li>
+            <li>비밀번호 : 
+            <div className="password" style={{ position: "relative", display: "inline-block" }}>
+              <input type={pwType.type} name='userPw' placeholder='비밀번호를 입력해주세요' value={join.userPw} onChange={onChangeFn}/>
+              <span onClick={handlepassvisibleFn}
+              style={{
+                position: "absolute",
+                right: "10px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                cursor: "pointer",
+              }}>
+                {pwType.visible ? 
+                <img src="../../../public/images/icon_invisible.png" alt="invisible" />
+                : 
+                <img src="../../../public/images/icon_visible.png" alt="visible" />
+                }</span>
+                </div>
+            </li>
           <li>
             전화번호 :{" "}
             <input
@@ -146,7 +168,7 @@ const AuthJoin = () => {
               name="role"
               id="role"
               onChange={onChangeFn}
-              value={joinData.role}
+              value={join.role}
             >
               <option value="ROLE_MEMBER" defaultValue>
                 일반회원

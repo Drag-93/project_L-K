@@ -1,87 +1,149 @@
-/* 상세 페이지 전체 컨테이너 */
+/*****************************************************************************
+    @communityNoticeDetail
+****************************************************************************/
+
 .detail {
-  width: 100%;
-  max-width: 900px;
-  margin: 60px auto;
-  padding: 0 20px;
-  font-family: "Pretendard", sans-serif;
+  max-width: 1200px;
+  margin: 0;
+  padding: 5rem 1.5rem 10rem 1.5rem;
+  min-height: calc(100vh - 6rem - 82px);
 }
 
-/* 게시글 컨텐츠 영역 */
-.detail-con {
-  border-top: 2px solid #333;
-  padding-top: 30px;
-}
-
-/* 제목 스타일 */
-.detail-con h1 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #222;
-  margin-bottom: 25px;
-  line-height: 1.4;
-}
-
-/* 정보 리스트 (작성자, 날짜, 조회수 등) */
-.detail-con ul {
-  list-style: none;
+.detail .detail-con {
+  margin: 0;
   padding: 0;
-  margin-bottom: 40px;
-}
-
-/* 각 항목 스타일 */
-.detail-con ul li {
-  padding: 12px 0;
-  border-bottom: 1px solid #eee;
-  color: #555;
-  font-size: 1rem;
-}
-
-/* 내용(Content) 영역 강조 */
-.detail-con ul li:nth-child(4) {
-  min-height: 300px;
-  padding: 40px 10px;
-  line-height: 1.8;
+  vertical-align: baseline;
+  list-style: none;
+  text-decoration: none;
   color: #333;
-  border-bottom: 2px solid #f4f4f4;
-  white-space: pre-wrap; /* 줄바꿈 허용 */
+  box-sizing: border-box;
+  line-height: 1;
 }
 
-/* 버튼 그룹 컨테이너 */
-.detail-con .admin-control {
+.detail-con .aside_wrap {
+  padding: 0;
+}
+
+/* aside_wrap의 공통 적용 부분은 생략 */
+/* .detail-con .aside_wrap ul {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 40px;
+  align-items: center;
+  gap: 5rem;
+  border-bottom: 1px solid #ccc;
+  list-style: none;
+  padding: 0;
 }
 
-/* 공통 버튼 스타일 */
-.detail-con button {
-  padding: 10px 25px;
-  border-radius: 4px;
-  border: 1px solid #ddd;
+.detail-con .aside_wrap ul li {
+  padding: 0;
+  border-bottom: none;
+}
+
+.detail-con .aside_wrap ul li a {}
+.detail-con .aside_wrap ul li a.active {}
+.detail-con .aside_wrap ul li a:hover {} */
+
+.detail-con h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #333;
+  padding: 70px 0 40px 0;
+}
+
+.detail-con .detail-info {
+  list-style: none;
+  padding-bottom: 40px;
+  border-top: 2px solid #3a7d44;
+}
+
+.detail-con .detail-info li {
+  padding: 14px 20px;
+  border-bottom: 1px solid #eee;
+  color: #333;
+  font-size: 1.7rem;
+}
+
+.detail-con .detail-info .info-date {
   background-color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.detail-con .detail-info .info-date strong {
+  display: inline-block;
+  min-width: 30px;
+  color: #4d9c25;
+  font-weight: 600;
+}
+
+.detail-con .detail-info h2 {
+  padding: 14px 20px;
+  background-color: #fff;
+  color: #4d9c25;
+  font-size: 1.7rem;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+}
+
+.detail-con .detail-info .info-content {
+  min-height: 300px;
+  padding: 30px 20px;
+  border-bottom: 2px solid #3a7d44;
+  color: #333;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+/* 목록 버튼 */
+.detail-con .btn-list {
+  display: block;
+  margin: 24px auto 0;
+  padding: 10px 28px;
+  border-radius: 4px;
+  border: 1px solid #3a7d44;
+  background-color: #3a7d44;
+  color: #fff;
   cursor: pointer;
-  font-size: 0.95rem;
+  font-size: 1.4rem;
   transition: all 0.2s ease;
 }
 
-/* 목록 버튼 (중앙) */
-.detail-con button:nth-of-type(2) {
+.detail-con .btn-list:hover {
+  background-color: #2e6335;
+  border-color: #2e6335;
+}
+
+/* 관리자 수정/삭제 버튼 */
+.detail-con .admin-control {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+.detail-con .admin-control button {
+  padding: 10px 25px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: #eee;
+  color: black;
+  cursor: pointer;
+  font-size: 1.4rem;
+  transition: all 0.2s ease;
+}
+
+.detail-con .admin-control button:hover {
   background-color: #333;
-  color: #fff;
   border-color: #333;
+  color: #eee;
 }
 
-/* 수정/삭제 버튼 호버 */
-.detail-con button:hover {
-  background-color: #f8f9fa;
-  border-color: #bbb;
-}
-
-/* 삭제 버튼 강조 (선택사항) */
+/* 삭제 버튼 강조 */
 .detail-con .admin-control button:last-of-type:hover {
-  background-color: #ff4d4d;
+  background-color: #e64040;
   color: #fff;
-  border-color: #ff4d4d;
+  border-color: #e64040;
 }

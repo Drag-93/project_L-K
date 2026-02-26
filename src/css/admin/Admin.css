@@ -29,7 +29,7 @@
   left: 0;
   width: var(--admin-left-w, 24rem);
   height: 100vh;
-  z-index: 400;
+  z-index: 920;
 
   transform: translateX(0);
   transition: transform 0.25s ease;
@@ -43,6 +43,17 @@
   padding: 2.4rem;
   display: flex;
   justify-content: center;
+  overflow-x: auto;
+}
+.adminContent-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 900;
+  backdrop-filter: blur(2px);
 }
 
 /* mobile */

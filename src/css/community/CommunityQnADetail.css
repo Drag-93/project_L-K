@@ -1,273 +1,195 @@
-/* =========================
-   CommunityQnADetail.css
-   ========================= */
-
-/* 전체 박스사이징 통일 */
-.QnADetail,
-.QnADetail * {
-  box-sizing: border-box;
-}
+/*****************************************************************************
+    @CommunityQnADetail
+****************************************************************************/
 
 .QnADetail {
-  width: 100%;
-  min-height: calc(100vh - 120px); /* 헤더/푸터 높이에 맞춰 조절 */
-  padding: 40px 24px 80px;
-  background: #f5f7fb;
+  max-width: 1200px;
+  margin: 0;
+  padding: 5rem 1.5rem 10rem 1.5rem;
+  min-height: calc(100vh - 6rem - 82px);
 }
 
-/* 메인 박스 (질문 상세) */
-.QnADetail-con {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 18px 22px 26px;
-  background: transparent; /* 이미지처럼 흰 박스 느낌이 약하면 투명 */
+.QnADetail .QnADetail-con {
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  list-style: none;
+  text-decoration: none;
+  color: #333;
+  box-sizing: border-box;
+  line-height: 1;
 }
 
-/* 상단 타이틀 영역 */
-.QnADetail-con .title {
-  text-align: center;
-  margin-bottom: 18px;
+.QnADetail-con .aside_wrap {
+  padding: 0;
 }
 
-.QnADetail-con .title ul {
+/* aside_wrap의 공통 적용 부분은 생략 */
+/* .QnADetail-con .aside_wrap ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  border-bottom: 1px solid #ccc;
   list-style: none;
   padding: 0;
-  margin: 0;
 }
+
+.QnADetail-con .aside_wrap ul li {
+  padding: 0;
+  border-bottom: none;
+}
+
+.QnADetail-con .aside_wrap ul li a {}
+.QnADetail-con .aside_wrap ul li a.active {}
+.QnADetail-con .aside_wrap ul li a:hover {} */
 
 .QnADetail-con .title h1 {
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: -0.3px;
-  margin: 0 0 14px;
-  color: #111;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #333;
+  padding: 70px 0 40px 0;
 }
 
-/* 제목 아래 얇은 라인 */
-.QnADetail-con .title::after {
-  content: "";
-  display: block;
-  width: 86%;
-  max-width: 820px;
-  margin: 0 auto;
-  border-top: 2px solid #222;
-  opacity: 0.9;
-}
-
-/* 폼 리스트 */
-.QnADetail-con > ul {
+.QnADetail-con ul.faq-content {
   list-style: none;
-  margin: 18px auto 0;
-  padding: 0;
-  width: 86%;
-  max-width: 820px;
-  border-top: 1px solid #dcdfe6;
+  border-top: 2px solid #3a7d44;
+  border-bottom: 2px solid #3a7d44;
 }
 
-.QnADetail-con > ul > li {
-  display: grid;
-  grid-template-columns: 120px 1fr; /* 왼쪽 라벨/오른쪽 입력 */
-  gap: 16px;
-  align-items: center;
-  padding: 14px 6px;
-  border-bottom: 1px solid #eceff4;
+.QnADetail-con ul.faq-content li {
+  padding: 14px 20px;
+  border-bottom: 1px solid #eee;
+  color: #333;
+  font-size: 1.6rem;
 }
 
-/* 라벨 */
-.QnADetail-con label {
-  font-size: 13px;
-  font-weight: 700;
-  color: #555;
-  text-align: center; /* 이미지처럼 중앙 느낌 */
+.QnADetail-con ul.faq-content li label[for="title"],
+.QnADetail-con ul.faq-content li label[for="writer"],
+.QnADetail-con ul.faq-content li label[for="date"],
+.QnADetail-con ul.faq-content li label[for="question"],
+.QnAAnswer-con li label[for="answer"] {
+  display: inline-block;
+  min-width: 50px;
+  color: #4d9c25;
+  font-weight: 600;
 }
 
-/* input/textarea 공통 */
-.QnADetail-con input,
-.QnADetail-con textarea {
+.QnADetail-con ul.faq-content li textarea {
   width: 100%;
-  border: 0;
-  background: transparent;
-  font-size: 13px;
-  color: #222;
+  min-height: 200px;
+  padding: 12px;
+  margin-top: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  resize: none;
+  font-family: inherit;
+}
+
+.QnADetail-con ul.faq-content li textarea:focus {
   outline: none;
-  padding: 8px 10px;
+  border-color: #2d3748;
+}
+
+/*--- QnADetail 하단(Footer) ---*/
+.QnADetailFooter .QnADetailFooter-con {
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+}
+
+/* 목록 버튼 */
+.QnADetailFooter .QnADetailFooter-con .btn-list {
+  position: absolute;
+  left: 50%;
+  padding: 10px 28px;
+  border-radius: 4px;
+  border: 1px solid #3a7d44;
+  background-color: #3a7d44;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.4rem;
+  transition: all 0.2s ease;
+}
+
+.QnADetailFooter .QnADetailFooter-con .btn-list:hover {
+  background-color: #2e6335;
+  border-color: #2e6335;
+}
+
+/* 수정/삭제/저장/취소 버튼 */
+.QnADetailFooter .QnADetailFooter-con .btn-group {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.QnADetailFooter .QnADetailFooter-con .btn-group button {
+  padding: 10px 25px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: #eee;
+  color: black;
+  cursor: pointer;
+  font-size: 1.4rem;
+  transition: all 0.2s ease;
+}
+
+.QnADetailFooter .QnADetailFooter-con .btn-group button:hover {
+  background-color: #333;
+  border-color: #333;
+  color: #eee;
+}
+
+/* 삭제 버튼 강조 */
+.QnADetailFooter .QnADetailFooter-con .btn-group button:nth-of-type(2):hover {
+  background-color: #e64040;
+  color: #fff;
+  border-color: #e64040;
+}
+
+/*--- QnADetailFooter 관리자 답변부분 ---*/
+.QnAAnswer-con {
+  width: 100%;
+  margin-top: 24px;
+  border: 1px solid #e2e8f0;
   border-radius: 8px;
 }
 
-/* 읽기 전용일 때 더 깔끔하게 */
-.QnADetail-con input[readonly],
-.QnADetail-con textarea[readonly] {
-  color: #222;
+.QnAAnswer-con ul {
+  padding: 14px 20px;
+  color: #333;
+  font-size: 1.6rem;
 }
 
-/* 수정 모드일 때만 살짝 박스 느낌 */
-.QnADetail-con input:not([readonly]),
-.QnADetail-con textarea:not([readonly]) {
-  background: #fff;
-  border: 1px solid #dfe3ea;
-}
-
-/* textarea */
-.QnADetail-con textarea {
-  resize: none;
-  line-height: 1.55;
-}
-
-/* footer 버튼 영역 */
-.QnADetailFooter {
-  width: 86%;
-  max-width: 820px;
-  margin: 16px auto 0;
-}
-
-.QnADetailFooter-con {
+.QnAAnswer-con ul li button {
   display: flex;
-  justify-content: flex-end;
   gap: 10px;
-  padding-top: 14px;
-}
-
-/* 버튼 공통 */
-.QnADetailFooter-con button,
-.QnAAnswer-con button {
-  border: 0;
-  cursor: pointer;
-  padding: 10px 14px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 700;
-  transition: 0.15s ease;
-}
-.QnADetailFooter-con button:hover,
-.QnAAnswer-con button:hover {
-  transform: scale(1.02);
-}
-.QnADetailFooter-con button:first-child {
+  margin: 10px 0 0 auto;
+  padding: 10px 25px;
   border-radius: 4px;
   border: 1px solid #ddd;
-  background-color: #fff;
+  background-color: #eee;
+  color: black;
   cursor: pointer;
-
-  margin-right: 555px;
+  font-size: 1.4rem;
+  transition: all 0.2s ease;
 }
 
-/* 수정/저장 버튼 */
-.QnADetailFooter-con button:nth-child(2) {
-  background: #2e7d32;
-  color: #fff;
-}
-.QnADetailFooter-con button:nth-child(2) {
-  filter: brightness(0.95);
+.QnAAnswer-con ul li button:hover {
+  background-color: #333;
+  border-color: #333;
+  color: #eee; 
 }
 
-/* 삭제 버튼 */
-.QnADetailFooter-con button:last-child {
-  background: #222;
-  color: #fff;
-}
-.QnADetailFooter-con button:last-child:hover {
-  filter: brightness(0.95);
-}
-
-/* =========================
-   답변 영역
-   ========================= */
-
-.QnAAnswer-con {
-  max-width: 980px;
-  margin: 22px auto 0;
+.QnAAnswer-con ul li textarea {
   width: 100%;
-  padding: 0 22px;
-}
-
-.QnAAnswer-con ul {
-  width: 86%;
-  max-width: 820px;
-  margin: 0 auto;
-  padding: 14px 0 0;
-  list-style: none;
-  border-top: 1px solid #dcdfe6;
-}
-
-/* 답변 버튼 줄 */
-.QnAAnswer-con ul > li:first-child {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-/* 답변 버튼 */
-.QnAAnswer-con button {
-  background: #2e7d32;
-  color: #fff;
-}
-.QnAAnswer-con button:hover {
-  filter: brightness(0.95);
-}
-
-/* 답변 textarea 줄 */
-.QnAAnswer-con ul > li:last-child {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 16px;
-  align-items: start;
-  padding: 14px 6px 0;
-}
-
-.QnAAnswer-con label {
-  font-size: 13px;
-  font-weight: 700;
-  color: #555;
-  text-align: center;
-  padding-top: 10px;
-}
-
-.QnAAnswer-con textarea {
-  width: 100%;
-  background: transparent;
-  border: 0;
-  outline: none;
-  padding: 10px 10px;
-  border-radius: 10px;
-  line-height: 1.6;
-  font-size: 13px;
-  color: #222;
+  min-height: 20px;
+  padding: 12px;
+  margin-top: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
   resize: none;
-}
-
-.QnAAnswer-con textarea:not([readonly]) {
-  background: #fff;
-  border: 1px solid #dfe3ea;
-}
-
-/* =========================
-   반응형
-   ========================= */
-@media (max-width: 720px) {
-  .QnADetail {
-    padding: 28px 14px 60px;
-  }
-
-  .QnADetail-con > ul,
-  .QnADetailFooter,
-  .QnAAnswer-con ul {
-    width: 100%;
-  }
-
-  .QnADetail-con > ul > li,
-  .QnAAnswer-con ul > li:last-child {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .QnADetail-con label,
-  .QnAAnswer-con label {
-    text-align: left;
-    padding-left: 6px;
-  }
-
-  .QnADetailFooter-con {
-    justify-content: center;
-  }
+  font-family: inherit;
 }

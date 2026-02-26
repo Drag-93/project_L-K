@@ -58,6 +58,7 @@ const AdminLayout = () => {
           if (isOpen && isMobile) setIsOpen(false);
         }}
       >
+        {isOpen && isMobile ? <div className="adminContent-blur" /> : <></>}
         <Outlet />
       </div>
     </div>
