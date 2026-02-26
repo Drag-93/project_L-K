@@ -620,7 +620,7 @@ max-height: 500px; /* 열렸을 때 넉넉한 높이 */
     cursor: pointer;
 }
 .list_search_wrap .list_search_box .toolbar.active{
-    width: 42rem;
+    width: 36rem;
     background: url(/public/images/icon_search_g.svg) no-repeat #fff;
     background-size: 2.4rem;
     background-position: 0.8rem;
@@ -729,8 +729,22 @@ max-height: 500px; /* 열렸을 때 넉넉한 높이 */
     font-weight: bold;
   }
 
-
-
+@media(max-width:900px){
+    .list_search_wrap .list_search_box .toolbar {width: 3rem; height: 3rem; background-size: 1.8rem;}
+    .list_search_wrap .list_search_box .toolbar input {font-size: 1.6rem;}
+    .list_search_wrap .list_search_box .toolbar.active input {padding-left: 3.2rem;}
+    .list_search_wrap .list_search_box .toolbar .list_search_btn {width: 3rem;}
+    .list_search_wrap .list_search_box .toolbar.active {width: 26rem; background-size: 2rem;}
+    .custom-select-container {width: 11rem;}
+    .select-selected {height: 3rem;}
+    .select-selected {font-size: 14px;}
+    .select-selected img {width: 2rem; height: 2rem;}
+}
+@media(max-width:480px){
+    .list_search_wrap .list_search_length {display: none;}
+    .list_search_wrap{justify-content: flex-end;}
+    .list_search_wrap .list_search_box .toolbar.active {width: 20rem;}
+}
 
 /*****************************************************************************
     @페이징

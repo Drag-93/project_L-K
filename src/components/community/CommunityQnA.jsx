@@ -12,6 +12,10 @@ const CommunityQnA = () => {
   const pageSize = 10;
   const [page, setPage] = useState(1);
   const user = useSelector((state) => state.input.user);
+
+  // 검색툴바의 활성화 상태 관리
+    const [isSearchActive, setIsSearchActive] = useState(false);
+
   const filtered = useMemo(() => {
     const q = searchText.trim().toLowerCase();
     if (!q) return qnaList;
@@ -73,81 +77,123 @@ const CommunityQnA = () => {
   }, [qnaList, user]);
 
   return (
-    <div className="QnA">
-      <div className="QnA-con">
+    <div className="inner2">
+      <div className="community_wrap">
         <div className="aside_wrap">
           <ul>
             <li><NavLink to={`/community/notice`}>공지사항</NavLink></li>
             <li><NavLink to={`/community/faq`}>자주묻는질문</NavLink></li>
             <li><NavLink to={`/community/qna`}>Q&A</NavLink></li>
           </ul>
-        </div>           
-        <div className="title">
-          <ul>
-            <li>
-              <h1>Q&A</h1>
-            </li>
-            <div className="toolbar">
+        
+        </div>
+        <h3 className="community_title">Q&A</h3>
+        <div className="list_search_wrap">
+          <span className="list_search_length">
+            게시물 <b>{qnaList.length}</b>개
+          </span>
+          <div className="list_search_box">
+            <div
+              className={`toolbar ${isSearchActive ? "active" : ""}`}
+              onClick={() => setIsSearchActive(true)}
+            >
               <input
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
                 placeholder="검색어 입력"
               />
-            </div>
-          </ul>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <td>글번호</td>
-              <td>제목</td>
-              <td>작성일</td>
-              <td>작성자</td>
-              <td>답변상태</td>
-              <td>조회수</td>
-            </tr>
-          </thead>
-          <tbody>
-            {pagedList.map((el) => {
-              return (
-                <tr key={el.id} onClick={() => navigate(`${el.id}`)}>
-                  <td onClick={(e) => e.stopPropagation()}>{el.no}</td>
-                  <td>{el.title}</td>
-                  <td>{getKoreaDate(el.date)}</td>
-                  <td>{el.writer}</td>
-                  <td
-                    className={`qnaStateBadge ${el.state === "답변완료" ? "done" : "wait"}`}
-                  >
-                    {el.state}
-                  </td>
-                  <td onClick={(e) => e.stopPropagation()}>{el.viewrate}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        <div className="QnAFooter">
-          <div className="QnAFooter-con">
-            <div className="QnAPaging">
-              <button
-                onClick={() => setPage((p) => Math.max(1, p - 1))}
-                disabled={page === 1}
+              <span
+                className="list_search_btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsSearchActive(false);
+                  setSearchText("");
+                }}
               >
-                이전
-              </button>
-              <span>
-                {page}/{totalPages}
+                <img src="/images/icon_close_w.svg" />
               </span>
-              <button
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                disabled={page === totalPages}
-              >
-                다음
-              </button>
             </div>
-
-            <button onClick={() => navigate(`write`)}>글쓰기</button>
+            <div className="custom-select-container qna_btn">
+              <div className="select-selected" onClick={()=>navigate("write")}>
+                  글쓰기
+              </div>
+            </div>
           </div>
+        </div>
+        <div className="notice_list">
+          <table>
+            <thead>
+              <tr>
+                <td>글번호</td>
+                <td>제목</td>
+                <td>작성일</td>
+                <td>작성자</td>
+                <td>답변상태</td>
+                <td>조회수</td>
+              </tr>
+            </thead>
+            <tbody>
+              {pagedList.map((el) => {
+                return (
+                  <tr key={el.id} onClick={() => navigate(`${el.id}`)}>
+                    <td onClick={(e) => e.stopPropagation()}>{el.no}</td>
+                    <td>{el.title}</td>
+                    <td>{getKoreaDate(el.date)}</td>
+                    <td>{el.writer}</td>
+                    <td
+                      className={`qnaStateBadge ${el.state === "답변완료" ? "done" : "wait"}`}
+                    >
+                      {el.state}
+                    </td>
+                    <td onClick={(e) => e.stopPropagation()}>{el.viewrate}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <div className="paging_wrap">
+            <button
+              onClick={() => setPage(1)}
+              disabled={page === 1}
+              className="paging_double first"
+            >
+              &lt;&lt; {/* 또는 '맨처음' */}
+            </button>
+            <button
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={page === 1}
+              className="paging_one prev"
+            >
+              이전
+            </button>
+            <ul className="page_numbers">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (num) => (
+                  <li
+                    key={num}
+                    onClick={() => setPage(num)}
+                    className={page === num ? "active" : ""}
+                  >
+                    {num}
+                  </li>
+                ),
+              )}
+            </ul>
+            <button
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={page === totalPages}
+              className="paging_one next"
+            >
+              다음
+            </button>
+            <button
+              onClick={() => setPage(totalPages)}
+              disabled={page === totalPages}
+              className="paging_double last"
+            >
+              &gt;&gt; {/* 또는 '맨끝' */}
+            </button>
         </div>
       </div>
     </div>

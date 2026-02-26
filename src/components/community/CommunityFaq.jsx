@@ -8,8 +8,6 @@ const CommunityFaq = () => {
   const [faqList, setFaqList] = useState([])
   const url = API_JSON_SERVER_URL
   const [openId, setOpenId] = useState(null)
-  const [titleCategoryFilter, setTitleCategoryFilter] = useState("titlecategoryall");
-  const [categoryFilter, setCategoryFilter] = useState("categoryall");
   const categoryName = {
     reserveall : "예약",
     productall: "상품",
@@ -38,30 +36,9 @@ const CommunityFaq = () => {
     }
   };
 
-  // --- 필터 자동 초기화 로직 추가 ---
-useEffect(() => {
-  // 상위 카테고리가 '전체'면 하위도 '전체'로
-  if (titleCategoryFilter === "titlecategoryall") {
-    setCategoryFilter("categoryall");
-  } 
-  // 상위가 '상품'으로 바뀌면 하위를 '상품 전체'로
-  else if (titleCategoryFilter === "product") {
-    setCategoryFilter("productall");
-  } 
-  // 상위가 '예약'으로 바뀌면 하위를 '예약 전체'로
-  else if (titleCategoryFilter === "reserve") {
-    setCategoryFilter("reserveall");
-  }
-  
-  // 필터가 바뀌면 페이지를 다시 1페이지로 보냅니다.
-  setPage(1);
-}, [titleCategoryFilter]);
 
-// 하위 필터만 바뀔 때도 1페이지로 이동 (선택 사항)
-useEffect(() => {
-  setPage(1);
-}, [categoryFilter]);
-
+  // 검색툴바의 활성화 상태 관리
+  const [isSearchActive, setIsSearchActive] = useState(false);
 
   //검색변수
   const [searchText, setSearchText] = useState("");
@@ -78,18 +55,9 @@ useEffect(() => {
     const matchesSearch =
       !q || (m.title && m.title.toLowerCase().includes(q));
 
-      const matchesTitleCategory =
-      titleCategoryFilter === "titlecategoryall" ||
-      m.titlecategory === titleCategoryFilter;
-
-      const matchesCategory =
-      categoryFilter === "categoryall" || 
-      categoryFilter === "productall" || 
-      categoryFilter === "reserveall" || 
-      m.category === categoryFilter;
-    return matchesSearch && matchesTitleCategory && matchesCategory;
-  });
-}, [faqList, searchText, titleCategoryFilter, categoryFilter]);
+      return matchesSearch;
+    });
+  }, [faqList, searchText]);
 
 
   //페이징
@@ -136,8 +104,8 @@ useEffect(() => {
   const isadmin = user?.role === "ROLE_ADMIN";
 
   return (
-    <div className="faq">
-      <div className="faq-con">
+    <div className="inner2">
+      <div className="community_wrap">
         <div className="aside_wrap">
           <ul>
             <li><NavLink to={`/community/notice`}>공지사항</NavLink></li>
@@ -145,118 +113,125 @@ useEffect(() => {
             <li><NavLink to={`/community/qna`}>Q&A</NavLink></li>
           </ul>
         </div>         
-        <h1>자주 묻는 질문</h1>
-        <div className="faqtop">
-        <div className="toolbar">
-          <input
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-            placeholder="검색어 입력"
-          />
-        </div>
-        <div className="filter-box">
-          <select
-            value={titleCategoryFilter}
-            onChange={(e) => setTitleCategoryFilter(e.target.value)}
-          >
-            <option value="titlecategoryall">전체</option>
-            <option value="product">상품</option>
-            <option value="reserve">예약</option>
-          </select>
-
-          <select
-            value={categoryFilter}
-            onChange={(e) => setCategoryFilter(e.target.value)}
-          >
-            {titleCategoryFilter === "titlecategoryall" && (
-            <option value="categoryall">전체</option>)}
-            {titleCategoryFilter === "product" && (
-              <>
-                <option value="productall">전체</option>
-                <option value="hydro">보습</option>
-                <option value="trouble">트러블케어</option>
-                <option value="white">미백</option>
-                <option value="antiage">안티에이징</option>
-                <option value="uv">UV</option>
-              </>
-            )}
-
-            {titleCategoryFilter === "reserve" && (
-              <>
-                <option value="reserveall">전체</option>
-                <option value="lifting">울쎄라</option>
-                <option value="faceline">인모드</option>
-                <option value="regen">쥬베룩</option>
-                <option value="immune">글루타치온</option>
-              </>
-            )}
-          </select>
-        </div>        
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <td>글번호</td>
-              <td>카테고리</td>
-              <td>제목</td>
-            </tr>
-          </thead>
-          <tbody>
-            {pagedList && pagedList.map((el) => {
-              return (
-                <React.Fragment key={el.id}>
-                  <tr>
-                    <td>{el.number}</td>
-                    <td>{categoryName[el.category] || el.category}</td>
-                    <td style={{ cursor: 'pointer'}} onClick={() => handleToggleClick(el.id)}>
-                      <span style={{ fontWeight: openId === el.id ? 'bold' : 'normal' }}>
-                        <strong>Q.</strong>{el.title}
-                      </span>
-                    </td>
-                  </tr>
-                  {openId === el.id && (
-                    <tr className="faq-detail">
-                      <td colSpan="3" style={{ backgroundColor: '#f9f9f9', padding: '20px' }}>
-                        <div className="box">
-                          <p style={{whiteSpace:'pre-line'}}><strong>A.</strong>{el.description || '내용이 없습니다.'}</p>
-                        </div>
-                      {isadmin && (
-                    <div className="admin-control">
-                      <button onClick={()=>navigate(`/community/faq/write/${el.id}`)}>수정</button>
-                      <button onClick={faqDeleteFn}>삭제</button>
-                      </div>
-                    )}
-                      </td>
-                    </tr>
-                  )}
-                </React.Fragment>
-              );
-            })}
-          </tbody>
-        </table>
-        
-        <div className="QnAFooter">
-          <div className="QnAFooter-con">
-            <div className="QnAPaging">
-              <button
-                onClick={() => setPage((p) => Math.max(1, p - 1))}
-                disabled={page === 1}
+        <h3 className="community_title">자주묻는질문</h3>
+        <div className="list_search_wrap">
+          <span className="list_search_length">
+            게시물 <b>{faqList.length}</b>개
+          </span>
+          <div className="list_search_box">
+            <div
+              className={`toolbar ${isSearchActive ? "active" : ""}`}
+              onClick={() => setIsSearchActive(true)}
+            >
+              <input
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                placeholder="검색어 입력"
+              />
+              <span
+                className="list_search_btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsSearchActive(false);
+                  setSearchText("");
+                }}
               >
-                이전
-              </button>
-              <span>
-                {page}/{totalPages}
+                <img src="/images/icon_close_w.svg" />
               </span>
-              <button
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                disabled={page === totalPages}
-              >
-                다음
-              </button>
             </div>
-          {isadmin && (
-            <button on onClick={()=>navigate("/community/faq/write")}>등록</button>)}
+            {isadmin &&(
+              <div className="custom-select-container qna_btn">
+                <div className="select-selected" onClick={()=>navigate("/community/faq/write")}>
+                    글쓰기
+                </div>
+              </div>
+            )}
           </div>
+        </div>
+        <div className="notice_list">
+          <table>
+            <thead>
+              <tr>
+                <td>글번호</td>
+                <td>제목</td>
+                <td style={{display:`none`}}></td>
+              </tr>
+            </thead>
+            <tbody>
+              {pagedList && pagedList.map((el) => {
+                return (
+                  <React.Fragment key={el.id}>
+                    <tr className={openId === el.id ? 'on' : '' }>
+                      <td>{el.number}</td>
+                      <td style={{ cursor: 'pointer'}} onClick={() => handleToggleClick(el.id)}>
+                        <strong>Q.</strong>{el.title}
+                      </td>
+                      <td style={{display:`none`}}></td>
+                    </tr>
+                    {openId === el.id && (
+                      <tr className="faq_detail">
+                        <td></td>
+                        <td>
+                          <div className="faq_detail_box">
+                            <p style={{whiteSpace:'pre-line'}}><strong>A.</strong>{el.description || '내용이 없습니다.'}</p>
+                            {isadmin && (
+                            <div className="faq_detail_control">
+                              <button onClick={()=>navigate(`/community/faq/write/${el.id}`)}>수정</button>
+                              <button onClick={faqDeleteFn}>삭제</button>
+                            </div>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    )}
+                  </React.Fragment>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <div className="paging_wrap">
+            <button
+              onClick={() => setPage(1)}
+              disabled={page === 1}
+              className="paging_double first"
+            >
+              &lt;&lt; {/* 또는 '맨처음' */}
+            </button>
+            <button
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={page === 1}
+              className="paging_one prev"
+            >
+              이전
+            </button>
+            <ul className="page_numbers">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (num) => (
+                  <li
+                    key={num}
+                    onClick={() => setPage(num)}
+                    className={page === num ? "active" : ""}
+                  >
+                    {num}
+                  </li>
+                ),
+              )}
+            </ul>
+            <button
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={page === totalPages}
+              className="paging_one next"
+            >
+              다음
+            </button>
+            <button
+              onClick={() => setPage(totalPages)}
+              disabled={page === totalPages}
+              className="paging_double last"
+            >
+              &gt;&gt; {/* 또는 '맨끝' */}
+            </button>
         </div>
       </div>
     </div>
