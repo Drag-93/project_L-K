@@ -192,7 +192,7 @@ const CommunityQnADetail = () => {
             </li>
           </ul>
         </div>
-        <ul>
+        <ul className="faq-content">
           <li>
             <label htmlFor="title">제목</label>
             <input
@@ -238,10 +238,10 @@ const CommunityQnADetail = () => {
         </ul>
         <div className="QnADetailFooter">
           <div className="QnADetailFooter-con">
-            <button onClick={() => navigate(`/community/qna`)}>목록</button>
+            <button className="btn-list" onClick={() => navigate(`/community/qna`)}>목록</button>
             {user?.userEmail === detail.writerEmail ||
             user?.role === "ROLE_ADMIN" ? (
-              <>
+              <div className="btn-group">
                 {!isEditing ? (
                   <>
                     <button onClick={onEditFn}>수정하기</button>
@@ -255,13 +255,28 @@ const CommunityQnADetail = () => {
                     </button>
                   </>
                 )}
-              </>
+              </div>
             ) : null}
           </div>
         </div>
       </div>
       <div className="QnAAnswer-con">
         <ul>
+          <li>
+            <label htmlFor="answer">답변내용</label>
+            <textarea
+              name="answer"
+              id="answer"
+              value={
+                isAnswering
+                  ? editAnswer.answer
+                  : detail.answer || "관리자가 확인 중입니다."
+              }
+              onChange={onAnswerChangeFn}
+              rows={6}
+              readOnly={!isAnswering}
+            />
+          </li>
           {user?.role === "ROLE_ADMIN" && (
             <li>
               {!isAnswering && (
@@ -279,21 +294,6 @@ const CommunityQnADetail = () => {
               )}
             </li>
           )}
-          <li>
-            <label htmlFor="answer">답변내용</label>
-            <textarea
-              name="answer"
-              id="answer"
-              value={
-                isAnswering
-                  ? editAnswer.answer
-                  : detail.answer || "관리자가 확인 중입니다."
-              }
-              onChange={onAnswerChangeFn}
-              rows={6}
-              readOnly={!isAnswering}
-            />
-          </li>
         </ul>
       </div>
     </div>
