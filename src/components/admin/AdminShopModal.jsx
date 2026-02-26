@@ -229,21 +229,21 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
             </li>
             <li>
               <label htmlFor="address">주소</label>
-              {/* <div className="admin-shopModal-address"> */}
-              <input
-                type="text"
-                name="address"
-                id="address"
-                value={detail.address}
-                onChange={onChangeFn}
-              />
-              {/* <button
+              <div className="admin-shopModal-address">
+                <input
+                  type="text"
+                  name="address"
+                  id="address"
+                  value={detail.address}
+                  onChange={onChangeFn}
+                />
+                <button
                   className="addressBtn"
                   onClick={() => setIsMapModalOpen(true)}
                 >
                   주소입력
                 </button>
-              </div> */}
+              </div>
             </li>
             {/* <li>
               <label htmlFor="lat">위도</label>

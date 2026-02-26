@@ -11,6 +11,7 @@ const AdminReservation = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [searchText, setSearchText] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("ALL");
+  const [shopFilter, setShopFilter] = useState("ALL");
   const [page, setPage] = useState(1);
   const [sortType, setSortType] = useState("latest");
   const [checkedItems, setCheckedItems] = useState([]);
@@ -41,12 +42,11 @@ const AdminReservation = () => {
   const filtered = useMemo(() => {
     let list = reservationList.filter((m) => {
       const q = searchText.trim().toLowerCase();
-      // 카테고리 필터: 카테고리명 혹은 지점명이 필터값과 일치하는지 확인
-      if (categoryFilter !== "ALL") {
-        const categoryMatch = m.category === categoryFilter;
-        const shopMatch = m.setshop?.includes(categoryFilter);
-        if (!categoryMatch && !shopMatch) return false;
-      }
+      if (categoryFilter !== "ALL" && m.category !== categoryFilter)
+        return false;
+      if (shopFilter !== "ALL" && !m.setshop?.includes(shopFilter))
+        return false;
+
       if (!q) return true;
 
       const searchTarget = [
@@ -69,7 +69,7 @@ const AdminReservation = () => {
       if (sortType === "cheapest") return a.price - b.price;
     };
     return [...list].sort(compare);
-  }, [reservationList, searchText, categoryFilter, sortType]);
+  }, [reservationList, searchText, categoryFilter, shopFilter, sortType]);
 
   // 3. 페이지네이션 계산
   const pageSize = 10; // 한 페이지에 보여줄 개수
@@ -163,8 +163,8 @@ const AdminReservation = () => {
                 <ul>
                   <li>
                     <select
-                      value={categoryFilter}
-                      onChange={(e) => setCategoryFilter(e.target.value)}
+                      value={shopFilter}
+                      onChange={(e) => setShopFilter(e.target.value)}
                     >
                       <option value="ALL">전체 지점</option>
                       <option value="노원">노원</option>

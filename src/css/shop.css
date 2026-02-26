@@ -18,7 +18,7 @@
   /* display: flex; */
   padding: 0.3rem;
   gap: 3rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
 }
 
 .shop .shop-con .shop-map {
@@ -28,7 +28,7 @@
   max-height: 440px; */
   border-radius: 8px;
   padding: 1rem;
-  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .shop .shop-con .shop-info ul {
@@ -37,18 +37,21 @@
 
   /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
   border-radius: 8px;
-  gap: 3rem;
+  gap: 2rem;
   height: auto;
   padding: 0.7rem;
 }
 .shop .shop-con .shop-info ul li {
   display: flex;
-  gap: 1rem;
+  gap: 0.6rem;
   padding: 0.5rem;
   border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
 }
 .shop .shop-con .shop-info ul li h3 {
+  /* text-align: center; */
+  padding-left: 0.2rem;
+  align-content: center;
   flex: 2 1 0;
   font-size: 1.5rem;
   padding-top: 0.3rem;
@@ -57,6 +60,7 @@
 }
 .shop .shop-con .shop-info ul li span {
   flex: 8 1 0;
+  align-content: center;
   border-left: 2px solid #5aa933;
   padding-left: 1rem;
   font-size: 1.3rem;
@@ -64,7 +68,7 @@
 }
 
 .shop .shop-con .shop-info ul li:last-child span {
-  height: calc(420px - 2rem - 8.8rem - 9rem - 3rem);
+  height: calc(420px - 2rem - 8.8rem - 6rem - 3rem);
   padding-bottom: 1rem;
 }
 
