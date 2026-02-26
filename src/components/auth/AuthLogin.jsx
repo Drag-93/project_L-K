@@ -10,9 +10,25 @@ const loginData = {
   userPw: "",
 };
 
+
 const AuthLogin = () => {
   const [login, setLogin] = useState(loginData);
   const navigate = useNavigate();
+
+  const [pwType, setPwType] = useState({
+    type : "password",
+    visible : false
+  })
+  
+  const handlepassvisibleFn = (e) =>{
+    setPwType(() => {
+      if (!pwType.visible) {
+        return { type: "text", visible: true };
+      } else {
+        return { type: "password", visible: false };
+      }
+    });
+  }
 
   const onChangeLoginFn = (e) => {
     const { name, value } = e.target;
@@ -63,7 +79,24 @@ const AuthLogin = () => {
         <form onSubmit={onLoginFn} method='post'>
         <ul>
             <li>이메일 : <input type="email" name='userEmail' placeholder='이메일을 입력해주세요' value={login.userEmail} onChange={onChangeLoginFn}/></li>
-            <li>비밀번호 : <input type="password" name='userPw' placeholder='비밀번호를 입력해주세요' value={login.userPw} onChange={onChangeLoginFn}/></li>
+            <li>비밀번호 : 
+            <div className="password" style={{ position: "relative", display: "inline-block" }}>
+              <input type={pwType.type} name='userPw' placeholder='비밀번호를 입력해주세요' value={login.userPw} onChange={onChangeLoginFn}/>
+              <span onClick={handlepassvisibleFn}
+              style={{
+                position: "absolute",
+                right: "10px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                cursor: "pointer",
+              }}>
+                {pwType.visible ? 
+                <img src="../../../public/images/icon_invisible.png" alt="invisible" />
+                : 
+                <img src="../../../public/images/icon_visible.png" alt="visible" />
+                }</span>
+                </div>
+            </li>
         <li>
           <button type="button" onClick={() => { navigate('/auth/join') }}>회원가입</button>
           <button type="submit" onClick={onLoginFn}>로그인</button>

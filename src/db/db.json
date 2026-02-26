@@ -14,7 +14,7 @@
       "description": "공지사항 테스트 02",
       "no": 2,
       "date": "Tue Feb 24 2026 14:27:32 GMT+0900 (한국 표준시)",
-      "viewrate": 3
+      "viewrate": 4
     },
     {
       "id": "5246",
@@ -65,6 +65,19 @@
       "gender": "여",
       "role": "ROLE_ADMIN",
       "remark": ""
+    },
+    {
+      "id": "fb2d",
+      "userName": "tester",
+      "userEmail": "test2@test",
+      "userPw": "1234",
+      "phonenum": "111111",
+      "age": "12",
+      "address": "123213",
+      "gender": "여",
+      "role": "ROLE_MEMBER",
+      "remark": "",
+      "note": "124214"
     }
   ],
   "product": [
@@ -924,7 +937,7 @@
       "date": "Tue Feb 24 2026 16:13:42 GMT+0900 (한국 표준시)",
       "writer": "유저테스트계정",
       "writerEmail": "test@test",
-      "viewrate": 4,
+      "viewrate": 5,
       "admin": "",
       "answer": "",
       "state": "답변대기"
