@@ -106,6 +106,15 @@
     font-size: 14px;
     color: #333;
   }
+  .auth-login-con li:nth-child(2) {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column; /* 라벨과 인풋을 세로로 배치 */
+    gap: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+  }
   
   /* 입력창 스타일 */
   .auth-login-con input {
