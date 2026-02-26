@@ -60,7 +60,7 @@
 
 .fp-watermark {display: none;}
 
-.section.sec3 {background: #ecad5a;}
+.section.sec2 {background: #fafafa;}
 
 /* 메인페이지 메뉴 */
 .main_nav {max-width: 1200px; margin: 0 auto; padding: 35px 15px;}
@@ -74,12 +74,61 @@
 
 
 /* 메인페이지 product */
-.main_inner { max-width: 1400px; margin: 0 auto; padding: 35px 15px; }
+.main_inner { max-width: 1400px; margin: 0 auto; padding: 8rem 15px; }
+.main_sec_title .main_sec_title_cat {
+  display: flex;
+  justify-content: center;
+}
+.main_sec_title .main_sec_title_cat strong {
+  border-top: 1px solid #2c9931;
+  border-bottom: 1px solid #2c9931;
+  font-size: 2rem;
+  font-weight: 300;
+  color: #2c9931;
+  letter-spacing: 0.3em;
+  padding: 5px 17px;
+  display: block;
+}
+.main_sec_title h2 {
+  font-size: 2.8rem;
+  font-weight: 500;
+  color: #454545;
+  text-align: center;
+  padding: 5rem 0 3rem 0;
+}
+.main_sec_title h2 b {color: #222; font-weight: 700; font-size: 5.2rem; display: block; padding-top: 7px;}
+.main_sec_title p {font-size: 2rem; color: #666; font-weight: 400; text-align: center;}
+.main_sec_title p span {color: #d7615a; font-weight: 700;}
+
+.main_sec2_con {padding-top: 10rem; display: flex; flex-direction: column;
+  align-items: center;}
+.main_sec2_con a {
+  font-size: 2.4rem;
+  letter-spacing: 0.05em;
+  border: 2px solid #145728;
+  padding: 1.5rem 3rem;
+  background: #fff;
+  border-top-left-radius: 17px;
+  border-bottom-right-radius: 17px;
+  transition: 0.4s;
+}
+
+.main_sec2_con a:hover {color: #fff; background: #145728;}
+.main_sec2_con .main_sec2_wrap {display: flex; justify-content: center; padding: 5rem 0 12rem 0;}
+.main_sec2_con .main_sec2_wrap .main_sec2_wrap_img {display: flex; justify-content: center; align-items: flex-end;}
+.main_sec2_con .main_sec2_wrap .sec2_img {width: 100%;position: relative; z-index: 5; display: block; border-radius: 25px;}
+.main_sec2_con .main_sec2_wrap .sec2_img1 {transform: translate(3.5rem, 0); background: url(/public/images/sec05_img01.png) no-repeat center center / cover; width: 500px; height: 400px;}
+.main_sec2_con .main_sec2_wrap .sec2_img2 {z-index: 4;transform: translate(-3.5rem, 7rem); background: url(/public/images/sec05_img02.png) no-repeat center center / cover; width: 660px; height: 410px;}
 
 
+.sec3 .main_inner {padding: 8rem 15px 0 15px;}
+.main_sec3_wrap {padding-top: 5rem;}
+.sec3 video {display: block; width: 100%;}
 
-
-
+@media(max-width:1200px){
+  .main_sec2_con .main_sec2_wrap img:first-child {transform: none;}
+  .main_sec2_con .main_sec2_wrap img:last-child {transform: none;}
+}
 
 /*****************************************************************************
     @AuthLogin
