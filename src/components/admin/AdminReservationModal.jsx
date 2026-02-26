@@ -10,21 +10,23 @@ const AdminReservationModal = ({
 }) => {
   const [allShops, setAllShops] = useState([]);
   const [detail, setDetail] = useState(null);
-  const allTimes = [
-    "10:00",
-    "11:00",
-    "12:00",
-    "13:00",
-    "14:00",
-    "15:00",
-    "16:00",
-    "17:00",
-    "18:00",
-  ];
+  const [allTimes, setAllTimes] = useState([])
 
   const reservationUrl = API_JSON_SERVER_URL;
   const navigate = useNavigate();
   const [imgError, setImgError] = useState(false);
+
+const addReserveTime = () => {
+  setAllTimes((prev) => [...prev, ""]);
+};
+
+const removeReserveTime = (index) => {
+  setAllTimes((prev) => prev.filter((_, i) => i !== index));
+};
+
+const handleReserveTimeChange = (index, value) => {
+  setAllTimes((prev) => prev.map((item, i) => (i === index ? value : item)));
+};
 
   const onShopChange = (shopName) => {
     setDetail((prev) => {
@@ -43,14 +45,33 @@ const AdminReservationModal = ({
     });
   };
 
+useEffect(() => {
+  if (!reservationId) {
+    setAllTimes([]);
+  } else {
+    const fetchTime = async () => {
+      try {
+        const res = await axios.get(`${API_JSON_SERVER_URL}/allTimes`);
+        setAllTimes(res.data);
+      } catch (err) {
+        console.error("데이터 로딩 중 에러:", err);
+      }
+    };
+    fetchTime();
+  }
+}, [reservationId]);
+  
+
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const allRes = await axios.get(`${reservationUrl}/reservation`);
+        const allRes = await axios.get(`${reservationUrl}/shop`);
         const allData = allRes.data;
 
         const extractedShops = [
-          ...new Set(allData.flatMap((item) => item.setshop || [])),
+          ...new Set(allData.flatMap((item) => item.name || [])),
         ].sort();
 
         setAllShops(extractedShops);
@@ -79,7 +100,7 @@ const AdminReservationModal = ({
       }
     };
     fetchData();
-  }, [reservationId, reservationUrl]);
+  }, [reservationUrl]);
 
   // const onChangeFn = (e) => {
   //   const { name, value } = e.target;
@@ -148,7 +169,8 @@ const AdminReservationModal = ({
 
   const onPostFn = async () => {
     try {
-      await axios.post(`${reservationUrl}/reservation`, detail);
+    const newDetail = { ...detail, settime: allTimes };      
+    await axios.post(`${reservationUrl}/reservation`, newDetail);
       alert("추가 되었습니다.");
       if (onSuccess) {
         onSuccess();
@@ -244,7 +266,7 @@ const AdminReservationModal = ({
             <div className="adminModal-reserv-checkbox-group">
               {allShops.map((shop) => (
                 <label
-                  key={shop.id || shop}
+                  key={shop.name || shop}
                   className="adminModal-reserv-checkbox-item"
                 >
                   <input
@@ -259,18 +281,50 @@ const AdminReservationModal = ({
           </li>
           <li>
             <label>예약 시간 선택</label>
-            <div className="adminModal-reserv-checkbox-group">
-              {allTimes.map((time) => (
-                <label key={time} className="adminModal-reserv-checkbox-item">
-                  <input
-                    type="checkbox"
-                    checked={detail.settime?.includes(time)}
-                    onChange={() => onTimeChange(time)}
-                  />
-                  <span>{time}</span>
-                </label>
-              ))}
-            </div>
+            {detail.id ? (
+              <div className="adminModal-reserv-checkbox-group">
+                {allTimes.map((time) => (
+                  <label key={time} className="adminModal-reserv-checkbox-item">
+                    <input
+                      type="checkbox"
+                      checked={detail.settime?.includes(time)}
+                      onChange={() => onTimeChange(time)}
+                    />
+                    <span>{time}</span>
+                  </label>
+                ))}
+              </div>
+              ) : (
+               <>
+                 {allTimes.map((time, index) => ( 
+                   <div 
+                     key={index}
+                     style={{ display: "flex", alignItems: "center", marginTop: "5px" }}
+                   >
+                     <input
+                       type="text"
+                       value={time}
+                       placeholder="예: 13:00"
+                       onChange={(e) => handleReserveTimeChange(index, e.target.value)}
+                     />
+                     <button
+                       type="button"
+                       onClick={() => removeReserveTime(index)}
+                       style={{ marginLeft: "5px" }}
+                     >
+                       -
+                     </button>
+                   </div>
+                 ))}
+                <button
+                  type="button"
+                  onClick={addReserveTime}
+                  style={{ marginTop: "5px" }}
+                >
+                  +
+                </button>
+              </>
+            )}
           </li>
           <li className="adminModal-img">
             <label htmlFor="img">상품이미지</label>
