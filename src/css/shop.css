@@ -1,21 +1,75 @@
 @import url(shop/shopLeft.css);
-@import url(shop/shopPage.css);
 
 /* Shop.css */
 .shop {
+  box-sizing: border-box;
   width: 100%;
-  max-width: 1000px; /* 지도가 너무 무한정 커지지 않게 제한 */
-  margin: 0 auto;    /* main-content 안에서 중앙 정렬 */
-}
-.shop .shop-con{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  max-width: 1400px;
+  overflow-x: auto;
 }
 
-#map {
-  width: 100%;
-  height: 500px;     /* 지도의 높이 */
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+.shop .shop-con {
+  display: grid;
+  max-width: 1400px;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 2rem;
+  /* border: 1px solid; */
+  border-radius: 8px;
+  /* display: flex; */
+  padding: 0.3rem;
+  gap: 3rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.shop .shop-con .shop-map {
+  width: 450px;
+  height: 440px;
+  /* max-width: 600px;
+  max-height: 440px; */
+  border-radius: 8px;
+  padding: 1rem;
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
+}
+
+.shop .shop-con .shop-info ul {
+  display: flex;
+  flex-direction: column;
+
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
+  border-radius: 8px;
+  gap: 3rem;
+  height: auto;
+  padding: 0.7rem;
+}
+.shop .shop-con .shop-info ul li {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.shop .shop-con .shop-info ul li h3 {
+  flex: 2 1 0;
+  font-size: 1.5rem;
+  padding-top: 0.3rem;
+  font-weight: 600;
+  color: #5aa933;
+}
+.shop .shop-con .shop-info ul li span {
+  flex: 8 1 0;
+  border-left: 2px solid #5aa933;
+  padding-left: 1rem;
+  font-size: 1.3rem;
+  line-height: 2.2rem;
+}
+
+.shop .shop-con .shop-info ul li:last-child span {
+  height: calc(420px - 2rem - 8.8rem - 9rem - 3rem);
+  padding-bottom: 1rem;
+}
+
+@media (max-width: 1080px) {
+  .shop .shop-con {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

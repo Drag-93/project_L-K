@@ -19,42 +19,66 @@ const AdminLeft = ({ isMobile, show, onClose }) => {
 
         <ul>
           <li>
-            <NavLink to={"/admin/members"} className={linkClass}>
+            <NavLink
+              to={"/admin/members"}
+              className={linkClass}
+              onClick={onClose}
+            >
               회원관리
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/admin/product"} className={linkClass}>
+            <NavLink
+              to={"/admin/product"}
+              className={linkClass}
+              onClick={onClose}
+            >
               상품관리
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/admin/reservation"} className={linkClass}>
+            <NavLink
+              to={"/admin/reservation"}
+              className={linkClass}
+              onClick={onClose}
+            >
               예약관리
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/admin/proorder"} className={linkClass}>
+            <NavLink
+              to={"/admin/proorder"}
+              className={linkClass}
+              onClick={onClose}
+            >
               상품결제관리
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/admin/resorder"} className={linkClass}>
+            <NavLink
+              to={"/admin/resorder"}
+              className={linkClass}
+              onClick={onClose}
+            >
               예약결제관리
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/admin/shop"} className={linkClass}>
+            <NavLink to={"/admin/shop"} className={linkClass} onClick={onClose}>
               지점관리
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/admin/notice"} className={linkClass}>
+            <NavLink
+              to={"/admin/notice"}
+              className={linkClass}
+              onClick={onClose}
+            >
               공지사항
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/admin/qna"} className={linkClass}>
+            <NavLink to={"/admin/qna"} className={linkClass} onClick={onClose}>
               Q&A
             </NavLink>
           </li>

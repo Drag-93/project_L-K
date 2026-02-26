@@ -6,6 +6,7 @@
   border-radius: 15px;
   width: 1400px;
   padding: 0.3vw;
+  overflow-x: auto;
 }
 
 /*title*/
@@ -294,7 +295,7 @@
 }
 .admin-shop-wrapper .admin-shop-badge {
   border: 1px solid #00000046;
-  border-radius: 8px;
+  border-radius: 5px;
   padding: 0.2rem;
   margin: 0.2rem;
 }

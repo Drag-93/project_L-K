@@ -1,5 +1,4 @@
-
- /*****************************************************************************
+/*****************************************************************************
     @Payment
 ****************************************************************************/
 /* Payment Page Layout */
@@ -84,7 +83,8 @@
   height: auto;
 }
 
-.payment-container input:focus, .payment-container textarea:focus {
+.payment-container input:focus,
+.payment-container textarea:focus {
   border-color: #007bff;
 }
 
@@ -200,7 +200,6 @@
   }
 }
 
-
 /*****************************************************************************
     @결제내역
 ****************************************************************************/
@@ -233,7 +232,7 @@
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .order-card.reserve {
@@ -335,7 +334,8 @@
   margin-bottom: 6px;
 }
 
-.item-price, .item-time {
+.item-price,
+.item-time {
   font-size: 14px;
   color: #555;
 }

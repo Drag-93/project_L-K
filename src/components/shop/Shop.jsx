@@ -10,8 +10,9 @@ import {
 } from "../../utils/kakaoMapUtil";
 
 const Shop = () => {
-  const mapRef = useRef(null); // kakao map instance
-  const markerRef = useRef(null); // kakao marker instance
+  const mapRef = useRef(null);
+  const markerRef = useRef(null);
+  const mapInstanceRef = useRef(null);
   const { id } = useParams();
 
   console.log(id);
@@ -41,94 +42,111 @@ const Shop = () => {
     fetchData();
   }, [id, url]);
 
-  // 지도 생성/이동 (util사용)
   useEffect(() => {
-    const initOrMoveMap = async () => {
-      const lat = Number(selectedShop?.lat);
-      const lng = Number(selectedShop?.lng);
-      if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+    if (!selectedShop) return;
 
+    const initMap = async () => {
       await loadKakaoMap();
 
-      const container = document.getElementById("map");
-      if (!container) return;
+      const lat = Number(selectedShop?.lat);
+      const lng = Number(selectedShop?.lng);
 
-      // 최초 생성
-      if (!mapRef.current) {
-        mapRef.current = createKakaoMap(container, lat, lng);
-        markerRef.current = createMarker(mapRef.current, lat, lng);
-        mapRef.current.relayout();
+      const map = createKakaoMap(mapRef.current, lat, lng);
+      const marker = createMarker(map, lat, lng);
 
-        //  레이아웃 확정 후 중심/마커 다시 세팅
-        setTimeout(() => {
-          mapRef.current.relayout();
-          moveMap(mapRef.current, lat, lng);
+      mapInstanceRef.current = map;
+      markerRef.current = marker;
 
-          const kakao = window.kakao;
-          markerRef.current?.setPosition(new kakao.maps.LatLng(lat, lng));
-        }, 0);
-
-        return;
-      }
-      // 이후 이동
-      moveMap(mapRef.current, lat, lng);
-      const kakao = window.kakao;
-      markerRef.current?.setPosition(new kakao.maps.LatLng(lat, lng));
+      setTimeout(() => {
+        map.relayout();
+      }, 200);
     };
+    initMap();
+  }, [selectedShop]);
 
-    initOrMoveMap();
-  }, [selectedShop?.lat, selectedShop?.lng]);
+  // 지도 생성/이동 (util사용) -> 서버 열고 초기 랜더링 안됨
+  // useEffect(() => {
+  //   if (!selectedShop) return;
+
+  //   const initOrMoveMap = async () => {
+  //     const lat = Number(selectedShop?.lat);
+  //     const lng = Number(selectedShop?.lng);
+  //     if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+
+  //     await loadKakaoMap();
+
+  //     const container = document.getElementById("map");
+  //     if (!container) return;
+
+  //     // 최초 생성
+  //     if (!mapRef.current) {
+  //       mapRef.current = createKakaoMap(container, lat, lng);
+  //       markerRef.current = createMarker(mapRef.current, lat, lng);
+  //       mapRef.current.relayout();
+
+  //       //  레이아웃 확정 후 중심/마커 다시 세팅
+  //       setTimeout(() => {
+  //         mapRef.current.relayout();
+  //         moveMap(mapRef.current, lat, lng);
+
+  //         const kakao = window.kakao;
+  //         markerRef.current?.setPosition(new kakao.maps.LatLng(lat, lng));
+  //       }, 0);
+
+  //       return;
+  //     }
+  //     // 이후 이동
+  //     moveMap(mapRef.current, lat, lng);
+  //     const kakao = window.kakao;
+  //     markerRef.current?.setPosition(new kakao.maps.LatLng(lat, lng));
+  //   };
+
+  //   initOrMoveMap();
+  // }, [selectedShop?.lat, selectedShop?.lng]);
 
   return (
     <div className="shop">
+      <div className="shop-title">
+        <h2>{selectedShop.name}점 오시는 방법</h2>
+      </div>
       <div className="shop-con">
         <div
+          className="shop-map"
           id="map"
+          ref={mapRef}
           style={{
             width: "100%",
-            maxWidth: "500px",
-            height: "400px",
             backgroundColor: "#eee",
             borderRadius: "20px",
           }}
         ></div>
-
-        <div className="maps-bottom">
-          <div className="maps-bottom-con">
-            <div>
-              <div className="maps">
-                <li className="maps-top">
-                  <div colSpan="2">{selectedShop.name}점 오시는 방법</div>
-                </li>
-              </div>
-
-              <div>
-                <li>
-                  <div>주소</div>
-                  <div>{selectedShop.address}</div>
-                </li>
-
-                <li>
-                  <div>진료시간</div>
-                  <div style={{ whiteSpace: "pre-wrap" }}>
-                    {selectedShop.time}
-                  </div>
-                </li>
-
-                <li>
-                  <div>연락처</div>
-                  <div>{selectedShop.phonenum}</div>
-                </li>
-
-                <li>
-                  <div>오시는 길</div>
-                  <div style={{ whiteSpace: "pre-wrap" }}>
-                    {selectedShop.directions}
-                  </div>
-                </li>
-              </div>
-            </div>
-          </div>
+        <div className="shop-info">
+          <ul>
+            <li>
+              <h3>진료시간</h3>
+              <span style={{ whiteSpace: "pre-wrap" }}>
+                {selectedShop.time}
+              </span>
+            </li>
+            <li>
+              <h3>연락처</h3>
+              <span style={{ whiteSpace: "pre-wrap" }}>
+                {selectedShop.phonenum}
+              </span>
+            </li>
+            <li>
+              <h3>주소</h3>
+              <span style={{ whiteSpace: "pre-wrap" }}>
+                {selectedShop.address}
+              </span>
+            </li>
+            <li>
+              <h3>오시는 길</h3>
+              <span style={{ whiteSpace: "pre-wrap" }}>
+                {selectedShop.directions}
+              </span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
