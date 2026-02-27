@@ -139,6 +139,16 @@ const AuthMyQna = () => {
     myQnaListFn();
   }, [myData?.userEmail]);
 
+  const getKoreaDate = (date) => {
+    const today = new Date(date);
+    return (
+      today.getFullYear() +
+      "-" +
+      String(today.getMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(today.getDate()).padStart(2, "0")
+    );
+  };
   return (
     <>
       <div className="inner3">
