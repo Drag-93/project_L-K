@@ -56,14 +56,14 @@ const AdminReservationModal = ({
         : { ...prev, setshop: [...currentShops, shopName] };
     });
   };
-  const onTimeChange = (shopTime) => {
-    setDetail((prev) => {
-      const currentTimes = prev.settime || [];
-      return currentTimes.includes(shopTime)
-        ? { ...prev, settime: currentTimes.filter((s) => s !== shopTime) }
-        : { ...prev, settime: [...currentTimes, shopTime] };
-    });
-  };
+  // const onTimeChange = (shopTime) => {
+  //   setDetail((prev) => {
+  //     const currentTimes = prev.settime || [];
+  //     return currentTimes.includes(shopTime)
+  //       ? { ...prev, settime: currentTimes.filter((s) => s !== shopTime) }
+  //       : { ...prev, settime: [...currentTimes, shopTime] };
+  //   });
+  // };
 
   const handleTimeBlur = (index) => {
     setAllTimes((prev) => {

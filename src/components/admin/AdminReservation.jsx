@@ -15,6 +15,7 @@ const AdminReservation = () => {
   const [page, setPage] = useState(1);
   const [sortType, setSortType] = useState("latest");
   const [checkedItems, setCheckedItems] = useState([]);
+  const [allShops, setAllShops] = useState([])
 
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -30,6 +31,26 @@ const AdminReservation = () => {
       alert("데이터를 가져오는데 실패했습니다: " + err);
     }
   };
+
+
+    useEffect(() => {
+      const fetchShops = async () => {
+        try {
+          const res = await axios.get(`${reservationUrl}/shop`);
+          const shopNames = res.data
+            .map((item) => item.name)
+            .filter(Boolean)
+            .sort();
+
+          setAllShops(shopNames);
+        } catch (err) {
+          console.error("상점 목록 로딩 실패:", err);
+        }
+      };
+
+      fetchShops();
+    }, [reservationUrl]);
+
 
   useEffect(() => {
     getReservationList();
@@ -166,13 +187,19 @@ const AdminReservation = () => {
                   <li>
                     <select
                       value={shopFilter}
-                      onChange={(e) => setShopFilter(e.target.value)}
+                      onChange={(e) => {setShopFilter(e.target.value)
+                      setPage(1)}}
                     >
                       <option value="ALL">전체 지점</option>
-                      <option value="노원">노원</option>
+                      {allShops.map((shop) => (
+                        <option key={shop} value={shop}>
+                          {shop}
+                        </option>
+                      ))}                  
+                      {/* <option value="노원">노원</option>
                       <option value="신촌">신촌</option>
                       <option value="강남">강남</option>
-                      <option value="종로">종로</option>
+                      <option value="종로">종로</option> */}
                     </select>
                   </li>
                   <li>

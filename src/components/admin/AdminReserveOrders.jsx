@@ -20,10 +20,29 @@ const AdminReserveOrders = () => {
   const [filterShop, setFilterShop] = useState("all");
   const [filterCategory, setFilterCategory] = useState("all");
   const [filterStatus, setFilterStatus] = useState("all");
+  const [allShops, setAllShops] = useState([])
+  
 
   const [sortType, setSortType] = useState("reserveDateDesc"); //정렬기능변수
 
   const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    const fetchShops = async () => {
+      try {
+        const res = await axios.get(`${url}/shop`);
+         const shopNames = res.data
+           .map((item) => item.name)
+           .filter(Boolean)
+           .sort();
+          setAllShops(shopNames);
+        } catch (err) {
+          console.error("상점 목록 로딩 실패:", err);
+        }
+      };
+      fetchShops();
+    }, [url]);
+
 
   const filtered = useMemo(() => {
     // 1. 평탄화
@@ -278,6 +297,24 @@ const AdminReserveOrders = () => {
                   <li>
                     <select
                       value={filterShop}
+                      onChange={(e) => {setFilterShop(e.target.value)
+                      setPage(1)}}
+                    >
+                      <option value="ALL">전체 지점</option>
+                      {allShops.map((shop) => (
+                        <option key={shop} value={shop}>
+                          {shop}
+                        </option>
+                      ))}                  
+                      {/* <option value="노원">노원</option>
+                      <option value="신촌">신촌</option>
+                      <option value="강남">강남</option>
+                      <option value="종로">종로</option> */}
+                    </select>
+                  </li>
+                  {/* <li>
+                    <select
+                      value={filterShop}
                       onChange={(e) => setFilterShop(e.target.value)}
                     >
                       <option value="all">병원</option>
@@ -286,7 +323,7 @@ const AdminReserveOrders = () => {
                       <option value="강남">강남</option>
                       <option value="종로">종로</option>
                     </select>
-                  </li>
+                  </li> */}
                   <li>
                     <select
                       value={filterStatus}
