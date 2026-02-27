@@ -120,6 +120,13 @@
   flex: 1; /* 인풋이 가용 공간을 차지하게 함 */
 }
 
+.timeinput {
+  display: flex;
+  flex-direction: row;
+  field-sizing: content;
+  width: 50px;
+}
+
 /* 체크박스 그룹 */
 .checkbox-group {
   display: flex;

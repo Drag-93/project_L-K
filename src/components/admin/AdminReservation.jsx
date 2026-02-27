@@ -55,16 +55,18 @@ const AdminReservation = () => {
         m.price,
         m.description,
         m.setshop?.join(" "),
+        m.regDate
       ]
         .filter(Boolean)
         .join(" ")
         .toLowerCase();
       return searchTarget.includes(q);
     });
+    const parseRegDate = (str) => (str ? new Date(str).getTime() : 0);
 
     const compare = (a, b) => {
-      if (sortType === "latest") return parseInt(b.id) - parseInt(a.id);
-      if (sortType === "oldest") return parseInt(a.id) - parseInt(b.id);
+      if (sortType === "latest") return parseRegDate(b.regDate) - parseRegDate(a.regDate);
+      if (sortType === "oldest") return parseRegDate(a.regDate) - parseRegDate(b.regDate);
       if (sortType === "expensive") return b.price - a.price;
       if (sortType === "cheapest") return a.price - b.price;
     };
@@ -237,7 +239,7 @@ const AdminReservation = () => {
                     />
                   </td>
                   <td>{el.name}</td>
-                  <td>{el.price.toLocaleString()}원</td>
+                  <td>{Number(el.price).toLocaleString()}원</td>
                   <td className="admin-description">
                     {el.description?.slice(0, 15)}...
                   </td>

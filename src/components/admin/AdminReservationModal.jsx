@@ -10,23 +10,43 @@ const AdminReservationModal = ({
 }) => {
   const [allShops, setAllShops] = useState([]);
   const [detail, setDetail] = useState(null);
-  const [allTimes, setAllTimes] = useState([])
+  const [allTimes, setAllTimes] = useState([""])
 
   const reservationUrl = API_JSON_SERVER_URL;
   const navigate = useNavigate();
   const [imgError, setImgError] = useState(false);
 
-const addReserveTime = () => {
-  setAllTimes((prev) => [...prev, ""]);
-};
+  const formatTime = (value) => {
+  let numbers = value.replace(/[^0-9]/g, "").slice(0, 4);
 
-const removeReserveTime = (index) => {
-  setAllTimes((prev) => prev.filter((_, i) => i !== index));
-};
+  if (numbers.length === 4) {
+    const hours = numbers.slice(0, 2);
+    const minutes = numbers.slice(2, 4);
 
-const handleReserveTimeChange = (index, value) => {
-  setAllTimes((prev) => prev.map((item, i) => (i === index ? value : item)));
-};
+    if (parseInt(hours) < 24 && parseInt(minutes) < 60) {
+      return `${hours}:${minutes}`;
+    }else{
+      alert("00:00에서 24:00 범위로 입력해 주세요")
+      return ""
+    }
+  }
+    return numbers;
+  };
+
+  const addReserveTime = () => {
+    setAllTimes((prev) => [...prev, ""]);
+  };
+
+  const removeReserveTime = (index) => {
+    if (allTimes.length === 1) return;
+    const updated = allTimes.filter((_, i) => i !== index);
+    setAllTimes(updated);
+  };
+
+  const handleReserveTimeChange = (index, value) => {
+    const formatted=formatTime(value)
+    setAllTimes((prev) => prev.map((item, i) => (i === index ? formatted : item)));
+  };
 
   const onShopChange = (shopName) => {
     setDetail((prev) => {
@@ -45,22 +65,26 @@ const handleReserveTimeChange = (index, value) => {
     });
   };
 
-useEffect(() => {
-  if (!reservationId) {
-    setAllTimes([]);
-  } else {
-    const fetchTime = async () => {
-      try {
-        const res = await axios.get(`${API_JSON_SERVER_URL}/allTimes`);
-        setAllTimes(res.data);
-      } catch (err) {
-        console.error("데이터 로딩 중 에러:", err);
-      }
-    };
-    fetchTime();
-  }
-}, [reservationId]);
-  
+  const handleTimeBlur = (index) => {
+    setAllTimes((prev) => {
+    const currentValue = prev[index];
+    
+    if (currentValue !== "" && prev.some((t, i) => i !== index && t === currentValue)) {
+      alert("이미 등록된 시간입니다.");
+      
+      const resetTimes = [...prev];
+      resetTimes[index] = ""; 
+      return resetTimes;
+    }
+
+      const sortedTimes = [...prev].sort((a, b) => {
+        if (a === "") return 1;
+        if (b === "") return -1;
+        return a.localeCompare(b);
+      });
+      return sortedTimes;
+    });
+ };
 
 
 
@@ -81,6 +105,11 @@ useEffect(() => {
             `${reservationUrl}/reservation/${reservationId}`,
           );
           setDetail(res.data);
+            if (res.data.settime?.length > 0) {
+            setAllTimes(res.data.settime);
+          } else {
+            setAllTimes([""]);
+          }
         } else {
           setDetail({
             name: "",
@@ -281,7 +310,7 @@ useEffect(() => {
           </li>
           <li>
             <label>예약 시간 선택</label>
-            {detail.id ? (
+            {/* {detail.id ? (
               <div className="adminModal-reserv-checkbox-group">
                 {allTimes.map((time) => (
                   <label key={time} className="adminModal-reserv-checkbox-item">
@@ -295,27 +324,36 @@ useEffect(() => {
                 ))}
               </div>
               ) : (
-               <>
+               <> */}
                  {allTimes.map((time, index) => ( 
                    <div 
+                     className="timeinput"
                      key={index}
-                     style={{ display: "flex", alignItems: "center", marginTop: "5px" }}
+                     style={{ position: "relative", display: "inline-block" }}
                    >
                      <input
                        type="text"
                        value={time}
                        placeholder="예: 13:00"
                        onChange={(e) => handleReserveTimeChange(index, e.target.value)}
+                       onBlur={()=>handleTimeBlur(index)}
                      />
                      <button
                        type="button"
                        onClick={() => removeReserveTime(index)}
-                       style={{ marginLeft: "5px" }}
+                       style={{
+                        position: "absolute",
+                        right: "10px",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        cursor: "pointer",
+                      }}
                      >
-                       -
+                       x
                      </button>
                    </div>
                  ))}
+                 <div className="addtime">
                 <button
                   type="button"
                   onClick={addReserveTime}
@@ -323,8 +361,9 @@ useEffect(() => {
                 >
                   +
                 </button>
-              </>
-            )}
+                </div>
+              {/* </>
+            )} */}
           </li>
           <li className="adminModal-img">
             <label htmlFor="img">상품이미지</label>
