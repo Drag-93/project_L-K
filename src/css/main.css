@@ -97,7 +97,7 @@
   padding: 5rem 0 3rem 0;
 }
 .main_sec_title h2 b {color: #222; font-weight: 700; font-size: 5.2rem; display: block; padding-top: 7px;}
-.main_sec_title p {font-size: 2rem; color: #666; font-weight: 400; text-align: center;}
+.main_sec_title p {font-size: 2rem; color: #666; font-weight: 400; text-align: center; line-height: 1.2;}
 .main_sec_title p span {color: #d7615a; font-weight: 700;}
 
 .main_sec2_con {padding-top: 10rem; display: flex; flex-direction: column;
@@ -126,8 +126,40 @@
 .sec3 video {display: block; width: 100%;}
 
 @media(max-width:1200px){
-  .main_sec2_con .main_sec2_wrap img:first-child {transform: none;}
-  .main_sec2_con .main_sec2_wrap img:last-child {transform: none;}
+  .main_nav ul li a p {font-size: 15px;}
+
+  .main_sec2_con .main_sec2_wrap {display: block; width: 100%;}
+  .main_sec2_con .main_sec2_wrap .main_sec2_wrap_img {gap: 1.6rem; width: 100%;}
+  .main_sec2_con .main_sec2_wrap .sec2_img {flex: 1;}
+  .main_sec2_con .main_sec2_wrap .sec2_img1 {transform: none; width: auto;height: 360px;}
+  .main_sec2_con .main_sec2_wrap .sec2_img2 {transform: none;width: auto;height: 360px;}
+}
+@media(max-width:1000px){
+  .main_nav ul li a .main_nav_img {padding: 2rem;}
+  .main_nav ul {gap: 1rem;}
+  .main_nav ul{flex-wrap: wrap; justify-content: center;}
+  .main_nav ul li {flex: none; width: 10%;}
+}
+@media(max-width:768px){
+  .main_nav ul li a .main_nav_img {border-radius: 1rem;}
+  .main_nav ul li {width: 15%;}
+  .main_nav ul li a p {font-size: 14px;}
+
+  .main_sec2_con .main_sec2_wrap .sec2_img1 {height: 240px;}
+  .main_sec2_con .main_sec2_wrap .sec2_img2 {height: 240px;}
+}
+@media(max-width:480px){
+  .main_nav {padding: 20px 10px;}
+  .main_nav ul {gap: 0;}
+  .main_nav ul li {width: 25%; padding: 1rem;}
+  .main_nav ul li a .main_nav_img {padding: 1.5rem;}
+
+  .main_sec2_con .main_sec2_wrap .main_sec2_wrap_img {display: block;}
+  .main_sec2_con .main_sec2_wrap .sec2_img1 {display: none;}
+  .main_sec2_con .main_sec2_wrap .sec2_img2 {width: 100%;}
+}
+@media(max-width:360px){
+  .main_nav ul li a p {font-size: 13px;}
 }
 
 /*****************************************************************************
