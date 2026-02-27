@@ -200,10 +200,14 @@ const ReservationDetail = () => {
 
       if (res.status === 201) {
         dispatch(addBasket(res.data));
+
         if (
           window.confirm("장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?")
         ) {
-          // navigate('/order/basket'); // navigate 임포트 필요
+          navigate("/order/basket");
+          // navigate 임포트 필요
+        } else {
+          handleTimeSelect(null);
         }
       }
     } catch (err) {
