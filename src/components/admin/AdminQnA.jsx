@@ -28,7 +28,7 @@ const AdminQnA = () => {
   };
   useEffect(() => {
     openListFn();
-  }, [qnaList]);
+  }, [qnaUrl]);
 
   const filtered = useMemo(() => {
     const q = searchText.trim().toLowerCase();

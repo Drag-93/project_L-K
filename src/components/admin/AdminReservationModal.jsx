@@ -431,7 +431,7 @@ const AdminReservationModal = ({
                 id="descImgFile"
                 type="file"
                 accept="image/*"
-                onChange={onChangImgFn}
+                onChange={onChangeDescImgFn}
                 className="adminModal-hidden"
               />
             </div>

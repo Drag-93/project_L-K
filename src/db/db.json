@@ -67,65 +67,24 @@
       "remark": ""
     },
     {
-      "id": "fb2d",
-      "userName": "tester",
-      "userEmail": "test2@test",
+      "id": "f8c9",
+      "userName": "new tester",
+      "userEmail": "new@test",
       "userPw": "1234",
-      "phonenum": "111111",
-      "age": "12",
-      "address": "123213",
-      "gender": "여",
+      "phonenum": "01000000000",
+      "age": "55",
+      "address": "55",
+      "gender": "남",
       "role": "ROLE_MEMBER",
-      "remark": "",
-      "note": "124214"
+      "remark": ""
     }
   ],
   "product": [
     {
-      "id": "31",
-      "category": "white",
-      "name": "미백1",
-      "price": 20000,
-      "img": "white1.jpg",
-      "description": "미백라인 1번 상품입니다",
-      "descImg": "상세페이지 이미지 경로",
-      "regDate": "2026-02-06T05:56:49.676Z"
-    },
-    {
-      "id": "41",
-      "category": "antiage",
-      "name": "안티에이징1",
-      "price": 20000,
-      "img": "antiage1.jpg",
-      "description": "안티에이징라인 1번 상품입니다",
-      "descImg": "상세페이지 이미지 경로",
-      "regDate": "2026-02-12T05:56:49.676Z"
-    },
-    {
-      "id": "51",
-      "category": "uv",
-      "name": "UV1",
-      "price": 20000,
-      "img": "uv1.jpg",
-      "description": "UV라인 1번 상품입니다",
-      "descImg": "상세페이지 이미지 경로",
-      "regDate": "2026-02-12T05:56:49.676Z"
-    },
-    {
-      "id": "837d",
-      "name": "선블록",
-      "category": "uv",
-      "price": 25000,
-      "img": "uv1.jpg",
-      "description": "상품추가 테스트입니다.",
-      "descImg": "",
-      "regDate": "2026-02-12T05:56:49.676Z"
-    },
-    {
-      "id": "98b8",
-      "name": "Barrier pH 5.5 Soothing Toner(배리어 약산성 수딩 토너)",
+      "id": "88c5",
+      "name": "test",
       "category": "hydro",
-      "price": 20000,
+      "price": "25000",
       "img": "hydro01.png",
       "description": "피부와 유사한 pH 5.5 약산성 포뮬러가 무너진 피부 밸런스를 바로잡고, 외부 자극으로 예민해진 피부를 순하게 진정시켜 건강한 피부 장벽 환경을 유지하는 데 도움을 줍니다.",
       "descImg": "",
@@ -814,6 +773,8 @@
       "description": "ㅁㄴㄹㄴㅇㄹㄴㅇㄹ"
     }
   ],
+  "reservation": [],
+  "reservReview": [],
   "shop": [
     {
       "id": "0",
@@ -877,316 +838,75 @@
   "cart": [],
   "faq": [
     {
-      "id": "1",
+      "id": "b43d",
       "no": 1,
-      "titlecategory": "reserve",
-      "category": "lifting",
-      "title": "울쎄라 볼패임 부작용 생기나요?",
-      "description": "얼굴의 볼 부위에는 해부학적으로 지방이 쉽게 꺼질 수 있는 구조를 가지고 있으며 \n 무리한 시술이 적용된다면 지방 손실을 유발하고 볼꺼짐을 초래할 위험이 있습니다. \n L&K클리닉에서는 시술 전 1:1 맞춤 상담과 디자인을 통해 \n 개인별 피부 상태와 노화정도 적절한 샷수, 강도를 설정하고 있어 볼패임 걱정을 줄였습니다."
-    },
-    {
-      "id": "4",
-      "no": 4,
-      "titlecategory": "reserve",
-      "category": "lifting",
-      "title": "울쎄라 시술기간은 얼마나 걸리나요?",
-      "description": "울쎄라 리프팅은 실시간으로 초음파 화면을 통해 \n 피부 속을 모니터링 하면서 정확한 타겟층에 샷을 분배하고 있으며 \n 1:1 맞춤 상담 및 디자인 시술까지 1시간~1시간 30분 정도 소요됩니다."
-    },
-    {
-      "id": "c8f2",
-      "no": 6,
-      "date": "2026-02-25",
+      "date": "2026-02-27",
       "titlecategory": "product",
-      "category": "white",
-      "title": "미백 제품을 사용하면 따갑던데, 얼마나 사용햐야 하나요?",
-      "description": "피부 민감도에 따라 비타민 다량 함유된 제품의 경우 드물게 피부 따가움을 동반할 수 있습니다.\n보통 하루 1회 정도를 추천드리나 따가움이 심해질 경우 사용 횟수를 줄여주시기 바랍니다."
-    },
-    {
-      "id": "e1a1",
-      "no": 7,
-      "date": "2026-02-25",
-      "titlecategory": "reserve",
-      "category": "lifting",
-      "title": "울쎄라 시술 시 통증은 어떤가요?",
-      "description": "통증의 정도는 개인의 피부 상태와 민감도에 따라 차이가 있을 수 있으나, L&K의 울쎄라 시술은 업그레이드된 에너지 제어 시스템으로 통증 부담을 줄인 시술이 가능합니다."
-    },
-    {
-      "id": "26c9",
-      "no": 8,
-      "date": "2026-02-25",
-      "titlecategory": "reserve",
-      "category": "lifting",
-      "title": "시술 후 바로 일상생활이 가능한가요?",
-      "description": "시술 직후 바로 일상생활이 가능하며,\n별도의 회복 기간 없이 일상으로 복귀할 수 있습니다.\n(개인에 따라 일시적인 붉어짐이나\n열감이 나타날 수 있습니다.)"
-    },
-    {
-      "id": "f1fb",
-      "no": 9,
-      "date": "2026-02-25",
-      "titlecategory": "product",
-      "category": "productall",
-      "title": "제품들의 유통기한은 어떻게 되나요?",
-      "description": "제품의 유통기한은 각 제품에 별도로 표기되어 있습니다.\n제품 개봉 후 1년 이내 사용을 권장드립니다."
-    },
-    {
-      "id": "4d40",
-      "no": 10,
-      "date": "2026-02-25",
-      "titlecategory": "reserve",
-      "category": "reserveall",
-      "title": "예약 확정까지 얼마나 걸리나요?",
-      "description": "예약 주문 시  2시간 이내에 확정으로 변경됩니다."
+      "category": "uv",
+      "title": "test",
+      "description": "test"
     }
   ],
   "qna": [
     {
-      "id": "1",
+      "id": "af4d",
+      "title": "테스트",
+      "question": "마",
       "no": 1,
-      "title": "테스트용qna",
-      "date": "2026-02-05",
-      "writer": "작성자이름",
-      "writerEmail": "작성자이메일",
-      "viewrate": 35,
-      "state": "답변완료",
-      "question": "테스트내용테스트내용테스트내용테스트내용테스트내용테3123스트내용테스4내용2테스트내용",
-      "admin": "관리자",
-      "answer": "teatawtaestetㄴㄴㄴ"
-    },
-    {
-      "id": "349c",
-      "title": "QnA테스트용 제목",
-      "question": "질문내용 작성하기질문내용 작성하기질문내용 작성하기질문내용 작성하기질문내용 작성하기",
-      "no": 2,
-      "state": "답변대기",
-      "date": "2026-02-05",
-      "writer": "test",
-      "writerEmail": "test",
-      "viewrate": 20,
-      "admin": "관리자",
-      "answer": "답변테스트"
-    },
-    {
-      "id": "ac9e",
-      "title": "문의 작성하기 테스트",
-      "question": "테스트내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용",
-      "no": 3,
-      "state": "답변대기",
-      "date": "2026-02-05",
-      "writer": "test",
-      "writerEmail": "test",
-      "viewrate": 26,
-      "admin": "",
-      "answer": ""
-    },
-    {
-      "id": "85af",
-      "title": "문의작성 테스트",
-      "question": "문의작성 테스트문의작성 테스트문의작성 테스트",
-      "no": 4,
-      "date": "2026-02-10",
-      "writer": "test",
-      "writerEmail": "test",
-      "viewrate": 18,
-      "admin": "",
-      "answer": "",
-      "state": "답변대기"
-    },
-    {
-      "id": "e1f0",
-      "title": "큐엔에이 테스트",
-      "question": "ㅈㄷㅅㅎㄹㅇㄴㅇㅀ",
-      "no": 5,
-      "date": "Tue Feb 24 2026 16:13:42 GMT+0900 (한국 표준시)",
-      "writer": "유저테스트계정",
-      "writerEmail": "test@test",
-      "viewrate": 5,
-      "admin": "",
-      "answer": "",
-      "state": "답변대기"
+      "date": "Fri Feb 27 2026 14:42:27 GMT+0900 (한국 표준시)",
+      "writer": "new tester",
+      "writerEmail": "new@test",
+      "viewrate": 4,
+      "admin": "어드민테스트계정",
+      "answer": "왬마",
+      "state": "답변완료"
     }
   ],
   "productOrders": [
     {
-      "id": "7497",
-      "productDate": "2026-02-24T00:48:02.128Z",
-      "productUserDate": "2026. 2. 24. 오전 9:48:02",
+      "id": "9b21",
+      "productDate": "2026-02-27T05:39:42.965Z",
+      "productUserDate": "2026. 2. 27. 오후 2:39:42",
       "customer": {
-        "userEmail": "test@test",
-        "userName": "유저테스트계정",
-        "phonenum": "01012341234",
-        "address": "22",
+        "userEmail": "new@test",
+        "userName": "new tester",
+        "phonenum": "01000000000",
+        "address": "55",
         "request": "안전한 배송 부탁드립니다."
       },
       "items": [
         {
-          "id": "31",
-          "category": "white",
-          "name": "미백1",
-          "price": 20000,
-          "img": "white1.jpg",
-          "regDate": "2026-02-06T05:56:49.676Z",
-          "count": 1,
-          "totalPrice": 20000,
-          "state": "배송준비중"
+          "id": "88c5",
+          "name": "test",
+          "category": "hydro",
+          "price": "25000",
+          "img": "hydro01.png",
+          "regDate": "2026-02-27T05:33:13.922Z",
+          "count": 6,
+          "totalPrice": 150000,
+          "state": "배송완료"
         }
       ],
-      "totalAmount": 20000
-    },
-    {
-      "id": "d07d",
-      "productDate": "2026-02-24T00:48:58.959Z",
-      "productUserDate": "2026. 2. 24. 오전 9:48:58",
-      "customer": {
-        "userEmail": "test@test",
-        "userName": "유저테스트계정",
-        "phonenum": "01012341234",
-        "address": "22",
-        "request": "안전한 배송 부탁드립니다."
-      },
-      "items": [
-        {
-          "id": "837d",
-          "name": "선블록",
-          "category": "uv",
-          "price": 25000,
-          "img": "uv1.jpg",
-          "regDate": "2026-02-12T05:56:49.676Z",
-          "count": 3,
-          "totalPrice": 75000,
-          "state": "배송준비중"
-        }
-      ],
-      "totalAmount": 75000
-    },
-    {
-      "id": "ee7c",
-      "productDate": "2026-02-25T03:40:23.526Z",
-      "productUserDate": "2026. 2. 25. 오후 12:40:23",
-      "customer": {
-        "userEmail": "test@test",
-        "userName": "유저테스트계정",
-        "phonenum": "01012341234",
-        "address": "22",
-        "request": "안전한 배송 부탁드립니다."
-      },
-      "items": [
-        {
-          "id": "41",
-          "category": "antiage",
-          "name": "안티에이징1",
-          "price": 20000,
-          "img": "antiage1.jpg",
-          "regDate": "2026-02-12T05:56:49.676Z",
-          "count": 1,
-          "totalPrice": 20000,
-          "state": "배송준비중"
-        }
-      ],
-      "totalAmount": 20000
+      "totalAmount": 150000
     }
   ],
-  "reserveOrders": [
+  "reserveOrders": [],
+  "notice": [
     {
-      "id": "ec96",
-      "reserveDate": "2026-02-24T00:48:02.119Z",
-      "reserveUserDate": "2026. 2. 24. 오전 9:48:02",
-      "customer": {
-        "userEmail": "test@test",
-        "userName": "유저테스트계정",
-        "phonenum": "01012341234",
-        "request": "안전한 시술 부탁드립니다."
-      },
-      "items": [
-        {
-          "id": "858e",
-          "category": "faceline",
-          "name": "인모드",
-          "price": 100000,
-          "img": "faceline_01.png",
-          "shop": "강남",
-          "date": "2026-02-26",
-          "time": "16:00",
-          "state": "예약대기"
-        }
-      ],
-      "totalAmount": 100000
+      "id": "2653",
+      "title": "테스트 공지",
+      "description": "ㅇㅇ",
+      "no": 1,
+      "date": "Fri Feb 27 2026 14:44:00 GMT+0900 (한국 표준시)",
+      "viewrate": 0
     },
     {
-      "id": "2bbe",
-      "reserveDate": "2026-02-24T00:48:58.951Z",
-      "reserveUserDate": "2026. 2. 24. 오전 9:48:58",
-      "customer": {
-        "userEmail": "test@test",
-        "userName": "유저테스트계정",
-        "phonenum": "01012341234",
-        "request": "안전한 시술 부탁드립니다."
-      },
-      "items": [
-        {
-          "id": "032d",
-          "category": "regen",
-          "name": "쥬베룩",
-          "price": 400000,
-          "img": "regen_01.png",
-          "shop": "종로",
-          "date": "2026-02-27",
-          "time": "15:00",
-          "state": "예약대기"
-        }
-      ],
-      "totalAmount": 400000
-    },
-    {
-      "id": "0182",
-      "reserveDate": "2026-02-24T00:58:16.141Z",
-      "reserveUserDate": "2026. 2. 24. 오전 9:58:16",
-      "customer": {
-        "userEmail": "test@test",
-        "userName": "유저테스트계정",
-        "phonenum": "01012341234",
-        "request": "안전한 시술 부탁드립니다."
-      },
-      "items": [
-        {
-          "id": "1fb7",
-          "name": "쥬베룩",
-          "category": "regen",
-          "price": 12000,
-          "img": "hydro1.jpg",
-          "regDate": "2026-02-20T06:43:01.386Z",
-          "timespan": "3",
-          "shop": "노원",
-          "date": "2026-02-26",
-          "time": "11:00",
-          "state": "예약대기"
-        }
-      ],
-      "totalAmount": 12000
-    },
-    {
-      "id": "0110",
-      "reserveDate": "2026-02-25T02:42:08.046Z",
-      "reserveUserDate": "2026. 2. 25. 오전 11:42:08",
-      "customer": {
-        "userEmail": "test@test",
-        "userName": "유저테스트계정",
-        "phonenum": "01012341234",
-        "request": "안전한 시술 부탁드립니다."
-      },
-      "items": [
-        {
-          "id": "b1cc",
-          "category": "regen",
-          "name": "쥬베룩",
-          "price": 400000,
-          "img": "regen_01.png",
-          "shop": "종로",
-          "date": "2026-02-27",
-          "time": "14:00",
-          "state": "예약대기"
-        }
-      ],
-      "totalAmount": 400000
+      "id": "55a2",
+      "title": "하나더",
+      "description": "ㅇㅇ",
+      "no": 2,
+      "date": "Fri Feb 27 2026 14:44:10 GMT+0900 (한국 표준시)",
+      "viewrate": 1
     }
   ]
 }

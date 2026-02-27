@@ -8,8 +8,6 @@ const Header = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [pageClass, setPageClass] = useState("");
 
-
-
   // 검색기능변수
   const [keyword, setKeyword] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -55,8 +53,7 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const basketItems = useSelector(state => state.basket.basketItems);
-
+  const basketItems = useSelector((state) => state.basket.basketItems);
 
   // 검색기능로직
   const handleSearch = (e) => {
@@ -69,7 +66,6 @@ const Header = () => {
     setKeyword(""); // 입력창 비우기
   };
 
-
   // 모바일 메뉴
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => {
@@ -81,30 +77,30 @@ const Header = () => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
-  
-
   return (
     <>
-    <div className={`header_search ${isSearchOpen ? "active" : ""}`}>
-      <form className="search-bar" onSubmit={handleSearch}>
-        <div className="search_box">
-          <input
-            type="text"
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
-            placeholder="검색어를 입력하세요..."
-          />
-          <button type="submit"></button>
-        </div>
-        <span onClick={() => setIsSearchOpen(false)}>X</span>
-      </form>
-    </div>
+      <div className={`header_search ${isSearchOpen ? "active" : ""}`}>
+        <form className="search-bar" onSubmit={handleSearch}>
+          <div className="search_box">
+            <input
+              type="text"
+              value={keyword}
+              onChange={(e) => setKeyword(e.target.value)}
+              placeholder="검색어를 입력하세요..."
+            />
+            <button type="submit"></button>
+          </div>
+          <span onClick={() => setIsSearchOpen(false)}>X</span>
+        </form>
+      </div>
       <div
         className={`header_wrap ${pageClass} ${isHovered ? "on" : ""}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <header className={`header ${isScrolled || isHovered || isMenuOpen ? "active" : ""}`}>
+        <header
+          className={`header ${isScrolled || isHovered || isMenuOpen ? "active" : ""}`}
+        >
           <div className="header_box">
             <div className="header_left">
               <h1>
@@ -128,16 +124,22 @@ const Header = () => {
               </ul>
             </nav>
             <div className="header_auth">
-              <span className="header_auth_btn header_search_btn" onClick={() => setIsSearchOpen(true)}>
+              <span
+                className="header_auth_btn header_search_btn"
+                onClick={() => setIsSearchOpen(true)}
+              >
                 <img src="/public/images/icon_search_w.svg" />
               </span>
               {isState ? (
                 <>
-                  <Link to={"/order"} className="header_auth_btn header_basket_btn">
-                      <img src="/public/images/icon_basket.svg" />
-                      {basketItems.length > 0 && (
-                        <span className="basket-count">{basketItems.length}</span>
-                      )}
+                  <Link
+                    to={"/order"}
+                    className="header_auth_btn header_basket_btn"
+                  >
+                    <img src="/public/images/icon_basket.svg" />
+                    {basketItems.length > 0 && (
+                      <span className="basket-count">{basketItems.length}</span>
+                    )}
                   </Link>
                   <Link to={"/auth"} className="header_auth_btn">
                     <span>로그인</span>
@@ -147,7 +149,10 @@ const Header = () => {
                 <>
                   {state.input.user?.role === "ROLE_ADMIN" ? (
                     <>
-                      <Link to={`/admin`} className="header_auth_btn header_basket_btn">
+                      <Link
+                        to={`/admin`}
+                        className="header_auth_btn header_basket_btn"
+                      >
                         <img src="/public/images/icon_admin_w.svg" />
                       </Link>
                       <Link onClick={loginFn} className="header_auth_btn">
@@ -156,15 +161,21 @@ const Header = () => {
                     </>
                   ) : (
                     <>
-                      <Link to={"/order"} className="header_auth_btn header_basket_btn">
+                      <Link
+                        to={"/order"}
+                        className="header_auth_btn header_basket_btn"
+                      >
                         <img src="/public/images/icon_basket.svg" />
                         {basketItems.length > 0 && (
-                        <span className="basket-count">{basketItems.length}</span>
-                      )}
+                          <span className="basket-count">
+                            {basketItems.length}
+                          </span>
+                        )}
                       </Link>
                       <Link
                         to={`/auth/mypage/${state.input.user.id}`}
-                        className="header_auth_btn header_basket_btn">
+                        className="header_auth_btn header_basket_btn"
+                      >
                         <img src="/public/images/icon_user_w.svg" />
                       </Link>
                       <Link onClick={loginFn} className="header_auth_btn">
@@ -176,18 +187,27 @@ const Header = () => {
               )}
             </div>
             <div className="header_auth_m">
-              <span className="header_auth_btn header_search_btn" onClick={() => setIsSearchOpen(true)}>
+              <span
+                className="header_auth_btn header_search_btn"
+                onClick={() => setIsSearchOpen(true)}
+              >
                 <img src="/public/images/icon_search_w.svg" />
               </span>
-              {(isState || state.input.user?.role === "ROLE_MEMBER")&&(
-                <Link to={"/order"} className="header_auth_btn header_basket_btn">
-                    <img src="/public/images/icon_basket.svg" />
-                    {basketItems.length > 0 && (
-                      <span className="basket-count">{basketItems.length}</span>
-                    )}
+              {(isState || state.input.user?.role === "ROLE_MEMBER") && (
+                <Link
+                  to={"/order"}
+                  className="header_auth_btn header_basket_btn"
+                >
+                  <img src="/public/images/icon_basket.svg" />
+                  {basketItems.length > 0 && (
+                    <span className="basket-count">{basketItems.length}</span>
+                  )}
                 </Link>
               )}
-              <span className="header_auth_btn header_basket_btn" onClick={toggleMenu}>
+              <span
+                className="header_auth_btn header_basket_btn"
+                onClick={toggleMenu}
+              >
                 <img src="/public/images/icon_menu_w.svg" alt="메뉴 열기" />
               </span>
             </div>
@@ -222,43 +242,63 @@ const Header = () => {
         </div>
       </div>
 
-      
-      {isMenuOpen && <div className="menu_backdrop" onClick={() => setIsMenuOpen(false)}></div>}
-      <div className={`header_hidden_wrap ${isMenuOpen ? 'active' : ''}`}>
+      {isMenuOpen && (
+        <div
+          className="menu_backdrop"
+          onClick={() => setIsMenuOpen(false)}
+        ></div>
+      )}
+      <div className={`header_hidden_wrap ${isMenuOpen ? "active" : ""}`}>
         <div className="header_m_btn">
-          <button className="header_auth_btn header_basket_btn" onClick={() => setIsMenuOpen(false)}>
+          <button
+            className="header_auth_btn header_basket_btn"
+            onClick={() => setIsMenuOpen(false)}
+          >
             <img src="/public/images/icon_close.svg" alt="메뉴 닫기" />
           </button>
         </div>
         <nav className="nav">
           <ul>
             <li>
-              {
-                isState ? null : (
-                  /* 2. 내부 조건부 렌더링 시 중괄호 {} 를 제거해야 합니다 */
-                  state.input.user?.role === "ROLE_ADMIN" ? (
-                    <Link to="/admin" className="depth_m_title">
-                      관리자페이지
-                    </Link>
-                  ) : (
-                    <Link to={`/auth/mypage/${state.input.user.id}`} className="depth_m_title">
-                      마이페이지
-                    </Link>
-                  )
-                )
-              }
+              {isState ? null : /* 2. 내부 조건부 렌더링 시 중괄호 {} 를 제거해야 합니다 */
+              state.input.user?.role === "ROLE_ADMIN" ? (
+                <Link to="/admin" className="depth_m_title">
+                  관리자페이지
+                </Link>
+              ) : (
+                <Link
+                  to={`/auth/mypage/${state.input.user.id}`}
+                  className="depth_m_title"
+                >
+                  마이페이지
+                </Link>
+              )}
             </li>
             <li>
-              <strong onClick={(e) => handleTitleClick(e, 0)} className={`depth_m_title ${activeIndex === 0 ? "active" : ""}`}>회사소개</strong>
-              <div className={`header_depth_m ${activeIndex === 0 ? "on" : ""}`}>
+              <strong
+                onClick={(e) => handleTitleClick(e, 0)}
+                className={`depth_m_title ${activeIndex === 0 ? "active" : ""}`}
+              >
+                회사소개
+              </strong>
+              <div
+                className={`header_depth_m ${activeIndex === 0 ? "on" : ""}`}
+              >
                 <Link to={`/info/introduction`}>소개</Link>
                 <Link to={`/info/history`}>연혁</Link>
                 <Link to={`/shop`}>지점소개</Link>
               </div>
             </li>
             <li>
-              <strong onClick={(e) => handleTitleClick(e, 1)} className={`depth_m_title ${activeIndex === 1 ? "active" : ""}`}>상품판매</strong>
-              <div className={`header_depth_m ${activeIndex === 1 ? "on" : ""}`}>
+              <strong
+                onClick={(e) => handleTitleClick(e, 1)}
+                className={`depth_m_title ${activeIndex === 1 ? "active" : ""}`}
+              >
+                상품판매
+              </strong>
+              <div
+                className={`header_depth_m ${activeIndex === 1 ? "on" : ""}`}
+              >
                 <Link to={`/product`}>전체</Link>
                 <Link to={`/product/list/hydro`}>보습제품</Link>
                 <Link to={`/product/list/trouble`}>트러블</Link>
@@ -268,8 +308,15 @@ const Header = () => {
               </div>
             </li>
             <li>
-              <strong onClick={(e) => handleTitleClick(e, 2)} className={`depth_m_title ${activeIndex === 2 ? "active" : ""}`}>진료예약</strong>
-              <div className={`header_depth_m ${activeIndex === 2 ? "on" : ""}`}>
+              <strong
+                onClick={(e) => handleTitleClick(e, 2)}
+                className={`depth_m_title ${activeIndex === 2 ? "active" : ""}`}
+              >
+                진료예약
+              </strong>
+              <div
+                className={`header_depth_m ${activeIndex === 2 ? "on" : ""}`}
+              >
                 <Link to={`/reservation`}>전체</Link>
                 <Link to={`/reservation/list/lifting`}>리프팅</Link>
                 <Link to={`/reservation/list/faceline`}>페이스라인</Link>
@@ -278,8 +325,15 @@ const Header = () => {
               </div>
             </li>
             <li>
-              <strong onClick={(e) => handleTitleClick(e, 3)} className={`depth_m_title ${activeIndex === 3 ? "active" : ""}`}>커뮤니티</strong>
-              <div className={`header_depth_m ${activeIndex === 3 ? "on" : ""}`}>
+              <strong
+                onClick={(e) => handleTitleClick(e, 3)}
+                className={`depth_m_title ${activeIndex === 3 ? "active" : ""}`}
+              >
+                커뮤니티
+              </strong>
+              <div
+                className={`header_depth_m ${activeIndex === 3 ? "on" : ""}`}
+              >
                 <Link to={`/community/notice`}>공지사항</Link>
                 <Link to={`/community/faq`}>자주 묻는 질문</Link>
                 <Link to={`/community/qna`}>Q&A</Link>
@@ -289,9 +343,13 @@ const Header = () => {
         </nav>
 
         {isState ? (
-          <Link to={"/auth"} className="header_m_auth">로그인</Link>
+          <Link to={"/auth"} className="header_m_auth">
+            로그인
+          </Link>
         ) : (
-          <Link onClick={loginFn} className="header_m_auth">로그아웃</Link>
+          <Link onClick={loginFn} className="header_m_auth">
+            로그아웃
+          </Link>
         )}
       </div>
     </>

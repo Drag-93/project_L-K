@@ -30,19 +30,18 @@ const AuthMyQna = () => {
   console.log(param);
 
   const [myData, setMyData] = useState(myDataFrom);
-    const myDataListFn = async (e) => {
-      try {
-        const res = await axios.get(`${url}/members?id=${param.id}`);
-        setMyData(res.data[0]);
-      } catch (err) {
-        alert(err);
-      }
-    };
-  
-    useEffect(() => {
-      myDataListFn();
-    }, []);
+  const myDataListFn = async (e) => {
+    try {
+      const res = await axios.get(`${url}/members?id=${param.id}`);
+      setMyData(res.data[0]);
+    } catch (err) {
+      alert(err);
+    }
+  };
 
+  useEffect(() => {
+    myDataListFn();
+  }, []);
 
   useEffect(() => {
     if (isState === true) {
@@ -50,71 +49,70 @@ const AuthMyQna = () => {
     }
   }, [state]);
 
-
-
   // 검색툴바의 활성화 상태 관리
-    const [isSearchActive, setIsSearchActive] = useState(false);
-  
-    //검색변수
-    const [searchText, setSearchText] = useState("");
-  
-    //페이징변수
-    const pageSize = 8;
-    const [page, setPage] = useState(1);
-  
-    //정렬기능변수
-    const [sortType, setSortType] = useState("dateN");
-    const [isOpen, setIsOpen] = useState(false); // 드롭다운 열림 상태
-        
-    // 정렬 옵션 데이터 배열화
-    const sortOptions = [
-      { value: "dateN", label: "최신순" },
-      { value: "dateP", label: "오래된순" },
-      { value: "viewN", label: "조회수순" },
-      { value: "viewP", label: "조회수역순" },
-    ];
-  
-    const currentSortLabel = sortOptions.find(opt => opt.value === sortType)?.label;
-  
-    //검색, 정렬 기능
-    const filtered = useMemo(() => {
-      const q = searchText.trim().toLowerCase();
-  
-      let searchList = [...myQnaList];
-      
-      //검색
-      if (q) {
-        searchList = searchList.filter((m) => {
-          const searchTarget = [m.title, m.date]
-            .filter(Boolean)
-            .join(" ")
-            .toLowerCase();
-          return searchTarget.includes(q);
-        });
-      }
-  
-      //정렬
-      return searchList.sort((a, b) => {
-        const timeA = a.date ? new Date(a.date).getTime() : 0;
-        const timeB = b.date ? new Date(b.date).getTime() : 0;
-        const viewA = Number(a.viewrate || 0);
-        const viewB = Number(b.viewrate || 0);
-  
-        switch (sortType) {
-          case "dateN":
-            return timeB - timeA; // 최신순 (날짜 큰 순)
-          case "dateP":
-            return timeA - timeB; // 오래된순
-          case "viewN":
-            return viewB - viewA; // 조회수 높은순
-          case "viewP":
-            return viewA - viewB; // 조회수 낮은순
-          default:
-            return 0;
-        }
-      });
-    }, [myQnaList, searchText, sortType]);
+  const [isSearchActive, setIsSearchActive] = useState(false);
 
+  //검색변수
+  const [searchText, setSearchText] = useState("");
+
+  //페이징변수
+  const pageSize = 8;
+  const [page, setPage] = useState(1);
+
+  //정렬기능변수
+  const [sortType, setSortType] = useState("dateN");
+  const [isOpen, setIsOpen] = useState(false); // 드롭다운 열림 상태
+
+  // 정렬 옵션 데이터 배열화
+  const sortOptions = [
+    { value: "dateN", label: "최신순" },
+    { value: "dateP", label: "오래된순" },
+    { value: "viewN", label: "조회수순" },
+    { value: "viewP", label: "조회수역순" },
+  ];
+
+  const currentSortLabel = sortOptions.find(
+    (opt) => opt.value === sortType,
+  )?.label;
+
+  //검색, 정렬 기능
+  const filtered = useMemo(() => {
+    const q = searchText.trim().toLowerCase();
+
+    let searchList = [...myQnaList];
+
+    //검색
+    if (q) {
+      searchList = searchList.filter((m) => {
+        const searchTarget = [m.title, m.date]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+        return searchTarget.includes(q);
+      });
+    }
+
+    //정렬
+    return searchList.sort((a, b) => {
+      const timeA = a.date ? new Date(a.date).getTime() : 0;
+      const timeB = b.date ? new Date(b.date).getTime() : 0;
+      const viewA = Number(a.viewrate || 0);
+      const viewB = Number(b.viewrate || 0);
+
+      switch (sortType) {
+        case "dateN":
+          return timeB - timeA; // 최신순 (날짜 큰 순)
+        case "dateP":
+          return timeA - timeB; // 오래된순
+        case "viewN":
+          return viewB - viewA; // 조회수 높은순
+        case "viewP":
+          return viewA - viewB; // 조회수 낮은순
+        default:
+          return 0;
+      }
+    });
+  }, [myQnaList, searchText, sortType]);
 
   //페이징
 
@@ -134,7 +132,6 @@ const AuthMyQna = () => {
   useEffect(() => {
     setPage(1);
   }, [searchText]);
-
 
   // myQna
   const myQnaListFn = async () => {
@@ -156,33 +153,57 @@ const AuthMyQna = () => {
         <div className="auth_wrap">
           <div className="auth_aside_wrap">
             <ul>
-              <li><NavLink to={`/auth/mypage/${state.input.user?.id}`}>내정보</NavLink></li>
-              <li><NavLink to={`/auth/mypayment/${state.input.user?.id}`}>결재내역</NavLink></li>
-              <li><NavLink to={`/auth/myqna/${state.input.user?.id}`}>내 Q&A</NavLink></li>
-              <li><NavLink to={`/auth/myreview/${state.input.user?.id}`}>내 리뷰</NavLink></li>
+              <li>
+                <NavLink to={`/auth/mypage/${state.input.user?.id}`}>
+                  내정보
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={`/auth/mypayment/${state.input.user?.id}`}>
+                  결재내역
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={`/auth/myqna/${state.input.user?.id}`}>
+                  내 Q&A
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={`/auth/myreview/${state.input.user?.id}`}>
+                  내 리뷰
+                </NavLink>
+              </li>
             </ul>
           </div>
           <div className="auth_list_wrap">
             <h2>내 Q&A</h2>
             <div className="list_search_wrap">
-              <span className="list_search_length">게시물 <b>{myQnaList.length}</b>개</span>
+              <span className="list_search_length">
+                게시물 <b>{myQnaList.length}</b>개
+              </span>
               <div className="list_search_box">
-                <div className={`toolbar ${isSearchActive ? "active" : ""}`} onClick={() => setIsSearchActive(true)}>
+                <div
+                  className={`toolbar ${isSearchActive ? "active" : ""}`}
+                  onClick={() => setIsSearchActive(true)}
+                >
                   <input
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
                     placeholder="검색어 입력"
                   />
-                  <span className="list_search_btn"onClick={(e) => {
+                  <span
+                    className="list_search_btn"
+                    onClick={(e) => {
                       e.stopPropagation();
                       setIsSearchActive(false);
                       setSearchText("");
-                    }}>
+                    }}
+                  >
                     <img src="/images/icon_close_w.svg" />
                   </span>
                 </div>
                 <div className="custom-select-container">
-                  <div 
+                  <div
                     className={`select-selected ${isOpen ? "select-arrow-active" : ""}`}
                     onClick={() => setIsOpen(!isOpen)}
                   >
@@ -192,9 +213,11 @@ const AuthMyQna = () => {
                   {isOpen && (
                     <ul className="select-items">
                       {sortOptions.map((opt) => (
-                        <li 
+                        <li
                           key={opt.value}
-                          className={sortType === opt.value ? "same-as-selected" : ""}
+                          className={
+                            sortType === opt.value ? "same-as-selected" : ""
+                          }
                           onClick={() => {
                             setSortType(opt.value);
                             setIsOpen(false);
@@ -210,42 +233,42 @@ const AuthMyQna = () => {
             </div>
             <div className="notice_list qna_list">
               {myQnaList.length > 0 ? (
-              <table>
-                <thead>
-                  <tr>
-                    <td>작성일</td>
-                    <td>제목</td>
-                    <td>답변상태</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  {pagedList.map((el) => {
-                    return (
-                      <tr
-                        key={el.id}
-                        onClick={() => navigate(`/community/qna/${el.id}`)}
-                      >
-                        <td onClick={(e) => e.stopPropagation()}>
-                          {el.date}
-                        </td>
-                        <td>{el.title}</td>
-                        <td
-                          onClick={(e) => e.stopPropagation()}
-                          className={`qnaStateBadge ${el.state === "답변완료" ? "done" : "wait"}`}
+                <table>
+                  <thead>
+                    <tr>
+                      <td>작성일</td>
+                      <td>제목</td>
+                      <td>답변상태</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {pagedList.map((el) => {
+                      return (
+                        <tr
+                          key={el.id}
+                          onClick={() => navigate(`/community/qna/${el.id}`)}
                         >
-                          {el.state}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            ) :(
-              <div className="no_data_wrap">
+                          <td onClick={(e) => e.stopPropagation()}>
+                            {el.date}
+                          </td>
+                          <td>{el.title}</td>
+                          <td
+                            onClick={(e) => e.stopPropagation()}
+                            className={`qnaStateBadge ${el.state === "답변완료" ? "done" : "wait"}`}
+                          >
+                            {el.state}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              ) : (
+                <div className="no_data_wrap">
                   <div className="no_data_img"></div>
-                  <span className="no_data_text">등록된 상품이 없습니다</span>
+                  <span className="no_data_text">등록된 게시글이 없습니다</span>
                 </div>
-            )}
+              )}
             </div>
             <div className="paging_wrap">
               <button
@@ -263,15 +286,17 @@ const AuthMyQna = () => {
                 이전
               </button>
               <ul className="page_numbers">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
-                  <li
-                    key={num}
-                    onClick={() => setPage(num)}
-                    className={page === num ? "active" : ""}
-                  >
-                    {num}
-                  </li>
-                ))}
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                  (num) => (
+                    <li
+                      key={num}
+                      onClick={() => setPage(num)}
+                      className={page === num ? "active" : ""}
+                    >
+                      {num}
+                    </li>
+                  ),
+                )}
               </ul>
               <button
                 onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
