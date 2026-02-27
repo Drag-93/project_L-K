@@ -7,7 +7,6 @@ const ShopPage = () => {
     <div className="inner3">
       <div className="auth_wrap">
         <div className="auth_aside_wrap">
-          <div className="shop-margin"></div>
           <ShopLeft />
         </div>
         <div className="auth_list_wrap">

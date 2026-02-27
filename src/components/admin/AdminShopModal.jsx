@@ -236,6 +236,7 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
                   id="address"
                   value={detail.address}
                   onChange={onChangeFn}
+                  readOnly
                 />
                 <button
                   className="addressBtn"
