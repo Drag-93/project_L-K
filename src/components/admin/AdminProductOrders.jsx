@@ -228,8 +228,8 @@ const AdminProductOrders = () => {
                     </td>
                     <td title={el.productDate}>
                       {el.productDate.length > 23
-                        ? el.productDate.slice(0, 13)
-                        : el.productDate.slice(0, 12)}
+                        ? el.productDate.slice(0, 10)
+                        : el.productDate.slice(0, 9)}
                     </td>
                     <td>{el.customer.userName}</td>
                     <td title={itemNames}>

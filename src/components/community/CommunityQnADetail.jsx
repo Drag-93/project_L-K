@@ -45,6 +45,17 @@ const CommunityQnADetail = () => {
     const { name, value } = e.target;
     setEdit((prev) => ({ ...prev, [name]: value }));
   };
+  //한국 날짜 표시
+  const getKoreaDate = (date) => {
+    const today = new Date(date);
+    return (
+      today.getFullYear() +
+      "-" +
+      String(today.getMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(today.getDate()).padStart(2, "0")
+    );
+  };
 
   const onEditFn = () => {
     if (!user) {
@@ -180,11 +191,17 @@ const CommunityQnADetail = () => {
       <div className="QnADetail-con">
         <div className="aside_wrap">
           <ul>
-            <li><NavLink to={`/community/notice`}>공지사항</NavLink></li>
-            <li><NavLink to={`/community/faq`}>자주묻는질문</NavLink></li>
-            <li><NavLink to={`/community/qna`}>Q&A</NavLink></li>
+            <li>
+              <NavLink to={`/community/notice`}>공지사항</NavLink>
+            </li>
+            <li>
+              <NavLink to={`/community/faq`}>자주묻는질문</NavLink>
+            </li>
+            <li>
+              <NavLink to={`/community/qna`}>Q&A</NavLink>
+            </li>
           </ul>
-        </div>           
+        </div>
         <div className="title">
           <ul>
             <li>
@@ -216,13 +233,14 @@ const CommunityQnADetail = () => {
           </li>
           <li>
             <label htmlFor="date">작성일</label>
-            <input
+            <span>{getKoreaDate(detail.date)}</span>
+            {/* <input
               type="date"
               name="date"
               id="date"
               value={detail.date}
               readOnly
-            />
+            /> */}
           </li>
           <li>
             <label htmlFor="question">질문내용</label>
@@ -238,7 +256,12 @@ const CommunityQnADetail = () => {
         </ul>
         <div className="QnADetailFooter">
           <div className="QnADetailFooter-con">
-            <button className="btn-list" onClick={() => navigate(`/community/qna`)}>목록</button>
+            <button
+              className="btn-list"
+              onClick={() => navigate(`/community/qna`)}
+            >
+              목록
+            </button>
             {user?.userEmail === detail.writerEmail ||
             user?.role === "ROLE_ADMIN" ? (
               <div className="btn-group">
