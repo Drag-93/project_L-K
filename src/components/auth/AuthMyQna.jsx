@@ -66,9 +66,7 @@ const AuthMyQna = () => {
   // 정렬 옵션 데이터 배열화
   const sortOptions = [
     { value: "dateN", label: "최신순" },
-    { value: "dateP", label: "오래된순" },
-    { value: "viewN", label: "조회수순" },
-    { value: "viewP", label: "조회수역순" },
+    { value: "dateP", label: "오래된순" }
   ];
 
   const currentSortLabel = sortOptions.find(
@@ -96,18 +94,12 @@ const AuthMyQna = () => {
     return searchList.sort((a, b) => {
       const timeA = a.date ? new Date(a.date).getTime() : 0;
       const timeB = b.date ? new Date(b.date).getTime() : 0;
-      const viewA = Number(a.viewrate || 0);
-      const viewB = Number(b.viewrate || 0);
 
       switch (sortType) {
         case "dateN":
           return timeB - timeA; // 최신순 (날짜 큰 순)
         case "dateP":
           return timeA - timeB; // 오래된순
-        case "viewN":
-          return viewB - viewA; // 조회수 높은순
-        case "viewP":
-          return viewA - viewB; // 조회수 낮은순
         default:
           return 0;
       }
@@ -236,9 +228,9 @@ const AuthMyQna = () => {
                 <table>
                   <thead>
                     <tr>
-                      <td>작성일</td>
-                      <td>제목</td>
                       <td>답변상태</td>
+                      <td>제목</td>
+                      <td>작성일</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -248,15 +240,15 @@ const AuthMyQna = () => {
                           key={el.id}
                           onClick={() => navigate(`/community/qna/${el.id}`)}
                         >
-                          <td onClick={(e) => e.stopPropagation()}>
-                            {el.date}
-                          </td>
-                          <td>{el.title}</td>
                           <td
                             onClick={(e) => e.stopPropagation()}
                             className={`qnaStateBadge ${el.state === "답변완료" ? "done" : "wait"}`}
                           >
                             {el.state}
+                          </td>
+                          <td>{el.title}</td>
+                          <td onClick={(e) => e.stopPropagation()}>
+                            {new Date(el.date).toLocaleDateString()}
                           </td>
                         </tr>
                       );

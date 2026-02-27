@@ -1,6 +1,6 @@
-@import url(/public/font/static/pretendard.css);
-@import url(/public/font/static/pretendard-subset.css);
-@import url(/public/font/variable/pretendardvariable.css);
+@import url(/font/static/pretendard.css);
+@import url(/font/static/pretendard-subset.css);
+@import url(/font/variable/pretendardvariable.css);
 * {
     font-family: 'Pretendard';
 }
@@ -84,10 +84,10 @@
     width: 100%;
     height: 100%;
     font-size: 0;
-    background: url(/public/images/logo_w.png) no-repeat center center / cover;
+    background: url(/images/logo_w.png) no-repeat center center / cover;
 }
 .header.active .header_box h1 a {
-    background: url(/public/images/logo.png) no-repeat center center / cover;
+    background: url(/images/logo.png) no-repeat center center / cover;
 }
 
 .header .header_box .nav {
@@ -200,7 +200,7 @@
 
 .header_depth {
     width: 100%;
-    background: url(/public/images/nav_bg.png) no-repeat center center / cover;
+    background: url(/images/nav_bg.png) no-repeat center center / cover;
     background-color: #fcfcfc;
     position: fixed;
     top: 50px;
@@ -286,21 +286,20 @@
     transform: translateY(-50%);
     border: none;
     background-color: transparent;
-    background: url(/public/images/icon_search.svg) no-repeat center center;
+    background: url(/images/icon_search.svg) no-repeat center center;
     background-size: 20px 20px;
+    cursor: pointer;
 }
 .header_search .search-bar span{
     cursor: pointer;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: #5aa933;
+    background: url(/images/icon_close_w.svg) no-repeat center center #5aa933;
+    background-size: calc(100% - 20px);
     color: #fff;
-    width: 32px;
-    height: 32px;
+    width: 44px;
     display: block;
-    text-align: center;
-    line-height: 32px;
+    border: 2px solid #5aa933;
+    height: 44px;
+    border-radius: 500px;
 }
 
 .header_auth_m {
@@ -327,7 +326,7 @@
     right: -100%;
     width: 300px;
     height: 100%;
-    background: url(/public/images/nav_m_bg.png) no-repeat center bottom / cover ;
+    background: url(/images/nav_m_bg.png) no-repeat center bottom / cover ;
     background-color: #fff;
     z-index: 1000;
     transition: all 0.4s ease-in-out;
@@ -369,6 +368,7 @@
     border-top: 1px solid #f1f1f1;
     font-weight: 700;
     color: #003C26;
+    cursor: pointer;
 }
 .header_hidden_wrap .nav ul li:last-child .depth_m_title {
     border-bottom: 1px solid #f1f1f1;
@@ -423,7 +423,18 @@ max-height: 500px; /* 열렸을 때 넉넉한 높이 */
     .header_auth_m {display: flex;}
 }
 
+@media(max-width:900px){
+    .header_search .search-bar {padding: 0 20px;}
+    .header_search .search-bar .search_box {flex: auto;}
+}
+
 @media(max-width:480px){
+    .header_search.active {height: 70px;}
+    .header_search .search-bar {padding: 0 10px;}
+    .header_search .search-bar input {height: 36px; font-size: 14px; padding: 7px 10px;}
+    .header_search .search-bar button {right: 10px;}
+    .header_search .search-bar span {width: 36px; height: 36px;}
+
     .header .header_box {padding: 0 15px; height: 70px;}
     .header_hidden_wrap {width: 100%;}
     .header_auth_btn {height: 36px;}
@@ -563,7 +574,7 @@ max-height: 500px; /* 열렸을 때 넉넉한 높이 */
 }
 .aside_wrap ul li a.active::before {
     content: "";
-    background: url(/public/images/icon_star.png) no-repeat center center;
+    background: url(/images/icon_star.png) no-repeat center center;
     background-size: 2rem;
     top: -1.2rem;
     right: -1.6rem;
@@ -615,13 +626,13 @@ max-height: 500px; /* 열렸을 때 넉넉한 높이 */
     position: relative;
     height: 4rem;
     width: 4rem;
-    background: url(/public/images/icon_search_w.svg) no-repeat center center #556a4b;
+    background: url(/images/icon_search_w.svg) no-repeat center center #556a4b;
     background-size: 2.2rem;
     cursor: pointer;
 }
 .list_search_wrap .list_search_box .toolbar.active{
     width: 36rem;
-    background: url(/public/images/icon_search_g.svg) no-repeat #fff;
+    background: url(/images/icon_search_g.svg) no-repeat #fff;
     background-size: 2.4rem;
     background-position: 0.8rem;
     cursor: auto;
@@ -766,16 +777,16 @@ max-height: 500px; /* 열렸을 때 넉넉한 높이 */
     cursor: pointer;
 }
 .paging_wrap button.paging_double {
-    background: url(/public/images/icon_arrow_last.svg) no-repeat center center / cover;
+    background: url(/images/icon_arrow_last.svg) no-repeat center center / cover;
 }
 .paging_wrap button.paging_double:disabled {
-    background: url(/public/images/icon_arrow_last_w.svg) no-repeat center center / cover;
+    background: url(/images/icon_arrow_last_w.svg) no-repeat center center / cover;
 }
 .paging_wrap button.paging_one {
-    background: url(/public/images/icon_arrow_next.svg) no-repeat center center / cover;
+    background: url(/images/icon_arrow_next.svg) no-repeat center center / cover;
 }
 .paging_wrap button.paging_one:disabled {
-    background: url(/public/images/icon_arrow_next_w.svg) no-repeat center center / cover;
+    background: url(/images/icon_arrow_next_w.svg) no-repeat center center / cover;
 }
 .paging_wrap button.paging_double.last, .paging_wrap button.paging_one.next {
     transform: rotate(180deg);
@@ -826,7 +837,7 @@ max-height: 500px; /* 열렸을 때 넉넉한 높이 */
 .no_data_wrap .no_data_img {
     width: 30rem;
     height: 20rem;
-    background: url(/public/images/icon_product_none.png) no-repeat center center / contain;
+    background: url(/images/icon_product_none.png) no-repeat center center / contain;
 }
 .no_data_wrap .no_data_text {
     font-size: 2.8rem;

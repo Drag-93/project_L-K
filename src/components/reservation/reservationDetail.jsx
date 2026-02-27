@@ -29,6 +29,7 @@ const categoryMap = {
 
 const ReservationDetail = () => {
   const isState = useSelector((state) => state.input.isState);
+  const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const { id } = useParams();
   const [reserve, setReserve] = useState(reserveData);
@@ -195,8 +196,13 @@ const ReservationDetail = () => {
     // }
     const { id, ...item } = reserve;
 
+    const payload = {
+      ...item,
+      itemId: id
+    };
+
     try {
-      const res = await axios.post(`${url}/cart`, item);
+      const res = await axios.post(`${url}/cart`, payload);
 
       if (res.status === 201) {
         dispatch(addBasket(res.data));

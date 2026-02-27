@@ -95,11 +95,11 @@ const ProdDetail = () => {
         }
       } else {
         // 4. [신규 추가] 기존 POST 로직
-
         const cartData = {
           ...detail,
           count: count,
           totalPrice: detail.price * count,
+          itemId: id
         };
 
         const res = await axios.post(`${url}/cart`, cartData);

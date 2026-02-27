@@ -1482,3 +1482,10 @@
   .notice_list tbody .faq_detail_control {display: flex; justify-content: flex-end; gap: 7px;}
   .notice_list tbody .faq_detail .faq_detail_control button:last-child {margin-top: 0;}
 }
+
+
+
+/*****************************************************************************
+    @hotfix_260227_김현우작성
+****************************************************************************/
+.adminModal .adminModal-con .addtime button {border: 1px solid #d9deea; border-radius: 12px; padding: 1rem; font-size: 1.4rem; outline: none; background: #ffffff;}

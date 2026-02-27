@@ -50,8 +50,8 @@ const ProdList = () => {
 
     //정렬
     return searchList.sort((a, b) => {
-      const timeA = a.date ? new Date(a.date).getTime() : 0;
-      const timeB = b.date ? new Date(b.date).getTime() : 0;
+      const timeA = a.regDate ? new Date(a.regDate).getTime() : 0;
+      const timeB = b.regDate ? new Date(b.regDate).getTime() : 0;
       const viewA = Number(a.price || 0);
       const viewB = Number(b.price || 0);
 

@@ -60,8 +60,8 @@ const Search = () => {
     let searchList = [...combinedList];
 
     searchList = searchList.sort((a, b) => {
-      const timeA = a.date ? new Date(a.date).getTime() : 0;
-      const timeB = b.date ? new Date(b.date).getTime() : 0;
+      const timeA = a.regDate ? new Date(a.regDate).getTime() : 0;
+      const timeB = b.regDate ? new Date(b.regDate).getTime() : 0;
       const viewA = Number(a.price || 0);
       const viewB = Number(b.price || 0);
 
@@ -166,6 +166,47 @@ const Search = () => {
           </div>
         )}
         </div>
+        <div className="paging_wrap">
+            <button
+              onClick={() => setPage(1)}
+              disabled={page === 1}
+              className="paging_double first"
+            >
+              &lt;&lt; {/* 또는 '맨처음' */}
+            </button>
+            <button
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={page === 1}
+              className="paging_one prev"
+            >
+              이전
+            </button>
+            <ul className="page_numbers">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+                <li
+                  key={num}
+                  onClick={() => setPage(num)}
+                  className={page === num ? "active" : ""}
+                >
+                  {num}
+                </li>
+              ))}
+            </ul>
+            <button
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={page === totalPages}
+              className="paging_one next"
+            >
+              다음
+            </button>
+            <button
+              onClick={() => setPage(totalPages)}
+              disabled={page === totalPages}
+              className="paging_double last"
+            >
+              &gt;&gt; {/* 또는 '맨끝' */}
+            </button>
+          </div>
       </div>
     </div>
   );

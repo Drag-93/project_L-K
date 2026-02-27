@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { logoutF } from "../../store/slice/inputSlice";
 
 const Header = () => {
@@ -17,6 +17,7 @@ const Header = () => {
 
   const state = useSelector((state) => state);
   const isState = useSelector((state) => state.input.isState);
+  const location = useLocation();
   console.log(state);
   console.log(state.input.isState);
   console.log(isState);
@@ -28,6 +29,14 @@ const Header = () => {
     alert("로그아웃 실행!");
     dispatch(logoutF());
   };
+
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+    setActiveIndex(null);
+    setIsHovered(false);
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (location.pathname !== "/") {
@@ -90,7 +99,7 @@ const Header = () => {
             />
             <button type="submit"></button>
           </div>
-          <span onClick={() => setIsSearchOpen(false)}>X</span>
+          <span onClick={() => setIsSearchOpen(false)}></span>
         </form>
       </div>
       <div
