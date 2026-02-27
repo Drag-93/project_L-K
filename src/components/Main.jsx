@@ -9,7 +9,7 @@ const Main = () => {
   return (
     <>
       <div className="section sec1">
-        <img src="/images/main_banner_ex.avif" className="banner"/>
+        <img src="/images/main_banner_01.png" className="banner"/>
         <div className="main_nav">
           <ul>
             <li>

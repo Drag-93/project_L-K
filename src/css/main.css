@@ -134,6 +134,10 @@
   .main_sec2_con .main_sec2_wrap .sec2_img1 {transform: none; width: auto;height: 360px;}
   .main_sec2_con .main_sec2_wrap .sec2_img2 {transform: none;width: auto;height: 360px;}
 }
+@media(max-width:1080px){
+  .header {background:#222; border-bottom: none;}
+  .section.sec1 {margin-top: 80px;}
+}
 @media(max-width:1000px){
   .main_nav ul li a .main_nav_img {padding: 2rem;}
   .main_nav ul {gap: 1rem;}
@@ -149,6 +153,7 @@
   .main_sec2_con .main_sec2_wrap .sec2_img2 {height: 240px;}
 }
 @media(max-width:480px){
+  .section.sec1 {margin-top: 70px;}
   .main_nav {padding: 20px 10px;}
   .main_nav ul {gap: 0;}
   .main_nav ul li {width: 25%; padding: 1rem;}
