@@ -87,6 +87,30 @@ const ReservDetailReview = () => {
   };
 
   const [reviewAddModal, setReviewAddModal] = useState(false);
+  //해당 상품 리뷰 작성 여부 확인
+  const [hasPurchased, setHasPurchased] = useState(false);
+  const ReviewerFn = async () => {
+    if (isState) return false;
+    try {
+      const res = await axios.get(`${url}/reserveOrders`);
+      const myOrders = res.data.filter(
+        (my) => my.customer.userEmail === user?.userEmail,
+      );
+      //주문들 안의 items 배열을 검사
+      const hasItem = myOrders.some((order) =>
+        order.items.some((it) => String(it.itemId) === String(id)),
+      );
+      setHasPurchased(hasItem);
+      return;
+    } catch (err) {
+      alert(err);
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    ReviewerFn();
+  }, [id, user?.userEmail, isState]);
 
   //내가 작성한 후기 수정하기
   const [editId, setEditId] = useState(null);
@@ -143,13 +167,15 @@ const ReservDetailReview = () => {
           </div>
           {/* 후기 리스트 */}
           <div className="reviews">
-            <h1>사용자 후기</h1>
             {!isState &&
-              !userReview.some((r) => r.userEmail === user.userEmail) && ( //로그인 된 경우에만 작성버튼 활성화
-                <button onClick={() => setReviewAddModal(true)}>
-                  후기 작성하기
-                </button>
-              )}
+            !userReview.some((r) => r.userEmail === user.userEmail) &&
+            hasPurchased ? (
+              <button onClick={() => setReviewAddModal(true)}>
+                후기 작성하기
+              </button>
+            ) : (
+              <></>
+            )}
             {reviewAddModal && (
               <ReservDetailReviewModal
                 setReviewAddModal={setReviewAddModal}
