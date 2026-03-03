@@ -116,7 +116,7 @@
 /* =========================
    반응형
    ========================= */
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .QnAWrite {
     padding: 28px 14px 60px;
   }

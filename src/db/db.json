@@ -6,15 +6,15 @@
       "description": "ㅇㅇ",
       "no": 1,
       "date": "Fri Feb 27 2026 14:44:00 GMT+0900 (한국 표준시)",
-      "viewrate": 1
+      "viewrate": 6
     },
     {
       "id": "55a2",
-      "title": "하나더",
-      "description": "ㅇㅇ",
+      "title": "오늘의 공지사항",
+      "description": "공지사항 수정을 테스트합니다. 공지사항 수정을 테스트합니다. 공지사항 수정을 테스트합니다. 공지사항 수정을 테스트합니다. 공지사항 수정을 테스트합니다. 공지사항 수정을 테스트합니다. 공지사항 수정을 테스트합니다. 공지사항 수정을 테스트합니다. 공지사항 수정을 테스트합니다. 공지사항 수정을 테스트합니다. 공지사항 수정을 테스트합니다. 공지사항 수정을 테스트합니다. 공지사항 수정을 테스트합니다. 공지사항 수정을 테스트합니다. 공지사항 수정을 테스트합니다. ",
       "no": 2,
       "date": "Fri Feb 27 2026 14:44:10 GMT+0900 (한국 표준시)",
-      "viewrate": 3
+      "viewrate": 27
     }
   ],
   "members": [
@@ -1100,15 +1100,134 @@
   ],
   "reservation": [
     {
-      "id": "1873",
-      "name": "dd",
+      "id": "9eb2",
+      "name": "Ultherapy Prime Lifting(울쎄라피 프라임 리프팅)",
       "category": "lifting",
-      "price": "220000",
-      "img": "lifting_01.png",
-      "description": "dd",
+      "price": "700000",
+      "img": "",
+      "description": "고강도 초음파 에너지가 피부 깊숙이 침투하여 탄력 저하 부위를 집중 케어하고, 피부 전체를 자연스럽게 리프팅하여 매끄럽고 탄탄한 라인을 완성하는 데 도움을 줍니다.",
       "descImg": "reservDetail_desc.png",
       "setshop": [
-        "New",
+        "강남",
+        "신촌",
+        "노원",
+        "종로"
+      ],
+      "settime": [
+        "10:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ],
+      "regDate": "2026-03-03T04:02:04.598Z",
+      "timespan": "2"
+    },
+    {
+      "id": "831f",
+      "name": "RF Thermal Tightening(RF 써멀 타이트닝)",
+      "category": "lifting",
+      "price": "250000",
+      "img": "",
+      "description": "고주파 열 에너지가 피부 진피층을 자극하여 콜라겐 생성을 촉진하고, 피부 장력을 높여 처진 피부를 효과적으로 타이트닝하는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "강남",
+        "노원",
+        "신촌",
+        "종로"
+      ],
+      "settime": [
+        "10:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ],
+      "regDate": "2026-03-03T04:02:34.693Z",
+      "timespan": "2"
+    },
+    {
+      "id": "9414",
+      "name": "High-Intensity Skin Lifting Solution(고강도 스킨 리프팅 솔루션)",
+      "category": "lifting",
+      "price": "300000",
+      "img": "",
+      "description": "고강도 리프팅 기술이 피부 전반에 고르게 작용하여 즉각적인 볼륨감과 탄력을 선사하며, 자연스럽게 올라간 페이스 라인을 완성하는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "강남",
+        "종로"
+      ],
+      "settime": [
+        "10:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ],
+      "regDate": "2026-03-03T04:03:02.074Z",
+      "timespan": "2"
+    },
+    {
+      "id": "0a6d",
+      "name": "Deep Thermal Firming Therapy(딥 써멀 퍼밍 테라피)",
+      "category": "lifting",
+      "price": "500000",
+      "img": "",
+      "description": "진피 깊은 층까지 열 에너지를 전달하여 피부 탄력을 강화하고, 모공과 잔주름 개선에도 도움을 주어 매끈하고 견고한 피부로 가꾸는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "강남",
+        "신촌",
+        "노원"
+      ],
+      "settime": [
+        "10:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ],
+      "regDate": "2026-03-03T04:03:30.490Z",
+      "timespan": "2"
+    },
+    {
+      "id": "273c",
+      "name": "Dual Energy Elasticity Program(듀얼 에너지 탄력 프로그램)",
+      "category": "lifting",
+      "price": "350000",
+      "img": "",
+      "description": "초음파와 RF 에너지를 결합하여 피부 장벽을 강화하고 탄력을 높이며, 전체적인 페이스 라인을 탄탄하게 유지하는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "종로",
+        "신촌"
+      ],
+      "settime": [
+        "10:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ],
+      "regDate": "2026-03-03T04:04:06.173Z",
+      "timespan": "2"
+    },
+    {
+      "id": "611d",
+      "name": "MicroWave Contour Lifting(마이크로웨이브 컨투어 리프팅)",
+      "category": "lifting",
+      "price": "150000",
+      "img": "",
+      "description": "마이크로웨이브 기반 기술이 피부 밀도를 개선하고, 얼굴 윤곽을 자연스럽게 리프팅하여 또렷한 페이스 라인을 만드는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
         "강남",
         "노원",
         "신촌"
@@ -1119,134 +1238,828 @@
         "13:00",
         "14:00",
         "15:00",
-        "16:00"
+        "16:00",
+        "17:00",
+        "18:00"
       ],
-      "regDate": "2026-02-27T06:06:47.486Z",
+      "regDate": "2026-03-03T04:04:33.908Z",
+      "timespan": "1"
+    },
+    {
+      "id": "590b",
+      "name": "Titanium Bright Lifting(티타늄 브라이트 리프팅)",
+      "category": "lifting",
+      "price": "350000",
+      "img": "",
+      "description": "티타늄 전극을 활용한 고주파 리프팅이 피부를 탄력 있게 케어하고, 윤기와 생기를 더해 건강한 피부 컨디션을 유지하는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "강남",
+        "노원",
+        "종로",
+        "신촌"
+      ],
+      "settime": [
+        "10:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ],
+      "regDate": "2026-03-03T04:05:48.522Z",
       "timespan": "2"
     },
     {
-      "id": "9d5a",
-      "name": "ddd",
-      "category": "immune",
-      "price": "550000",
-      "img": "immune_01.png",
-      "description": "dd",
-      "descImg": "글루타치온.png",
+      "id": "2518",
+      "name": "RF Volume V-Line Lifting(RF 볼륨 브이라인 리프팅)",
+      "category": "lifting",
+      "price": "300000",
+      "img": "",
+      "description": "V라인 집중 케어용 고주파 리프팅으로 처진 턱선을 개선하고 얼굴 윤곽을 부드럽게 정돈하여 자연스럽고 탄탄한 실루엣을 완성합니다.",
+      "descImg": "reservDetail_desc.png",
       "setshop": [
-        "강남",
-        "노원"
+        "신촌",
+        "종로"
       ],
       "settime": [
-        "100",
+        "10:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ],
+      "regDate": "2026-03-03T04:06:13.888Z",
+      "timespan": "2"
+    },
+    {
+      "id": "ef8b",
+      "name": "3D Structure Tightening Program(3D 구조 타이트닝 프로그램)",
+      "category": "lifting",
+      "price": "1000000",
+      "img": "",
+      "description": "3D 에너지 전달로 얼굴 전체 구조를 정밀하게 리프팅하며, 볼륨감과 탄력을 동시에 개선하여 균형 잡힌 라인을 선사합니다.\n",
+      "descImg": "",
+      "setshop": [
+        "강남"
+      ],
+      "settime": [
         "13:00",
         "15:00"
       ],
-      "regDate": "2026-02-20T06:43:01.386Z",
-      "timespan": "3"
+      "regDate": "2026-03-03T04:06:41.964Z",
+      "timespan": "4"
     },
     {
-      "id": "ee23",
-      "name": "쥬베룩",
-      "category": "regen",
-      "price": 20000000,
-      "img": "hydro1.jpg",
-      "description": "125",
-      "descImg": "123",
+      "id": "494d",
+      "name": "Resonance Collagen Activation Lifting(공명 콜라겐 활성 리프팅)",
+      "category": "lifting",
+      "price": "450000",
+      "img": "",
+      "description": "공명 기반 콜라겐 활성 기술이 피부 재생을 촉진하고, 탄력 저하 부위를 집중 케어하여 건강하고 견고한 피부로 가꾸는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
       "setshop": [
         "노원",
         "신촌",
         "종로"
       ],
       "settime": [
-        "11:00",
-        "12:00",
+        "10:00",
+        "13:00",
+        "14:00",
+        "15:00",
         "16:00",
         "17:00"
       ],
-      "regDate": "2026-02-20T08:28:34.638Z",
-      "timespan": "21"
+      "regDate": "2026-03-03T04:07:12.740Z",
+      "timespan": "2"
     },
     {
-      "id": "7d8c",
-      "name": "ㅇㅁㄷ실험",
+      "id": "b918",
+      "name": "3D Facial Sculpting Program(3D 페이셜 스컬프팅 프로그램)",
       "category": "faceline",
-      "price": "20000",
+      "price": "1000000",
       "img": "",
-      "description": "",
-      "descImg": "",
+      "description": "얼굴 구조를 3차원으로 분석하여 윤곽과 볼륨을 최적화하고, 자연스러운 라인을 구현하여 균형 잡힌 페이스 라인을 완성합니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "종로",
+        "강남"
+      ],
+      "settime": [
+        "13:00",
+        "15:00"
+      ],
+      "regDate": "2026-03-03T04:07:37.303Z",
+      "timespan": "4"
+    },
+    {
+      "id": "6a28",
+      "name": "Soft Thread Contour Lifting(소프트 실 컨투어 리프팅)",
+      "category": "faceline",
+      "price": "150000",
+      "img": "",
+      "description": "고급 실 리프팅으로 얼굴 라인을 부드럽게 끌어올리고 탄력을 강화하여 자연스럽고 세련된 윤곽을 선사합니다.",
+      "descImg": "reservDetail_desc.png",
       "setshop": [
         "강남",
         "노원",
-        "방학"
+        "신촌",
+        "종로"
       ],
       "settime": [
-        "12:00",
+        "10:00",
+        "11:00",
+        "13:00",
         "14:00",
         "15:00",
-        "17:00"
+        "16:00",
+        "17:00",
+        "18:00"
       ],
-      "regDate": "2026-02-27T01:33:57.700Z",
-      "timespan": ""
+      "regDate": "2026-03-03T04:08:01.787Z",
+      "timespan": "1"
     },
     {
-      "id": "bc7b",
-      "name": "쥬베룩 테스트",
-      "category": "regen",
-      "price": "5555555",
+      "id": "2898",
+      "name": "Collagen Volume Booster Therapy(콜라겐 볼륨 부스터 테라피)",
+      "category": "faceline",
+      "price": "250000",
       "img": "",
-      "description": "123123213",
-      "descImg": "",
-      "setshop": [
-        "신촌",
-        "방학",
-        "노원"
-      ],
-      "settime": [
-        "13:33",
-        "14:26",
-        "14:44"
-      ],
-      "regDate": "2026-02-27T02:10:32.283Z",
-      "timespan": "123"
-    },
-    {
-      "id": "7d05",
-      "name": "정렬테스트상품01",
-      "category": "lifting",
-      "price": "40000",
-      "img": "",
-      "description": "ㅁㄴㅇ",
-      "descImg": "",
+      "description": "콜라겐 생성을 촉진하는 시술로 볼륨 저하 부위를 개선하고, 풍부한 탄력과 건강한 피부 밀도를 유지하는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
       "setshop": [
         "노원",
-        "방학"
+        "신촌"
       ],
       "settime": [
-        "",
-        "",
-        ""
+        "10:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00"
       ],
-      "regDate": "2026-02-27T07:50:00.365Z",
+      "regDate": "2026-03-03T04:08:33.203Z",
+      "timespan": "2"
+    },
+    {
+      "id": "8285",
+      "name": "Deep Volume Sculpting Solution(딥 볼륨 스컬프팅 솔루션)",
+      "category": "faceline",
+      "price": "450000",
+      "img": "",
+      "description": "피부 깊은 층까지 볼륨감을 조절하여 얼굴 라인을 정밀하게 조각하고, 자연스럽고 균형 잡힌 실루엣을 완성합니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "강남",
+        "신촌"
+      ],
+      "settime": [
+        "13:00",
+        "14:00",
+        "15:00"
+      ],
+      "regDate": "2026-03-03T04:09:27.603Z",
       "timespan": "3"
     },
     {
-      "id": "cf1f",
-      "name": "1342",
-      "category": "lifting",
-      "price": "1344",
+      "id": "1feb",
+      "name": "Jawline Precision Contouring(턱선 정밀 컨투어링)",
+      "category": "faceline",
+      "price": "350000",
       "img": "",
-      "description": "234234",
-      "descImg": "",
+      "description": "턱선 부위를 정밀하게 케어하여 늘어진 라인을 탄탄하게 잡아주고, 세련된 턱선 윤곽을 만들어주는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "강남",
+        "노원",
+        "신촌",
+        "종로"
+      ],
+      "settime": [
+        "10:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ],
+      "regDate": "2026-03-03T04:09:50.395Z",
+      "timespan": "2"
+    },
+    {
+      "id": "1f9a",
+      "name": "HA Volume Balance Injection(히알루론산 볼륨 밸런스 주사)",
+      "category": "faceline",
+      "price": "150000",
+      "img": "",
+      "description": "히알루론산 주사로 볼륨을 균형 있게 조절하며, 얼굴 전체의 균형과 탄력을 개선하여 자연스러운 입체감을 선사합니다.",
+      "descImg": "reservDetail_desc.png",
       "setshop": [
         "노원",
+        "신촌"
+      ],
+      "settime": [
+        "10:00",
+        "11:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "regDate": "2026-03-03T04:10:14.918Z",
+      "timespan": "1"
+    },
+    {
+      "id": "ae5b",
+      "name": "Nasal Tip Point Thread Lifting(코끝 포인트 실리프팅)",
+      "category": "faceline",
+      "price": "100000",
+      "img": "",
+      "description": "코끝에 포인트 실 리프팅을 적용하여 정교하게 윤곽을 개선하고 자연스럽게 들린 코 라인을 완성합니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "종로",
+        "신촌",
+        "노원",
+        "강남"
+      ],
+      "settime": [
+        "10:00",
+        "11:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "regDate": "2026-03-03T04:10:40.967Z",
+      "timespan": "1"
+    },
+    {
+      "id": "fb32",
+      "name": "V-Line Fat Remodeling Injection(브이라인 지방 리모델링 주사)",
+      "category": "faceline",
+      "price": "150000",
+      "img": "",
+      "description": "브이라인 부위 지방을 재배치하여 얼굴 윤곽을 매끄럽게 정돈하고, 자연스러운 브이라인 라인을 만들어 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "신촌",
+        "종로"
+      ],
+      "settime": [
+        "10:00",
+        "11:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "regDate": "2026-03-03T04:11:04.482Z",
+      "timespan": "1"
+    },
+    {
+      "id": "c79c",
+      "name": "Marionette Line Remodeling(마리오네트 라인 리모델링)",
+      "category": "faceline",
+      "price": "500000",
+      "img": "",
+      "description": "마리오네트 라인 처짐과 주름을 집중 케어하여 얼굴 하단 라인을 부드럽게 정리하고, 탄탄하고 젊은 인상을 완성합니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "강남",
+        "종로"
+      ],
+      "settime": [
+        "13:00",
+        "14:00",
+        "15:00"
+      ],
+      "regDate": "2026-03-03T04:11:38.233Z",
+      "timespan": "3"
+    },
+    {
+      "id": "4e63",
+      "name": "Total Face Balance Lifting(토탈 페이스 밸런스 리프팅)",
+      "category": "faceline",
+      "price": "500000",
+      "img": "",
+      "description": "",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "강남",
+        "신촌",
+        "종로",
+        "노원"
+      ],
+      "settime": [
+        "13:00",
+        "14:00",
+        "15:00"
+      ],
+      "regDate": "2026-03-03T04:12:02.610Z",
+      "timespan": "3"
+    },
+    {
+      "id": "6ef1",
+      "name": "PN Hydro Regeneration Therapy(PN 하이드로 재생 테라피)",
+      "category": "regen",
+      "price": "250000",
+      "img": "",
+      "description": "PN 성분이 피부에 깊은 보습과 영양을 공급하며, 콜라겐 재생을 촉진하여 건강하고 매끄러운 피부로 회복시키는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "노원",
+        "신촌"
+      ],
+      "settime": [
+        "10:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ],
+      "regDate": "2026-03-03T05:01:05.399Z",
+      "timespan": "2"
+    },
+    {
+      "id": "8a8f",
+      "name": "Exosome Skin Renewal Program(엑소좀 스킨 리뉴얼 프로그램)",
+      "category": "regen",
+      "price": "800000",
+      "img": "",
+      "description": "엑소좀이 손상된 피부 세포를 재생시키고 피부 활력을 높여 탄탄하고 생기 있는 피부로 가꾸는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "강남",
+        "종로",
+        "신촌",
+        "노원"
+      ],
+      "settime": [
+        "13:00",
+        "15:00"
+      ],
+      "regDate": "2026-03-03T05:01:47.873Z",
+      "timespan": "4"
+    },
+    {
+      "id": "fb00",
+      "name": "HA Skin Revive Injection(히알루론산 스킨 리바이브 주사)",
+      "category": "regen",
+      "price": "150000",
+      "img": "",
+      "description": "히알루론산이 피부에 수분과 볼륨을 공급하여 탄력과 윤기를 높이고, 건강한 피부 컨디션을 유지하는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "강남",
+        "노원",
+        "신촌",
+        "종로"
+      ],
+      "settime": [
+        "10:00",
+        "11:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "regDate": "2026-03-03T05:02:19.337Z",
+      "timespan": "1"
+    },
+    {
+      "id": "38f8",
+      "name": "PRP Growth Factor Therapy(PRP 성장인자 테라피)",
+      "category": "regen",
+      "price": "350000",
+      "img": "",
+      "description": "혈소판 성장인자가 피부 재생을 촉진하고 손상된 피부를 회복시켜 매끄럽고 탄탄한 피부로 가꾸는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "노원",
+        "신촌",
+        "종로"
+      ],
+      "settime": [
+        "10:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ],
+      "regDate": "2026-03-03T05:02:45.057Z",
+      "timespan": "2"
+    },
+    {
+      "id": "d2c4",
+      "name": "Collagen Energy Activation Program(콜라겐 에너지 활성 프로그램)",
+      "category": "regen",
+      "price": "800000",
+      "img": "",
+      "description": "콜라겐 활성 성분이 피부 탄력과 밀도를 강화하고, 잔주름과 처짐을 완화하여 건강한 피부 구조를 유지하는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "신촌",
+        "종로"
+      ],
+      "settime": [
+        "13:00",
+        "14:00",
+        "15:00"
+      ],
+      "regDate": "2026-03-03T05:03:11.913Z",
+      "timespan": "3"
+    },
+    {
+      "id": "396f",
+      "name": "RF Microneedle Renewal Therapy(RF 마이크로니들 리뉴얼 테라피)",
+      "category": "regen",
+      "price": "650000",
+      "img": "",
+      "description": "고주파 마이크로니들 시술이 피부 진피층을 자극하여 콜라겐 재생을 촉진하고, 매끄럽고 탄력 있는 피부로 가꾸는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "강남",
+        "노원"
+      ],
+      "settime": [
+        "13:00",
+        "14:00",
+        "15:00"
+      ],
+      "regDate": "2026-03-03T05:03:38.857Z",
+      "timespan": "3"
+    },
+    {
+      "id": "7904",
+      "name": "HA Revive Booster Treatment(히알루론산 리바이브 부스터 시술)",
+      "category": "regen",
+      "price": "250000",
+      "img": "",
+      "description": "히알루론산 부스터가 피부 깊숙이 수분과 영양을 공급하여 생기 있고 탱탱한 피부를 유지하는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "종로",
+        "강남",
+        "노원",
+        "신촌"
+      ],
+      "settime": [
+        "10:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ],
+      "regDate": "2026-03-03T05:04:05.769Z",
+      "timespan": "2"
+    },
+    {
+      "id": "b95a",
+      "name": "Revital Glow Regeneration Injection(리바이탈 글로우 재생주사)",
+      "category": "regen",
+      "price": "150000",
+      "img": "",
+      "description": "피부 재생과 동시에 윤기를 부여하여 칙칙함을 개선하고, 촉촉하고 건강한 피부로 가꾸는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "노원",
+        "신촌",
+        "종로",
+        "강남"
+      ],
+      "settime": [
+        "10:00",
+        "11:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "regDate": "2026-03-03T05:04:33.161Z",
+      "timespan": "1"
+    },
+    {
+      "id": "04ac",
+      "name": "Pore & Scar Remodeling Therapy(모공·흉터 리모델링 테라피)",
+      "category": "regen",
+      "price": "450000",
+      "img": "",
+      "description": "모공과 흉터 부위를 집중 케어하여 피부결을 매끄럽게 정돈하고, 균일한 피부 톤을 유지하는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "강남",
+        "노원",
+        "신촌",
+        "종로"
+      ],
+      "settime": [
+        "10:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ],
+      "regDate": "2026-03-03T05:04:57.128Z",
+      "timespan": "2"
+    },
+    {
+      "id": "8397",
+      "name": "Deep Skin Peeling Regeneration(딥 스킨 필링 재생 프로그램)",
+      "category": "regen",
+      "price": "500000",
+      "img": "",
+      "description": "딥 필링과 재생 테라피가 결합되어 피부 각질과 손상층을 정리하고, 탄탄하고 매끄러운 피부로 회복시키는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "노원",
+        "종로"
+      ],
+      "settime": [
+        "10:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ],
+      "regDate": "2026-03-03T05:05:23.537Z",
+      "timespan": "2"
+    },
+    {
+      "id": "2c43",
+      "name": "Multi-Antioxidant Immunity IV(멀티 항산화 면역 수액)",
+      "category": "immune",
+      "price": "90000",
+      "img": "",
+      "description": "다양한 항산화 성분이 체내 활성산소를 억제하고 세포 에너지를 활성화하여 면역력을 강화하고 전반적인 건강을 지원합니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "강남",
+        "노원",
+        "신촌",
+        "종로"
+      ],
+      "settime": [
+        "10:00",
+        "11:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "regDate": "2026-03-03T05:05:57.427Z",
+      "timespan": "1"
+    },
+    {
+      "id": "0ec2",
+      "name": "Glutathione Bright Immunity Injection(글루타치온 브라이트 면역주사)",
+      "category": "immune",
+      "price": "120000",
+      "img": "",
+      "description": "글루타치온이 체내 해독과 항산화 작용을 돕고, 피부 및 면역 기능 개선을 통해 건강하고 균형 잡힌 컨디션 유지에 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "강남",
+        "노원",
+        "신촌",
+        "종로"
+      ],
+      "settime": [
+        "10:00",
+        "11:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "regDate": "2026-03-03T05:06:25.568Z",
+      "timespan": "1"
+    },
+    {
+      "id": "ae0f",
+      "name": "Detox Chelation IV Therapy(해독 킬레이션 수액 테라피)",
+      "category": "immune",
+      "price": "90000",
+      "img": "",
+      "description": "중금속과 독소 제거를 촉진하는 킬레이션 테라피가 체내 환경을 정화하고 면역 기능 회복에 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "강남",
+        "노원",
+        "신촌",
+        "종로"
+      ],
+      "settime": [
+        "10:00",
+        "11:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "regDate": "2026-03-03T05:06:50.460Z",
+      "timespan": "1"
+    },
+    {
+      "id": "9f6c",
+      "name": "High-Dose B1 Vital Injection(고농축 비타민B1 활력주사)",
+      "category": "immune",
+      "price": "80000",
+      "img": "",
+      "description": "고농축 비타민B1이 세포 에너지를 활성화하여 피로 개선과 체력 회복에 도움을 주며 전반적인 활력 유지에 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "강남",
+        "노원",
+        "신촌",
+        "종로"
+      ],
+      "settime": [
+        "10:00",
+        "11:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "regDate": "2026-03-03T05:07:12.310Z",
+      "timespan": "1"
+    },
+    {
+      "id": "065d",
+      "name": "NAD+ Cellular Energy Therapy(NAD+ 세포 에너지 테라피)",
+      "category": "immune",
+      "price": "200000",
+      "img": "",
+      "description": "NAD+ 성분이 세포 에너지 대사를 촉진하여 활력과 면역 기능을 강화하고, 건강한 체내 환경 유지에 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "노원"
+      ],
+      "settime": [
+        "10:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ],
+      "regDate": "2026-03-03T05:08:04.792Z",
+      "timespan": "2"
+    },
+    {
+      "id": "183f",
+      "name": "L-Arginine Metabolic IV(L-아르기닌 대사 활성 수액)",
+      "category": "immune",
+      "price": "120000",
+      "img": "",
+      "description": "L-아르기닌 수액이 혈류와 대사를 개선하여 세포 기능과 면역력을 지원하고 활력 있는 컨디션 유지에 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "종로",
+        "신촌",
+        "강남",
+        "노원"
+      ],
+      "settime": [
+        "10:00",
+        "11:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "regDate": "2026-03-03T05:08:33.408Z",
+      "timespan": "1"
+    },
+    {
+      "id": "b838",
+      "name": "Vitamin D Immune Boost Injection(비타민D 면역 부스터 주사)",
+      "category": "immune",
+      "price": "150000",
+      "img": "",
+      "description": "비타민 D가 면역 세포 활성과 전반적인 면역 반응을 강화하여 체내 방어력을 높이는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
         "종로",
         "신촌"
       ],
       "settime": [
-        "12:30"
+        "10:00",
+        "11:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
       ],
-      "regDate": "2026-03-03T03:44:41.006Z",
-      "timespan": "12"
+      "regDate": "2026-03-03T05:09:00.783Z",
+      "timespan": "1"
+    },
+    {
+      "id": "2403",
+      "name": "Placenta Regenerative Injection(태반 재생 주사)",
+      "category": "immune",
+      "price": "100000",
+      "img": "",
+      "description": "태반 성분이 조직 재생과 세포 회복을 돕고 면역 기능을 보조하여 피부와 전신 건강 개선에 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "강남",
+        "노원",
+        "신촌",
+        "종로"
+      ],
+      "settime": [
+        "10:00",
+        "11:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "regDate": "2026-03-03T05:09:24.391Z",
+      "timespan": "1"
+    },
+    {
+      "id": "3613",
+      "name": "Premium Antioxidant Wellness IV(프리미엄 항산화 웰니스 수액)",
+      "category": "immune",
+      "price": "80000",
+      "img": "",
+      "description": "프리미엄 항산화 수액이 체내 활성산소를 억제하고 세포 에너지를 활성화하여 면역력과 활력을 동시에 케어합니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "신촌",
+        "노원",
+        "종로"
+      ],
+      "settime": [
+        "10:00",
+        "11:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "regDate": "2026-03-03T05:09:46.151Z",
+      "timespan": "1"
+    },
+    {
+      "id": "00ff",
+      "name": "Custom Immunity Enhancement Program(커스텀 면역증강 프로그램)",
+      "category": "immune",
+      "price": "300000",
+      "img": "",
+      "description": "맞춤형 면역 강화 프로그램이 개인별 컨디션과 목표에 맞춰 체내 환경을 개선하고 전반적인 면역 기능을 최적화하는 데 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "신촌",
+        "노원"
+      ],
+      "settime": [
+        "10:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ],
+      "regDate": "2026-03-03T05:10:18.091Z",
+      "timespan": "2"
     }
   ],
   "reservReview": [
@@ -1420,7 +2233,7 @@
       "date": "Fri Feb 27 2026 15:44:55 GMT+0900 (한국 표준시)",
       "writer": "new tester",
       "writerEmail": "new@test",
-      "viewrate": 2,
+      "viewrate": 3,
       "admin": "",
       "answer": "",
       "state": "답변대기"
@@ -1472,7 +2285,7 @@
       "date": "Fri Feb 27 2026 17:00:34 GMT+0900 (한국 표준시)",
       "writer": "유저테스트계정",
       "writerEmail": "test@test",
-      "viewrate": 8,
+      "viewrate": 16,
       "admin": "",
       "answer": "",
       "state": "답변대기"

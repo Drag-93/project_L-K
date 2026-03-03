@@ -43,10 +43,14 @@ const CommunityNoticeUpdate = () => {
   };
 
   return (
-    <div className="update">
+    <div className="update inner2">
       <div className="update-con">
+        <div className="title">
+          <h1>공지사항 수정</h1>
+        </div>
         <ul>
-          <li>
+          <li>            
+           <label htmlFor="notice-title">제목</label>
             <input 
               type="text" 
               name='title' 
@@ -54,15 +58,31 @@ const CommunityNoticeUpdate = () => {
               onChange={onChangeFn}
             />
           </li>
-          <li>
+          <li>            
+           <label htmlFor="notice-date">작성일</label>
+            <input 
+              type="date" 
+              name='date' 
+              value={
+                noticeUpdate.date
+                  ? new Date(noticeUpdate.date).toISOString().substring(0, 10)
+                  : ""
+              }
+              readOnly
+            />
+          </li>
+          <li>            
+           <label htmlFor="notice-desc">공지내용</label>
             <textarea 
               name='description' 
               value={noticeUpdate.description} 
               onChange={onChangeFn}
             />
           </li>
-          <li><button onClick={noticeUpdateFn}>수정</button></li>
-          <li><button onClick={() => navigate(-1)}>취소</button></li>
+          <li className='edit-btns'>
+            <button onClick={noticeUpdateFn}>수정</button>
+            <button onClick={() => navigate(-1)}>취소</button>
+          </li>
         </ul>
       </div>
     </div>
