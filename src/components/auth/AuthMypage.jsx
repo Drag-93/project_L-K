@@ -48,8 +48,8 @@ const AuthMemberList = () => {
 
   const myDataListFn = async (e) => {
     try {
-      const res = await axios.get(`${url}/members?id=${param.id}`);
-      setMyData(res.data[0]);
+      const res = await axios.get(`${url}/members/${param.id}`);
+      setMyData(res.data);
     } catch (err) {
       alert(err);
     }

@@ -2075,7 +2075,50 @@
   ],
   "cart": [],
   "faq": [],
-  "qna": [],
+  "qna": [
+    {
+      "id": "c79b",
+      "title": "질문테스트_김현우",
+      "question": "테스트입니다",
+      "no": 1,
+      "date": "Tue Mar 03 2026 17:27:16 GMT+0900 (한국 표준시)",
+      "writer": "김현우",
+      "writerEmail": "gusdn000615@naver.com",
+      "viewrate": 1,
+      "admin": "",
+      "answer": "",
+      "state": "답변대기"
+    }
+  ],
   "productOrders": [],
-  "reserveOrders": []
+  "reserveOrders": [
+    {
+      "id": "1756",
+      "reserveDate": "2026-03-03T08:26:27.929Z",
+      "reserveUserDate": "2026. 3. 3. 오후 5:26:27",
+      "customer": {
+        "userEmail": "gusdn000615@naver.com",
+        "userName": "김현우",
+        "phonenum": "01024126095",
+        "request": "안전한 시술 부탁드립니다."
+      },
+      "items": [
+        {
+          "id": "4978",
+          "name": "Placenta Regenerative Injection(태반 재생 주사)",
+          "category": "immune",
+          "price": "100000",
+          "img": "",
+          "regDate": "2026-03-03T05:09:24.391Z",
+          "timespan": "1",
+          "shop": "노원",
+          "date": "2026-03-19",
+          "time": "13:00",
+          "itemId": "2403",
+          "state": "예약대기"
+        }
+      ],
+      "totalAmount": 100000
+    }
+  ]
 }
