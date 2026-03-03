@@ -116,7 +116,7 @@ const ReservationList = () => {
               <li><NavLink to={`/reservation/list/lifting`}>리프팅</NavLink></li>
               <li><NavLink to={`/reservation/list/faceline`}>페이스라인</NavLink></li>
               <li><NavLink to={`/reservation/list/regen`}>피부재생</NavLink></li>
-              <li><NavLink to={`/reservation/list/immune`}>면역력</NavLink></li>
+              <li><NavLink to={`/reservation/list/immune`}>면역증강</NavLink></li>
             </ul>
           </div>
           <div className="list_search_wrap">

@@ -114,9 +114,9 @@ const ProdList = () => {
           <div className="aside_wrap">
             <ul>
               <li><NavLink to={`/product/list`} end>전체</NavLink></li>
-              <li><NavLink to={`/product/list/hydro`}>보습제품</NavLink></li>
+              <li><NavLink to={`/product/list/hydro`}>보습</NavLink></li>
               <li><NavLink to={`/product/list/trouble`}>트러블</NavLink></li>
-              <li><NavLink to={`/product/list/white`}>화이트</NavLink></li>
+              <li><NavLink to={`/product/list/white`}>미백</NavLink></li>
               <li><NavLink to={`/product/list/antiage`}>안티에이징</NavLink></li>
               <li><NavLink to={`/product/list/uv`}>UV</NavLink></li>
             </ul>

@@ -5,7 +5,7 @@ import AdminProductModal from "./AdminProductModal";
 
 const categoryMap = {
   hydro: "보습",
-  trouble: "트러블케어",
+  trouble: "트러블",
   white: "미백",
   antiage: "안티에이징",
   uv: "UV",
@@ -222,7 +222,7 @@ const AdminProduct = () => {
                     >
                       <option value="ALL">전체</option>
                       <option value="hydro">보습</option>
-                      <option value="trouble">트러블케어</option>
+                      <option value="trouble">트러블</option>
                       <option value="white">미백</option>
                       <option value="antiage">안티에이징</option>
                       <option value="uv">UV</option>
