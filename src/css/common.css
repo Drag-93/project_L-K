@@ -7,6 +7,75 @@
 
 
 /*****************************************************************************
+    @admin
+****************************************************************************/
+:root {
+--admin-header-h: 6.5rem;
+--admin-left-w: 24rem;
+}
+
+/* reset */
+* {
+box-sizing: border-box;
+}
+
+/* header */
+.adminHeader {
+position: sticky;
+top: 0;
+left: var(--admin-left-w);
+width: calc(100% - var(--admin-left-w));
+height: var(--admin-header-h);
+}
+
+/*left*/
+.adminLeft {
+position: fixed;
+top: 0;
+left: 0;
+width: var(--admin-left-w, 24rem);
+height: 100vh;
+z-index: 920;
+
+transform: translateX(0);
+transition: transform 0.25s ease;
+}
+
+/* content */
+.adminContent {
+/* margin-top: var(--admin-header-h); */
+margin-left: var(--admin-left-w);
+min-height: calc(100vh - var(--admin-header-h));
+padding: 2.4rem;
+display: flex;
+justify-content: center;
+overflow-x: auto;
+}
+.adminContent-blur {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.5);
+z-index: 900;
+backdrop-filter: blur(2px);
+}
+
+/* mobile */
+@media (max-width: 1080px) {
+.adminHeader {
+    left: 0;
+    width: 100%;
+}
+.adminContent {
+    margin-left: 0;
+}
+}
+
+
+
+/*****************************************************************************
     @layout
 ****************************************************************************/
 .inner {

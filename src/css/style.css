@@ -4,7 +4,7 @@
 @import url(common.css);
 /*@import url(footer.css);*/
 
-/* main & mypage */
+/* main */
 @import url(main.css);
 
 /* product */
@@ -12,9 +12,6 @@
 
 /*reservation */
 @import url(reservation.css);
-
-/* shop */
-@import url(shop.css);
 
 /* admin */
 @import url(admin/Admin.css);

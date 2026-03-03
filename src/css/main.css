@@ -1,10 +1,6 @@
 /*****************************************************************************
     @main
 ****************************************************************************/
-@import url(./info/InfoIntroduction.css);
-@import url(./info/InfoHistory.css);
-
-
 .section {
     display: block; width: 100%;
 }
@@ -1486,6 +1482,372 @@
 
 
 /*****************************************************************************
+    @shop
+****************************************************************************/
+.shop {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1400px;
+  overflow-x: auto;
+}
+
+.shop .shop-con {
+  display: grid;
+  max-width: 1400px;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 2rem;
+  /* border: 1px solid; */
+  border-radius: 8px;
+  /* display: flex; */
+  padding: 0.3rem;
+  gap: 3rem;
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
+}
+
+.shop .shop-con .shop-map {
+  width: 450px;
+  height: 440px;
+  /* max-width: 600px;
+  max-height: 440px; */
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.shop .shop-con .shop-info ul {
+  display: flex;
+  flex-direction: column;
+
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
+  border-radius: 8px;
+  gap: 2rem;
+  height: auto;
+  padding: 0.7rem;
+}
+.shop .shop-con .shop-info ul li {
+  display: flex;
+  gap: 0.6rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.shop .shop-con .shop-info ul li h3 {
+  /* text-align: center; */
+  padding-left: 0.2rem;
+  align-content: center;
+  flex: 2 1 0;
+  font-size: 1.5rem;
+  padding-top: 0.3rem;
+  font-weight: 600;
+  color: #5aa933;
+}
+.shop .shop-con .shop-info ul li span {
+  flex: 8 1 0;
+  align-content: center;
+  border-left: 2px solid #5aa933;
+  padding-left: 1rem;
+  font-size: 1.3rem;
+  line-height: 2.2rem;
+}
+
+.shop .shop-con .shop-info ul li:last-child span {
+  height: calc(420px - 2rem - 8.8rem - 6rem - 3rem);
+  padding-bottom: 1rem;
+}
+
+@media (max-width: 1080px) {
+  .shop .shop-con {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+
+
+
+/*****************************************************************************
+    @info
+****************************************************************************/
+.InfoIntroduction {
+  width: 100%;
+  background-color: #fff;
+  color: #333;
+  line-height: 1.8;
+}
+
+.InfoIntroduction-con {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 20px;
+}
+
+/* 제목 공통 스타일 */
+.InfoIntroduction h1, 
+.InfoIntroduction h2, 
+.InfoIntroduction h3 {
+  text-align: center;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 50px;
+}
+
+.InfoIntroduction h1 { font-size: 42px; }
+.InfoIntroduction h2 { font-size: 36px; margin-top: 100px; }
+.InfoIntroduction h3 { font-size: 28px; margin-top: 80px; }
+
+/* 1. 인사말 섹션 (이미지 좌 / 텍스트 우) */
+.intro-box ul {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding: 0;
+  list-style: none;
+}
+
+.intro-box img {
+  width: 450px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
+}
+
+.intro-box li {
+  font-size: 18px;
+  word-break: keep-all;
+}
+
+/* 2. 장점 섹션 (그리드 좌우 배치) */
+.advantage ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2열 구조 */
+  gap: 40px;
+  padding: 0;
+  list-style: none;
+  align-items: center;
+}
+
+.advantage li {
+  background: #fff;
+  border-radius: 15px;
+  font-size: 17px;
+  word-break: keep-all;
+}
+
+/* 장점 이미지 스타일 */
+.advantage li img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover; /* 이미지 비율 유지하며 꽉 채움 */
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* 장점 텍스트 스타일 (첫번째, 두번째 강조) */
+.advantage li:not(:has(img)) {
+  padding: 40px;
+  background: #fcfcfc;
+  border: 1px solid #eee;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* "첫 번째", "두 번째" 등 강조 텍스트 */
+.advantage li br:first-of-type + br {
+  display: block;
+  content: "";
+  margin-top: 10px;
+}
+
+.advantage li::first-line {
+  font-weight: 700;
+  color: #007bff;
+  font-size: 20px;
+}
+
+/* 3. 마치며 섹션 */
+.closing-box ul {
+  padding: 0;
+  list-style: none;
+}
+
+.closing-box li {
+  text-align: center;
+  background: #f4f7f9;
+  padding: 40px;
+  border-radius: 20px;
+  font-size: 18px;
+  border-left: 5px solid #007bff;
+}
+
+/* 반응형 모바일 (화면이 작아지면 한 줄로) */
+@media (max-width: 900px) {
+  .intro-box ul {
+      flex-direction: column;
+  }
+  
+  .intro-box img {
+      width: 100%;
+  }
+
+  .advantage ul {
+      grid-template-columns: 1fr; /* 모바일은 무조건 한 줄 */
+  }
+
+  .advantage li img {
+      height: 250px;
+  }
+}
+
+
+
+
+/*****************************************************************************
+    @history
+****************************************************************************/
+/* 기본 레이아웃 */
+.history {
+  width: 100%;
+  background-color: #fff;
+  color: #333;
+  line-height: 1.8;
+}
+
+.history-con {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 20px;
+}
+
+/* 제목 스타일 */
+.history-con h1 {
+  text-align: center;
+  font-weight: 700;
+  color: #222;
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+
+.history-sub {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 80px;
+  word-break: keep-all;
+}
+
+/* 타임라인 컨테이너 */
+.timeline-container {
+  position: relative;
+  padding-left: 30px; /* 타임라인 선을 위한 여백 */
+}
+
+/* 타임라인 세로줄 */
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: #007bff; /* 포인트 컬러 */
+  opacity: 0.3;
+}
+
+/* 개별 연도 아이템 */
+.timeline-item {
+  position: relative;
+  margin-bottom: 60px;
+}
+
+/* 타임라인 원형 포인트 */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -35px;
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #007bff;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px #007bff;
+}
+
+/* 연도 텍스트 (h2, h3 등을 대체) */
+.year {
+  font-size: 28px;
+  font-weight: 700;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+/* 연혁 리스트 */
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.history-list li {
+  font-size: 18px;
+  padding: 10px 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+/* 마우스 호버 시 강조 효과 */
+.history-list li:hover {
+  background: #fff;
+  border-color: #007bff;
+  transform: translateX(10px);
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
+}
+
+/* 반응형 모바일 */
+@media (max-width: 900px) {
+  .history-con {
+      padding: 60px 20px;
+  }
+  
+  .history-con h1 {
+      font-size: 32px;
+  }
+
+  .year {
+      font-size: 24px;
+  }
+
+  .history-list li {
+      font-size: 16px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*****************************************************************************
     @hotfix_260227_김현우작성
 ****************************************************************************/
 .adminModal .adminModal-con .addtime button {border: 1px solid #d9deea; border-radius: 12px; padding: 1rem; font-size: 1.4rem; outline: none; background: #ffffff;}
+
+
+
+
+
+
+
