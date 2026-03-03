@@ -1388,7 +1388,7 @@
 /*****************************************************************************
     @community
 ****************************************************************************/
-.community_wrap .aside_wrap {padding: 0;}
+/* .community_wrap .aside_wrap {padding: 0;} */
 .community_wrap .list_search_wrap {padding-top: 2rem;}
 .community_title {text-align: center; color: #5aa933; font-size: 4.2rem; font-weight: 700; padding: 7.5rem 0 0 0;}
 

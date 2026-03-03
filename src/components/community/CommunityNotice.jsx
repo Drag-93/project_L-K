@@ -217,12 +217,10 @@ const CommunityNotice = () => {
                 {pagedList &&
                   pagedList.map((el) => {
                     return (
-                      <tr key={el.id}>
+                      <tr key={el.id}style={{ cursor: "pointer" }}
+                      onClick={() => handleTitleClick(el)}>
                         <td>{el.no}</td>
-                        <td
-                          style={{ cursor: "pointer" }}
-                          onClick={() => handleTitleClick(el)}
-                        >
+                        <td>
                           {el.title}
                         </td>
                         <td>{getKoreaDate(el.date)}</td>

@@ -268,8 +268,11 @@ const PaymentList = () => {
                     const korCategory =
                       categoryMap[item.category] || item.category;
                     return (
-                      <div key={idx} className="paylist_row">
-                        {/* 이미지 경로: /images/카테고리/파일명 */}
+                      <div key={idx} className="paylist_row"
+                        onClick={() => {
+                          const basePath = order.type === "product" ? "product" : "reservation";
+                          navigate(`/${basePath}/detail/${item.category}/${item.itemId}`);}}
+                        style={{ cursor: 'pointer' }}>
                         <img
                           src={`/images/${item.category}/${item.img}`}
                           alt={item.name}

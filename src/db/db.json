@@ -6,7 +6,7 @@
       "description": "ㅇㅇ",
       "no": 1,
       "date": "Fri Feb 27 2026 14:44:00 GMT+0900 (한국 표준시)",
-      "viewrate": 1
+      "viewrate": 2
     },
     {
       "id": "55a2",
@@ -14,7 +14,7 @@
       "description": "ㅇㅇ",
       "no": 2,
       "date": "Fri Feb 27 2026 14:44:10 GMT+0900 (한국 표준시)",
-      "viewrate": 3
+      "viewrate": 10
     }
   ],
   "members": [
@@ -28,7 +28,8 @@
       "address": "22",
       "gender": "여",
       "role": "ROLE_MEMBER",
-      "remark": ""
+      "remark": "",
+      "note": "1234"
     },
     {
       "id": "d682",
@@ -1472,7 +1473,7 @@
       "date": "Fri Feb 27 2026 17:00:34 GMT+0900 (한국 표준시)",
       "writer": "유저테스트계정",
       "writerEmail": "test@test",
-      "viewrate": 8,
+      "viewrate": 10,
       "admin": "",
       "answer": "",
       "state": "답변대기"
@@ -1568,6 +1569,111 @@
         }
       ],
       "totalAmount": 60000
+    },
+    {
+      "id": "2835",
+      "productDate": "2026-03-03T04:06:04.169Z",
+      "productUserDate": "2026. 3. 3. 오후 1:06:04",
+      "customer": {
+        "userEmail": "test@test",
+        "userName": "유저테스트계정",
+        "phonenum": "01012341234",
+        "address": "22",
+        "request": "안전한 배송 부탁드립니다."
+      },
+      "items": [
+        {
+          "id": "f826",
+          "name": "Even Skin Lotion(이븐 스킨 로션)",
+          "category": "white",
+          "price": "25000",
+          "img": "white19.png",
+          "regDate": "2026-03-03T03:20:54.661Z",
+          "count": 1,
+          "totalPrice": 25000,
+          "itemId": "f826",
+          "state": "배송준비중"
+        }
+      ],
+      "totalAmount": 25000
+    },
+    {
+      "id": "a3a1",
+      "productDate": "2026-03-03T05:27:05.488Z",
+      "productUserDate": "2026. 3. 3. 오후 2:27:05",
+      "customer": {
+        "userEmail": "test@test",
+        "userName": "유저테스트계정",
+        "phonenum": "01012341234",
+        "address": "22",
+        "request": "안전한 배송 부탁드립니다.tr"
+      },
+      "items": [
+        {
+          "id": "271b",
+          "name": "Professional UV Set(프로페셔널 UV 세트)",
+          "category": "uv",
+          "price": "60000",
+          "img": "uv20.png",
+          "regDate": "2026-03-03T03:35:12.492Z",
+          "count": 5,
+          "totalPrice": 300000,
+          "itemId": "271b",
+          "state": "배송준비중"
+        }
+      ],
+      "totalAmount": 300000
+    },
+    {
+      "id": "4e07",
+      "productDate": "2026-03-03T06:32:40.674Z",
+      "productUserDate": "2026. 3. 3. 오후 3:32:40",
+      "customer": {
+        "userEmail": "test@test",
+        "userName": "유저테스트계정",
+        "phonenum": "01012341234",
+        "address": "22",
+        "request": "안전한 배송 부탁드립니다."
+      },
+      "items": [
+        {
+          "id": "8df0",
+          "name": "Ultra Shield SPF50+(울트라 쉴드 SPF50+)",
+          "category": "uv",
+          "price": "25000",
+          "img": "uv18.png",
+          "regDate": "2026-03-03T03:34:32.661Z",
+          "count": 3,
+          "totalPrice": 75000,
+          "itemId": "8df0",
+          "state": "배송준비중"
+        },
+        {
+          "id": "8baa",
+          "name": "Clinic Size Sunscreen SPF50+(클리닉용 대용량 선스크린 SPF50+)",
+          "category": "uv",
+          "price": "35000",
+          "img": "uv19.png",
+          "regDate": "2026-03-03T03:34:47.916Z",
+          "count": 3,
+          "totalPrice": 105000,
+          "itemId": "8baa",
+          "state": "배송준비중"
+        },
+        {
+          "id": "0daf",
+          "name": "After Sun Gel(애프터 선 젤)",
+          "category": "uv",
+          "price": "20000",
+          "img": "uv13.png",
+          "regDate": "2026-03-03T03:32:40.725Z",
+          "count": 3,
+          "totalPrice": 60000,
+          "itemId": "0daf",
+          "state": "배송준비중"
+        }
+      ],
+      "totalAmount": 240000
     }
   ],
   "reserveOrders": [
@@ -1728,6 +1834,76 @@
         }
       ],
       "totalAmount": 1234
+    },
+    {
+      "id": "d8c5",
+      "reserveDate": "2026-03-03T05:27:05.474Z",
+      "reserveUserDate": "2026. 3. 3. 오후 2:27:05",
+      "customer": {
+        "userEmail": "test@test",
+        "userName": "유저테스트계정",
+        "phonenum": "01012341234",
+        "request": "안전한 시술 부탁드립니다.rt"
+      },
+      "items": [
+        {
+          "id": "15e8",
+          "name": "ddd",
+          "category": "immune",
+          "price": "550000",
+          "img": "immune_01.png",
+          "regDate": "2026-02-20T06:43:01.386Z",
+          "timespan": "3",
+          "shop": "노원",
+          "date": "2026-03-12",
+          "time": "15:00",
+          "itemId": "9d5a",
+          "state": "예약대기"
+        }
+      ],
+      "totalAmount": 550000
+    },
+    {
+      "id": "6014",
+      "reserveDate": "2026-03-03T06:32:40.662Z",
+      "reserveUserDate": "2026. 3. 3. 오후 3:32:40",
+      "customer": {
+        "userEmail": "test@test",
+        "userName": "유저테스트계정",
+        "phonenum": "01012341234",
+        "request": "안전한 시술 부탁드립니다."
+      },
+      "items": [
+        {
+          "id": "e4a0",
+          "name": "쥬베룩",
+          "category": "regen",
+          "price": 20000000,
+          "img": "hydro1.jpg",
+          "regDate": "2026-02-20T08:28:34.638Z",
+          "timespan": "21",
+          "shop": "종로",
+          "date": "2026-03-18",
+          "time": "16:00",
+          "itemId": "ee23",
+          "state": "예약대기"
+        },
+        {
+          "id": "1dd9",
+          "name": "ㅇㅁㄷ실험",
+          "category": "faceline",
+          "price": "20000",
+          "img": "",
+          "regDate": "2026-02-27T01:33:57.700Z",
+          "timespan": "",
+          "shop": "노원",
+          "date": "2026-03-19",
+          "time": "15:00",
+          "itemId": "7d8c",
+          "state": "예약대기"
+        }
+      ],
+      "totalAmount": 20020000
     }
   ]
 }
