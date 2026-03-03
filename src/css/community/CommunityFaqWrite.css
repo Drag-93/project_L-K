@@ -1,125 +1,125 @@
-/* 전체 컨테이너 */
-.faqwrite {
-  width: 100%;
-  max-width: 800px; /* 입력 폼이므로 가독성을 위해 폭을 조금 줄임 */
-  margin: 60px auto;
-  padding: 40px;
-  background-color: #fff;
-  border: 1px solid #eee;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  font-family: 'Pretendard', sans-serif;
+/*****************************************************************************
+  @CommunityFaqWrite
+****************************************************************************/
+
+.faqwrite .write-con {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 18px 22px 26px;
+  box-sizing: border-box;
+  border: 1px solid #dcdfe6;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
 }
 
-/* 제목 섹션 */
-.faqwrite h1, .faqwrite h2 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #111;
-  margin-bottom: 30px;
+/* 타이틀 */
+.write-con .title {
   text-align: center;
-  border-bottom: 2px solid #111;
-  padding-bottom: 20px;
 }
 
-/* 리스트/폼 영역 */
+.write-con .title h1,
+.write-con .title h2 {
+  margin: 0 0 14px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: #111;
+  padding: 15px;
+}
+
+/* 폼 리스트 */
 .write-con ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  margin: 15px auto 0;
+  width: 86%;
+  max-width: 820px;
+  border-top: 1px solid #dcdfe6;
 }
 
 .write-con ul li {
-  display: flex;
-  flex-direction: column; /* 라벨을 위로, 입력을 아래로 */
-  gap: 8px;
-  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns:80px 1fr;
+  align-items: center;
+  padding: 10px 6px;
+  border-bottom: 1px solid #eceff4;
 }
 
-/* 라벨 스타일 */
 .write-con label {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #333;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #555;
+  text-align: left;
 }
 
-/* 입력 필드 공통 스타일 (input, select, textarea) */
 .write-con input[type="text"],
 .write-con select,
 .write-con textarea {
   width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  color: #444;
+  border: 0;
   outline: none;
-  transition: all 0.2s ease;
+  background: transparent;
+  font-size: 1.5rem;
+  color: #222;
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: 1px solid #dfe3ea;
 }
 
-.write-con input:focus,
-.write-con select:focus,
-.write-con textarea:focus {
-  border-color: #007aff;
-  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
-}
-
-/* 작성일 고정 텍스트 */
 .write-con span {
-  padding: 12px 0;
-  color: #888;
-  font-size: 0.95rem;
+  display: flex;
+  padding: 5px;
+  color: #222;
+  font-size: 1.5rem;
 }
 
-/* 답변 입력창 (Textarea) */
+.write-con input::placeholder,
+.write-con textarea::placeholder {
+  color: #9aa3ad;
+}
+
 .write-con textarea {
+  resize: none;
   min-height: 200px;
-  resize: vertical; /* 세로 조절만 허용 */
   line-height: 1.6;
 }
 
-/* 버튼 영역 */
+/* 하단 버튼 */
 .adminbutton {
-  margin-top: 30px;
+  width: 86%;
+  max-width: 980px;
+  margin: 16px auto 0;
   display: flex;
+  justify-content: center;
   gap: 10px;
 }
 
-/* 버튼 공통 스타일 */
-.faqwrite button {
-  flex: 1; /* 버튼이 동일한 너비를 가짐 */
-  padding: 15px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s;
-  border: none;
-}
-
-/* 등록/수정 버튼 */
 .adminbutton button {
-  background-color: #111;
+  padding: 10px 25px;
+  border-radius: 4px;
+  background-color: #666;
   color: #fff;
+  cursor: pointer;
+  font-size: 1.4rem;
+  transition: all 0.2s ease;
 }
 
 .adminbutton button:hover {
   background-color: #333;
+  border-color: #333;
+  color: #eee;
 }
 
 /* 취소 버튼 */
-.faqwrite > button:last-child {
-  width: 100%;
-  margin-top: 10px;
+.adminbutton button:last-child {
   background-color: #eee;
   color: #666;
 }
 
-.faqwrite > button:last-child:hover {
+.adminbutton button:last-child:hover {
   background-color: #e0e0e0;
 }
 
-/* 반응형 모바일 대응 */
+/* 반응형 */
 @media (max-width: 768px) {
   .faqwrite {
     margin: 20px;

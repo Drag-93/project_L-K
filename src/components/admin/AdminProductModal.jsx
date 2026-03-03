@@ -194,7 +194,7 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
             >
               <option value="">---선택---</option>
               <option value="hydro">보습</option>
-              <option value="trouble">트러블케어</option>
+              <option value="trouble">트러블</option>
               <option value="white">미백</option>
               <option value="antiage">안티에이징</option>
               <option value="uv">UV</option>

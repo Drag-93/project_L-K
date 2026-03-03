@@ -54,23 +54,14 @@ const CommunityNoticeDetail = () => {
   }, [id, url]);
 
   return (
-    <div className="detail">
+    <div className="detail inner2">
       <div className="detail-con">
-        <div className="aside_wrap">
-          <ul>
-            <li><NavLink to={`/community/notice`}>공지사항</NavLink></li>
-            <li><NavLink to={`/community/faq`}>자주묻는질문</NavLink></li>
-            <li><NavLink to={`/community/qna`}>Q&A</NavLink></li>
-          </ul>
-        </div>        
         <h1>{noticeDetail.title}</h1>
         <ul className="detail-info">
-          <li className="info-date">
-            <strong>작성일:</strong> {getKoreaDate(noticeDetail.date)}
-          </li>
-          <h2>상세내용</h2>
-          <li className="info-content">{noticeDetail.description}</li>
-
+          <li><span>제목:</span>{noticeDetail.title}</li>
+          <li><span>작성일:</span>{getKoreaDate(noticeDetail.date)}</li>
+          <h2>공지내용:</h2>
+          <li className="info-desc">{noticeDetail.description}</li>
           <button className="btn-list" onClick={() => navigate("/community/notice")}>목록</button>
           {isadmin && (
             <div className="admin-control">
