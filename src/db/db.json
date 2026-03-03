@@ -160,9 +160,7 @@
       "date": "2026-02-27T07:37:45.942Z",
       "score": 5,
       "like": 1,
-      "likedUsers": [
-        "test@test"
-      ],
+      "likedUsers": ["test@test"],
       "description": "werwqerwer"
     }
   ],
@@ -175,20 +173,8 @@
       "img": "lifting_01.png",
       "description": "dd",
       "descImg": "reservDetail_desc.png",
-      "setshop": [
-        "New",
-        "강남",
-        "노원",
-        "신촌"
-      ],
-      "settime": [
-        "10:00",
-        "11:00",
-        "13:00",
-        "14:00",
-        "15:00",
-        "16:00"
-      ],
+      "setshop": ["New", "강남", "노원", "신촌"],
+      "settime": ["10:00", "11:00", "13:00", "14:00", "15:00", "16:00"],
       "regDate": "2026-02-27T06:06:47.486Z",
       "timespan": "2"
     },
@@ -200,15 +186,8 @@
       "img": "immune_01.png",
       "description": "dd",
       "descImg": "글루타치온.png",
-      "setshop": [
-        "강남",
-        "노원"
-      ],
-      "settime": [
-        "100",
-        "13:00",
-        "15:00"
-      ],
+      "setshop": ["강남", "노원"],
+      "settime": ["100", "13:00", "15:00"],
       "regDate": "2026-02-20T06:43:01.386Z",
       "timespan": "3"
     },
@@ -220,17 +199,8 @@
       "img": "hydro1.jpg",
       "description": "125",
       "descImg": "123",
-      "setshop": [
-        "노원",
-        "신촌",
-        "종로"
-      ],
-      "settime": [
-        "11:00",
-        "12:00",
-        "16:00",
-        "17:00"
-      ],
+      "setshop": ["노원", "신촌", "종로"],
+      "settime": ["11:00", "12:00", "16:00", "17:00"],
       "regDate": "2026-02-20T08:28:34.638Z",
       "timespan": "21"
     },
@@ -242,17 +212,8 @@
       "img": "",
       "description": "",
       "descImg": "",
-      "setshop": [
-        "강남",
-        "노원",
-        "방학"
-      ],
-      "settime": [
-        "12:00",
-        "14:00",
-        "15:00",
-        "17:00"
-      ],
+      "setshop": ["강남", "노원", "방학"],
+      "settime": ["12:00", "14:00", "15:00", "17:00"],
       "regDate": "2026-02-27T01:33:57.700Z",
       "timespan": ""
     },
@@ -264,16 +225,8 @@
       "img": "",
       "description": "123123213",
       "descImg": "",
-      "setshop": [
-        "신촌",
-        "방학",
-        "노원"
-      ],
-      "settime": [
-        "13:33",
-        "14:26",
-        "14:44"
-      ],
+      "setshop": ["신촌", "방학", "노원"],
+      "settime": ["13:33", "14:26", "14:44"],
       "regDate": "2026-02-27T02:10:32.283Z",
       "timespan": "123"
     },
@@ -285,17 +238,36 @@
       "img": "",
       "description": "ㅁㄴㅇ",
       "descImg": "",
-      "setshop": [
-        "노원",
-        "방학"
-      ],
-      "settime": [
-        "",
-        "",
-        ""
-      ],
+      "setshop": ["노원", "방학"],
+      "settime": ["", "", ""],
       "regDate": "2026-02-27T07:50:00.365Z",
       "timespan": "3"
+    },
+    {
+      "id": "4559",
+      "name": "ㅇㅇ",
+      "category": "lifting",
+      "price": "11",
+      "img": "",
+      "description": "",
+      "descImg": "",
+      "setshop": ["종로"],
+      "settime": ["12"],
+      "regDate": "2026-03-03T03:12:06.316Z",
+      "timespan": ""
+    },
+    {
+      "id": "86a1",
+      "name": "ㅇㅇ",
+      "category": "lifting",
+      "price": "111",
+      "img": "",
+      "description": "",
+      "descImg": "",
+      "setshop": ["New"],
+      "settime": ["13:00"],
+      "regDate": "2026-03-03T03:28:39.224Z",
+      "timespan": ""
     }
   ],
   "reservReview": [
@@ -309,9 +281,7 @@
       "date": "2026-02-27T08:05:08.873Z",
       "score": 5,
       "like": 1,
-      "likedUsers": [
-        "test@test"
-      ],
+      "likedUsers": ["test@test"],
       "description": "ㅁㄴㄹㄴㅇㄹㄴㅇㄹ"
     }
   ],
@@ -375,20 +345,8 @@
       "img": "lifting_01.png",
       "description": "dd",
       "descImg": "reservDetail_desc.png",
-      "setshop": [
-        "New",
-        "강남",
-        "노원",
-        "신촌"
-      ],
-      "settime": [
-        "10:00",
-        "11:00",
-        "13:00",
-        "14:00",
-        "15:00",
-        "16:00"
-      ],
+      "setshop": ["New", "강남", "노원", "신촌"],
+      "settime": ["10:00", "11:00", "13:00", "14:00", "15:00", "16:00"],
       "regDate": "2026-02-27T06:06:47.486Z",
       "timespan": "2",
       "shop": "New",
@@ -403,20 +361,8 @@
       "img": "lifting_01.png",
       "description": "dd",
       "descImg": "reservDetail_desc.png",
-      "setshop": [
-        "New",
-        "강남",
-        "노원",
-        "신촌"
-      ],
-      "settime": [
-        "10:00",
-        "11:00",
-        "13:00",
-        "14:00",
-        "15:00",
-        "16:00"
-      ],
+      "setshop": ["New", "강남", "노원", "신촌"],
+      "settime": ["10:00", "11:00", "13:00", "14:00", "15:00", "16:00"],
       "regDate": "2026-02-27T06:06:47.486Z",
       "timespan": "2",
       "shop": "New",
@@ -715,34 +661,6 @@
         }
       ],
       "totalAmount": 20000
-    },
-    {
-      "id": "557c",
-      "reserveDate": "2026-03-03T03:31:09.481Z",
-      "reserveUserDate": "2026. 3. 3. 오후 12:31:09",
-      "customer": {
-        "userEmail": "test@test",
-        "userName": "유저테스트계정",
-        "phonenum": "01012341234",
-        "request": "안전한 시술 부탁드립니다."
-      },
-      "items": [
-        {
-          "id": "a1b8",
-          "name": "ㅇㅇ",
-          "category": "lifting",
-          "price": "1234",
-          "img": "",
-          "regDate": "2026-03-03T03:30:28.584Z",
-          "timespan": "",
-          "shop": "New",
-          "date": "2026-03-11",
-          "time": "12:34",
-          "itemId": "cd80",
-          "state": "예약대기"
-        }
-      ],
-      "totalAmount": 1234
     }
   ]
 }
