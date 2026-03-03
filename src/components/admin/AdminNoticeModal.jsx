@@ -172,6 +172,7 @@ const AdminNoticeModal = ({ setAdminAddModal, noticeId, onSuccess }) => {
               id="description"
               value={detail.description || ""}
               onChange={onChangeFn}
+              rows={8}
               // className="description-textarea"
             />
           </li>

@@ -174,7 +174,7 @@ const AdminProductModal = ({ setAdminAddModal, productId, onSuccess }) => {
           <li>
             <label htmlFor="price">가격</label>
             <input
-              type="text"
+              type="number"
               name="price"
               id="price"
               placeholder="금액만 입력하세요(예: 20000)"

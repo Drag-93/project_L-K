@@ -251,13 +251,12 @@ const AuthMyQna = () => {
                           onClick={() => navigate(`/community/qna/${el.id}`)}
                         >
                           <td
-                            onClick={(e) => e.stopPropagation()}
                             className={`qnaStateBadge ${el.state === "답변완료" ? "done" : "wait"}`}
                           >
                             {el.state}
                           </td>
                           <td>{el.title}</td>
-                          <td onClick={(e) => e.stopPropagation()}>
+                          <td>
                             {new Date(el.date).toLocaleDateString()}
                           </td>
                         </tr>

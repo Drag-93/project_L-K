@@ -86,6 +86,9 @@ const AdminQnA = () => {
   const onSelectAllFn = () => {
     setSelectedId(allSelect ? [] : visibleId);
   };
+  const allVisibleSelected =
+    filtered.length > 0 &&
+    filtered.every((n) => selectedId.includes(String(n.id)));
 
   useEffect(() => {
     setSelectedId([]);
@@ -109,7 +112,12 @@ const AdminQnA = () => {
 
   const onDeleteSelectedFn = async () => {
     if (selectedId.length === 0) return alert("삭제할 목록을 선택해 주세요");
-    if (!window.confirm("정말 삭제 하시겠습니까?")) return;
+    if (
+      !window.confirm(
+        `선택한 ${selectedId.length}개의 항목을 삭제 하시겠습니까?`,
+      )
+    )
+      return;
     const idsToDelete = [...selectedId];
 
     try {
@@ -129,8 +137,10 @@ const AdminQnA = () => {
 
   const onCancelFn = async () => {
     if (selectedId.length === 0) return alert("취소할 목록을 선택해 주세요");
+
     if (!window.confirm("정말 취소 하시겠습니까?")) return;
     const idsToCancel = [...selectedId];
+    console.log(idsToCancel);
     try {
       await Promise.all(
         idsToCancel.map((id) =>
@@ -140,6 +150,7 @@ const AdminQnA = () => {
             state: "답변대기",
           }),
         ),
+        console.log(Promise),
       );
       setQnaList((prev) =>
         prev.map((n) =>
@@ -222,7 +233,11 @@ const AdminQnA = () => {
             <thead>
               <tr>
                 <th>
-                  <input type="checkbox" onChange={onSelectAllFn} />
+                  <input
+                    type="checkbox"
+                    onChange={onSelectAllFn}
+                    checked={allVisibleSelected}
+                  />
                 </th>
                 <th>글번호</th>
                 <th>작성일</th>

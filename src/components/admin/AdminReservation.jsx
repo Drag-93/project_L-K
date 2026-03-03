@@ -15,7 +15,7 @@ const AdminReservation = () => {
   const [page, setPage] = useState(1);
   const [sortType, setSortType] = useState("latest");
   const [checkedItems, setCheckedItems] = useState([]);
-  const [allShops, setAllShops] = useState([])
+  const [allShops, setAllShops] = useState([]);
 
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -32,25 +32,23 @@ const AdminReservation = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchShops = async () => {
+      try {
+        const res = await axios.get(`${reservationUrl}/shop`);
+        const shopNames = res.data
+          .map((item) => item.name)
+          .filter(Boolean)
+          .sort();
 
-    useEffect(() => {
-      const fetchShops = async () => {
-        try {
-          const res = await axios.get(`${reservationUrl}/shop`);
-          const shopNames = res.data
-            .map((item) => item.name)
-            .filter(Boolean)
-            .sort();
+        setAllShops(shopNames);
+      } catch (err) {
+        console.error("상점 목록 로딩 실패:", err);
+      }
+    };
 
-          setAllShops(shopNames);
-        } catch (err) {
-          console.error("상점 목록 로딩 실패:", err);
-        }
-      };
-
-      fetchShops();
-    }, [reservationUrl]);
-
+    fetchShops();
+  }, [reservationUrl]);
 
   useEffect(() => {
     getReservationList();
@@ -58,6 +56,13 @@ const AdminReservation = () => {
   useEffect(() => {
     if (name) setSearchText(name);
   }, [name]);
+
+  const categoryMap = {
+    lifting: "리프팅",
+    faceline: "페이스라인",
+    regen: "피부재생",
+    immune: "면역력",
+  };
 
   // 2. 필터링 및 정렬 로직
   const filtered = useMemo(() => {
@@ -76,7 +81,7 @@ const AdminReservation = () => {
         m.price,
         m.description,
         m.setshop?.join(" "),
-        m.regDate
+        m.regDate,
       ]
         .filter(Boolean)
         .join(" ")
@@ -86,8 +91,10 @@ const AdminReservation = () => {
     const parseRegDate = (str) => (str ? new Date(str).getTime() : 0);
 
     const compare = (a, b) => {
-      if (sortType === "latest") return parseRegDate(b.regDate) - parseRegDate(a.regDate);
-      if (sortType === "oldest") return parseRegDate(a.regDate) - parseRegDate(b.regDate);
+      if (sortType === "latest")
+        return parseRegDate(b.regDate) - parseRegDate(a.regDate);
+      if (sortType === "oldest")
+        return parseRegDate(a.regDate) - parseRegDate(b.regDate);
       if (sortType === "expensive") return b.price - a.price;
       if (sortType === "cheapest") return a.price - b.price;
     };
@@ -187,15 +194,17 @@ const AdminReservation = () => {
                   <li>
                     <select
                       value={shopFilter}
-                      onChange={(e) => {setShopFilter(e.target.value)
-                      setPage(1)}}
+                      onChange={(e) => {
+                        setShopFilter(e.target.value);
+                        setPage(1);
+                      }}
                     >
                       <option value="ALL">전체 지점</option>
                       {allShops.map((shop) => (
                         <option key={shop} value={shop}>
                           {shop}
                         </option>
-                      ))}                  
+                      ))}
                       {/* <option value="노원">노원</option>
                       <option value="신촌">신촌</option>
                       <option value="강남">강남</option>
@@ -208,10 +217,10 @@ const AdminReservation = () => {
                       onChange={(e) => setCategoryFilter(e.target.value)}
                     >
                       <option value="ALL">전체 카테고리</option>
-                      <option value="lifting">울쎄라</option>
-                      <option value="faceline">인모드</option>
-                      <option value="regen">쥬베룩</option>
-                      <option value="immune">백옥주사</option>
+                      <option value="lifting">리프팅</option>
+                      <option value="faceline">페이스라인</option>
+                      <option value="regen">피부재생</option>
+                      <option value="immune">면역력</option>
                     </select>
                   </li>
                 </ul>
@@ -238,9 +247,10 @@ const AdminReservation = () => {
                   />
                 </th>
                 <th>이미지</th>
+                <th>상품명</th>
                 <th>카테고리</th>
                 <th>가격</th>
-                <th>상세설명</th>
+                {/* <th>상세설명</th> */}
                 <th>병원명</th>
               </tr>
             </thead>
@@ -266,10 +276,11 @@ const AdminReservation = () => {
                     />
                   </td>
                   <td>{el.name}</td>
+                  <td>{categoryMap[el.category] || el.category}</td>
                   <td>{Number(el.price).toLocaleString()}원</td>
-                  <td className="admin-description">
+                  {/* <td className="admin-description">
                     {el.description?.slice(0, 15)}...
-                  </td>
+                  </td> */}
                   <td>
                     <div className="admin-shop-wrapper">
                       {el.setshop?.map((shop, idx) => (

@@ -38,7 +38,7 @@ const AdminProduct = () => {
     const productReviewFn = async () => {
       try {
         const res = await axios.get(`${productUrl}/productReview`);
-        console.log(res.data);
+        // console.log(res.data);
         setProductReview(Array.isArray(res.data) ? res.data : [res.data]);
       } catch (err) {
         console.log("상품후기 로딩 실패");
@@ -120,20 +120,26 @@ const AdminProduct = () => {
     }
   };
   //선택상품 삭제
-  const onDeleteFn = async (e) => {
-    if (!window.confirm("선택한 상품을 삭제 하시겠습니까?")) {
+  const onDeleteFn = async () => {
+    if (checkedItems.length === 0) return alert("삭제할 항목을 선택해 주세요");
+
+    if (
+      !window.confirm(
+        `선택한 ${checkedItems.length}개의 상품을 삭제 하시겠습니까?`,
+      )
+    )
       return;
-    } else {
-      try {
-        const res = checkedItems.map((id) =>
-          axios.delete(`${productUrl}/product/${id}`),
-        );
-        await Promise.all(res);
-        setCheckedItems([]);
-        productListFn();
-      } catch (err) {
-        alert(err);
-      }
+
+    try {
+      const res = checkedItems.map((id) =>
+        axios.delete(`${productUrl}/product/${id}`),
+      );
+      await Promise.all(res);
+      setCheckedItems([]);
+      productListFn();
+      alert(`삭제 되었습니다`);
+    } catch (err) {
+      alert(err);
     }
   };
 
@@ -246,9 +252,9 @@ const AdminProduct = () => {
                 </th>
                 <th>상품이미지</th>
                 <th>상품명</th>
+                <th>카테고리</th>
                 <th>가격</th>
                 <th>평점/후기건수</th>
-                <th>카테고리</th>
               </tr>
             </thead>
             <tbody>
@@ -283,11 +289,12 @@ const AdminProduct = () => {
                       />
                     </td>
                     <td>{el.name}</td>
-                    <td>{el.price.toLocaleString()}원</td>
+                    <td>{categoryMap[el.category] || el.category}</td>
+                    {/* <td>{el.price.toLocaleString()}원</td> */}
+                    <td>{Number(el.price).toLocaleString()}원</td>
                     <td>
                       {avrScore}점/{revCount}건
                     </td>
-                    <td>{categoryMap[el.category] || el.category}</td>
                   </tr>
                 );
               })}
