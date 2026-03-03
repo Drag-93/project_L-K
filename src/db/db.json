@@ -6,7 +6,7 @@
       "description": "ㅇㅇ",
       "no": 1,
       "date": "Fri Feb 27 2026 14:44:00 GMT+0900 (한국 표준시)",
-      "viewrate": 0
+      "viewrate": 1
     },
     {
       "id": "55a2",
@@ -14,6 +14,14 @@
       "description": "ㅇㅇ",
       "no": 2,
       "date": "Fri Feb 27 2026 14:44:10 GMT+0900 (한국 표준시)",
+      "viewrate": 2
+    },
+    {
+      "id": "85aa",
+      "title": "dd",
+      "description": "ssssssssssssss\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\n",
+      "no": 3,
+      "date": "Tue Mar 03 2026 09:58:26 GMT+0900 (한국 표준시)",
       "viewrate": 1
     }
   ],
@@ -85,6 +93,36 @@
       "description": "ㅂㅈㄷㅂㅈㄷ",
       "descImg": "",
       "regDate": "2026-02-27T07:52:22.226Z"
+    },
+    {
+      "id": "c84f",
+      "name": "asdf",
+      "category": "hydro",
+      "price": "20000",
+      "img": "",
+      "description": "",
+      "descImg": "",
+      "regDate": "2026-02-27T08:48:34.926Z"
+    },
+    {
+      "id": "b9bc",
+      "name": "Sebum Balance Toner(피지 밸런스 토너)",
+      "category": "hydro",
+      "price": "200000",
+      "img": "",
+      "description": "sss",
+      "descImg": "",
+      "regDate": "2026-02-27T08:53:06.551Z"
+    },
+    {
+      "id": "33ef",
+      "name": "글루타치온(백옥주사)",
+      "category": "antiage",
+      "price": "300000",
+      "img": "",
+      "description": "",
+      "descImg": "",
+      "regDate": "2026-03-03T02:25:29.397Z"
     }
   ],
   "productReview": [
@@ -326,11 +364,11 @@
     {
       "id": "3",
       "name": "종로",
-      "lat": 37.56677640642606,
-      "lng": 126.99363586433022,
+      "lat": 37.56711890739641,
+      "lng": 126.99659861000306,
       "phonenum": "010-0000-0000",
       "time": "평일 : 10:00 ~ 19:00\n주말/공휴일 : 10:00 ~ 14:00\n*둘째, 넷째주 일요일 휴진",
-      "address": "서울특별시 중구 을지로15길 6-5",
+      "address": "서울특별시 중구 창경궁로5길 24",
       "directions": "지하철 : 1호선 / 종로3가역 15번 출구\n간선 : 101, 103, 140, 143, 150, 160, 201, 260, 262, 270, 271, 273, 370, 720, 721\n지선 : 7212\n순환 : 04\n직행 : 9301"
     },
     {
@@ -371,6 +409,35 @@
       "shop": "New",
       "date": "2026-03-10",
       "time": "14:00"
+    },
+    {
+      "id": "c5c7",
+      "name": "dd",
+      "category": "lifting",
+      "price": "220000",
+      "img": "lifting_01.png",
+      "description": "dd",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "New",
+        "강남",
+        "노원",
+        "신촌"
+      ],
+      "settime": [
+        "10:00",
+        "11:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00"
+      ],
+      "regDate": "2026-02-27T06:06:47.486Z",
+      "timespan": "2",
+      "shop": "New",
+      "date": "2026-03-19",
+      "time": "13:00",
+      "itemId": "1873"
     }
   ],
   "faq": [],
@@ -396,10 +463,10 @@
       "date": "Fri Feb 27 2026 15:57:28 GMT+0900 (한국 표준시)",
       "writer": "new tester",
       "writerEmail": "new@test",
-      "viewrate": 4,
-      "admin": "어드민테스트계정",
-      "answer": "왬마",
-      "state": "답변완료"
+      "viewrate": 5,
+      "admin": "",
+      "answer": "",
+      "state": "답변대기"
     },
     {
       "id": "0187",
@@ -422,7 +489,7 @@
       "date": "Fri Feb 27 2026 16:14:03 GMT+0900 (한국 표준시)",
       "writer": "유저테스트계정",
       "writerEmail": "test@test",
-      "viewrate": 4,
+      "viewrate": 6,
       "admin": "",
       "answer": "",
       "state": "답변대기"
@@ -435,7 +502,7 @@
       "date": "Fri Feb 27 2026 17:00:34 GMT+0900 (한국 표준시)",
       "writer": "유저테스트계정",
       "writerEmail": "test@test",
-      "viewrate": 5,
+      "viewrate": 8,
       "admin": "",
       "answer": "",
       "state": "답변대기"
@@ -474,7 +541,7 @@
           "regDate": "2026-02-27T06:52:52.467Z",
           "count": 6,
           "totalPrice": 105000,
-          "state": "배송준비중"
+          "state": "배송완료"
         }
       ],
       "totalAmount": 150000
@@ -556,7 +623,7 @@
           "shop": "New",
           "date": "2026-03-20",
           "time": "11:00",
-          "state": "예약대기"
+          "state": "예약완료"
         }
       ],
       "totalAmount": 220000
@@ -606,7 +673,7 @@
           "shop": "종로",
           "date": "2026-03-19",
           "time": "14:00",
-          "state": "예약대기"
+          "state": "예약완료"
         }
       ],
       "totalAmount": 400000
@@ -631,7 +698,7 @@
           "shop": "서울",
           "date": "2026-03-13",
           "time": "15:00",
-          "state": "예약대기"
+          "state": "예약완료"
         }
       ],
       "totalAmount": 400000
@@ -663,6 +730,34 @@
         }
       ],
       "totalAmount": 20000
+    },
+    {
+      "id": "557c",
+      "reserveDate": "2026-03-03T03:31:09.481Z",
+      "reserveUserDate": "2026. 3. 3. 오후 12:31:09",
+      "customer": {
+        "userEmail": "test@test",
+        "userName": "유저테스트계정",
+        "phonenum": "01012341234",
+        "request": "안전한 시술 부탁드립니다."
+      },
+      "items": [
+        {
+          "id": "a1b8",
+          "name": "ㅇㅇ",
+          "category": "lifting",
+          "price": "1234",
+          "img": "",
+          "regDate": "2026-03-03T03:30:28.584Z",
+          "timespan": "",
+          "shop": "New",
+          "date": "2026-03-11",
+          "time": "12:34",
+          "itemId": "cd80",
+          "state": "예약대기"
+        }
+      ],
+      "totalAmount": 1234
     }
   ]
 }

@@ -119,9 +119,18 @@ const AdminShop = () => {
     setSelectedId([]);
   }, [page, searchText]);
 
+  const allVisibleSelected =
+    filtered.length > 0 &&
+    filtered.every((n) => selectedId.includes(String(n.id)));
+
   const onDeleteSelectedFn = async () => {
     if (selectedId.length === 0) return alert("삭제할 목록을 선택해 주세요");
-    if (!window.confirm("정말 삭제 하시겠습니까?")) return;
+    if (
+      !window.confirm(
+        `선택한 ${selectedId.length}개의 항목을 삭제 하시겠습니까?`,
+      )
+    )
+      return;
 
     const idsToDelete = [...selectedId];
 
@@ -180,7 +189,11 @@ const AdminShop = () => {
             <thead>
               <tr>
                 <th>
-                  <input type="checkbox" onChange={onSelectAllFn} />
+                  <input
+                    type="checkbox"
+                    onChange={onSelectAllFn}
+                    checked={allVisibleSelected}
+                  />
                 </th>
                 <th>지점명</th>
                 <th>연락처</th>

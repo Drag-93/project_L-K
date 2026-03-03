@@ -193,7 +193,12 @@ const AdminReserveOrders = () => {
 
   const onDeleteSelectedFn = async () => {
     if (selectedId.length === 0) return alert("삭제할 항목을 선택하세요");
-    if (!window.confirm("선택한 진료 항목을 삭제하시겠습니까?")) return;
+    if (
+      !window.confirm(
+        `선택한 ${selectedId.length}개의 진료 항목을 삭제하시겠습니까?`,
+      )
+    )
+      return;
 
     // 1. 선택된 uniqueKey들을 주문 ID별로 그룹화
     // 결과 예시: { "baae": ["eac9", "bd85"], "8acf": ["177f"] }

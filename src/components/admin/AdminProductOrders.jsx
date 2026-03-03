@@ -110,6 +110,9 @@ const AdminProductOrders = () => {
       visibleId.length > 0 && visibleId.every((id) => selectedId.includes(id));
     setSelectedId(allSelect ? [] : visibleId);
   };
+  const allVisibleSelected =
+    filtered.length > 0 &&
+    filtered.every((n) => selectedId.includes(String(n.id)));
 
   const adminModalFn = (id) => {
     setModalId(id);
@@ -121,7 +124,12 @@ const AdminProductOrders = () => {
       alert("삭제할 목록을 선택해 주세요");
       return;
     }
-    if (!window.confirm("정말 삭제 하시겠습니까?")) return;
+    if (
+      !window.confirm(
+        `선택한 ${selectedId.length}개의 결제 항목을 삭제 하시겠습니까?`,
+      )
+    )
+      return;
     const idsToDelete = [...selectedId];
     try {
       await Promise.all(
@@ -199,11 +207,15 @@ const AdminProductOrders = () => {
             <thead>
               <tr>
                 <th>
-                  <input type="checkbox" onChange={onSelectAllFn} />
+                  <input
+                    type="checkbox"
+                    onChange={onSelectAllFn}
+                    checked={allVisibleSelected}
+                  />
                 </th>
-                <th>주문일</th>
                 <th>주문자</th>
                 <th>주문 품목</th>
+                <th>주문일</th>
                 <th>총 수량</th>
                 <th>총 금액</th>
                 {/* <th>요청사항</th> */}
@@ -226,16 +238,16 @@ const AdminProductOrders = () => {
                         onChange={() => toggleSelect(el.id)}
                       />
                     </td>
-                    <td title={el.productDate}>
-                      {el.productDate.length > 23
-                        ? el.productDate.slice(0, 10)
-                        : el.productDate.slice(0, 9)}
-                    </td>
                     <td>{el.customer.userName}</td>
                     <td title={itemNames}>
                       {itemNames && itemNames.length > 10
                         ? `${itemNames.slice(0, 10)}...`
                         : itemNames}
+                    </td>
+                    <td title={el.productDate}>
+                      {el.productDate.length > 23
+                        ? el.productDate.slice(0, 10)
+                        : el.productDate.slice(0, 9)}
                     </td>
                     <td>{itemQty}</td>
                     <td>{el.totalAmount.toLocaleString()}원</td>

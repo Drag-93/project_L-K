@@ -134,7 +134,12 @@ const AdminNotice = () => {
 
   const onDeleteSelectedFn = async () => {
     if (selectedId.length === 0) return alert("삭제할 글을 선택하세요");
-    if (!window.confirm("삭제 하시겠습니까?")) return;
+    if (
+      !window.confirm(
+        `선택한 ${selectedId.length}개의 항목을 삭제 하시겠습니까?`,
+      )
+    )
+      return;
     const idsToDelete = [...selectedId];
     try {
       await Promise.all(
@@ -212,7 +217,11 @@ const AdminNotice = () => {
             <thead>
               <tr>
                 <th>
-                  <input type="checkbox" onChange={onSelectAllFn} />
+                  <input
+                    type="checkbox"
+                    onChange={onSelectAllFn}
+                    checked={allVisibleSelected}
+                  />
                 </th>
                 <th>글번호</th>
                 <th>작성일</th>

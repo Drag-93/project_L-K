@@ -10,26 +10,26 @@ const AdminReservationModal = ({
 }) => {
   const [allShops, setAllShops] = useState([]);
   const [detail, setDetail] = useState(null);
-  const [allTimes, setAllTimes] = useState([""])
+  const [allTimes, setAllTimes] = useState([""]);
 
   const reservationUrl = API_JSON_SERVER_URL;
   const navigate = useNavigate();
   const [imgError, setImgError] = useState(false);
 
   const formatTime = (value) => {
-  let numbers = value.replace(/[^0-9]/g, "").slice(0, 4);
+    let numbers = value.replace(/[^0-9]/g, "").slice(0, 4);
 
-  if (numbers.length === 4) {
-    const hours = numbers.slice(0, 2);
-    const minutes = numbers.slice(2, 4);
+    if (numbers.length === 4) {
+      const hours = numbers.slice(0, 2);
+      const minutes = numbers.slice(2, 4);
 
-    if (parseInt(hours) < 24 && parseInt(minutes) < 60) {
-      return `${hours}:${minutes}`;
-    }else{
-      alert("00:00에서 24:00 범위로 입력해 주세요")
-      return ""
+      if (parseInt(hours) < 24 && parseInt(minutes) < 60) {
+        return `${hours}:${minutes}`;
+      } else {
+        alert("00:00에서 24:00 범위로 입력해 주세요");
+        return "";
+      }
     }
-  }
     return numbers;
   };
 
@@ -44,8 +44,10 @@ const AdminReservationModal = ({
   };
 
   const handleReserveTimeChange = (index, value) => {
-    const formatted=formatTime(value)
-    setAllTimes((prev) => prev.map((item, i) => (i === index ? formatted : item)));
+    const formatted = formatTime(value);
+    setAllTimes((prev) =>
+      prev.map((item, i) => (i === index ? formatted : item)),
+    );
   };
 
   const onShopChange = (shopName) => {
@@ -67,15 +69,26 @@ const AdminReservationModal = ({
 
   const handleTimeBlur = (index) => {
     setAllTimes((prev) => {
-    const currentValue = prev[index];
-    
-    if (currentValue !== "" && prev.some((t, i) => i !== index && t === currentValue)) {
-      alert("이미 등록된 시간입니다.");
-      
-      const resetTimes = [...prev];
-      resetTimes[index] = ""; 
-      return resetTimes;
-    }
+      const currentValue = prev[index];
+      const onlyNumber = currentValue.replace(/[^0-9]/g, "");
+
+      if (onlyNumber.length > 0 && onlyNumber.length < 4) {
+        alert("시간은 4자리로 입력해주세요 (예: 1300)");
+        const reset = [...prev];
+        reset[index] = "";
+        return reset;
+      }
+
+      if (
+        currentValue !== "" &&
+        prev.some((t, i) => i !== index && t === currentValue)
+      ) {
+        alert("이미 등록된 시간입니다.");
+
+        const resetTimes = [...prev];
+        resetTimes[index] = "";
+        return resetTimes;
+      }
 
       const sortedTimes = [...prev].sort((a, b) => {
         if (a === "") return 1;
@@ -84,9 +97,7 @@ const AdminReservationModal = ({
       });
       return sortedTimes;
     });
- };
-
-
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -105,7 +116,7 @@ const AdminReservationModal = ({
             `${reservationUrl}/reservation/${reservationId}`,
           );
           setDetail(res.data);
-            if (res.data.settime?.length > 0) {
+          if (res.data.settime?.length > 0) {
             setAllTimes(res.data.settime);
           } else {
             setAllTimes([""]);
@@ -167,11 +178,16 @@ const AdminReservationModal = ({
   };
 
   const onUpdateFn = async () => {
+    if (allTimes.some((t) => !t || t.trim() === "")) {
+      alert("시간을 입력해 주세요");
+      return;
+    }
     try {
       const res = await axios.put(
         `${reservationUrl}/reservation/${reservationId}`,
         detail,
       );
+      setDetail(res.data);
       alert("수정 되었습니다");
       if (onSuccess) {
         onSuccess();
@@ -197,9 +213,35 @@ const AdminReservationModal = ({
   };
 
   const onPostFn = async () => {
+    if (!detail.name?.trim()) {
+      alert("상품명을 입력해 주세요");
+      console.log(detail);
+      return;
+    }
+    if (!detail.category?.trim()) {
+      alert("카테고리를 선택해 주세요");
+      return;
+    }
+    if (
+      detail.price === undefined ||
+      detail.price === null ||
+      detail.price === ""
+    ) {
+      alert("가격을 입력해 주세요");
+      console.log(detail);
+      return;
+    }
+    if (!detail.setshop?.length) {
+      alert("지점을 선택해 주세요");
+      return;
+    }
+    if (allTimes.some((t) => !t || t.trim() === "")) {
+      alert("시간을 입력해 주세요");
+      return;
+    }
     try {
-    const newDetail = { ...detail, settime: allTimes };      
-    await axios.post(`${reservationUrl}/reservation`, newDetail);
+      const newDetail = { ...detail, settime: allTimes };
+      await axios.post(`${reservationUrl}/reservation`, newDetail);
       alert("추가 되었습니다.");
       if (onSuccess) {
         onSuccess();
@@ -262,10 +304,10 @@ const AdminReservationModal = ({
               value={detail.category}
               onChange={onChangeFn}
             >
-              <option value="lifting">울쎄라</option>
-              <option value="faceline">인모드</option>
-              <option value="regen">쥬베룩</option>
-              <option value="immune">글루타치온(백옥주사)</option>
+              <option value="lifting">리프팅</option>
+              <option value="faceline">페이스라인</option>
+              <option value="regen">피부재생</option>
+              <option value="immune">면역력</option>
             </select>
           </li>
           <li>
@@ -325,44 +367,46 @@ const AdminReservationModal = ({
               </div>
               ) : (
                <> */}
-                 {allTimes.map((time, index) => ( 
-                   <div 
-                     className="timeinput"
-                     key={index}
-                     style={{ position: "relative", display: "inline-block" }}
-                   >
-                     <input
-                       type="text"
-                       value={time}
-                       placeholder="예: 13:00"
-                       onChange={(e) => handleReserveTimeChange(index, e.target.value)}
-                       onBlur={()=>handleTimeBlur(index)}
-                     />
-                     <button
-                       type="button"
-                       onClick={() => removeReserveTime(index)}
-                       style={{
-                        position: "absolute",
-                        right: "10px",
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        cursor: "pointer",
-                      }}
-                     >
-                       x
-                     </button>
-                   </div>
-                 ))}
-                 <div className="addtime">
+            {allTimes.map((time, index) => (
+              <div
+                className="timeinput"
+                key={index}
+                style={{ position: "relative", display: "inline-block" }}
+              >
+                <input
+                  type="text"
+                  value={time}
+                  placeholder="예: 13:00"
+                  onChange={(e) =>
+                    handleReserveTimeChange(index, e.target.value)
+                  }
+                  onBlur={() => handleTimeBlur(index)}
+                />
                 <button
                   type="button"
-                  onClick={addReserveTime}
-                  style={{ marginTop: "5px" }}
+                  onClick={() => removeReserveTime(index)}
+                  style={{
+                    position: "absolute",
+                    right: "10px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    cursor: "pointer",
+                  }}
                 >
-                  +
+                  x
                 </button>
-                </div>
-              {/* </>
+              </div>
+            ))}
+            <div className="addtime">
+              <button
+                type="button"
+                onClick={addReserveTime}
+                style={{ marginTop: "5px", cursor: "pointer" }}
+              >
+                +
+              </button>
+            </div>
+            {/* </>
             )} */}
           </li>
           <li className="adminModal-img">

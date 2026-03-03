@@ -4,7 +4,7 @@ import { API_JSON_SERVER_URL } from "../../api/commonApi";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
+const AdminQnAModal = ({ setAdminAddModal, qnaId, onSuccess }) => {
   const [detail, setDetail] = useState(null);
   const qnaUrl = API_JSON_SERVER_URL;
   const [edit, setEdit] = useState({ title: "", question: "", answer: "" });
@@ -110,8 +110,10 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId }) => {
         answer: editAnswer.answer,
         state: "답변완료",
       }));
-      alert("수정 되었습니다");
+      alert("저장 되었습니다");
       setIsAnswering(false);
+      onSuccess?.();
+      closeFn();
     } catch (err) {
       alert(err);
     } finally {
