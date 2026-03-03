@@ -44,6 +44,23 @@ const AuthJoin = () => {
   const state = useSelector((state) => state);
   const isState = useSelector((state) => state.input.isState);
 
+  const onChangeNumFn = (e) => {
+    const { name, value } = e.target;
+    if (name !== "phonenum" && name !== "age") 
+    return;
+    if (isNaN(value)) {
+      alert("숫자만 입력해주세요");
+      return;
+    }
+    setJoin({ ...join, [name]: value });
+  };
+
+  const onChangeEmailFn = (e) => {
+    const { name, value } = e.target;
+    setJoin({ ...join, [name]: value });
+  };
+
+
 
  useEffect(() => {
       if (isState === false) {
@@ -54,6 +71,11 @@ const AuthJoin = () => {
 
   const onJoinFn = async () => {
     try {
+      const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+      if (!emailRegex.test(join.userEmail)) {
+        alert("이메일 형식이 맞지 않습니다.");
+        return;
+      }
       if (!join.userEmail || !join.userName || !join.userPw) {
         alert("이메일, 이름, 비밀번호는 필수입니다!");
         return;
@@ -95,7 +117,7 @@ const AuthJoin = () => {
               name="userEmail"
               placeholder="이메일을 입력해주세요"
               value={join.userEmail}
-              onChange={onChangeFn}
+              onChange={onChangeEmailFn}
             />
           </li>
             <li>비밀번호 : 
@@ -123,7 +145,7 @@ const AuthJoin = () => {
               name="phonenum"
               placeholder="전화번호를 입력해주세요"
               value={join.phonenum}
-              onChange={onChangeFn}
+              onChange={onChangeNumFn}
             />
           </li>
           <li>
@@ -133,7 +155,7 @@ const AuthJoin = () => {
               name="age"
               placeholder="나이를 입력해주세요"
               value={join.age}
-              onChange={onChangeFn}
+              onChange={onChangeNumFn}
             />
           </li>
           <li>

@@ -177,7 +177,8 @@ const AdminReservationModal = ({
     e.target.value = "";
   };
 
-  const onUpdateFn = async () => {
+  const onUpdateFn = async (e) => {
+      const changeDetail = {...detail, settime: allTimes};
     if (allTimes.some((t) => !t || t.trim() === "")) {
       alert("시간을 입력해 주세요");
       return;
@@ -185,7 +186,7 @@ const AdminReservationModal = ({
     try {
       const res = await axios.put(
         `${reservationUrl}/reservation/${reservationId}`,
-        detail,
+        changeDetail,
       );
       setDetail(res.data);
       alert("수정 되었습니다");

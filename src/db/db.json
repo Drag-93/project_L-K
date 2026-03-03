@@ -54,6 +54,55 @@
       "gender": "남",
       "role": "ROLE_MEMBER",
       "remark": ""
+    },
+    {
+      "id": "0d0f",
+      "userName": "admin",
+      "userEmail": "admin@admin.com",
+      "userPw": "1234",
+      "phonenum": "01012222641",
+      "age": "33333",
+      "address": "123213",
+      "gender": "여",
+      "role": "ROLE_MEMBER",
+      "remark": "",
+      "note": "asdd"
+    },
+    {
+      "id": "37be",
+      "userName": "tester",
+      "userEmail": "test2@testtest",
+      "userPw": "q1w2e3r4",
+      "phonenum": "01012222641",
+      "age": "1234",
+      "address": "123213",
+      "gender": "남",
+      "role": "ROLE_MEMBER",
+      "remark": ""
+    },
+    {
+      "id": "ad98",
+      "userName": "tester",
+      "userEmail": "tester@tester.com",
+      "userPw": "1234",
+      "phonenum": "123",
+      "age": "123",
+      "address": "222222",
+      "gender": "남",
+      "role": "ROLE_MEMBER",
+      "remark": ""
+    },
+    {
+      "id": "04d1",
+      "userName": "admin",
+      "userEmail": "test@admin.com",
+      "userPw": "1234",
+      "phonenum": "01000000000",
+      "age": "25",
+      "address": "서울",
+      "gender": "남",
+      "role": "ROLE_MEMBER",
+      "remark": ""
     }
   ],
   "product": [
@@ -2718,5 +2767,6 @@
       ],
       "totalAmount": 20020000
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
