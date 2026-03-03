@@ -296,6 +296,23 @@
       ],
       "regDate": "2026-02-27T07:50:00.365Z",
       "timespan": "3"
+    },
+    {
+      "id": "cf1f",
+      "name": "1",
+      "category": "lifting",
+      "price": "1",
+      "img": "",
+      "description": "",
+      "descImg": "",
+      "setshop": [
+        "노원"
+      ],
+      "settime": [
+        "12:30"
+      ],
+      "regDate": "2026-03-03T03:44:41.006Z",
+      "timespan": "1"
     }
   ],
   "reservReview": [
