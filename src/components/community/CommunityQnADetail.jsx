@@ -45,17 +45,6 @@ const CommunityQnADetail = () => {
     const { name, value } = e.target;
     setEdit((prev) => ({ ...prev, [name]: value }));
   };
-  //한국 날짜 표시
-  const getKoreaDate = (date) => {
-    const today = new Date(date);
-    return (
-      today.getFullYear() +
-      "-" +
-      String(today.getMonth() + 1).padStart(2, "0") +
-      "-" +
-      String(today.getDate()).padStart(2, "0")
-    );
-  };
 
   const onEditFn = () => {
     if (!user) {
@@ -187,21 +176,8 @@ const CommunityQnADetail = () => {
   if (!detail) return <div>...Loading</div>;
 
   return (
-    <div className="QnADetail">
-      <div className="QnADetail-con">
-        <div className="aside_wrap">
-          <ul>
-            <li>
-              <NavLink to={`/community/notice`}>공지사항</NavLink>
-            </li>
-            <li>
-              <NavLink to={`/community/faq`}>자주묻는질문</NavLink>
-            </li>
-            <li>
-              <NavLink to={`/community/qna`}>Q&A</NavLink>
-            </li>
-          </ul>
-        </div>
+    <div className="QnADetail inner2">
+      <div className="QnADetail-con">         
         <div className="title">
           <ul>
             <li>
@@ -211,7 +187,7 @@ const CommunityQnADetail = () => {
         </div>
         <ul className="faq-content">
           <li>
-            <label htmlFor="title">제목</label>
+            <label htmlFor="title">제목:</label>
             <input
               type="text"
               name="title"
@@ -222,7 +198,7 @@ const CommunityQnADetail = () => {
             />
           </li>
           <li>
-            <label htmlFor="writer">작성자</label>
+            <label htmlFor="writer">작성자:</label>
             <input
               type="text"
               name="writer"
@@ -232,18 +208,17 @@ const CommunityQnADetail = () => {
             />
           </li>
           <li>
-            <label htmlFor="date">작성일</label>
-            <span>{getKoreaDate(detail.date)}</span>
-            {/* <input
+            <label htmlFor="date">작성일:</label>
+            <input
               type="date"
               name="date"
               id="date"
               value={detail.date}
               readOnly
-            /> */}
+            />
           </li>
           <li>
-            <label htmlFor="question">질문내용</label>
+            <label htmlFor="question">질의내용:</label>
             <textarea
               name="question"
               id="question"
@@ -256,12 +231,7 @@ const CommunityQnADetail = () => {
         </ul>
         <div className="QnADetailFooter">
           <div className="QnADetailFooter-con">
-            <button
-              className="btn-list"
-              onClick={() => navigate(`/community/qna`)}
-            >
-              목록
-            </button>
+            <button className="btn-list" onClick={() => navigate(`/community/qna`)}>목록</button>
             {user?.userEmail === detail.writerEmail ||
             user?.role === "ROLE_ADMIN" ? (
               <div className="btn-group">

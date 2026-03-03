@@ -1,13 +1,6 @@
 /*****************************************************************************
-    @communityNoticeDetail
+  @CommunityNoticeDetail
 ****************************************************************************/
-
-.detail {
-  max-width: 1200px;
-  margin: 0;
-  padding: 5rem 1.5rem 10rem 1.5rem;
-  min-height: calc(100vh - 6rem - 82px);
-}
 
 .detail .detail-con {
   margin: 0;
@@ -20,30 +13,6 @@
   line-height: 1;
 }
 
-.detail-con .aside_wrap {
-  padding: 0;
-}
-
-/* aside_wrap의 공통 적용 부분은 생략 */
-/* .detail-con .aside_wrap ul {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5rem;
-  border-bottom: 1px solid #ccc;
-  list-style: none;
-  padding: 0;
-}
-
-.detail-con .aside_wrap ul li {
-  padding: 0;
-  border-bottom: none;
-}
-
-.detail-con .aside_wrap ul li a {}
-.detail-con .aside_wrap ul li a.active {}
-.detail-con .aside_wrap ul li a:hover {} */
-
 .detail-con h1 {
   text-align: center;
   font-size: 2.5rem;
@@ -52,10 +21,26 @@
   padding: 70px 0 40px 0;
 }
 
-.detail-con .detail-info {
+.detail-con ul.detail-info {
   list-style: none;
-  padding-bottom: 40px;
   border-top: 2px solid #3a7d44;
+}
+
+.detail-con .detail-info li span {
+  display: inline-block;
+  min-width: 60px;
+  color: #4d9c25;
+  font-size: 1.7rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.detail-con .detail-info h2 {
+  padding: 14px 20px;
+  background-color: #fff;
+  color: #4d9c25;
+  font-size: 1.7rem;
+  font-weight: 600;
 }
 
 .detail-con .detail-info li {
@@ -65,32 +50,8 @@
   font-size: 1.7rem;
 }
 
-.detail-con .detail-info .info-date {
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.detail-con .detail-info .info-date strong {
-  display: inline-block;
-  min-width: 30px;
-  color: #4d9c25;
-  font-weight: 600;
-}
-
-.detail-con .detail-info h2 {
-  padding: 14px 20px;
-  background-color: #fff;
-  color: #4d9c25;
-  font-size: 1.7rem;
-  font-weight: 600;
-  border-bottom: 1px solid #eee;
-}
-
-.detail-con .detail-info .info-content {
+.detail-con .detail-info .info-desc {
   min-height: 300px;
-  padding: 30px 20px;
   border-bottom: 2px solid #3a7d44;
   color: #333;
   line-height: 1.8;

@@ -230,17 +230,17 @@ const Header = () => {
               <Link to={`/shop`}>지점소개</Link>
             </li>
             <li>
-              <Link to={`/product/list/hydro`}>보습제품</Link>
+              <Link to={`/product/list/hydro`}>보습</Link>
               <Link to={`/product/list/trouble`}>트러블</Link>
-              <Link to={`/product/list/white`}>화이트</Link>
+              <Link to={`/product/list/white`}>미백</Link>
               <Link to={`/product/list/antiage`}>안티에이징</Link>
               <Link to={`/product/list/uv`}>UV</Link>
             </li>
             <li>
               <Link to={`/reservation/list/lifting`}>리프팅</Link>
               <Link to={`/reservation/list/faceline`}>페이스라인</Link>
-              <Link to={`/reservation/list/regen`}>재생</Link>
-              <Link to={`/reservation/list/immune`}>면역력</Link>
+              <Link to={`/reservation/list/regen`}>피부재생</Link>
+              <Link to={`/reservation/list/immune`}>면역증강</Link>
             </li>
             <li>
               <Link to={`/community/notice`}>공지사항</Link>
@@ -309,9 +309,9 @@ const Header = () => {
                 className={`header_depth_m ${activeIndex === 1 ? "on" : ""}`}
               >
                 <Link to={`/product`}>전체</Link>
-                <Link to={`/product/list/hydro`}>보습제품</Link>
+                <Link to={`/product/list/hydro`}>보습</Link>
                 <Link to={`/product/list/trouble`}>트러블</Link>
-                <Link to={`/product/list/white`}>화이트</Link>
+                <Link to={`/product/list/white`}>미백</Link>
                 <Link to={`/product/list/antiage`}>안티에이징</Link>
                 <Link to={`/product/list/uv`}>UV</Link>
               </div>
@@ -329,8 +329,8 @@ const Header = () => {
                 <Link to={`/reservation`}>전체</Link>
                 <Link to={`/reservation/list/lifting`}>리프팅</Link>
                 <Link to={`/reservation/list/faceline`}>페이스라인</Link>
-                <Link to={`/reservation/list/regen`}>재생</Link>
-                <Link to={`/reservation/list/immune`}>면역력</Link>
+                <Link to={`/reservation/list/regen`}>피부재생</Link>
+                <Link to={`/reservation/list/immune`}>면역증강</Link>
               </div>
             </li>
             <li>

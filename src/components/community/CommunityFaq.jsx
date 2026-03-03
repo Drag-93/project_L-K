@@ -16,7 +16,7 @@ const CommunityFaq = () => {
     faceline : "인모드",
     regen : "쥬베룩",
     immune : "글루타치온",
-    trouble : "트러블케어",
+    trouble : "트러블",
     white : "미백",
     hydro : "보습",
     antiage : "안티에이징",

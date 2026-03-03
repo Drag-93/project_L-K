@@ -344,7 +344,7 @@ const AdminReserveOrders = () => {
                     <option value="lifting">리프팅</option>
                     <option value="faceline">페이스라인</option>
                     <option value="regen">피부재생</option>
-                    <option value="immune">면역력</option>
+                    <option value="immune">면역증강</option>
                   </select>
                 </div>   */}
 

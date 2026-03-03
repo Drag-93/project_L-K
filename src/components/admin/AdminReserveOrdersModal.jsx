@@ -6,7 +6,7 @@ const categoryMap = {
   lifting: "리프팅",
   faceline: "페이스라인",
   regen: "피부재생",
-  immune: "면역력",
+  immune: "면역증강",
 };
 
 const AdminReserveOrdersModal = ({ item, onClose, onRefresh }) => {

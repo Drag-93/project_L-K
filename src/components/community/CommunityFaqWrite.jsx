@@ -105,70 +105,19 @@ useEffect(() => {
 
 
   return (
-    <div className="faqwrite">
-      <div className="write-con">       
+    <div className="faqwrite inner2">
+      <div className="write-con">
+        <div className="title">
         {id ? (
           <h1>자주 묻는 질문 수정</h1>):
           (<h2>자주 묻는 질문 등록</h2>)
-        }        
+        }
+        </div>       
         <ul>
           <li>
             <label htmlFor="date">작성일</label>
             <span>{getKoreaDate()}</span>
           </li>          
-          <li>
-            <label htmlFor="titlecategory">카테고리</label>
-            <select 
-            name="titlecategory" 
-            id="titlecategory"
-            value={detail.titlecategory}
-            onChange={onChangeFn}>
-              <option value="titlecategoryall">전체</option>
-              <option value="product">상품</option>
-              <option value="reserve">예약</option>
-            </select>
-          </li>
-          <li>
-            <label htmlFor="category">세부카테고리</label>
-            {detail.titlecategory === "titlecategoryall"?(
-            <select 
-            name="category" 
-            id="category"
-            value={detail.category}
-            onChange={onChangeFn}
-            disabled
-            >
-            <option value="categoryall">전체</option>
-            </select>):
-            detail.titlecategory === "product"?(
-            <select 
-            name="category" 
-            id="category"
-            value={detail.category}
-            onChange={onChangeFn}
-            >
-              <option value="productall">전체</option>
-              <option value="hydro">보습</option>
-              <option value="trouble">트러블케어</option>
-              <option value="white">미백</option>
-              <option value="antiage">안티에이징</option>
-              <option value="uv">UV</option>
-            </select>)
-            :detail.titlecategory === "reserve"?(
-            <select
-            name='category'
-            id='category'
-            value={detail.category}
-            onChange={onChangeFn}
-            >
-              <option value="reserveall">전체</option>
-              <option value="lifting">울쎄라</option>
-              <option value="faceline">인모드</option>
-              <option value="regen">쥬베룩</option>
-              <option value="immune">글루타치온(백옥주사)</option>
-            </select>
-            ) :null}
-          </li>
           <li>
         <label htmlFor="faqtitle">질문</label>
         <input 
@@ -189,14 +138,14 @@ useEffect(() => {
             />
           </li>
         </ul>
-      </div>
       <div className='adminbutton'>
-    {id ? (
-      <button onClick={onUpdateFn}>수정</button>):
-      (<button onClick={onPostFn}>등록</button>)
-    }
-    </div>
-<button onClick={()=>{navigate(-1)}}>취소</button>
+        {id  
+           ? (<button onClick={onUpdateFn}>수정</button>)
+           : (<button onClick={onPostFn}>등록</button>)
+        }
+         <button onClick={()=>{navigate(-1)}}>취소</button>
+      </div>
+     </div>
     </div>
   )
 }

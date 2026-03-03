@@ -8,10 +8,10 @@ const categoryMap = {
   lifting: "리프팅",
   faceline: "페이스라인",
   regen: "피부재생",
-  immune: "면역력",
-  hydro: "보습제품",
+  immune: "면역증강",
+  hydro: "보습",
   trouble: "트러블",
-  white: "화이트",
+  white: "미백",
   antiage: "안티에이징",
   uv: "UV",
 };

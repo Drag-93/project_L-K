@@ -65,8 +65,9 @@ const CommunityQnAWrite = () => {
       setIsSaving(false);
     }
   };
+
   return (
-    <div className="QnAWrite">
+    <div className="QnAWrite inner2">
       <div className="QnAWrite-con">
         <div className="title">
           <h1>문의 작성하기</h1>

@@ -17,7 +17,7 @@ const Main = () => {
                 <div className="main_nav_img">
                   <img src="/images/main_icon_01.png" alt="" />
                 </div>
-                <p>보습제품</p>
+                <p>보습</p>
               </Link>
             </li>
             <li>
@@ -33,7 +33,7 @@ const Main = () => {
                 <div className="main_nav_img">
                   <img src="/images/main_icon_03.png" alt="" />
                 </div>
-                <p>화이트</p>
+                <p>미백</p>
               </Link>
             </li>
             <li>
@@ -73,7 +73,7 @@ const Main = () => {
                 <div className="main_nav_img">
                   <img src="/images/main_icon_08.png" alt="" />
                 </div>
-                <p>재생</p>
+                <p>피부재생</p>
               </Link>
             </li>
             <li>
@@ -81,7 +81,7 @@ const Main = () => {
                 <div className="main_nav_img">
                   <img src="/images/main_icon_09.png" alt="" />
                 </div>
-                <p>면역력</p>
+                <p>면역증강</p>
               </Link>
             </li>
             <li>

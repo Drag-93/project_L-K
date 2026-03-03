@@ -18,7 +18,7 @@ const initDetail = {
 
 const categoryMap = {
   hydro: "보습",
-  trouble: "트러블케어",
+  trouble: "트러블",
   white: "미백",
   antiage: "안티에이징",
   uv: "UV",
