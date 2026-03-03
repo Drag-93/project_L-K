@@ -5,7 +5,7 @@ const ProdDetailDesc = () => {
     <>
     <div className="prod-detail-desc">
       <div className="prod-detail-desc-con">
-       <img src={`/images/hydro/prodDetail_desc.png`} alt="prodDetail_desc.png" />
+       <img src={`/images/prodDetail_desc.png`} alt="prodDetail_desc.png" />
       </div>      
     </div>
     </>

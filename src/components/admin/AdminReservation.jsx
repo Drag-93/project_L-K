@@ -43,7 +43,7 @@ const AdminReservation = () => {
 
         setAllShops(shopNames);
       } catch (err) {
-        console.error("상점 목록 로딩 실패:", err);
+        console.error("지점 목록 로딩 실패:", err);
       }
     };
 
@@ -61,7 +61,7 @@ const AdminReservation = () => {
     lifting: "리프팅",
     faceline: "페이스라인",
     regen: "피부재생",
-    immune: "면역력",
+    immune: "면역증강",
   };
 
   // 2. 필터링 및 정렬 로직
@@ -220,7 +220,7 @@ const AdminReservation = () => {
                       <option value="lifting">리프팅</option>
                       <option value="faceline">페이스라인</option>
                       <option value="regen">피부재생</option>
-                      <option value="immune">면역력</option>
+                      <option value="immune">면역증강</option>
                     </select>
                   </li>
                 </ul>
@@ -251,7 +251,7 @@ const AdminReservation = () => {
                 <th>카테고리</th>
                 <th>가격</th>
                 {/* <th>상세설명</th> */}
-                <th>병원명</th>
+                <th>지점명</th>
               </tr>
             </thead>
             <tbody>

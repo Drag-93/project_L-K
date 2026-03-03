@@ -71,7 +71,7 @@
 .QnADetailFooter .QnADetailFooter-con {
   display: flex;
   align-items: center;
-  margin-top: 24px;
+  margin-top: 10px;
   padding: 20px 0 20px 0;
 }
 
@@ -168,4 +168,11 @@
   border-radius: 8px;
   resize: none;
   font-size: 1.5rem;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .QnADetailFooter .QnADetailFooter-con .btn-list {
+    position: static;
+  }
 }
