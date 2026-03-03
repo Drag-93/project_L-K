@@ -51,8 +51,8 @@ const AuthMyReview = () => {
   const sortOptions = [
     { value: "dateN", label: "최신순" },
     { value: "dateP", label: "오래된순" },
-    { value: "viewN", label: "조회수순" },
-    { value: "viewP", label: "조회수역순" },
+    { value: "viewN", label: "추천순" },
+    { value: "viewP", label: "추천역순" },
   ];
  
 
@@ -99,8 +99,8 @@ const AuthMyReview = () => {
     return searchList.sort((a, b) => {
       const timeA = a.date ? new Date(a.date).getTime() : 0;
       const timeB = b.date ? new Date(b.date).getTime() : 0;
-      const viewA = Number(a.viewrate || 0);
-      const viewB = Number(b.viewrate || 0);
+      const viewA = Number(a.like || 0);
+      const viewB = Number(b.like || 0);
 
       switch (sortType) {
         case "dateN":

@@ -275,6 +275,21 @@
         "test@test"
       ],
       "description": "ㅁㄴㄹㄴㅇㄹㄴㅇㄹ"
+    },
+    {
+      "id": "7e41",
+      "category": "regen",
+      "reservId": "bc7b",
+      "reservName": "쥬베룩 테스트",
+      "userEmail": "test@test",
+      "userName": "유저테스트계정",
+      "date": "2026-02-27T08:41:27.138Z",
+      "score": 5,
+      "like": 1,
+      "likedUsers": [
+        "test@test"
+      ],
+      "description": "567567"
     }
   ],
   "shop": [
