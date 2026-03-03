@@ -299,20 +299,22 @@
     },
     {
       "id": "cf1f",
-      "name": "1",
+      "name": "1342",
       "category": "lifting",
-      "price": "1",
+      "price": "1344",
       "img": "",
-      "description": "",
+      "description": "234234",
       "descImg": "",
       "setshop": [
-        "노원"
+        "노원",
+        "종로",
+        "신촌"
       ],
       "settime": [
         "12:30"
       ],
       "regDate": "2026-03-03T03:44:41.006Z",
-      "timespan": "1"
+      "timespan": "12"
     }
   ],
   "reservReview": [
