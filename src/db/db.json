@@ -2127,21 +2127,6 @@
   ],
   "reservReview": [
     {
-      "id": "f91c",
-      "category": "lifting",
-      "reservId": "1873",
-      "reservName": "dd",
-      "userEmail": "new@test",
-      "userName": "new tester",
-      "date": "2026-02-27T08:05:08.873Z",
-      "score": 5,
-      "like": 1,
-      "likedUsers": [
-        "test@test"
-      ],
-      "description": "ㅁㄴㄹㄴㅇㄹㄴㅇㄹ"
-    },
-    {
       "id": "7e41",
       "category": "regen",
       "reservId": "bc7b",
@@ -2554,36 +2539,9 @@
   ],
   "reserveOrders": [
     {
-      "id": "18e5",
-      "reserveDate": "2026-02-27T05:57:08.881Z",
-      "reserveUserDate": "2026. 2. 27. 오후 2:57:08",
-      "customer": {
-        "userEmail": "test@test",
-        "userName": "유저테스트계정",
-        "phonenum": "01012341234",
-        "request": "안전한 시술 부탁드립니다."
-      },
-      "items": [
-        {
-          "id": "bf15",
-          "name": "dd",
-          "category": "lifting",
-          "price": "220000",
-          "img": "lifting_01.png",
-          "regDate": "2026-02-27T06:06:47.486Z",
-          "timespan": "2",
-          "shop": "New",
-          "date": "2026-03-20",
-          "time": "11:00",
-          "state": "예약완료"
-        }
-      ],
-      "totalAmount": 220000
-    },
-    {
-      "id": "6b24",
-      "reserveDate": "2026-02-27T07:55:24.996Z",
-      "reserveUserDate": "2026. 2. 27. 오후 4:55:24",
+      "id": "07a3",
+      "reserveDate": "2026-03-03T07:22:32.183Z",
+      "reserveUserDate": "2026. 3. 3. 오후 4:22:32",
       "customer": {
         "userEmail": "new@test",
         "userName": "new tester",
@@ -2592,14 +2550,17 @@
       },
       "items": [
         {
-          "id": "dda2",
-          "category": "faceline",
-          "name": "인모드",
-          "price": 100000,
-          "img": "faceline_01.png",
+          "id": "6fb2",
+          "name": "dd",
+          "category": "lifting",
+          "price": "220000",
+          "img": "lifting_01.png",
+          "regDate": "2026-02-27T06:06:47.486Z",
+          "timespan": "2",
           "shop": "강남",
-          "date": "2026-03-03",
-          "time": "14:00",
+          "date": "2026-03-05",
+          "time": "13:00",
+          "itemId": "1873",
           "state": "예약대기"
         }
       ],

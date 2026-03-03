@@ -8,7 +8,7 @@ const InfoIntroduction = () => {
         <div className="intro-box">
         <h1>인사말</h1>
         <ul>
-          <img src="../../../public/images/info/소개글 예시 사진.png" alt="introduction" />
+          <img src="../../../public/images/info/info_con_01.png" alt="introduction" />
           <li>
           안녕하십니까?<br/>
           L&K 클리닉입니다.<br/>
@@ -34,7 +34,7 @@ const InfoIntroduction = () => {
         <h2>L&K 피부과만의 장점</h2>
         <ul>
           <li>
-          <img src="../../../public/images/info/울쎄라.png" alt="lifting" />
+          <img src="../../../public/images/info/info_con_02.png" alt="lifting" />
           </li>
           <li>
             첫 번째<br/>
@@ -52,10 +52,10 @@ const InfoIntroduction = () => {
             또한, 수많은 임상경험을 통해 노하우를 축적한 전문의가 직접 시술하고 있습니다.<br/>
           </li>
           <li>
-          <img src="../../../public/images/info/인모드.png" alt="faceline" />
+          <img src="../../../public/images/info/info_con_03.png" alt="faceline" />
           </li>
           <li>
-          <img src="../../../public/images/info/쥬베룩.png" alt="regen" />
+          <img src="../../../public/images/info/info_con_04.png" alt="regen" />
           </li>
           <li>
             세 번째<br/>
@@ -78,7 +78,7 @@ const InfoIntroduction = () => {
             음료와 다양한 잡지들을 구비하고 있습니다.<br/>
           </li>
           <li>
-          <img src="../../../public/images/info/글루타치온.png" alt="immune" />
+          <img src="../../../public/images/info/info_con_05.png" alt="immune" />
           </li>
         </ul>
         </div>
