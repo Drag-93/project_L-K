@@ -268,11 +268,20 @@ const PaymentList = () => {
                     const korCategory =
                       categoryMap[item.category] || item.category;
                     return (
-                      <div key={idx} className="paylist_row"
+                      <div
+                        key={idx}
+                        className="paylist_row"
                         onClick={() => {
-                          const basePath = order.type === "product" ? "product" : "reservation";
-                          navigate(`/${basePath}/detail/${item.category}/${item.itemId}`);}}
-                        style={{ cursor: 'pointer' }}>
+                          const basePath =
+                            order.type === "product"
+                              ? "product"
+                              : "reservation";
+                          navigate(
+                            `/${basePath}/detail/${item.category}/${item.itemId}`,
+                          );
+                        }}
+                        style={{ cursor: "pointer" }}
+                      >
                         <img
                           src={`/images/${item.category}/${item.img}`}
                           alt={item.name}
@@ -299,6 +308,7 @@ const PaymentList = () => {
                           ) : (
                             <p className="paylist_price">
                               <span className="paylist_time_info">
+                                예약지점 : {item.shop}점 <br />
                                 예약시간 : {item.date} / {item.time}
                               </span>
                               {Number(item.price).toLocaleString()}원

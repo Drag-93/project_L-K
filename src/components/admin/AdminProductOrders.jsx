@@ -64,12 +64,12 @@ const AdminProductOrders = () => {
   const totalPost = filtered.length;
   const totalPages = Math.max(1, Math.ceil(totalPost / pageSize));
 
-  const lastPage = Math.ceil(totalPages / pageSize);
+  const lastPage = totalPages;
   const totalSet = Math.ceil(totalPages / btnRange);
   const currentSet = Math.ceil(page / btnRange);
 
   const startPage = (currentSet - 1) * btnRange + 1;
-  const endPage = startPage + pageSize - 1;
+  const endPage = startPage + btnRange - 1;
 
   const startPost = (page - 1) * pageSize;
   const endPost = startPost + pageSize;
@@ -78,21 +78,12 @@ const AdminProductOrders = () => {
     return filtered.slice(startPost, endPost);
   }, [filtered, startPost, endPost]);
 
-  // productOrders("2025. 12. 11. 오후 2:35:36")에서 날짜만 추출
-  const parseDate = (str) => {
-    if (!str) return 0;
-    const match = str.match(/(\d{4})\.\s*(\d{1,2})\.\s*(\d{1,2})\./);
-    if (!match) return 0;
-    const [, year, month, day] = match;
-    return new Date(Number(year), Number(month) - 1, Number(day)).getTime();
-  };
-
   const sortedList = useMemo(() => {
     return [...pagedList].sort((a, b) => {
       if (sortType === "Latest")
-        return parseDate(b.productDate) - parseDate(a.productDate);
+        return new Date(b.productDate) - new Date(a.productDate);
       if (sortType === "Earliest")
-        return parseDate(a.productDate) - parseDate(b.productDate);
+        return new Date(a.productDate) - new Date(b.productDate);
       return 0;
     });
   }, [sortType, pagedList]);
@@ -111,8 +102,8 @@ const AdminProductOrders = () => {
     setSelectedId(allSelect ? [] : visibleId);
   };
   const allVisibleSelected =
-    filtered.length > 0 &&
-    filtered.every((n) => selectedId.includes(String(n.id)));
+    pagedList.length > 0 &&
+    pagedList.every((n) => selectedId.includes(String(n.id)));
 
   const adminModalFn = (id) => {
     setModalId(id);
@@ -145,7 +136,6 @@ const AdminProductOrders = () => {
     }
   };
 
-  if (!prodList) return;
   return (
     <>
       {adminAddModal && (

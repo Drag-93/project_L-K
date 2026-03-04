@@ -68,6 +68,7 @@ const AdminProductOrdersModal = ({ prodId, setAdminAddModal, onSuccess }) => {
       });
       alert("수정 되었습니다.");
       onSuccess?.();
+      closeFn();
     } catch (err) {
       alert(err);
     }

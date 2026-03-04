@@ -26,6 +26,7 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
           name: "",
           phonenum: "",
           address: "",
+          time: "",
           lat: "",
           lng: "",
           directions: "",
@@ -109,6 +110,10 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
   };
 
   const onPostFn = async () => {
+    if (!detail.name?.trim() || !detail.address?.trim()) {
+      alert("지점명, 주소 는 필수입력 사항입니다.");
+      return;
+    }
     if (!window.confirm("추가 하시겠습니까")) return;
     if (isSaving) return;
     try {
@@ -224,6 +229,16 @@ const AdminShopModal = ({ setAdminAddModal, shopId, onSuccess }) => {
                 name="phonenum"
                 id="phonenum"
                 value={detail.phonenum}
+                onChange={onChangeFn}
+              />
+            </li>
+            <li>
+              <label htmlFor="time">영업시간</label>
+              <input
+                type="text"
+                name="time"
+                id="time"
+                value={detail.time}
                 onChange={onChangeFn}
               />
             </li>

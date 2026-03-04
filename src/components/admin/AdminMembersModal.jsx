@@ -36,10 +36,78 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
     openDetail();
   }, [memberId, memberUrl]);
 
+  const [pwConfirm, setPwConfirm] = useState("");
+  const [pwState, setPwState] = useState(false);
+
   const onChangeFn = (e) => {
     const { name, value } = e.target;
-    setDetail({ ...detail, [name]: value });
+    if (name === "pwConfirm") {
+      setPwConfirm(value);
+    } else {
+      setDetail({ ...detail, [name]: value });
+
+      if (name === "userEmail") {
+        setEmailConfirm(false);
+      }
+    }
   };
+  const onChangeNumFn = (e) => {
+    const { name, value } = e.target;
+    if (name !== "phonenum" && name !== "age") return;
+    if (isNaN(value)) {
+      alert("숫자만 입력해주세요");
+      return;
+    }
+    {
+      setDetail({ ...detail, [name]: value });
+    }
+  };
+
+  //이메일 중복 여부
+  const [emailConfirm, setEmailConfirm] = useState(false);
+  const confirmEmailFn = async () => {
+    const res = await axios.get(`${memberUrl}/members`);
+    const emailCheck = res.data.filter(
+      (em) => em.userEmail === detail.userEmail,
+    );
+    if (emailCheck.length === 0) {
+      return setEmailConfirm(true);
+    }
+    console.log(emailConfirm);
+  };
+  //비밀번호 확인
+
+  const confirmPwFn = () => {
+    setPwState(detail?.userPw === pwConfirm);
+  };
+  useEffect(() => {
+    confirmEmailFn();
+    confirmPwFn();
+  }, [detail?.userEmail, detail?.userPw, pwConfirm]);
+
+  //이메일, 비밀번호 confirmText
+  const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+  const confirmText = !detail?.userEmail
+    ? ""
+    : !emailRegex.test(detail?.userEmail)
+      ? "이메일 형식이 맞지 않습니다."
+      : !emailConfirm
+        ? "중복된 이메일 입니다."
+        : "사용할 수 있는 이메일 입니다.";
+
+  const confirmColor = !emailRegex.test(detail?.userEmail)
+    ? "red"
+    : !emailConfirm
+      ? "red"
+      : "green";
+
+  const pwConfirmText = !pwConfirm
+    ? ""
+    : pwState
+      ? "비밀번호 확인"
+      : "비밀번호가 일치하지 않습니다.";
+  const pwConfirmColor = pwState ? "green" : "red";
+
   const onPostFn = async () => {
     if (
       !detail.userName?.trim() ||
@@ -47,6 +115,16 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
       !detail.userPw?.trim()
     ) {
       alert("이름, 이메일, 비밀번호 는 필수입력 사항입니다.");
+      return;
+    }
+    //이메일 조건 일치 여부
+    if (!emailConfirm || !emailRegex.test(detail?.userEmail)) {
+      alert("이메일을 확인해 주세요");
+      return;
+    }
+    //비밀번호 확인 일치 여부
+    if (!pwState) {
+      alert("비밀번호가 일치하지 않습니다");
       return;
     }
     setIsSaving(true);
@@ -107,6 +185,7 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
   const closeFn = (e) => {
     setAdminAddModal(false);
   };
+
   if (!detail) {
     return (
       <div className="adminModal" onClick={closeFn}>
@@ -152,6 +231,16 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
               onChange={onChangeFn}
             />
           </li>
+          {postMember ? (
+            <li>
+              <span style={{ color: `${confirmColor}`, fontSize: "13px" }}>
+                {confirmText}
+              </span>
+            </li>
+          ) : (
+            <></>
+          )}
+
           <li>
             <label htmlFor="userPw">비밀번호</label>
             <input
@@ -160,9 +249,27 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
               id="userPw"
               value={detail.userPw}
               onChange={onChangeFn}
-              readOnly
+              readOnly={!postMember}
             />
           </li>
+          {postMember ? (
+            <>
+              <li>
+                <label htmlFor="pwConfirm">비밀번호 확인</label>
+                <input
+                  type="password"
+                  name="pwConfirm"
+                  value={pwConfirm}
+                  onChange={onChangeFn}
+                />
+              </li>
+              <span style={{ color: `${pwConfirmColor}`, fontSize: "13px" }}>
+                {pwConfirmText}
+              </span>
+            </>
+          ) : (
+            <></>
+          )}
           <li>
             <label htmlFor="name">이름</label>
             <input
@@ -180,7 +287,7 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
               name="phonenum"
               id="phonenum"
               value={detail.phonenum}
-              onChange={onChangeFn}
+              onChange={onChangeNumFn}
             />
           </li>
           <li>
@@ -190,7 +297,7 @@ const AdminMembersModal = ({ setAdminAddModal, memberId, onSuccess }) => {
               name="age"
               id="age"
               value={detail.age}
-              onChange={onChangeFn}
+              onChange={onChangeNumFn}
             />
           </li>
           <li>

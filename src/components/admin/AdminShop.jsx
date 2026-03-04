@@ -39,7 +39,7 @@ const AdminShop = () => {
   const btnRange = 10;
   const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
 
-  const lastPage = Math.ceil(totalPost / pageSize);
+  const lastPage = totalPages;
   const totalSet = Math.ceil(totalPages / btnRange);
   const currentSet = Math.ceil(page / btnRange);
 

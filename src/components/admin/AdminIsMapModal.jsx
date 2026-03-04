@@ -8,9 +8,9 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
  * - 지도 클릭 -> 좌표/마커 이동 + 역지오코딩(coord2Address)로 주소 채움
  * - 선택 완료 -> onPick({ address, lat, lng }) 호출
  *
- * ⚠️ Geocoder 쓰려면 libraries=services 필요!
+ *  Geocoder 쓰려면 libraries=services 필요!
  */
-const KAKAO_APP_KEY = "616c83d358b56fc7a54d64894331e300"; // ✅ 필요하면 env로 분리
+const KAKAO_APP_KEY = "616c83d358b56fc7a54d64894331e300"; //  필요하면 env로 분리
 
 const loadKakaoSdk = () => {
   return new Promise((resolve, reject) => {
@@ -31,7 +31,7 @@ const loadKakaoSdk = () => {
     const script = document.createElement("script");
     script.id = "kakao-map-sdk";
     script.async = true;
-    // ✅ services 라이브러리 포함(지오코더)
+    //  services 라이브러리 포함(지오코더)
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_APP_KEY}&autoload=false&libraries=services`;
 
     script.onload = () => resolve(window.kakao);

@@ -121,7 +121,7 @@
 .admin .admin-title ul > li .admin-button button {
   width: 9rem;
   height: 4rem;
-  padding: 0.1rem 2rem;
+  padding: 0.1rem 1rem;
   border-radius: 6px;
   font-weight: 400;
   cursor: pointer;
@@ -209,7 +209,10 @@
 
 .admin .admin-con tbody tr:hover {
   background: #f9fafb;
-  /* cursor: pointer; */
+  cursor: pointer;
+}
+.admin .admin-con table td:first-child {
+  cursor: auto;
 }
 
 /*footer*/
@@ -227,12 +230,19 @@
   justify-content: center;
 }
 
+.admin .admin-footer .admin-paging button.active {
+  background-color: #cccccc65;
+}
+.admin .admin-footer .admin-paging button:hover {
+  background-color: #cccccc;
+}
 .admin .admin-footer .admin-paging button {
   display: flex;
   width: 3.2rem;
   height: 3.2rem;
   align-items: center;
   justify-content: center;
+  border-radius: 8px;
   /* font-size: 0; */
   cursor: pointer;
 }
