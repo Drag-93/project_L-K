@@ -27,7 +27,7 @@ const categoryMap = {
   immune: "면역증강",
 };
 
-const ReservationDetail = () => {
+const ReservDetail = () => {
   const isState = useSelector((state) => state.input.isState);
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -261,7 +261,7 @@ const ReservationDetail = () => {
                 </li>
                 <li>
                   1회{" "}
-                  <p className="main-txt">{reserve.price.toLocaleString()}원</p>
+                  <p className="main-txt">{Number(reserve.price).toLocaleString()}원</p>
                   <p className="price-vat">VAT 포함</p>
                 </li>
                 <li>{reserve.description}</li>
@@ -384,4 +384,4 @@ const ReservationDetail = () => {
   );
 };
 
-export default ReservationDetail;
+export default ReservDetail;

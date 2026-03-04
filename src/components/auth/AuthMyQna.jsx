@@ -157,12 +157,12 @@ const AuthMyQna = () => {
             <ul>
               <li>
                 <NavLink to={`/auth/mypage/${state.input.user?.id}`}>
-                  내정보
+                  내 정보
                 </NavLink>
               </li>
               <li>
                 <NavLink to={`/auth/mypayment/${state.input.user?.id}`}>
-                  결재내역
+                  결제내역
                 </NavLink>
               </li>
               <li>

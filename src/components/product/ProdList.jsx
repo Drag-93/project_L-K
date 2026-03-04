@@ -26,7 +26,7 @@ const ProdList = () => {
   // 정렬 옵션 데이터 배열화
   const sortOptions = [
     { value: "dateN", label: "최신순" },
-    { value: "dateP", label: "오래된순" },
+    { value: "dateP", label: "과거순" },
     { value: "priceN", label: "높은가격순" },
     { value: "priceP", label: "낮은가격순" },
   ];
@@ -56,8 +56,8 @@ const ProdList = () => {
       const viewB = Number(b.price || 0);
 
       switch (sortType) {
-        case "dateN": return timeB - timeA; // 최신순 (날짜 큰 순)
-        case "dateP": return timeA - timeB; // 오래된순
+        case "dateN": return timeB - timeA; // 최신순
+        case "dateP": return timeA - timeB; // 과거순
         case "priceN": return viewB - viewA; // 조회수 높은순
         case "priceP": return viewA - viewB; // 조회수 낮은순
         default: return 0;
@@ -106,6 +106,7 @@ const ProdList = () => {
     }
     listFn();
   },[category,url])
+
 
   return (
     <div className='inner'>
@@ -177,7 +178,7 @@ const ProdList = () => {
                       </div>
                       <div className="bottom">
                         <span className="name">{el.name}</span>
-                        <span className="price">{el.price.toLocaleString()}<small>원</small></span>
+                        <span className="price">{Number(el.price).toLocaleString()}<small>원</small></span>
                       </div>
                     </Link>
                   </li>

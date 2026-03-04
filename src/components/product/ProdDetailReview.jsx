@@ -295,7 +295,10 @@ const ProdDetailReview = () => {
                       }}
                       style={{ cursor: "pointer" }}
                     >
-                      <p>작성자: {el.userName}</p>
+                      <p>작성자: {el.userName[0]                      //작성자이름 가운데 마스킹 처리
+                               + '*'.repeat(el.userName.length - 2)
+                               + el.userName[el.userName.length - 1]}
+                      </p>
                       <div className="star-rating">
                         {[1, 2, 3, 4, 5].map((num) => (
                           <label key={num} className="star-label">
@@ -324,7 +327,7 @@ const ProdDetailReview = () => {
                         {el.description}
                       </p>
                       {el.description &&
-                        el.description.length > 20 && ( //<==화면에 보여지는 넓이에 따라 값 조정
+                        el.description.length > 80 && ( //<==화면에 보여지는 넓이에 따라 값 조정
                           <small style={{ color: "gray" }}>
                             {el.isOpen ? "[접기]" : "...더보기"}
                           </small>

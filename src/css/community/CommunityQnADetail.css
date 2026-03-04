@@ -31,7 +31,7 @@
   padding: 14px 20px;
   border-bottom: 1px solid #eee;
   color: #333;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
 }
 
 .QnADetail-con ul.faq-content li label[for="title"],
@@ -42,7 +42,7 @@
   display: inline-block;
   min-width: 60px;
   color: #4d9c25;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: 600;
 }
 
@@ -59,7 +59,7 @@
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   resize: none;  
-  font-size: 1.5rem;
+  font-size: 1.7rem;
 }
 
 .QnADetail-con ul.faq-content li textarea:focus {
@@ -136,7 +136,7 @@
 .QnAAnswer-con ul {
   padding: 14px 20px;
   color: #333;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
 }
 
 .QnAAnswer-con ul li button {
@@ -167,7 +167,7 @@
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   resize: none;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
 }
 
 /* 반응형 */

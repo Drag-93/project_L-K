@@ -158,7 +158,7 @@ const ProdDetail = () => {
               <ul>
                 <li>{detail.name}</li>
                 <li>
-                  {detail.price.toLocaleString()}원{" "}
+                  {Number(detail.price).toLocaleString()}원{" "}
                   <p className="price-vat">VAT 포함</p>
                 </li>
                 <li>{detail.description}</li>

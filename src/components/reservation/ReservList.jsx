@@ -3,7 +3,7 @@ import { Link, NavLink, useParams } from "react-router-dom";
 import { API_JSON_SERVER_URL } from '../../api/commonApi'
 import axios from 'axios'
 
-const ReservationList = () => {
+const ReservList = () => {
   
   const url=API_JSON_SERVER_URL;
   const [list, setList]=useState([]);
@@ -26,9 +26,9 @@ const ReservationList = () => {
   // 정렬 옵션 데이터 배열화
   const sortOptions = [
     { value: "dateN", label: "최신순" },
-    { value: "dateP", label: "오래된순" },
-    { value: "priceN", label: "높은가격" },
-    { value: "priceP", label: "낮은가격" },
+    { value: "dateP", label: "과거순" },
+    { value: "priceN", label: "높은가격순" },
+    { value: "priceP", label: "낮은가격순" },
   ];
 
   const currentSortLabel = sortOptions.find(opt => opt.value === sortType)?.label;
@@ -55,8 +55,8 @@ const ReservationList = () => {
       const viewB = Number(b.price || 0);
 
       switch (sortType) {
-        case "dateN": return timeB - timeA; // 최신순 (날짜 큰 순)
-        case "dateP": return timeA - timeB; // 오래된순
+        case "dateN": return timeB - timeA; // 최신순
+        case "dateP": return timeA - timeB; // 과거순
         case "priceN": return viewB - viewA; // 조회수 높은순
         case "priceP": return viewA - viewB; // 조회수 낮은순
         default: return 0;
@@ -104,6 +104,7 @@ const ReservationList = () => {
     }
     listFn();
   },[category,url])
+
   
   return (
     <>
@@ -178,7 +179,7 @@ const ReservationList = () => {
                       </div>
                       <div className="bottom">
                         <span className="name">{el.name}</span>
-                        <span className="price">{el.price.toLocaleString()}<small>원</small></span>
+                        <span className="price">{Number(el.price).toLocaleString()}<small>원</small></span>
                       </div>
                     </Link>
                   </li>
@@ -240,5 +241,5 @@ const ReservationList = () => {
   )
 };
 
-export default ReservationList;
+export default ReservList;
     

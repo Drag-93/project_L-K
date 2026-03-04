@@ -196,7 +196,10 @@ const CommunityQnA = () => {
                     <td onClick={(e) => e.stopPropagation()}>{el.no}</td>
                     <td>{el.title}</td>
                     <td>{getKoreaDate(el.date)}</td>
-                    <td>{el.writer}</td>
+                    <td>{el.writer[0]                     //작성자이름 가운데 마스킹 처리
+                         + '*'.repeat(el.writer.length -2)
+                         + el.writer[el.writer.length -1]}
+                    </td>
                     <td
                       className={`qnaStateBadge ${el.state === "답변완료" ? "done" : "wait"}`}
                     >
