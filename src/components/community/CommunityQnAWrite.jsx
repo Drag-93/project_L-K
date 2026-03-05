@@ -95,7 +95,7 @@ const CommunityQnAWrite = () => {
             </li>
             <li>
               <label htmlFor="date">작성일</label>
-              <span>{getKoreaDate()}</span>
+              <span>{getKoreaDate(write.date)}</span>
             </li>
             <li>
               <label htmlFor="question">질문내용</label>
