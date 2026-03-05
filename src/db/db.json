@@ -73,7 +73,6 @@
       "date": "Wed feb 04 2026 20:38:19 GMT+0900 (한국 표준시)",
       "viewrate": 0
     }
-
   ],
   "members": [
     {
@@ -95,7 +94,7 @@
       "userPw": "1234",
       "phonenum": "01024126095",
       "age": "25",
-      "address": "서울쌍문동",
+      "address": "서울쌍문동00동1111",
       "gender": "남",
       "role": "ROLE_MEMBER",
       "remark": ""
@@ -2217,7 +2216,52 @@
       "directions": "지하철 : 1호선 / 종로3가역 15번 출구\n간선 : 101, 103, 140, 143, 150, 160, 201, 260, 262, 270, 271, 273, 370, 720, 721\n지선 : 7212\n순환 : 04\n직행 : 9301"
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "id": "eb22",
+      "name": "Placenta Regenerative Injection(태반 재생 주사)",
+      "category": "immune",
+      "price": "100000",
+      "img": "immune08.png",
+      "description": "태반 성분이 조직 재생과 세포 회복을 돕고 면역 기능을 보조하여 피부와 전신 건강 개선에 도움을 줍니다.",
+      "descImg": "reservDetail_desc.png",
+      "setshop": [
+        "강남",
+        "노원",
+        "신촌",
+        "종로"
+      ],
+      "settime": [
+        "10:00",
+        "11:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "regDate": "2026-03-03T05:09:24.391Z",
+      "timespan": "1",
+      "shop": "신촌",
+      "date": "2026-03-27",
+      "time": "14:00",
+      "itemId": "2403"
+    },
+    {
+      "id": "8baa",
+      "name": "Clinic Size Sunscreen SPF50+(클리닉용 대용량 선스크린 SPF50+)",
+      "category": "uv",
+      "price": "35000",
+      "img": "uv19.png",
+      "description": "병원·클리닉용 대용량으로 전문적인 자외선 차단과 피부 보호를 제공하며 경제적으로 활용할 수 있습니다.",
+      "descImg": "prodDetail_desc.png",
+      "regDate": "2026-03-03T03:34:47.916Z",
+      "count": 1,
+      "totalPrice": 35000,
+      "itemId": "8baa"
+    }
+  ],
   "faq": [
     {
       "id": "1",
@@ -3229,6 +3273,34 @@
         }
       ],
       "totalAmount": 350000
+    },
+    {
+      "id": "9c31",
+      "reserveDate": "2026-03-05T00:50:36.312Z",
+      "reserveUserDate": "2026. 3. 5. 오전 9:50:36",
+      "customer": {
+        "userEmail": "gusdn000615@naver.com",
+        "userName": "김현우",
+        "phonenum": "01024126095",
+        "request": "안전한 시술 부탁드립니다."
+      },
+      "items": [
+        {
+          "id": "7076",
+          "name": "RF Volume V-Line Lifting(RF 볼륨 브이라인 리프팅)",
+          "category": "lifting",
+          "price": "300000",
+          "img": "lifting08.png",
+          "regDate": "2026-03-03T04:06:13.888Z",
+          "timespan": "2",
+          "shop": "종로",
+          "date": "2026-03-20",
+          "time": "15:00",
+          "itemId": "2518",
+          "state": "예약대기"
+        }
+      ],
+      "totalAmount": 300000
     }
   ]
 }

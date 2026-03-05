@@ -72,7 +72,7 @@ const AuthMyReview = () => {
 
   useEffect(() => {
     if (isState === true) {
-      navigate(`/`);
+      navigate(`/auth/login`);
     }
   }, [state]);
 

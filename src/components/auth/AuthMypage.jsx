@@ -35,7 +35,7 @@ const AuthMemberList = () => {
 
   useEffect(() => {
     if (isState === true) {
-      navigate(`/`);
+      navigate(`/auth/login`);
     }
   }, [state]);
 
@@ -62,8 +62,10 @@ const AuthMemberList = () => {
   const myUpdateFn = async (e) => {
     try {
       const res = await axios.put(`${url}/members/${myData.id}`, myData);
-      alert(`회원수정 성공!`);
+      alert(`회원수정 성공하였습니다. 다시 로그인해주세요.`);
       setMyData(res.data);
+      dispatch(logoutF());
+      navigate(`/auth/login`);
     } catch (err) {
       alert(`오류발생!!`);
     }
@@ -77,7 +79,7 @@ const AuthMemberList = () => {
       setMyData(res.data);
 
       dispatch(logoutF());
-      navigate(`/`);
+      navigate(`/auth/login`);
     } catch (err) {
       alert(`오류발생!!`);
     }
