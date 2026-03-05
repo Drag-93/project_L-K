@@ -1,3 +1,13 @@
+### 사용기술
+- html
+- css
+- javascript
+- react
+- JSON
+- Node js
+- Figma
+- Adobe Photoshop
+
 ### 진행 상황
 - [o] header
 - [o] footer
