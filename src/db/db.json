@@ -73,7 +73,6 @@
       "date": "Wed feb 04 2026 20:38:19 GMT+0900 (한국 표준시)",
       "viewrate": 0
     }
-
   ],
   "members": [
     {
@@ -2353,7 +2352,7 @@
       "date": "Wed Mar 04 2026 14:32:46 GMT+0900 (한국 표준시)",
       "writer": "이용근",
       "writerEmail": "faithyg@naver.com",
-      "viewrate": 0,
+      "viewrate": 1,
       "admin": "",
       "answer": "",
       "state": "답변대기"
@@ -2366,10 +2365,23 @@
       "date": "Wed Mar 04 2026 14:32:58 GMT+0900 (한국 표준시)",
       "writer": "이용근",
       "writerEmail": "faithyg@naver.com",
-      "viewrate": 0,
+      "viewrate": 2,
       "admin": "",
       "answer": "",
       "state": "답변대기"
+    },
+    {
+      "id": "1db6",
+      "title": "문의 테스트",
+      "question": "문의 테스트문의 테스트문의 테스트문의 테스트문의 테스트문의 테스트문의 테스트문의 테스트문의 테스트문의 테스트문의 테스트문의 테스트문의 테스트문의 테스트문의 테스트",
+      "no": 3,
+      "date": "Thu Mar 05 2026 10:26:09 GMT+0900 (한국 표준시)",
+      "writer": "유저관리자계정",
+      "writerEmail": "admin@naver.com",
+      "viewrate": 5,
+      "admin": "유저관리자계정",
+      "answer": "답변내용 테스트",
+      "state": "답변완료"
     }
   ],
   "productOrders": [
