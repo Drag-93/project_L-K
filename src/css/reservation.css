@@ -337,6 +337,384 @@
 }
 
 /*****************************************************************************
+    @ReservDetailReview
+****************************************************************************/
+/* 전체 컨테이너 */
+.detail-review {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+  color: #333;
+}
+
+/* 상단 리뷰 요약 영역 */
+.detail-review-con .current-status {
+  display: flex;
+  padding: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-review-con .current-status .totalscore {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-review-con .current-status .totalscore p.avrscore {
+  font-size: 34px;
+  font-weight: 700;
+  color: #0b1406;
+  list-style: none;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.detail-review-con .current-status .totalscore p.avrscore img{
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+
+.detail-review-con .current-status .totalscore p.totalno {
+  font-size: 18px;
+  font-weight: 500;
+  color: #0b1406;
+  list-style: none;
+}
+
+/* 리뷰 리스트 헤더 */
+/* .detail-review-con .reviews {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.detail-review.detail-review-con .reviews h1 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #1c3310;
+} */
+
+/* 후기 작성 버튼 */
+.detail-review-con .reviews > button {
+  background-color: #15290bd5;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  margin-bottom: 20px;
+  margin-left: auto;              /*오른쪽 정렬*/    
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
+}
+
+.detail-review-con .reviews > button:hover {
+  background-color: #3d7422;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+.detail-review-con .reviews > button:active {
+  transform: translateY(0);
+}
+
+/*--- 내가 작성한 후기 ---*/
+.detail-review-con .reviews ul li .myreview h1{
+  font-size: 16px;
+  font-weight: 600;
+  padding-bottom: 15px;
+}
+
+.detail-review-con .reviews ul li .myreview label[for="score"],
+.detail-review-con .reviews ul li .myreview label[for="textarea"] {
+  display: block;
+  align-items: center;
+}
+
+.detail-review-con .reviews ul li .myreview .review-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin-top: 10px;
+  resize: none;
+  font-size: 15px;
+}
+
+.detail-review-con .reviews ul li .myreview li p {
+  text-align: right;
+  font-size: 12px;
+  padding: 0;
+  color: #a0aec0;
+} 
+
+.detail-review-con .reviews ul li .myreview .score-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/*- 별점 표시(후기 리스트에도 적용) -*/
+.detail-review-con .reviews ul li .star-rating {
+  display: flex;
+  gap: 3px;
+}
+
+.detail-review-con .reviews ul li .star-label input{
+  display: none;
+}
+
+.detail-review-con .reviews ul li .star-label .star-img {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.15s ease;  
+  cursor: pointer;
+}
+
+.detail-review-con .reviews ul li .editBtn {
+  display: flex;
+  justify-content: end;
+  gap: 5px;
+}
+
+.detail-review-con .reviews ul li .editBtn button {
+  display: block;
+  background: #1e7ce0;
+  color: white;
+  padding: 7px 14px;
+  border-radius: 12px;
+  font-size: 13px;  
+  cursor: pointer;
+}
+
+/* 추천수(내가 작성한 후기에만 적용) */
+.detail-review-con .reviews ul li .myreview p:nth-child(4) {
+  text-align: right;
+  font-size: 14px;
+  color: #888;
+  padding: 5px;
+}
+
+/*--- 후기 리스트 ---*/
+.detail-review-con .reviews ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: none;
+}
+
+.detail-review-con .reviews ul li {
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.04);
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+/* 후기 내용 */
+.detail-review-con .reviews ul li p {
+  line-height: 1.6;
+  color: #14250b;
+}
+
+.detail-review-con .reviews ul li p:first-child {
+  font-weight: 600;
+  color: #007bff;
+  font-size: 16px;
+  padding-bottom: 5px;
+}
+
+/* 점수(별점) & 작성일자 */
+.detail-review-con .reviews ul li .star-rating {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  /* padding: 5px 0 15px 0; */
+}
+
+.detail-review-con .reviews ul li .star-rating p {
+  display: block;
+  padding-left: 5px;
+  font-size: 14px;
+  color: #888;
+}
+
+/* 후기 내용 */
+.detail-review-con .reviews ul li p:nth-child(3) {
+  color: #555;
+  line-height: 1.5;
+  font-size: 15px;
+  padding-top: 15px;
+}
+
+/* 후기 좋아요 버튼 */
+.detail-review-con .reviews ul li .likeBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;         /*오른쪽 정렬*/   
+  font-size: 12px;
+}
+.detail-review-con .reviews ul li .likeBtn img{
+  display: block;
+  height: 20px;
+}
+
+/* 등록된 후기가 없을 때 */
+.detail-review-con .reviews ul > p {
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+  font-size: 16px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  border: 2px dashed #ddd;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .detail-review-con .reviews {
+    padding: 30px 16px;
+  }
+
+  .detail-review-con .reviews h1 {
+    font-size: 24px;
+  }
+
+  .detail-review-con .reviews ul li {
+    padding: 20px;
+  }
+}
+
+/*****************************************************************************
+    @ReservDetailReviewModal
+****************************************************************************/
+/* 모달 전체 배경 (어둡게 처리) */
+.review-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* 모달 박스 */
+.review-modal .review-modal-con {
+  background: #fff;
+  width: 100%;
+  max-width: 800px;
+  min-height: 500px;
+  padding: 30px;
+  border-radius: 16px;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.review-modal .review-modal-con h1 {
+  box-sizing: border-box;
+  padding-bottom: 20px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.review-modal .review-modal-con span.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #a0aec0;
+}
+
+/* 작성자 정보 */
+.review-modal .review-modal-con .reviewer p{
+  font-weight: 600;
+  font-size: 16px;
+  color: #4a5568;
+  padding-bottom: 15px;
+}
+
+/* 입력 리스트 스타일 */
+.review-modal .review-modal-con ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.review-modal-con label[for="score"],
+.review-modal-con label[for="textarea"] {
+  display: block;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* 평점 라디오 버튼 */
+.review-modal-con ul li.score-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 상세후기 텍스트 영역 */
+.review-modal-con ul li textarea {
+  width: 100%;
+  height: 300px;
+  padding: 12px;
+  margin-top: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  resize: none;
+  font-family: inherit;
+}
+
+.review-modal-con ul li textarea:focus {
+  outline: none;
+  border-color: #2d3748;
+}
+
+/* 글자수 표시 */
+.review-modal-con ul li p {
+  text-align: right;
+  font-size: 12px;
+  color: #a0aec0;
+}
+
+/* 후기등록 버튼 */
+.review-modal-con button{
+  display: block;
+  margin-left: auto;
+  background: #1e7ce0;
+  color: white;
+  padding: 7px 14px;
+  border-radius: 12px;
+  font-size: 13px;  
+  cursor: pointer;
+}
+
+
+/*****************************************************************************
     @ReservDetailDesc
 ****************************************************************************/
 .reserv-detail-desc-con{
@@ -351,7 +729,7 @@
 
 
 /* -------------------------------------------------------------------------
-   @ReservDetail - 반응형
+   @반응형 레이아웃
 ------------------------------------------------------------------------- */
 
 /* ------------------------------------------------

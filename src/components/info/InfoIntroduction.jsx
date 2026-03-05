@@ -31,7 +31,7 @@ const InfoIntroduction = () => {
         </ul>
         </div>
         <div className="advantage">
-        <h2>L&K 피부과만의 장점</h2>
+        <h2>L&K 클리닉만의 장점</h2>
         <ul>
           <li>
           <img src="../../../public/images/info/info_con_02.png" alt="lifting" />

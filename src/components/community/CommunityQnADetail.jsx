@@ -203,7 +203,9 @@ const CommunityQnADetail = () => {
               type="text"
               name="writer"
               id="writer"
-              value={detail.writer}
+              value={detail.writer[0]                      //작성자이름 가운데 마스킹 처리
+                     + '*'.repeat(detail.writer.length -2)
+                     + detail.writer[detail.writer.length -1]}
               readOnly
             />
           </li>
@@ -213,7 +215,11 @@ const CommunityQnADetail = () => {
               type="date"
               name="date"
               id="date"
-              value={detail.date}
+              value={
+                detail.date
+                  ? new Date(detail.date).toLocaleDateString("sv-SE")
+                  : ""
+              }
               readOnly
             />
           </li>

@@ -245,7 +245,6 @@
 /* 하단 상세정보&후기 */
 .detail-bottom ul {
   display: flex;
-  letter-spacing: 0.1rem;
   list-style: none;
   padding: 0;
   margin-top: 30px;
@@ -325,7 +324,7 @@
 }
 
 /* 리뷰 리스트 헤더 */
-.detail-review-con .reviews {
+/* .detail-review-con .reviews {
   max-width: 1000px;
   margin: 0 auto;
   padding: 40px 20px;
@@ -336,7 +335,7 @@
   font-weight: 500;
   margin-bottom: 10px;
   color: #1c3310;
-}
+} */
 
 /* 후기 작성 버튼 */
 .detail-review-con .reviews > button {
@@ -367,17 +366,16 @@
 }
 
 /*--- 내가 작성한 후기 ---*/
-.detail-review-con .reviews ul li .myreview h1{
+.detail-review-con .reviews ul li .myreview h1 {
   font-size: 16px;
   font-weight: 600;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
 }
 
 .detail-review-con .reviews ul li .myreview label[for="score"],
 .detail-review-con .reviews ul li .myreview label[for="textarea"] {
   display: block;
   align-items: center;
-  padding-bottom: 10px;
 }
 
 .detail-review-con .reviews ul li .myreview .review-textarea {
@@ -387,7 +385,17 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   box-sizing: border-box;
+  margin-top: 10px;
+  resize: none;
+  font-size: 15px;
 }
+
+.detail-review-con .reviews ul li .myreview li p {
+  text-align: right;
+  font-size: 12px;
+  padding: 0;  
+  color: #a0aec0;
+} 
 
 .detail-review-con .reviews ul li .myreview .score-selector {
   display: flex;
@@ -401,7 +409,7 @@
   gap: 3px;
 }
 
-.detail-review-con .reviews ul li .star-label input{
+.detail-review-con .reviews ul li .star-label input {
   display: none;
 }
 
@@ -418,7 +426,7 @@
   gap: 5px;
 }
 
-.detail-review-con .reviews ul li .editBtn button{
+.detail-review-con .reviews ul li .editBtn button {
   display: block;
   background: #1e7ce0;
   color: white;
@@ -598,7 +606,7 @@
 .review-modal-con label[for="textarea"] {
   display: block;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 /* 평점 라디오 버튼 */

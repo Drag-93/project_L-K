@@ -62,10 +62,10 @@ const CommunityNoticeUpdate = () => {
            <label htmlFor="notice-date">작성일</label>
             <input 
               type="date" 
-              name='date' 
+              name="date" 
               value={
                 noticeUpdate.date
-                  ? new Date(noticeUpdate.date).toISOString().substring(0, 10)
+                  ? new Date(noticeUpdate.date).toLocaleDateString("sv-SE")
                   : ""
               }
               readOnly

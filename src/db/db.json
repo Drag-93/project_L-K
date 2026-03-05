@@ -8,6 +8,14 @@
       "no": 1,
       "date": "Wed Mar 04 2026 14:26:26 GMT+0900 (한국 표준시)",
       "viewrate": 1
+    },
+    {
+      "id": "1c5e",
+      "title": "오늘의 공지사항을 알려드립니다.",
+      "description": "공지사항을 테스트 합니다.",
+      "no": 1,
+      "date": "Tue Mar 03 2026 17:35:00 GMT+0900 (한국 표준시)",
+      "viewrate": 14
     }
   ],
   "members": [
@@ -1086,7 +1094,38 @@
       "regDate": "2026-03-03T03:35:12.492Z"
     }
   ],
-  "productReview": [],
+  "productReview": [
+    {
+      "id": "7e15",
+      "category": "hydro",
+      "productId": "836d",
+      "productName": "Barrier Repair Cream Plus(배리어 리페어 크림 플러스)",
+      "userEmail": "snooze30@naver.com",
+      "userName": "이선영",
+      "date": "2026-03-04T02:57:39.476Z",
+      "score": 5,
+      "like": 1,
+      "likedUsers": [
+        "admin@naver.com"
+      ],
+      "description": "리페어 크림 사용해보니 드라마틱한 효과는 아직이지만 조금씩 효과가 있는것 같습니다. 꾸준히 써봐야겠네요. 추천합니다!"
+    },
+    {
+      "id": "1fac",
+      "category": "uv",
+      "productId": "271b",
+      "productName": "Professional UV Set(프로페셔널 UV 세트)",
+      "userEmail": "snooze30@naver.com",
+      "userName": "이선영",
+      "date": "2026-03-04T06:15:57.786Z",
+      "score": 5,
+      "like": 2,
+      "likedUsers": [
+        "snooze30@naver.com"
+      ],
+      "description": "사용자 후기입니다. 사용하기 시작한지..."
+    }
+  ],
   "reservation": [
     {
       "id": "9eb2",
@@ -2051,7 +2090,34 @@
       "timespan": "2"
     }
   ],
-  "reservReview": [],
+  "reservReview": [
+    {
+      "id": "2991",
+      "category": "lifting",
+      "reservId": "ef8b",
+      "reservName": "3D Structure Tightening Program(3D 구조 타이트닝 프로그램)",
+      "userEmail": "snooze30@naver.com",
+      "userName": "이선영",
+      "date": "2026-03-04T02:43:44.527Z",
+      "score": 5,
+      "like": 0,
+      "likedUsers": [],
+      "description": "처음 방문해봤는데 직원분들 너무 친절하시고, 긴 시간인데 힘들지 않게 잘 진료해 주셔서 아주 만족스러웠습니다."
+    },
+    {
+      "id": "cb11",
+      "category": "immune",
+      "reservId": "00ff",
+      "reservName": "Custom Immunity Enhancement Program(커스텀 면역증강 프로그램)",
+      "userEmail": "snooze30@naver.com",
+      "userName": "이선영",
+      "date": "2026-03-04T03:34:12.182Z",
+      "score": 5,
+      "like": 0,
+      "likedUsers": [],
+      "description": "면역력을 키우고 싶어서 받아 보았습니다. 제 체질에 딱 맞춘 프로그램 구성이 알차고, 비용이 아깝지 않을 정도로 힐링되는 시간이었습니다."
+    }
+  ],
   "shop": [
     {
       "id": "0",
@@ -2095,7 +2161,26 @@
     }
   ],
   "cart": [],
-  "faq": [],
+  "faq": [
+    {
+      "id": "24b7",
+      "no": 1,
+      "date": "2026-03-04",
+      "titlecategory": "",
+      "category": "",
+      "title": "진료예약 지점 변경할 수 있나요?",
+      "description": "진료상품은 항목별로 예약 가능한 지점이 다릅니다. 만약 예약하신 상품이 원하시는 지점에서 시술 가능하고, 희망 시간대에 예약이 가능하면 변경해드릴 수 있습니다. 개별 사항은 고객센터로 문의주시기 바랍니다."
+    },
+    {
+      "id": "ef09",
+      "no": 2,
+      "date": "2026-03-04",
+      "titlecategory": "",
+      "category": "",
+      "title": "클리닉에서 진료시 사용하시는 제품 정보 알 수 있을까요?",
+      "description": "L&K 클리닉에서는 진료시 자체 생산하는 상품라인을 주로 사용하고 있습니다.\n특정 주사/수액이나 저희가 판매중인 상품 외 진료시 사용하는 제품들에 대해 궁금하시면 개별적으로 문의해 주시기 바랍니다.\n자체 생산 상품라인은 상품판매 메뉴에서 확인하실 수 있습니다."
+    }
+  ],
   "qna": [
     {
       "id": "aa4e",
@@ -2240,17 +2325,17 @@
           "state": "배송준비중"
         }
       ],
-      "totalAmount": 150000
+      "totalAmount": 50000
     },
     {
-      "id": "c543",
-      "productDate": "2026-03-04T06:24:27.020Z",
-      "productUserDate": "2026. 3. 4. 오후 3:24:27",
+      "id": "dca4",
+      "productDate": "2026-03-04T06:15:31.530Z",
+      "productUserDate": "2026. 3. 4. 오후 3:15:31",
       "customer": {
-        "userEmail": "test@test.com",
-        "userName": "tester",
-        "phonenum": "01000000000",
-        "address": "서울시 노원구 상계동",
+        "userEmail": "snooze30@naver.com",
+        "userName": "이선영",
+        "phonenum": "01036939121",
+        "address": "서울수유동",
         "request": "안전한 배송 부탁드립니다."
       },
       "items": [
@@ -2841,6 +2926,146 @@
         }
       ],
       "totalAmount": 100000
+    },
+    {
+      "id": "ef36",
+      "reserveDate": "2026-03-03T08:40:06.655Z",
+      "reserveUserDate": "2026. 3. 3. 오후 5:40:06",
+      "customer": {
+        "userEmail": "snooze30@naver.com",
+        "userName": "이선영",
+        "phonenum": "01036939121",
+        "request": "안전한 시술 부탁드립니다."
+      },
+      "items": [
+        {
+          "id": "0e65",
+          "name": "Custom Immunity Enhancement Program(커스텀 면역증강 프로그램)",
+          "category": "immune",
+          "price": "300000",
+          "img": "",
+          "regDate": "2026-03-03T05:10:18.091Z",
+          "timespan": "2",
+          "shop": "노원",
+          "date": "2026-03-05",
+          "time": "14:00",
+          "itemId": "00ff",
+          "state": "예약대기"
+        }
+      ],
+      "totalAmount": 300000
+    },
+    {
+      "id": "2a50",
+      "reserveDate": "2026-03-04T02:39:58.031Z",
+      "reserveUserDate": "2026. 3. 4. 오전 11:39:58",
+      "customer": {
+        "userEmail": "snooze30@naver.com",
+        "userName": "이선영",
+        "phonenum": "01036939121",
+        "request": "안전한 시술 부탁드립니다."
+      },
+      "items": [
+        {
+          "id": "61d4",
+          "name": "3D Structure Tightening Program(3D 구조 타이트닝 프로그램)",
+          "category": "lifting",
+          "price": "1000000",
+          "img": "lifting09.png",
+          "regDate": "2026-03-03T04:06:41.964Z",
+          "timespan": "4",
+          "shop": "강남",
+          "date": "2026-03-05",
+          "time": "13:00",
+          "itemId": "ef8b",
+          "state": "예약완료"
+        }
+      ],
+      "totalAmount": 1000000
+    },
+    {
+      "id": "bf3b",
+      "reserveDate": "2026-03-04T03:35:53.206Z",
+      "reserveUserDate": "2026. 3. 4. 오후 12:35:53",
+      "customer": {
+        "userEmail": "snooze30@naver.com",
+        "userName": "이선영",
+        "phonenum": "01036939121",
+        "request": "안전한 시술 부탁드립니다."
+      },
+      "items": [
+        {
+          "id": "9a5d",
+          "name": "Revital Glow Regeneration Injection(리바이탈 글로우 재생주사)",
+          "category": "regen",
+          "price": "150000",
+          "img": "regen08.png",
+          "regDate": "2026-03-03T05:04:33.161Z",
+          "timespan": "1",
+          "shop": "노원",
+          "date": "2026-03-06",
+          "time": "10:00",
+          "itemId": "b95a",
+          "state": "예약대기"
+        }
+      ],
+      "totalAmount": 150000
+    },
+    {
+      "id": "5a79",
+      "reserveDate": "2026-03-04T03:36:14.838Z",
+      "reserveUserDate": "2026. 3. 4. 오후 12:36:14",
+      "customer": {
+        "userEmail": "snooze30@naver.com",
+        "userName": "이선영",
+        "phonenum": "01036939121",
+        "request": "안전한 시술 부탁드립니다."
+      },
+      "items": [
+        {
+          "id": "4650",
+          "name": "Revital Glow Regeneration Injection(리바이탈 글로우 재생주사)",
+          "category": "regen",
+          "price": "150000",
+          "img": "regen08.png",
+          "regDate": "2026-03-03T05:04:33.161Z",
+          "timespan": "1",
+          "shop": "노원",
+          "date": "2026-03-06",
+          "time": "11:00",
+          "itemId": "b95a",
+          "state": "예약대기"
+        }
+      ],
+      "totalAmount": 150000
+    },
+    {
+      "id": "41c0",
+      "reserveDate": "2026-03-04T06:30:37.272Z",
+      "reserveUserDate": "2026. 3. 4. 오후 3:30:37",
+      "customer": {
+        "userEmail": "snooze30@naver.com",
+        "userName": "이선영",
+        "phonenum": "01036939121",
+        "request": "안전한 시술 부탁드립니다."
+      },
+      "items": [
+        {
+          "id": "17b5",
+          "name": "Dual Energy Elasticity Program(듀얼 에너지 탄력 프로그램)",
+          "category": "lifting",
+          "price": "350000",
+          "img": "lifting05.png",
+          "regDate": "2026-03-03T04:04:06.173Z",
+          "timespan": "2",
+          "shop": "종로",
+          "date": "2026-03-13",
+          "time": "14:00",
+          "itemId": "273c",
+          "state": "예약대기"
+        }
+      ],
+      "totalAmount": 350000
     }
   ]
 }

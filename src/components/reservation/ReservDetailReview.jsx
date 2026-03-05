@@ -194,7 +194,7 @@ const ReservDetailReview = () => {
                   .map((el) => (
                     <li key={el.id}>
                       <div className="myreview">
-                        <strong>[내가 작성한 후기]</strong>
+                        <h1>[내가 작성한 후기]</h1>
                         {editId === el.id ? (
                           <>
                             <li className="score-selector">
@@ -228,6 +228,7 @@ const ReservDetailReview = () => {
                             <li>
                               <label htmlFor="textarea">상세후기:</label>
                               <textarea
+                                className="review-textarea"
                                 name="review-text"
                                 id="review-text"
                                 value={text}
@@ -236,12 +237,14 @@ const ReservDetailReview = () => {
                               />
                               <p>{text.length}/500자</p>
                             </li>
-                            <button onClick={() => handleUpdateFn()}>
-                              수정 완료
-                            </button>
-                            <button onClick={() => setEditId(null)}>
-                              수정 취소
-                            </button>
+                            <div className="editBtn">
+                              <button onClick={() => handleUpdateFn()}>
+                                수정 완료
+                              </button>
+                              <button onClick={() => setEditId(null)}>
+                                수정 취소
+                              </button>
+                            </div>
                           </>
                         ) : (
                           <>
@@ -291,7 +294,10 @@ const ReservDetailReview = () => {
                       }}
                       style={{ cursor: "pointer" }}
                     >
-                      <p>작성자: {el.userName}</p>
+                      <p>작성자: {el.userName[0]                      //작성자이름 가운데 마스킹 처리
+                               + '*'.repeat(el.userName.length - 2)
+                               + el.userName[el.userName.length - 1]}
+                      </p>
                       <div className="star-rating">
                         {[1, 2, 3, 4, 5].map((num) => (
                           <label key={num} className="star-label">
@@ -320,7 +326,7 @@ const ReservDetailReview = () => {
                         {el.description}
                       </p>
                       {el.description &&
-                        el.description.length > 20 && ( //<==화면에 보여지는 넓이에 따라 값 조정
+                        el.description.length > 80 && ( //<==화면에 보여지는 넓이에 따라 값 조정
                           <small style={{ color: "gray" }}>
                             {el.isOpen ? "[접기]" : "...더보기"}
                           </small>
