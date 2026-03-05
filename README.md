@@ -2,6 +2,17 @@
 - ID : admin@naver.com
 - PW : 1234
 
+# --------- 사용기술 ----------
+- html
+- css
+- javascript
+- react
+- JSON
+- Node js
+- Figma
+- Adobe Photoshop
+
+
 # --------- 홈페이지 주요기능 ----------
 - 비로그인, 유저로그인, 관리자로그인 에 따른 header 및 페이지별 버튼 구별화
 - 검색, 정렬, 필터, 페이징 기능 구현
@@ -27,16 +38,7 @@
 - 공지사항 관리 - 글 작성 및 수정, 삭제기능 구현
 - q&a 관리 - 유저의 작성글에 답변 기능, 답변시 상태변경 기능(답변대기,답변완료) 구현
 
-### 사용기술
-- html
-- css
-- javascript
-- react
-- JSON
-- Node js
-- Figma
-- Adobe Photoshop
-
+# --------- 작업진행사항 ----------
 ### 진행 상황
 - [o] header
 - [o] footer
