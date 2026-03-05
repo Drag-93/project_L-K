@@ -102,6 +102,35 @@ const AdminProduct = () => {
     });
   }, [productList, searchText, categoryFilter, sortType, productReview]);
 
+  //페이징
+  const totalPost = filtered.length;
+  const pageRange = 10;
+  const btnRange = 10;
+  const totalPages = Math.max(1, Math.ceil(totalPost / pageRange));
+
+  const lastPage = Math.ceil(totalPost / pageRange);
+  const totalSet = Math.ceil(totalPages / btnRange);
+  const currentSet = Math.ceil(page / btnRange);
+
+  const startPage = (currentSet - 1) * btnRange + 1;
+  const endPage = startPage + btnRange - 1;
+
+  const startPost = (page - 1) * pageRange;
+  const endPost = startPost + pageRange;
+
+  const pagedList = useMemo(() => {
+    return filtered.slice(startPost, endPost);
+  }, [filtered, startPost, endPost]);
+
+  useEffect(() => {
+    if (page > totalPages) {
+      setPage(totalPages);
+    }
+  }, [page, totalPages]);
+  useEffect(() => {
+    setPage(1);
+  }, [searchText, categoryFilter]);
+
   //리스트 항목 선택/해제
   const [checkedItems, setCheckedItems] = useState([]);
   const handleSingleCheck = (checked, id) => {
@@ -112,13 +141,16 @@ const AdminProduct = () => {
     }
   };
   const handleAllCheck = (checked) => {
+    const visibleIds = pagedList.map((el)=> el.id)
+
     if (checked) {
-      const idArray = productList.map((el) => el.id);
-      setCheckedItems(idArray);
+      // const idArray = productList.map((el) => el.id);
+      setCheckedItems((prev) => [...new Set ([...prev, ...visibleIds])]);
     } else {
-      setCheckedItems([]);
+      setCheckedItems((prev) => prev.filter((id) => !visibleIds.includes(id)));
     }
   };
+
   //선택상품 삭제
   const onDeleteFn = async () => {
     if (checkedItems.length === 0) return alert("삭제할 항목을 선택해 주세요");
@@ -147,34 +179,6 @@ const AdminProduct = () => {
     setSelectedId(id);
     setAdminAddModal(true);
   };
-
-  const totalPost = filtered.length;
-  const pageRange = 10;
-  const btnRange = 10;
-  const totalPages = Math.max(1, Math.ceil(totalPost / pageRange));
-
-  const lastPage = Math.ceil(totalPost / pageRange);
-  const totalSet = Math.ceil(totalPages / btnRange);
-  const currentSet = Math.ceil(page / btnRange);
-
-  const startPage = (currentSet - 1) * btnRange + 1;
-  const endPage = startPage + btnRange - 1;
-
-  const startPost = (page - 1) * pageRange;
-  const endPost = startPost + pageRange;
-
-  const pagedList = useMemo(() => {
-    return filtered.slice(startPost, endPost);
-  }, [filtered, startPost, endPost]);
-
-  useEffect(() => {
-    if (page > totalPages) {
-      setPage(totalPages);
-    }
-  }, [page, totalPages]);
-  useEffect(() => {
-    setPage(1);
-  }, [searchText, categoryFilter]);
 
   return (
     <>
@@ -247,7 +251,7 @@ const AdminProduct = () => {
                     name="checkAll"
                     id="checkAll"
                     onChange={(e) => handleAllCheck(e.target.checked)}
-                    checked={checkedItems.length === productList.length}
+                    checked={pagedList.every((el)=> checkedItems.includes(el.id))}
                   />
                 </th>
                 <th>상품이미지</th>
