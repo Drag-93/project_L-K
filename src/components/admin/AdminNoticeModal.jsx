@@ -36,8 +36,8 @@ const AdminNoticeModal = ({ setAdminAddModal, noticeId, onSuccess }) => {
     setAdminAddModal(false);
   };
 
-  const getKoreaDate = () => {
-    const today = new Date();
+  const getKoreaDate = (date) => {
+    const today = new Date(date);
     return (
       today.getFullYear() +
       "-" +
@@ -160,7 +160,7 @@ const AdminNoticeModal = ({ setAdminAddModal, noticeId, onSuccess }) => {
               type="date"
               name="date"
               id="date"
-              value={getKoreaDate(detail.title)}
+              value={getKoreaDate(detail.date)}
               onChange={onChangeFn}
               readOnly
             />

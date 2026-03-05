@@ -73,7 +73,16 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId, onSuccess }) => {
       setIsSaving(false);
     }
   };
-
+  const getKoreaDate = (date) => {
+    const today = new Date(date);
+    return (
+      today.getFullYear() +
+      "-" +
+      String(today.getMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(today.getDate()).padStart(2, "0")
+    );
+  };
   const onDeleteFn = async () => {
     if (!window.confirm("정말 삭제 하시겠습니까")) return;
     if (isSaving) return;
@@ -199,7 +208,7 @@ const AdminQnAModal = ({ setAdminAddModal, qnaId, onSuccess }) => {
               type="date"
               name="date"
               id="date"
-              value={detail.date}
+              value={getKoreaDate(detail.date)}
               readOnly
             />
           </li>
