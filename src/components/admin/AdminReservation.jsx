@@ -301,14 +301,8 @@ const AdminReservation = () => {
             <button onClick={() => setPage(1)} disabled={page === 1}>
               ◀◀
             </button>
-            <button
-              onClick={() => setPage(startPage - 1)}
-              disabled={currentSet === 1}
-            >
-              ◀
-            </button>
             <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-              이전
+            ◀
             </button>
 
             {Array.from({ length: endPage - startPage + 1 }, (_, i) => {
@@ -327,12 +321,6 @@ const AdminReservation = () => {
             <button
               onClick={() => setPage(page + 1)}
               disabled={page === totalPages}
-            >
-              다음
-            </button>
-            <button
-              onClick={() => setPage(endPage + 1)}
-              disabled={currentSet === totalSet}
             >
               ▶
             </button>
