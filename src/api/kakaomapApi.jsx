@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const KAKAO_APP_KEY = "616c83d358b56fc7a54d64894331e300";
+const KAKAO_APP_KEY = " ";
 
 export default function KakaoMap({
   center = { lat: 37.5665, lng: 126.978 },
