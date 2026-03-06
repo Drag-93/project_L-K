@@ -40,11 +40,19 @@
 
 # 메인화면
 
-| <img src="./readmegif/메인.gif" width="800" /> |
+ <img src="./readmegif/메인.gif" width="800" />
 
 # 사용자페이지 주요기능
 
-- 비로그인, 유저로그인, 관리자로그인 에 따른 header 및 페이지별 버튼 구별화
+<details>
+<summary>비로그인, 유저로그인, 관리자로그인 에 따른 header 및 페이지별 버튼 구별화</summary>
+<br>
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
+| :---------------------------:
+
+</details>
 - 검색, 정렬, 필터, 페이징 기능 구현
 - 주문상품 count 기능 구현
 - 예약상품 지점,날짜,시간 선택 기능(관리자페이지와 연동) 구현
