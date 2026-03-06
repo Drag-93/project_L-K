@@ -18,17 +18,57 @@
 # --- 사용기술 ---
 
 <div style="display: flex; flex-wrap: wrap; ">
-<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
-<img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css&logoColor=white"/>
-<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
+<img width="55" height="55" alt="image" src="https://github.com/user-attachments/assets/712ae4ed-396a-46bf-9866-dab1fd647cab" />
+<img width="55" height="55" alt="image" src="https://github.com/user-attachments/assets/c2005fc5-3321-4e48-a6da-83f7ccbb9594" />
+<img width="55" height="55" alt="image" src="https://github.com/user-attachments/assets/92fdb101-59be-4d62-86c8-b773c1a8430f" />
 </div>
 <div style="display: flex; flex-wrap: wrap; ">
-<img src="https://img.shields.io/badge/react 19.1.0-61DAFB?style=for-the-badge&logo=react&logoColor=black"/>
-<img src="https://img.shields.io/badge/redux 5.0.1-764ABC?style=for-the-badge&logo=redux&logoColor=white"/>
-<img src="https://img.shields.io/badge/axios 1.10.0-5A29E4?style=for-the-badge&logo=axios&logoColor=white"/>
-<img src="https://img.shields.io/badge/react%20router 7.6.2-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white"/>
-<img src="https://img.shields.io/badge/chart.js 4.5.0-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white"/>
+<img width="55" height="55" alt="image" src="https://github.com/user-attachments/assets/a13b0ce8-bd52-45ef-82e5-bea8668aafe3" />
+<img width="55" height="55" alt="image" src="https://github.com/user-attachments/assets/bb69e6cd-788d-4663-a8c0-dc0ed96774c9" />
+<img width="55" height="55" alt="image" src="https://github.com/user-attachments/assets/51f47b17-f91d-4f3c-861e-4edade305797" />
+<img width="55" height="55" alt="image" src="https://github.com/user-attachments/assets/13acfea8-d55a-4699-be53-ba6034724784" />
 </div>
+# 프로젝트 구조
+
+```
+smart_order/
+├── public/
+│   ├── index.html        # 앱의 기본 HTML 템플릿
+│   └── favicon.ico       # 브라우저 탭 아이콘
+├── src/
+│   ├── apis/             # API 요청 관련 모듈 (json db)
+│   ├── components/       # 공통 재사용 UI 컴포넌트
+│   ├── css/              # 공통 스타일 파일
+│   ├── db/               # JSON 기반 더미 데이터
+│   ├── layout/           # 공통 레이아웃 컴포넌트 (Header, Footer, Outlet 등)
+│   ├── pages/            # 페이지 단위 컴포넌트
+│   ├── router/           # 라우터 설정 파일
+│   ├── slice/            # Redux Toolkit slice 모음
+│   ├── store/            # Redux Toolkit 설정 파일
+│   ├── App.js            # 앱의 루트 컴포넌트
+│   ├── index.js          # 앱 진입 파일 (렌더링 시작점)
+│   └── index.css         # 전역 스타일 파일
+├── package-lock.json     # 종속성 버전 고정 파일 (일관된 빌드 보장)
+├── package.json          # 프로젝트 설정 및 의존성 관리
+├── .gitignore            # Git 추적 제외 파일 목록
+└── README.md             # 프로젝트 설명 및 실행 방법
+```
+
+---
+
+<div id="team-roles"></div>
+
+# 팀원 & 담당 역할
+
+| 팀원             | 역할                                                                                                                                                                                                                                   |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **김현우(팀장)** | • 메인, header, footer, 마이페이지 <br> • 상품판매, 진료예약 리스트 페이지 제작 <br> • 장바구니, 결제 페이지 제작 <br> • 사용자 화면 전체 레이아웃, css 공통화 <br> • GitHub 버전 관리 총괄                                            |
+| **이선영**       | • 상품판매/진료예약 목록 및 상세 페이지 <br> •상품/진료 아이템 구성 및 이미지 DB 구축<br> •사용자 후기(상세 페이지 내 기능, 마이페이지 내 링크)<br> •상품관리 페이지<br> •CSS 공통화 지원                                              |
+|  |
+| **이용근**       | • 라우팅 설계 <br> • 관리자 페이지 전체 구조 설계 <br> • 관리자 회원관리, 상품결제관리,지점관리,공지사항,Q&A 제작 <br> • 관리자 페이지 레이아웃, css공통화<br> • 전체 오류 검토 및 테스트 후 수정 <br> • 카카오 API활용 지점별 맵 구현 |
+| **이현성**       | • 로그인 / 회원가입 <br> • 지점소개 페이지 제작 <br> • 공지사항 및 자주묻는 질문 페이지 작업<br> • 관리자 예약관리 페이지 제작<br>                                                                                                     |
+
+---
 
 # --- 홈페이지 주요기능 ---
 
@@ -56,51 +96,6 @@
 - 공지사항 관리 - 글 작성 및 수정, 삭제기능 구현
 - q&a 관리 - 유저의 작성글에 답변 기능, 답변시 상태변경 기능(답변대기,답변완료) 구현
 
-# --- 작업진행사항 ---
-
-### 진행 상황
-
-- [o] header
-- [o] footer
-- [o] main
-- [o] 소개
-- [o] 연혁
-- [o] 회사소개
-- [o] 로그인, 회원가입
-- [o] 상품판매
-- [o] 상품판매 - detail
-- [o] 진료예약
-- [o] 진료예약 - detail
-- [o] 판매,예약 리뷰
-- [o] 공지사항
-- [o] faq
-- [o] q&a
-- [o] 장바구니,결제하기
-- [o] 결재내역
-- [o] 마이페이지
-- [o] 검색, 정렬, 페이징 기능 개발
-- [o] 관리자 페이지 레이아웃
-- [o] 관리자 - 회원관리
-- [o] 관리자 - 상품관리
-- [o] 관리자 - 예약관리
-- [o] 관리자 - 상품결제관리
-- [o] 관리자 - 예약결제관리
-- [o] 관리자 - 지점관리
-- [o] 관리자 - 공지사항 관리
-- [o] 관리자 - q&a관리
-
-### hotfix - 수정사항
-
-- [o] 예약관리,예약결제관리 필터 기능수정
-- [o] q&a 번호 역순
-- [o] q&a 필터 추가 - 전체,대기,완료
-- [o] 리뷰 페이지 input 수정
-- [o] 마이페이지 정렬기능 수정
-- [o] 마이페이지 내정보 버튼 수정
-- [o] 예약관리 db 관련 수정
-- [o] 예약관리 시간,지점 수정
-- [o] 마이페이지 컴포넌트별로 분리
-
 # --------- 주의사항 ----------
 
     inputSlice -> input ->
@@ -110,22 +105,6 @@
     isState = true 일때 로그아웃
 
 ---
-
-# --- git 사용방법 ---
-
-<항상 본인의 브랜치에서 작업 부탁드립니다._확인필수_>
-
-git add . -> 파일 로컬저장소에 추가
-
-git commit -m '커밋한내용' -> 로컬저장소 파일 커밋하기
-
-git push -> 원격저장소 브랜치에 파일업로드 하기
-
-git checkout 본인브랜치이름 -> 자신의 브랜치로 이동
-
-git pull origin dev -> 자신의 브랜치를 dev의 최신상태로 업데이트
-
-git pull -> 해당브랜치를 최신으로 업데이트
 
 # --- 브랜치 ---
 
@@ -139,7 +118,7 @@ gusdn000615 = 김현우
 
 snooze30 = 이선영
 
-# --- 서버설치 ---
+# --- 실행 방법 ---
 
 npm install @reduxjs/toolkit react-redux
 
@@ -154,13 +133,3 @@ npm install axios
 npm install @fullpage/react-fullpage -> 리액트 메인 풀페이지 라이브러리
 
 npm i react-calendar -> 리액트 캘린더 추가 라이브러리
-
-# --- CSS 작성규칙 ---
-
-별도의 css파일 제작 및 작성 후 style.css 에 import
-
-reset.css -> css 전체초기화
-
-common.css -> 프로젝트 전체 적용 CSS (header,footer,button 등)
-
-style.css -> 모든 css파일을 inport 후 main.jsx에 링크
