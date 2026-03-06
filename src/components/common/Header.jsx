@@ -18,9 +18,9 @@ const Header = () => {
   const state = useSelector((state) => state);
   const isState = useSelector((state) => state.input.isState);
   const location = useLocation();
-  console.log(state);
-  console.log(state.input.isState);
-  console.log(isState);
+  // console.log(state);
+  // console.log(state.input.isState);
+  // console.log(isState);
 
   const dispatch = useDispatch();
   const loginFn = (e) => {
@@ -29,7 +29,6 @@ const Header = () => {
     alert("로그아웃 실행!");
     dispatch(logoutF());
   };
-
 
   useEffect(() => {
     setIsMenuOpen(false);
@@ -269,8 +268,8 @@ const Header = () => {
         <nav className="nav">
           <ul>
             <li>
-              {isState ? null : /* 2. 내부 조건부 렌더링 시 중괄호 {} 를 제거해야 합니다 */
-              state.input.user?.role === "ROLE_ADMIN" ? (
+              {isState ? null /* 2. 내부 조건부 렌더링 시 중괄호 {} 를 제거해야 합니다 */ : state
+                  .input.user?.role === "ROLE_ADMIN" ? (
                 <Link to="/admin" className="depth_m_title">
                   관리자페이지
                 </Link>

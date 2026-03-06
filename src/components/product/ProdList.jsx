@@ -1,13 +1,12 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import { Link, NavLink, useParams } from 'react-router-dom'
-import { API_JSON_SERVER_URL } from '../../api/commonApi'
-import axios from 'axios'
+import React, { useEffect, useMemo, useState } from "react";
+import { Link, NavLink, useParams } from "react-router-dom";
+import { API_JSON_SERVER_URL } from "../../api/commonApi";
+import axios from "axios";
 
 const ProdList = () => {
-
-  const url=API_JSON_SERVER_URL;
-  const [list, setList]=useState([]);
-  const {category}=useParams();
+  const url = API_JSON_SERVER_URL;
+  const [list, setList] = useState([]);
+  const { category } = useParams();
 
   // 검색툴바의 활성화 상태 관리
   const [isSearchActive, setIsSearchActive] = useState(false);
@@ -16,9 +15,9 @@ const ProdList = () => {
   const [searchText, setSearchText] = useState("");
 
   //정렬기능변수
-  const [sortType, setSortType] = useState("dateN"); 
+  const [sortType, setSortType] = useState("dateN");
   const [isOpen, setIsOpen] = useState(false); // 드롭다운 열림 상태
-    
+
   // 정렬 옵션 데이터 배열화
   const sortOptions = [
     { value: "dateN", label: "최신순" },
@@ -27,8 +26,9 @@ const ProdList = () => {
     { value: "priceP", label: "낮은가격순" },
   ];
 
-  const currentSortLabel = sortOptions.find(opt => opt.value === sortType)?.label;
-
+  const currentSortLabel = sortOptions.find(
+    (opt) => opt.value === sortType,
+  )?.label;
 
   //검색, 정렬 기능
   const filtered = useMemo(() => {
@@ -52,14 +52,18 @@ const ProdList = () => {
       const viewB = Number(b.price || 0);
 
       switch (sortType) {
-        case "dateN": return timeB - timeA; // 최신순
-        case "dateP": return timeA - timeB; // 과거순
-        case "priceN": return viewB - viewA; // 조회수 높은순
-        case "priceP": return viewA - viewB; // 조회수 낮은순
-        default: return 0;
+        case "dateN":
+          return timeB - timeA; // 최신순
+        case "dateP":
+          return timeA - timeB; // 과거순
+        case "priceN":
+          return viewB - viewA; // 조회수 높은순
+        case "priceP":
+          return viewA - viewB; // 조회수 낮은순
+        default:
+          return 0;
       }
     });
-
   }, [list, searchText, sortType]);
 
   //페이징
@@ -67,30 +71,29 @@ const ProdList = () => {
   const [page, setPage] = useState(1);
   const btnRange = 10;
   const currentSet = Math.ceil(page / btnRange);
-  const firstPage = (currentSet - 1) * btnRange + 1
+  const firstPage = (currentSet - 1) * btnRange + 1;
+  // const firstPage = (Math.ceil(page / btnRange) - 1) * btnRange + 1;
+  const startPost = (page - 1) * pageSize + 1;
 
   const totalPages = useMemo(() => {
-      return Math.max(1, Math.ceil(filtered.length / pageSize));
-    }, [filtered.length, pageSize]);
-
+    return Math.max(1, Math.ceil(filtered.length / pageSize));
+  }, [filtered.length, pageSize]);
 
   const pagedList = useMemo(() => {
-      // const firstPage = (currentSet - 1) * pageSize;
-      return filtered.slice(firstPage, firstPage + pageSize);
+    return filtered.slice(startPost, startPost + pageSize);
   }, [filtered, page, pageSize]);
-
+  // console.log(totalPages);
   useEffect(() => {
-     if (page > totalPages) setPage(totalPages);
+    if (page > totalPages) setPage(totalPages);
   }, [page, totalPages]);
 
   useEffect(() => {
-      setPage(1);
+    setPage(1);
   }, [searchText]);
 
-
-  useEffect(()=>{
-    const listFn=async () => {
-      try{
+  useEffect(() => {
+    const listFn = async () => {
+      try {
         let requestUrl = `${url}/product`;
 
         // 2. category 값이 존재할 때만 쿼리 스트링 추가
@@ -98,150 +101,189 @@ const ProdList = () => {
           requestUrl += `?category=${category}`;
         }
         const res = await axios.get(requestUrl);
-        console.log(res);
+        // console.log(res);
         setList(res.data);
-      }catch(err){
-        console.log('로딩 실패');
+      } catch (err) {
+        console.log("로딩 실패");
       }
-    }
+    };
     listFn();
-  },[category,url])
-
+  }, [category, url]);
 
   return (
-    <div className='inner'>
-        <div className="sell_list_wrap">
-          <img src={`/images/banner_${category || 'all2'}.png`} className="sell_banner" />
-          <div className="aside_wrap">
-            <ul>
-              <li><NavLink to={`/product/list`} end>전체</NavLink></li>
-              <li><NavLink to={`/product/list/hydro`}>보습</NavLink></li>
-              <li><NavLink to={`/product/list/trouble`}>트러블</NavLink></li>
-              <li><NavLink to={`/product/list/white`}>미백</NavLink></li>
-              <li><NavLink to={`/product/list/antiage`}>안티에이징</NavLink></li>
-              <li><NavLink to={`/product/list/uv`}>UV</NavLink></li>
-            </ul>
-          </div>
-          <div className="list_search_wrap">
-            <span className="list_search_length">상품 <b>{list.length}</b>개</span>
-            <div className="list_search_box">
-              <div className={`toolbar ${isSearchActive ? "active" : ""}`} onClick={() => setIsSearchActive(true)}>
-                <input
-                  value={searchText}
-                  onChange={(e) => setSearchText(e.target.value)}
-                  placeholder="검색어 입력"
-                />
-                <span className="list_search_btn"onClick={(e) => {
-                    e.stopPropagation();
-                    setIsSearchActive(false);
-                    setSearchText("");
-                  }}>
-                  <img src="/images/icon_close_w.svg" />
-                </span>
+    <div className="inner">
+      <div className="sell_list_wrap">
+        <img
+          src={`/images/banner_${category || "all2"}.png`}
+          className="sell_banner"
+        />
+        <div className="aside_wrap">
+          <ul>
+            <li>
+              <NavLink to={`/product/list`} end>
+                전체
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={`/product/list/hydro`}>보습</NavLink>
+            </li>
+            <li>
+              <NavLink to={`/product/list/trouble`}>트러블</NavLink>
+            </li>
+            <li>
+              <NavLink to={`/product/list/white`}>미백</NavLink>
+            </li>
+            <li>
+              <NavLink to={`/product/list/antiage`}>안티에이징</NavLink>
+            </li>
+            <li>
+              <NavLink to={`/product/list/uv`}>UV</NavLink>
+            </li>
+          </ul>
+        </div>
+        <div className="list_search_wrap">
+          <span className="list_search_length">
+            상품 <b>{list.length}</b>개
+          </span>
+          <div className="list_search_box">
+            <div
+              className={`toolbar ${isSearchActive ? "active" : ""}`}
+              onClick={() => setIsSearchActive(true)}
+            >
+              <input
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                placeholder="검색어 입력"
+              />
+              <span
+                className="list_search_btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsSearchActive(false);
+                  setSearchText("");
+                }}
+              >
+                <img src="/images/icon_close_w.svg" />
+              </span>
+            </div>
+            <div className="custom-select-container">
+              <div
+                className={`select-selected ${isOpen ? "select-arrow-active" : ""}`}
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                {currentSortLabel}
+                <img src="/images/icon_filter_w.svg" />
               </div>
-              <div className="custom-select-container">
-                <div 
-                  className={`select-selected ${isOpen ? "select-arrow-active" : ""}`}
-                  onClick={() => setIsOpen(!isOpen)}
-                >
-                  {currentSortLabel}
-                  <img src="/images/icon_filter_w.svg" />
-                </div>
-                {isOpen && (
-                  <ul className="select-items">
-                    {sortOptions.map((opt) => (
-                      <li 
-                        key={opt.value}
-                        className={sortType === opt.value ? "same-as-selected" : ""}
-                        onClick={() => {
-                          setSortType(opt.value);
-                          setIsOpen(false);
-                        }}
-                      >
-                        {opt.label}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
+              {isOpen && (
+                <ul className="select-items">
+                  {sortOptions.map((opt) => (
+                    <li
+                      key={opt.value}
+                      className={
+                        sortType === opt.value ? "same-as-selected" : ""
+                      }
+                      onClick={() => {
+                        setSortType(opt.value);
+                        setIsOpen(false);
+                      }}
+                    >
+                      {opt.label}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
-          
-          <div className="sell_list">
-           {pagedList && pagedList.length > 0 ? (
-              <ul>
-                {pagedList.map((el) => (
-                  <li key={el.id}>
-                    <Link to={`/product/detail/${el.category}/${el.id}`}>
-                      <div className="top">
-                        <img src={el.img ? `/images/${el.category}/${el.img}` : `/images/all_none.png`} alt={el.name} onError={(e) => {e.target.src = "/images/all_none.png";}}/>
-                      </div>
-                      <div className="bottom">
-                        <span className="name">{el.name}</span>
-                        <span className="price">{Number(el.price).toLocaleString()}<small>원</small></span>
-                      </div>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <div className="no_data_wrap">
-                <div className="no_data_img"></div>
-                <span className="no_data_text">등록된 상품이 없습니다</span>
-              </div>
+        </div>
 
-            )}
-          </div>
-          <div className="paging_wrap">
-            <button
-              onClick={() => setPage(1)}
-              disabled={page === 1}
-              className="paging_double first"
-            >
-              &lt;&lt; {/* 또는 '맨처음' */}
-            </button>
-            <button
-              onClick={() => setPage((p) => Math.max(1, p - 1))}
-              disabled={page === 1}
-              className="paging_one prev"
-            >
-              이전
-            </button>
-            <ul className="page_numbers">
-              {Array.from({ length: btnRange }, (_, i) => {
-                const pageNum = firstPage + i;
-                if (pageNum > totalPages) return null;
-                return (
-                  <li
+        <div className="sell_list">
+          {pagedList && pagedList.length > 0 ? (
+            <ul>
+              {pagedList.map((el) => (
+                <li key={el.id}>
+                  <Link to={`/product/detail/${el.category}/${el.id}`}>
+                    <div className="top">
+                      <img
+                        src={
+                          el.img
+                            ? `/images/${el.category}/${el.img}`
+                            : `/images/all_none.png`
+                        }
+                        alt={el.name}
+                        onError={(e) => {
+                          e.target.src = "/images/all_none.png";
+                        }}
+                      />
+                    </div>
+                    <div className="bottom">
+                      <span className="name">{el.name}</span>
+                      <span className="price">
+                        {Number(el.price).toLocaleString()}
+                        <small>원</small>
+                      </span>
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="no_data_wrap">
+              <div className="no_data_img"></div>
+              <span className="no_data_text">등록된 상품이 없습니다</span>
+            </div>
+          )}
+        </div>
+        <div className="paging_wrap">
+          <button
+            onClick={() => setPage(1)}
+            disabled={page === 1}
+            className="paging_double first"
+          >
+            &lt;&lt; {/* 또는 '맨처음' */}
+          </button>
+          <button
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+            disabled={page === 1}
+            className="paging_one prev"
+          >
+            이전
+          </button>
+          <ul className="page_numbers">
+            {Array.from({ length: btnRange }, (_, i) => {
+              const pageNum = firstPage + i;
+              if (pageNum > totalPages) return null;
+              return (
+                <li
                   key={pageNum}
-                  onClick={()=> { setPage(pageNum)}}
+                  onClick={() => {
+                    setPage(pageNum);
+                  }}
                   className={page === pageNum ? "active" : ""}
                   disabled={page === pageNum}
-                  >
-                    {pageNum}
-                  </li>
-                )
-              })}
-            </ul>
-            <button
-              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-              disabled={page === totalPages}
-              className="paging_one next"
-            >
-              다음
-            </button>
-            <button
-              onClick={() => setPage(totalPages)}
-              disabled={page === totalPages}
-              className="paging_double last"
-            >
-              &gt;&gt; {/* 또는 '맨끝' */}
-            </button>
-          </div>
+                >
+                  {pageNum}
+                </li>
+              );
+            })}
+          </ul>
+          <button
+            onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+            disabled={page === totalPages}
+            className="paging_one next"
+          >
+            다음
+          </button>
+          <button
+            onClick={() => setPage(totalPages)}
+            disabled={page === totalPages}
+            className="paging_double last"
+          >
+            &gt;&gt; {/* 또는 '맨끝' */}
+          </button>
         </div>
       </div>
-  )
+    </div>
+  );
+};
 
-}
-
-export default ProdList
+export default ProdList;

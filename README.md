@@ -46,7 +46,7 @@
 
 <details>
 <summary>회원가입 / 로그인</summary>
-
+<br>
 <details>
 <summary>회원가입 GIF</summary>
 <br>
