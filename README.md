@@ -58,19 +58,22 @@
 | **회원가입** |
 
 </details>
+
+<details>
 <summary>로그인 GIF</summary>
 <br>
 | <img src="./readmeimg/로그인.gif" width="800" /> |
 | :---------------------------:
 | **로그인** |
-
+</details>
+<details>
 <summary>비로그인, 유저로그인, 관리자로그인에 따른 버튼 구별화</summary>
 <br>
 | <img src="./readmeimg/버튼구별화.png" width="400" />|
 | :---------------------------:
 | **비로그인, 유저로그인, 관리자로그인에 따른 버튼 구별화** |
 
-<details>
+</details>
 
 - 검색, 정렬, 필터, 페이징 기능 구현
 
