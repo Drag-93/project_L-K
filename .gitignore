@@ -26,3 +26,8 @@ dist-ssr
 # db
 db.json
 db/
+
+# env
+.env
+.env.*
+!.env.example
