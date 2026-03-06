@@ -40,7 +40,7 @@
 
 # 메인화면
 
-| <img src="./readmeGif/메인.gif" width="800" /> |
+| <img src="./readmegif/메인.gif" width="800" /> |
 
 # 사용자페이지 주요기능
 
